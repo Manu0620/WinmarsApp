@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class usuarios extends Model
+class usuarios extends Model 
 {
     use HasFactory;
 
@@ -29,4 +29,4 @@ class usuarios extends Model
         $this->attributes['contus'] = bcrypt($value);
     }
 
-}
+} 

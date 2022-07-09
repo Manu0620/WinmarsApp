@@ -7,28 +7,27 @@
         <title>Login</title>
     </head>
     <body>
-
         <center>
+
             <form action="/login" method="POST">
                 
                 @csrf
-
+                <br>
                 <label for="">Login</label>
-                <br><br>
-
-                <label for="nomusu">Nombre de usuario/correo</label>
+                <br> <br>
+                <label for="username">Nombre de usuario/correo</label>
                 <br>
-                <input type="text" name="nomusu" placeholder="Nombre de usuario/correo...">
+                <input type="text" name="username" placeholder="Nombre de usuario...">
                 <br> <br> 
-                <label for="contus">Contraseña</label>
+                <label for="password">Contraseña</label>
                 <br>
-                <input type="password" name="contus" placeholder="Contraseña...">
+                <input type="password" name="password" placeholder="Contraseña...">
                 <br> <br> 
 
                 <input type="submit" value="Login">
 
             </form>
-        </center>
         
+        </center>  
     </body>
 </html>

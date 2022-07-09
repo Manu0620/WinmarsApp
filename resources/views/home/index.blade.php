@@ -9,8 +9,17 @@
 
     <body>
         <center>
-            @csrf
+
             <h1>Home</h1>
+            
+            @auth
+                <p>Bienvenido {{auth()->user()->username}}, estas autenticado a la pagina</p>
+            @endauth
+
+            @guest
+                <p>Para ver el contenido <a href="/login">inicia sesion</a></p>
+            @endguest
+
         </center>
     </body>
 </html>

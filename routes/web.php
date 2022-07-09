@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\clientesController;
+use App\Http\Controllers\homeController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\usuariosController;
 use Illuminate\Support\Facades\Route;

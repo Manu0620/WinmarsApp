@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\loginRequest;
-use App\Models\login;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,6 +10,9 @@ class loginController extends Controller
 {
 
     public function show(){
+        if(Auth::check()){
+            return redirect('/home');
+        }
         return view('auth.login');
     }
 
@@ -19,9 +21,8 @@ class loginController extends Controller
         $credentials = $request->getCredentials();
 
         if(!Auth::validate($credentials)){
-            return redirect('/login')->withErrors('auth.failed');
+            return redirect()->to('/login')->withErrors('auth.failed');
         }
-
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
         Auth::login($user);
@@ -30,6 +31,6 @@ class loginController extends Controller
     }
 
     public function authenticated(Request $request, $user){
-        return redirect('/home');
+        return redirect()->to('/home');
     }
 }

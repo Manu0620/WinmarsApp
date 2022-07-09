@@ -15,13 +15,13 @@ class usuariosRequest extends FormRequest
     public function rules()
     {
         return [
-            'codemp' => 'required|unique:usuarios,codemp', 
-            'nomusu' => 'required|unique:usuarios,nomusu', 
-            'contus' => 'required|min:8', 
-            'confirmacion_contus' => 'required|same:contus', 
-            'correo' => 'required|unique:usuarios,correo', 
-            'roles' => 'required', 
-            'estusu' => 'required', 
+            'codemp' => 'required|unique:users,codemp', 
+            'username' => 'required|unique:users,username', 
+            'email' => 'required|unique:users,email', 
+            'password' => 'required|min:8', 
+            'password_confirmation' => 'required|same:password', 
+            'rol' => 'required', 
+            'status' => 'required', 
         ];
     }
 }

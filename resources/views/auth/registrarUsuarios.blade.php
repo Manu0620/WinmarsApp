@@ -16,23 +16,23 @@
                 <label for="codemp">Empleado</label>
                 <input type="text" name="codemp" placeholder="Empleado...">
                 <br> <br> 
-                <label for="nomusu">Nombre de usuario</label>
-                <input type="text" name="nomusu" placeholder="Nombre de usuario...">
+                <label for="username">Nombre de usuario</label>
+                <input type="text" name="username" placeholder="Nombre de usuario...">
                 <br> <br> 
-                <label for="contus">Contraseña</label>
-                <input type="password" name="contus" placeholder="Contraseña...">
+                <label for="email">Correo</label>
+                <input type="email" name="email" placeholder="Correo...">
                 <br> <br> 
-                <label for="confirmacion_contus">Confirmar Contraseña</label>
-                <input type="password" name="confirmacion_contus" placeholder="Connfirmar Contraseña...">
+                <label for="password">Contraseña</label>
+                <input type="password" name="password" placeholder="Contraseña...">
                 <br> <br> 
-                <label for="correo">Correo</label>
-                <input type="email" name="correo" placeholder="Correo...">
+                <label for="password_confirmation">Confirmar Contraseña</label>
+                <input type="password" name="password_confirmation" placeholder="Confirmar Contraseña...">
                 <br> <br> 
-                <label for="roles">Roles</label>
-                <input type="text" name="roles" placeholder="Roles...">
+                <label for="rol">rol</label>
+                <input type="text" name="rol" placeholder="rol...">
                 <br> <br> 
-                <label for="estusu">Estado</label>
-                <input type="text" name="estusu" placeholder="Estado...">
+                <label for="status">Estado</label>
+                <input type="text" name="status" placeholder="Estado...">
                 <br> <br>
 
                 <button type="submit"> Registrar </button>

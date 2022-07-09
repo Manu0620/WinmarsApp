@@ -16,27 +16,27 @@ class loginRequest extends FormRequest
     public function rules()
     {
         return [
-            'nomusu' => 'required',
-            'contus' => 'required'
+            'username' => 'required',
+            'password' => 'required'
         ];
     }
 
     public function getCredentials(){
-        $username = $this->get('nomusu');
+        $username = $this->get('username');
 
         if($this->isEmail($username)){
             return[
-                'correo' => $username,
-                'contus' => $this->get('contus')
+                'email' => $username,
+                'password' => $this->get('password')
             ];
         }
 
-        return $this->only('nomusu', 'contus');
+        return $this->only('username', 'password');
     }
 
     public function isEmail($value){
         $factory = $this->container->make(ValidationFactory::class);
 
-        return !$factory->make(['nomusu' => $value], ['nomusu' => 'email'])->fails();
+        return !$factory->make(['username' => $value], ['username' => 'email'])->fails();
     }
 }

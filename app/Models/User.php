@@ -12,23 +12,25 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $table = 'usuarios';
-    protected $primaryKey = 'codusu';
-
     protected $fillable = [
         'codemp',
-        'nomusu',
-        'contus',
-        'correo',
-        'roles',
-        'estusu',
+        'username',
+        'email',
+        'password',
+        'rol',
+        'status',
     ];
 
     protected $hidden = [
-        'contus',
+        'password',
+        'remember_token',
     ];
 
-    public function setContusAttribute($value){
-        $this->attributes['contus'] = bcrypt($value);
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    public function setPasswordAttribute($value){
+        $this->attributes['password'] = bcrypt($value);
     }
 }
