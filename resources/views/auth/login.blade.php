@@ -12,6 +12,10 @@
             <form action="/login" method="POST">
                 
                 @csrf
+
+                <label for="">Login</label>
+                <br><br>
+
                 <label for="nomusu">Nombre de usuario/correo</label>
                 <br>
                 <input type="text" name="nomusu" placeholder="Nombre de usuario/correo...">
