@@ -2,9 +2,14 @@
 
 @section('content')
 
-    <h3>Registro de Usuario</h3>
+    <h3>Formulario de Usuarios</h3>
 
-    <form action="/registarUsuarios" method="POST">
+    <div class="tab-nav">
+        <a href="/home">Home</a>
+        <label for="form-label">/ Formulario de Usuarios</label>
+    </div>
+
+    <form action="/registrarUsuarios" method="POST">
         @csrf
         <div class="mb-3">
             <label for="codemp" class="form-label">Empleado</label>
@@ -33,10 +38,19 @@
 
         <div class="mb-3">
             <label for="rol">Rol</label>
-            <input type="text" class="form-control" name="rol" placeholder="rol...">
+            <select class="form-select" name="rol">
+                <option selected>Selecciona el Rol...</option>
+                <option value="1">Administrador</option>
+                <option value="2">Empleado</option>
+                <option value="3">Clientes</option>
+            </select>
         </div>
 
-        <h1><button type="submit" class="btn btn-primary">Guardar</button></h1>
+        <div class="button-group">
+            <button type="reset" class="btn btn-secondary" style="background: #2196F3">Limpiar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+        
     </form>
 
 @endsection

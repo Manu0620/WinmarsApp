@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1>Home</h1>
+    <h1>Dashboard</h1>
     
     @auth
         <p>Bienvenido {{auth()->user()->username}}, estas autenticado a la pagina</p>

@@ -10,13 +10,13 @@ class clientesController extends Controller
 {
     public function show(){
         
-        return view('agregarClientes');
+        return view('registrarClientes');
 
     }
 
     public function create(clienteRequest $request){
         $cliente = clientes::create($request->validated());
 
-        return redirect()->to('agregarClientes');
+        return redirect()->to('registrarClientes');
     }
 }

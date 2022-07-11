@@ -39,12 +39,7 @@
                 border-bottom: 3px solid #6c757d;
             }
 
-            .form-container input:hover{
-                border: 1px solid #1976d2;
-                border-bottom: 3px solid #1976d2;
-            }
-
-            .form-container input:focus{
+            .form-container input:hover , .form-container select:focus{
                 border: 1px solid #1976d2;
                 border-bottom: 3px solid #1976d2;
             }

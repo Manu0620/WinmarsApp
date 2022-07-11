@@ -2,9 +2,14 @@
 
 @section('content')
 
-    <h3>Registro de Clientes</h3>
+    <h3>Formulario de Clientes</h3>
 
-    <form action="/agregarClientes" method="POST">
+    <div class="tab-nav">
+        <a href="/home">Home</a>
+        <label for="form-label">/ Formulario de Clientes</label>
+    </div>
+
+    <form action="/registrarClientes" method="POST">
         @csrf
         <div class="mb-3">
             <label for="nomcli">Nombre</label>
@@ -44,7 +49,7 @@
         <div class="mb-3">
             <label for="codtpcli">Tipo de Cliente</label>
             <select class="form-select" name="codtpcli">
-                <option selected>Tipo de cliente...</option>
+                <option selected>Selecciona el Tipo de cliente...</option>
                 <option value="1">Comprador</option>
                 <option value="2">Vendedor</option>
             </select>
@@ -54,7 +59,11 @@
             <input type="hidden" class="form-control" value="1" name="estcli" placeholder="Estado...">
         </div>
 
-        <h1><button type="submit" class="btn btn-primary">Guardar</button></h1>
+        <div class="button-group">
+            <button type="reset" class="btn btn-secondary" style="background: #2196F3">Limpiar</button>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+        
     </form>
 
 @endsection

@@ -11,8 +11,8 @@ Route::get('/', function(){
     return view('welcome');
 });
 
-Route::get('/agregarClientes', [clientesController::class, 'show']);
-Route::post('/agregarClientes', [clientesController::class, 'create']);
+Route::get('/registrarClientes', [clientesController::class, 'show']);
+Route::post('/registrarClientes', [clientesController::class, 'create']);
 
 
 Route::get('/registrarUsuarios', [usuariosController::class, 'show']);
