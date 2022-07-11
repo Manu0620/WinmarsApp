@@ -11,4 +11,16 @@ class clientes extends Model
 
     protected $table = 'clientes';
     protected $primaryKey = 'codcli';
+
+    protected $fillable = [
+        'nomcli',
+        'apecli',
+        'tecli1',
+        'tecli2',
+        'dircli',
+        'corcli',
+        'cedrnc',
+        'codtpcli',
+        'estcli',
+    ];
 }

@@ -1,33 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login</title>
-    </head>
-    <body>
-        <center>
+@extends('layouts.auth-master')
 
-            <form action="/login" method="POST">
-                
-                @csrf
-                <br>
-                <label for="">Login</label>
-                <br> <br>
-                <label for="username">Nombre de usuario/correo</label>
-                <br>
-                <input type="text" name="username" placeholder="Nombre de usuario...">
-                <br> <br> 
-                <label for="password">Contraseña</label>
-                <br>
-                <input type="password" name="password" placeholder="Contraseña...">
-                <br> <br> 
+@section('content')
+    
+    <h1><img src="{{ url('assets/img/IMG_20200608_150122.png') }}" alt="Logo">Login</h1>
 
-                <input type="submit" value="Login">
+    <form action="/login" method="POST">
+        @csrf
+        <div class="mb-3">
+            <label for="username" class="form-label">Username/Email</label>
+            <input type="text" class="form-control" name="username" placeholder="Ingresa tu email o username..." aria-describedby="emailHelp">
+            <div name="emailHelp" class="form-text">No compartas esta informacion con nadie.</div>
+        </div>
 
-            </form>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" placeholder="Ingresa contraseña..." name="password">
+        </div>
+
+        <h1><button type="submit" class="btn btn-primary">Login</button></h1>
+    </form>
+
+@endsection
+
         
-        </center>  
-    </body>
-</html>

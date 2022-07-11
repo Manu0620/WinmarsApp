@@ -1,44 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Registro de Usuarios</title>
-    </head>
+@extends('layouts.formulario-master')
 
-    <body>
+@section('content')
 
-        <center>
-            <form action="/registrarUsuarios" method="POST">
-                
-                @csrf
-                <label for="codemp">Empleado</label>
-                <input type="text" name="codemp" placeholder="Empleado...">
-                <br> <br> 
-                <label for="username">Nombre de usuario</label>
-                <input type="text" name="username" placeholder="Nombre de usuario...">
-                <br> <br> 
-                <label for="email">Correo</label>
-                <input type="email" name="email" placeholder="Correo...">
-                <br> <br> 
-                <label for="password">Contraseña</label>
-                <input type="password" name="password" placeholder="Contraseña...">
-                <br> <br> 
-                <label for="password_confirmation">Confirmar Contraseña</label>
-                <input type="password" name="password_confirmation" placeholder="Confirmar Contraseña...">
-                <br> <br> 
-                <label for="rol">rol</label>
-                <input type="text" name="rol" placeholder="rol...">
-                <br> <br> 
-                <label for="status">Estado</label>
-                <input type="text" name="status" placeholder="Estado...">
-                <br> <br>
+    <h3>Registro de Usuario</h3>
 
-                <button type="submit"> Registrar </button>
+    <form action="/registarUsuarios" method="POST">
+        @csrf
+        <div class="mb-3">
+            <label for="codemp" class="form-label">Empleado</label>
+            <input type="text" class="form-control" name="codemp" placeholder="Empleado..." >
+        </div>
 
-            </form>
-        </center>
-        
-    </body>
-</html>
+        <div class="mb-3">
+            <label for="username" class="form-label">Nombre de Usuario</label>
+            <input type="text" class="form-control" name="username" placeholder="Nombre de usuario...">
+        </div>
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control" name="password" placeholder="Contraseña...">
+        </div>
+
+        <div class="mb-3">
+            <label for="password_confirmation">Confirmar Contraseña</label>
+            <input type="password" class="form-control" name="password_confirmation" placeholder="Confirmar Contraseña...">
+        </div>
+
+        <div class="mb-3">
+            <label for="email">Correo</label>
+            <input type="email" class="form-control" name="email" placeholder="Correo...">
+        </div>
+
+        <div class="mb-3">
+            <label for="rol">Rol</label>
+            <input type="text" class="form-control" name="rol" placeholder="rol...">
+        </div>
+
+        <h1><button type="submit" class="btn btn-primary">Guardar</button></h1>
+    </form>
+
+@endsection
