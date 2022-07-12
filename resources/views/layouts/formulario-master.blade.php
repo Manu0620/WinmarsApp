@@ -12,6 +12,7 @@
         <!--Bootstrap-->
         <link rel="stylesheet" href="{{ url('assets/css/bootstrap.min.css') }}">
         <!--Styles-->
+        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
         <style>
             *{
                 font-family: 'Nunito', sans-serif;
@@ -29,13 +30,11 @@
                 width: 100%;
             }
 
+
+
             .tab-nav a:visited,.tab-nav a:link,.tab-nav a:active{
                 text-decoration: none;
                 color: #1976d2;
-            }
-
-            a:visited, a:link, a:active{
-                text-decoration: none;
             }
 
             .tab-nav{
@@ -53,51 +52,23 @@
                 padding: 10px;
             }
 
-            nav{
-                font-weight: 800;
-            }
-
-            li{
-                padding: 3px; 
-                color: #1976d2;
-            }
-
-            .dropdown-item{
-                padding: 10px 120px 10px 15px;
-            }
-
-            .dropdown-item:hover{
-                background-color: #1976d2;
-                color: #fff;
-                border-radius: 10px;
-            }
-
-            .dropdown-menu{
-                padding: 10px;
-                font-size: 18px;
-                font-weight: 900;
-                text-align: left;
-                border: 1px solid transparent;
-                border-radius: 10px;
-                box-shadow: 0px 5px 10px #6c757d84;
-            }
-
             .form-container{
                 width: 35%;
                 margin: 100px;
             }
 
-            .form-container input, .form-container select{
+            .form-container input, .form-container select, .form-container textarea{
                 border: 1px solid #6c757d;
                 border-bottom: 3px solid #6c757d;
+                border-radius: 10px;
             }
 
-            .form-container input:hover, .form-container select:hover{
+            .form-container input:hover, .form-container select:hover, .form-container textarea:hover{
                 border: 1px solid #1976d2;
                 border-bottom: 3px solid #1976d2;
             }
 
-            .form-container input:focus, .form-container select:focus{
+            .form-container input:focus, .form-container select:focus, .form-container textarea:focus{
                 border: 1px solid #1976d2;
                 border-bottom: 3px solid #1976d2;
             }
@@ -108,6 +79,7 @@
                 height: 45px;
                 margin: 10px;
                 font-weight: bold;
+                border-radius: 10px;
             }
 
             .form-container button:hover{
@@ -127,13 +99,18 @@
     </head>
 
     <body>
+        @auth
+            @include('layouts.partials.navbar')
+
+            <main class="form-container">
+                @yield('content')
+            </main>
+        @endauth
+
+        @guest
+                
+        @endguest
         
-        @include('layouts.partials.navbar')
-
-        <main class="form-container">
-            @yield('content')
-        </main>
-
         <script src="{{ url('assets/js/bootstrap.bundle.min.js') }}"></script>
     </body>
 

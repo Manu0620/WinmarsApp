@@ -46,9 +46,17 @@
             </select>
         </div>
 
+        <div class="mb-3">
+            <label for="status">Estado</label>
+            <select class="form-select" name="status">
+                <option value="activo" selected>Activo</option>
+                <option value="inactivo">Inactivo</option>
+            </select>
+        </div>
+
         <div class="button-group">
-            <button type="reset" class="btn btn-secondary" style="background: #2196F3">Limpiar</button>
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="reset" class="btn btn-primary"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save</button>
         </div>
         
     </form>

@@ -52,16 +52,21 @@
                 <option selected>Selecciona el Tipo de cliente...</option>
                 <option value="1">Comprador</option>
                 <option value="2">Vendedor</option>
+                
             </select>
         </div>
 
         <div class="mb-3">
-            <input type="hidden" class="form-control" value="1" name="estcli" placeholder="Estado...">
+            <label for="estcli">Estado</label>
+            <select class="form-select" name="estcli">
+                <option value="activo" selected>Activo</option>
+                <option value="inactivo">Inactivo</option>
+            </select>
         </div>
 
         <div class="button-group">
-            <button type="reset" class="btn btn-secondary" style="background: #2196F3">Limpiar</button>
-            <button type="submit" class="btn btn-primary">Guardar</button>
+            <button type="reset" class="btn btn-primary"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save</button>
         </div>
         
     </form>

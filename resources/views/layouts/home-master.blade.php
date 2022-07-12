@@ -10,6 +10,7 @@
         <!--Bootstrap-->
         <link rel="stylesheet" href="{{ url('assets/css/bootstrap.min.css') }}">
         <!--Styles-->
+        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
         <style>
             *{
                 font-family: 'Nunito', sans-serif;
@@ -20,10 +21,6 @@
                 image-rendering: pixelated;
             }
 
-            a:active, a:link, a:visited{
-                text-decoration: none;
-            }
-
             body{
                 display: flex;
                 align-items: center;
@@ -32,40 +29,14 @@
                 height: 100vh;
             }
 
-            nav{
-                font-weight: 800;
-            }
-
-            li{
-                padding: 3px; 
-                color: #1976d2;
-            }
-
-            .dropdown-item{
-                padding: 10px 120px 10px 15px;
-            }
-
-            .dropdown-item:hover{
-                background-color: #1976d2;
-                color: #fff;
-                border-radius: 10px;
-            }
-
-            .dropdown-menu{
-                padding: 10px;
-                font-size: 18px;
-                font-weight: 900;
-                text-align: left;
-                border: 1px solid transparent;
-                border-radius: 10px;
-                box-shadow: 0px 5px 10px #6c757d84;
-            }
         </style>
     </head>
 
     <body>
 
-        @include('layouts.partials.navbar')
+        @auth
+            @include('layouts.partials.navbar')
+        @endauth
 
         <main class="container">
             @yield('content')

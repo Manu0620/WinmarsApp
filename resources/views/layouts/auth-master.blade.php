@@ -12,6 +12,7 @@
         <!--Bootstrap-->
         <link rel="stylesheet" href="{{ url('assets/css/bootstrap.min.css') }}">
         <!--Styles-->
+        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
         <style>
             *{
                 font-family: 'Nunito', sans-serif;
@@ -30,6 +31,10 @@
                 height: 100vh;
             }
 
+            label{
+                margin-left: 10px;
+            }
+
             .form-container{
                 width: 25%;
             }
@@ -37,6 +42,7 @@
             .form-container input{
                 border: 1px solid #6c757d;
                 border-bottom: 3px solid #6c757d;
+                border-radius: 10px; 
             }
 
             .form-container input:hover , .form-container select:focus{
@@ -46,14 +52,25 @@
 
             .form-container button{
                 background: #1976d2;
-                padding: 10px 30px 10px 30px;
+                width: 100px;
+                height: 45px;
+                margin: 10px;
+                font-weight: bold;
+                border-radius: 10px;
             }
 
-            h1, h3{
-                color: #1976d2;
+            .form-container button:hover{
+                background: #1565C0;
+            }
+
+            .button-group{
+                text-align: center;
+            }
+
+            h3{
+                font-size: 36px;
                 font-weight: bold;
                 text-align: center;
-                margin: 30px;
             }
         </style>
     </head>
