@@ -6,6 +6,7 @@ use App\Http\Controllers\homeController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\logoutController;
 use App\Http\Controllers\usuariosController;
+use App\Http\Controllers\solicitudesController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function(){
@@ -21,6 +22,9 @@ Route::post('/registrarUsuarios', [usuariosController::class, 'create']);
 
 Route::get('/registrarCitas', [citasController::class, 'show']);
 Route::post('/registrarCitas', [citasController::class, 'create']);
+
+Route::get('/registrarSolicitudes', [solicitudesController::class, 'show']);
+Route::post('/registrarSolicitudes', [solicitudesController::class, 'create']);
 
 Route::get('/login', [loginController::class, 'show']);
 Route::post('/login', [loginController::class, 'login']);
