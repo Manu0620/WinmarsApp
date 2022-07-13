@@ -101,6 +101,14 @@
         @auth
             @include('layouts.partials.navbar')
 
+            @if ( isset($errors) && count($errors) > 0 )
+                <style>
+                    .form-container input{
+                        border-color: crimson; 
+                    }
+                </style>
+            @endif
+
             <main class="form-container">
                 @yield('content')
             </main>
