@@ -9,9 +9,7 @@ use Illuminate\Http\Request;
 class clientesController extends Controller
 {
     public function show(){
-        
         return view('registrarClientes');
-
     }
 
     public function create(clienteRequest $request){
