@@ -9,7 +9,7 @@
         <label for="form-label">/ Formulario de Propiedades</label>
     </div>
 
-    <form action="/registrarPropiedades" method="POST">
+    <form action="/registrarPropiedades" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="titulo">Titulo/nombre</label>
@@ -53,12 +53,12 @@
 
         <div class="mb-3">
             <label for="preren">Precio de renta</label>
-            <input type="text" class="form-control" value="0.00" name="preren" placeholder="Ingrese precio de renta...">
+            <input type="text" class="form-control" name="preren" placeholder="Ingrese precio de renta...">
         </div>
 
         <div class="mb-3">
             <label for="comision">Comision(ganacia)</label>
-            <input type="text" class="form-control" value="0.00" name="comision" placeholder="Ingrese comision...">
+            <input type="text" class="form-control" name="comision" placeholder="Ingrese comision...">
         </div>
 
         <div class="mb-3">

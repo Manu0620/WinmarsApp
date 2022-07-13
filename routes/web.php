@@ -18,25 +18,20 @@ Route::get('/', function(){
 Route::get('/registrarClientes', [clientesController::class, 'show']);
 Route::post('/registrarClientes', [clientesController::class, 'create']);
 
-<<<<<<< HEAD
-=======
 Route::get('/registrarEmpleados', [empleadosController::class, 'show']);
 Route::post('/registrarEmpleados', [empleadosController::class, 'create']);
 
->>>>>>> 763f4501d8b767175a49e4cfeb821431f6a0e559
 Route::get('/registrarUsuarios', [usuariosController::class, 'show']);
 Route::post('/registrarUsuarios', [usuariosController::class, 'create']);
 
 Route::get('/registrarCitas', [citasController::class, 'show']);
 Route::post('/registrarCitas', [citasController::class, 'create']);
 
-<<<<<<< HEAD
-Route::get('/registrarPropiedades', [propiedadesController::class, 'show']);
-Route::post('/registrarPropiedades', [propiedadesController::class, 'create']);
-=======
 Route::get('/registrarSolicitudes', [solicitudesController::class, 'show']);
 Route::post('/registrarSolicitudes', [solicitudesController::class, 'create']);
->>>>>>> 763f4501d8b767175a49e4cfeb821431f6a0e559
+
+Route::get('/registrarPropiedades', [propiedadesController::class, 'show']);
+Route::post('/registrarPropiedades', [propiedadesController::class, 'create']);
 
 Route::get('/login', [loginController::class, 'show']);
 Route::post('/login', [loginController::class, 'login']);

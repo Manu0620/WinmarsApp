@@ -14,7 +14,16 @@ class propiedadesController extends Controller
     }
 
     public function create(propiedadesRequest $request){
-        $propiedad = propiedades::create($request->validated());
+
+        $datos = request()->except('_token');
+
+        if($request->hasFile('fotos')){
+            $datos['fotos'] = $request->file('fotos')->store('uploads','public');
+        }
+
+        propiedades::insert($datos);
+
+        //propiedades::create($request->validated());
 
         return redirect('registrarPropiedades');
     }

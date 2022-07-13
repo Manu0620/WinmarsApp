@@ -24,7 +24,7 @@ class propiedades extends Model
         'preren',
         'comision',
         'codcli',
-        'codtppro',
+        'codtpro',
         'citbis',
         'estpro',
     ];

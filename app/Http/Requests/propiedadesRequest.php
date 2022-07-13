@@ -25,7 +25,7 @@ class propiedadesRequest extends FormRequest
             'preren' => 'required|numeric',
             'comision' => 'required|integer',
             'codcli' => 'required',
-            'codtppro' => 'required',
+            'codtpro' => 'required',
             'citbis' => 'required',
             'estpro' => 'required',
         ];
