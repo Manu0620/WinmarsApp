@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\citasController;
 use App\Http\Controllers\clientesController;
+use App\Http\Controllers\empleadosController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\logoutController;
@@ -16,6 +17,8 @@ Route::get('/', function(){
 Route::get('/registrarClientes', [clientesController::class, 'show']);
 Route::post('/registrarClientes', [clientesController::class, 'create']);
 
+Route::get('/registrarEmpleados', [empleadosController::class, 'show']);
+Route::post('/registrarEmpleados', [empleadosController::class, 'create']);
 
 Route::get('/registrarUsuarios', [usuariosController::class, 'show']);
 Route::post('/registrarUsuarios', [usuariosController::class, 'create']);
@@ -31,3 +34,5 @@ Route::post('/login', [loginController::class, 'login']);
 
 Route::get('/home', [homeController::class, 'index']);
 Route::get('/logout', [logoutController::class, 'logout']);
+
+
