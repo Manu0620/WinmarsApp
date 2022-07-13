@@ -11,6 +11,9 @@
 
     <form action="/registrarCitas" method="POST">
         @csrf
+
+        @include('layouts.partials.messages')
+        
         <div class="mb-3">
             <label for="codsol">Solicitud</label>
             <input type="text" class="form-control" name="codsol">

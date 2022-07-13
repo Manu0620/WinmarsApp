@@ -16,6 +16,6 @@ class usuariosController extends Controller
     public function create(usuariosRequest $request){
         $usuario = User::create($request->validated());
 
-        return redirect('/registrarUsuarios');
+        return redirect('/registrarUsuarios')->with('success', 'Formulario enviado correctamente!');
     }
 }

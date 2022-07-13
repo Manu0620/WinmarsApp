@@ -11,6 +11,9 @@
 
     <form action="/registrarPropiedades" method="POST" enctype="multipart/form-data">
         @csrf
+
+        @include('layouts.partials.messages')
+        
         <div class="mb-3">
             <label for="titulo">Titulo/nombre</label>
             <input type="text" class="form-control" name="titulo" placeholder="Ingrese el Titulo/Nombre...">
@@ -23,7 +26,7 @@
 
         <div class="mb-3">
             <label for="fotos">Fotos</label>
-            <input type="file" class="form-control" multiple name="fotos">
+            <input type="file" class="form-control" accept="image/*" multiple name="fotos">
         </div>
 
         <div class="mb-3">

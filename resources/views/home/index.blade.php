@@ -5,6 +5,7 @@
     <h1><i class="fa-solid fa-gauge"></i> </i> Dashboard</h1>
     
     @auth
+        
         <p>Bienvenido {{auth()->user()->username}}, estas autenticado a la pagina</p>
         <p>
             <a href="/logout">Logout</a>

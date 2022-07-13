@@ -25,6 +25,6 @@ class propiedadesController extends Controller
 
         //propiedades::create($request->validated());
 
-        return redirect('registrarPropiedades');
+        return redirect('registrarPropiedades')->with('success', 'Formulario enviado correctamente!');
     }
 }

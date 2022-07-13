@@ -19,7 +19,7 @@ class empleadosRequest extends FormRequest
         'nomemp'=>'required|string',
         'apeemp'=>'required|string',
         'telem1'=>'required|integer|unique:empleados,telem1',
-        'telem2'=>'required|integer|unique:empleados,telem2',
+        'telem2'=>'nullable|integer|unique:empleados,telem2',
         'direccion'=>'required',
         'correo'=>'required|unique:empleados,correo',
         'cedula'=>'required|integer|unique:empleados,cedula',

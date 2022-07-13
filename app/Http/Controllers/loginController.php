@@ -21,7 +21,7 @@ class loginController extends Controller
         $credentials = $request->getCredentials();
 
         if(!Auth::validate($credentials)){
-            return redirect()->to('/login')->withErrors('auth.failed');
+            return redirect()->to('/login')->withErrors('Nombre de usuario y/o contraseña son incorrectos, Intente de nuevo!');
         }
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
 
@@ -31,6 +31,6 @@ class loginController extends Controller
     }
 
     public function authenticated(Request $request, $user){
-        return redirect()->to('/home');
+        return redirect()->to('/home')->with('success');
     }
 }

@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Aplicacion de Login</title>
+        <link rel="icon" href="assets/img/Solo logo.png">
 
         <!--Fonts-->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700&display=swap" rel="stylesheet">
@@ -45,7 +46,7 @@
                 border-radius: 10px; 
             }
 
-            .form-container input:hover , .form-container select:focus{
+            .form-container input:hover, .form-container input:focus{
                 border: 1px solid #1976d2;
                 border-bottom: 3px solid #1976d2;
             }
@@ -64,6 +65,7 @@
             }
 
             .button-group{
+                margin-top: 30px;
                 text-align: center;
             }
 

@@ -15,6 +15,6 @@ class clientesController extends Controller
     public function create(clienteRequest $request){
         $cliente = clientes::create($request->validated());
 
-        return redirect()->to('registrarClientes');
+        return redirect()->to('registrarClientes')->with('success', 'Formulario enviado correctamente!');
     }
 }

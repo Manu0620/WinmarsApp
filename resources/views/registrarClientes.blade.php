@@ -11,6 +11,9 @@
 
     <form action="/registrarClientes" method="POST">
         @csrf
+
+        @include('layouts.partials.messages')
+        
         <div class="mb-3">
             <label for="nomcli">Nombre</label>
             <input type="text" class="form-control" name="nomcli" placeholder="Ingrese el nombre...">

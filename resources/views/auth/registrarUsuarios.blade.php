@@ -11,6 +11,9 @@
 
     <form action="/registrarUsuarios" method="POST">
         @csrf
+
+        @include('layouts.partials.messages')
+
         <div class="mb-3">
             <label for="codemp" class="form-label">Empleado</label>
             <input type="text" class="form-control" name="codemp" placeholder="Empleado..." >
@@ -40,9 +43,9 @@
             <label for="rol">Rol</label>
             <select class="form-select" name="rol">
                 <option selected>Selecciona el Rol...</option>
-                <option value="1">Administrador</option>
-                <option value="2">Empleado</option>
-                <option value="3">Clientes</option>
+                <option value="administrador">Administrador</option>
+                <option value="usuario">Usuario</option>
+                <option value="agente">Agente</option>
             </select>
         </div>
 

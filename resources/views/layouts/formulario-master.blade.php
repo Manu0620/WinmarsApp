@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Registros</title>
+        <link rel="icon" href="assets/img/Solo logo.png">
 
         <!--Fonts-->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700;800;900&display=swap" rel="stylesheet">
@@ -29,8 +30,6 @@
                 justify-content: center;
                 width: 100%;
             }
-
-
 
             .tab-nav a:visited,.tab-nav a:link,.tab-nav a:active{
                 text-decoration: none;
@@ -108,7 +107,7 @@
         @endauth
 
         @guest
-                
+            <h3>Para ver el contenido <a href="/login">inicia sesion</a></h3>
         @endguest
         
         <script src="{{ url('assets/js/bootstrap.bundle.min.js') }}"></script>

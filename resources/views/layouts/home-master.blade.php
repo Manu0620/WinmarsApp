@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Dashboard</title>
+        <link rel="icon" href="assets/img/Solo logo.png">
+        
         <!--Fonts-->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700&display=swap" rel="stylesheet">
         <!--Bootstrap-->
@@ -36,11 +38,15 @@
 
         @auth
             @include('layouts.partials.navbar')
+
+            <main class="container">
+                @yield('content')
+            </main>
         @endauth
 
-        <main class="container">
-            @yield('content')
-        </main>
+        @guest
+            <h3>Para ver el contenido <a href="/login">inicia sesion</a></h3>
+        @endguest
 
         <script src="{{ url('assets/js/bootstrap.bundle.min.js') }}"></script>
     </body>

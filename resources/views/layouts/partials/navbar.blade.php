@@ -6,13 +6,22 @@
     }
 
     nav{
-        font-weight: 800;
         background-color: rgb(224, 224, 224);
     }
 
     .nav-item{
         padding: 3px; 
-        font-size: 18px;
+        font-weight: 700;
+        font-size: 16px;
+    }
+
+    .dropdown-menu{
+        padding: 10px;
+        font-size: 16px;
+        text-align: left;
+        border: 1px solid transparent;
+        border-radius: 10px;
+        box-shadow: 0px 5px 10px #6c757d84;
     }
 
     .dropdown-item{
@@ -31,16 +40,6 @@
         position: absolute;
         right: 10px;
         top: 15px;
-    }
-
-    .dropdown-menu{
-        padding: 10px;
-        font-size: 18px;
-        font-weight: 900;
-        text-align: left;
-        border: 1px solid transparent;
-        border-radius: 10px;
-        box-shadow: 0px 5px 10px #6c757d84;
     }
 </style>
 
@@ -63,8 +62,9 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="registrarUsuarios"><i class="fa-solid fa-user" style="position: initial;"></i>  Usuarios<i class="fa-solid fa-arrow-right"></i></a></li>
+                        <li><a class="dropdown-item" href="registrarEmpleados"><i class="fa-solid fa-user" style="position: initial;"></i>  Empleados<i class="fa-solid fa-arrow-right"></i></a></li>
                         <li><a class="dropdown-item" href="registrarClientes"><i class="fa-solid fa-user-check" style="position: initial;"></i>  Clientes<i class="fa-solid fa-arrow-right"></i></a></li>
-                        <li><a class="dropdown-item" href="home"><i class="fa-solid fa-building" style="position: initial;"></i>  Propiedades <i class="fa-solid fa-arrow-right"></i></a></li>
+                        <li><a class="dropdown-item" href="registrarPropiedades"><i class="fa-solid fa-building" style="position: initial;"></i>  Propiedades <i class="fa-solid fa-arrow-right"></i></a></li>
                         <li><a class="dropdown-item" href="registrarCitas"><i class="fa-solid fa-calendar-check" style="position: initial;"></i>  Citas <i class="fa-solid fa-arrow-right"></i></a></li>
                     </ul>
                 </li>
@@ -91,10 +91,6 @@
                         </ul>
                     </li>
                 @endauth
-                
-                <li class="nav-item">
-                <a class="nav-link disabled"> </a>
-                </li>
             </ul>
 
         </div>

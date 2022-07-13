@@ -12,6 +12,9 @@
 
     <form action="/registrarEmpleados" method="POST">
         @csrf
+
+        @include('layouts.partials.messages')
+
         <div class="mb-3">
             <label for="nomemp">Nombre </label>
             <input type="text" class="form-control" name="nomemp" placeholder="Ingrese el nombre...">
@@ -51,8 +54,8 @@
             <label for="ctipemp">Tipo de Empleado</label>
             <select class="form-select" name="ctipemp">
                 <option selected>Selecciona el Tipo de Empleado...</option>
-                <option value="1">Fijo</option>
-                <option value="2">Temporal</option>
+                <option value="fijo">Fijo</option>
+                <option value="temporal">Temporal</option>
                 
             </select>
         </div>
@@ -61,8 +64,6 @@
             <select class="form-select" name="codpos">
                 <option selected>Selecciona el tipo de posicion...</option>
                 <option value="1">Tecnico</option>
-                
-                
             </select>
         </div>
 
