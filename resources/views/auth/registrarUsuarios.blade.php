@@ -24,7 +24,6 @@
             @enderror
         </div>
         
-
         <div class="mb-3">
             <label for="username" class="form-label">Nombre de Usuario</label>
             <input type="text" class="form-control" name="username" placeholder="Nombre de usuario...">

@@ -21,7 +21,7 @@
 
             img{
                 width: 150px;
-                image-rendering: crisp-edges;
+                image-rendering: pixelated;
             }
 
             body{

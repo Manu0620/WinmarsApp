@@ -1,8 +1,13 @@
 @if ( isset($errors) && count($errors) > 0 )
-    <ol style="margin: 0px; margin-left: 10px; padding:0px; color: crimson;"> 
-        <i class="fa-solid fa-circle-exclamation"></i>
-        {{ $message }}
-    </ol>
+
+    <div class="alert alert-danger" role="alert">
+        <ul class="list-unstyled mb-0">
+            @foreach ($errors->all() as $error)
+                <li><i class="fa-solid fa-circle-exclamation"></i>  {{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+
 @endif
 
 

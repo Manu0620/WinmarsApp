@@ -78,7 +78,7 @@
     </head>
 
     <body>
-
+         
         <main class="form-container">
             @yield('content')
         </main>

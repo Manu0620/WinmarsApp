@@ -18,7 +18,7 @@
             <input type="password" class="form-control" placeholder="Ingresa contraseña..." name="password">
         </div>
 
-        @include('layouts.partials.messages')
+        @include('layouts.partials.messagesLogin')
 
         <div class="button-group">
             <button type="submit" class="btn btn-primary"><i class="fa-solid fa-right-to-bracket"></i>  Login</button>
