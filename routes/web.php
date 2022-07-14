@@ -17,7 +17,7 @@ Route::get('/', function(){
 
 Route::get('/registrarClientes', [clientesController::class, 'show']);
 Route::post('/registrarClientes', [clientesController::class, 'create']);
-Route::get('/clientes/editarClientes', [clientesController::class, 'edit']);
+Route::get('/clientes/{codcli}/editarClientes', [clientesController::class, 'edit']);
 Route::get('/consultarClientes', [clientesController::class, 'query']);
 
 Route::get('/registrarEmpleados', [empleadosController::class, 'show']);
