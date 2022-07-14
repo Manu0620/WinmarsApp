@@ -7,11 +7,12 @@
                 @endforeach
             </ul>
         </div>
+        @else
+        <ol style="margin: 0px; margin-left: 10px; padding:0px; color: crimson;"> 
+            <i class="fa-solid fa-circle-exclamation"></i>
+            {{ $message }}
+        </ol>
     @endif
-    <ol style="margin: 0px; margin-left: 10px; padding:0px; color: crimson;"> 
-        <i class="fa-solid fa-circle-exclamation"></i>
-        {{ $message }}
-    </ol>
 @endif
 
 @if (Session::get('success', false))
