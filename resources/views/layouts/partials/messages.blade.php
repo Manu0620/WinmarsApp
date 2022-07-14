@@ -6,12 +6,12 @@
                     <li><i class="fa-solid fa-circle-exclamation"></i>  {{ $error }}</li>
                 @endforeach
             </ul>
-        </div>
-        @else
-        <ol style="margin: 0px; margin-left: 10px; padding:0px; color: crimson;"> 
-            <i class="fa-solid fa-circle-exclamation"></i>
-            {{ $message }}
-        </ol>
+        </div>  
+    @else
+    <ol style="margin: 0px; margin-left: 10px; padding:0px; color: crimson;"> 
+        <i class="fa-solid fa-circle-exclamation"></i>
+        {{ $message }}
+    </ol>
     @endif
 @endif
 
