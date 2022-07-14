@@ -8,13 +8,22 @@ use Illuminate\Http\Request;
 
 class clientesController extends Controller
 {
+
     public function show(){
-        return view('registrarClientes');
+        return view('clientes.registrarClientes');
     }
 
     public function create(clienteRequest $request){
         $cliente = clientes::create($request->validated());
+        return redirect()->to('clientes.registrarClientes')->with('success', 'Formulario enviado correctamente!');
+    }
 
-        return redirect()->to('registrarClientes')->with('success', 'Formulario enviado correctamente!');
+    public function edit(clientes $cliente){
+        return view('clientes.editarClientes');
+    }
+
+    public function query(){
+        $datos['clientes'] = clientes::paginate(5); 
+        return view('clientes.consultarClientes', $datos);
     }
 }

@@ -46,7 +46,7 @@
 <nav class="navbar navbar-expand-lg bg-light navbar fixed-top">
     <div class="container-fluid">
 
-        <a class="navbar-brand" href="/home"><img src="assets/img/LOGO WM PROPERTIE horizontal.png" alt="Logo"></a>
+        <a class="navbar-brand" href="/home"><img src="../assets/img/LOGO WM PROPERTIE horizontal.png" alt="Logo"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -83,7 +83,7 @@
                 @auth
                     <li class="nav-item dropdown"> 
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="assets\img\icon-5359553_1280.png" style="width: 45px" class="logo-usuario" alt="usuario">
+                            <img src="..\assets\img\icon-5359553_1280.png" style="width: 45px" class="logo-usuario" alt="usuario">
                             {{auth()->user()->username}}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
