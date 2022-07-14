@@ -13,21 +13,33 @@
     <form action="/registrarSolicitudes" method="POST">
         @csrf
 
+        @if (Session::get('success', false))
         @include('layouts.partials.messages')
+          @endif
         
         <div class="mb-3">
             <label for="codcli">Cliente</label>
             <input type="text" class="form-control" name="codcli">
+            @error('codcli')
+            @include('layouts.partials.messages')
+        @enderror
         </div>
 
         <div class="mb-3">
             <label for="codpro">Propiedad</label>
             <input type="text" class="form-control" name="codpro">
+            @error('codpro')
+            @include('layouts.partials.messages')
+        @enderror
+            
         </div>
 
         <div class="mb-3">
             <label for="comentario">Comentario</label>
             <textarea type="text" class="form-control" rows="4" cols="50" name="comentario" placeholder="Escriba su comentario..."> </textarea>
+            @error('comentario')
+            @include('layouts.partials.messages')
+        @enderror
         </div>
 
         <div class="mb-3">
