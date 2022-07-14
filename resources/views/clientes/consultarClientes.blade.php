@@ -32,7 +32,10 @@
                     <td>{{ $cliente->codtpcli }}</td>
                     <td>{{ $cliente->estcli }}</td>
 
-                    <td><a href="/clientes/{{$cliente->codcli}}/editarClientes">Editar</a></td>
+                    <td><a href="{{ url('/clientes/'.$cliente->codcli.'/editarClientes') }}">
+                    Editar
+                    </a>
+                </td>
                     
                 </tr>
             @endforeach
