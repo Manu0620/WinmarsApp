@@ -18,7 +18,7 @@ class clientesController extends Controller
         return redirect()->to('clientes.registrarClientes')->with('success', 'Formulario enviado correctamente!');
     }
 
-    public function edit(clientes $cliente){
+    public function edit($codcli){
         return view('clientes.editarClientes');
     }
 
