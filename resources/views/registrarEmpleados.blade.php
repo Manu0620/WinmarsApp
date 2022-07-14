@@ -13,41 +13,64 @@
     <form action="/registrarEmpleados" method="POST">
         @csrf
 
+        @if (Session::get('success', false))
         @include('layouts.partials.messages')
+             @endif
 
         <div class="mb-3">
             <label for="nomemp">Nombre </label>
             <input type="text" class="form-control" name="nomemp" placeholder="Ingrese el nombre...">
+            @error('nomemp')
+                @include('layouts.partials.messages')
+            @enderror
         </div>
 
         <div class="mb-3">
             <label for="apeemp">Apellido</label>
             <input type="text" class="form-control" name="apeemp" placeholder="Ingrese el apellido...">
+            @error('apeemp')
+                @include('layouts.partials.messages')
+            @enderror
         </div>
 
         <div class="mb-3">
             <label for="telem1">Teléfono 1</label>
             <input type="text" class="form-control" name="telem1" placeholder="Ingrese el teléfono 1...">
+            @error('telem1')
+                @include('layouts.partials.messages')
+            @enderror
         </div>
 
         <div class="mb-3">
             <label for="telem2">Teléfono 2</label>
             <input type="text" class="form-control" name="telem2" placeholder="Ingrese el teléfono 2...">
+            @error('telem2')
+                @include('layouts.partials.messages')
+            @enderror
         </div>
 
         <div class="mb-3">
             <label for="direccion">Dirección</label>
             <input type="text" class="form-control" name="direccion" placeholder="Ingrese la dirección...">
+            @error('direccion')
+                @include('layouts.partials.messages')
+            @enderror
         </div>
 
         <div class="mb-3">
             <label for="correo">Correo Electrónico</label>
             <input type="text" class="form-control" name="correo" placeholder="Ingrese el correo electrónico...">
+            @error('correo')
+                @include('layouts.partials.messages')
+            @enderror
         </div>
 
         <div class="mb-3">
             <label for="cedula">Cédula/RNC</label>
             <input type="text" class="form-control" name="cedula" placeholder="Ingrese la cédula/RNC...">
+            @error('cedula')
+                @include('layouts.partials.messages')
+            @enderror
         </div>
 
         <div class="mb-3">
@@ -56,8 +79,8 @@
                 <option selected>Selecciona el Tipo de Empleado...</option>
                 <option value="fijo">Fijo</option>
                 <option value="temporal">Temporal</option>
-                
             </select>
+           
         </div>
         <div class="mb-3">
             <label for="codpos">Posicion</label>
@@ -65,6 +88,7 @@
                 <option selected>Selecciona el tipo de posicion...</option>
                 <option value="1">Tecnico</option>
             </select>
+           
         </div>
 
         <div class="mb-3">
@@ -73,6 +97,7 @@
                 <option value="1" selected>Activo</option>
                 <option value="2">Inactivo</option>
             </select>
+           
         </div>
 
         <div class="button-group">

@@ -12,26 +12,40 @@
     <form action="/registrarCitas" method="POST">
         @csrf
 
+        @if (Session::get('success', false))
         @include('layouts.partials.messages')
+          @endif
         
         <div class="mb-3">
             <label for="codsol">Solicitud</label>
             <input type="text" class="form-control" name="codsol">
+            @error('codsol')
+            @include('layouts.partials.messages')
+        @enderror
         </div>
 
         <div class="mb-3">
             <label for="codusu">Usuario</label>
             <input type="text" class="form-control" name="codusu">
+            @error('codusu')
+            @include('layouts.partials.messages')
+        @enderror
         </div>
 
         <div class="mb-3">
             <label for="fecha">Fecha</label>
             <input type="date" class="form-control" name="fecha" placeholder="Ingrese el fecha...">
+            @error('fecha')
+            @include('layouts.partials.messages')
+        @enderror
         </div>
 
         <div class="mb-3">
             <label for="descrip">Descripcion</label>
             <textarea class="form-control" name="descrip" rows="4" cols="50" placeholder="Descripcion..."> </textarea>
+            @error('descrip')
+            @include('layouts.partials.messages')
+        @enderror
         </div>
 
         <div class="mb-3">
