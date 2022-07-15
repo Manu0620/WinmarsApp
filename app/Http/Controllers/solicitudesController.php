@@ -33,14 +33,11 @@ class solicitudesController extends Controller
     public function update(Request $request, $codsol){
         $solicitud = solicitudes::find($codsol);
   
-        $solicitud->nomcli = $request->input('nomcli');
-        $solicitud->apecli = $request->input('apecli');
-        $solicitud->tecli1 = $request->input('tecli1');
-        $solicitud->tecli2 = $request->input('tecli2');
-        $solicitud->dircli = $request->input('dircli');
-        $solicitud->corcli = $request->input('corcli');
-        $solicitud->cedrnc = $request->input('cedrnc');
-        $solicitud->codtpcli = $request->input('codtpcli');
+        $solicitud->codcli = $request->input('codcli');
+        $solicitud->codpro = $request->input('codpro');
+        $solicitud->comentario = $request->input('comentario');
+        $solicitud->fecha = $request->input('fecha');
+    
         
         $solicitud->save();
         return redirect('consultarSolicitudes')->with('success', 'Edicion realizada correctamente');
