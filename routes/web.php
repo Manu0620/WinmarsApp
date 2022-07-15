@@ -17,7 +17,10 @@ Route::get('/', function(){
 
 Route::get('/registrarClientes', [clientesController::class, 'show']);
 Route::post('/registrarClientes', [clientesController::class, 'create']);
-Route::get('/clientes/editarClientes', [clientesController::class, 'edit']);
+
+Route::get('/editarClientes/{id}', [clientesController::class, 'edit'])->name('clientes');
+Route::put('/editarClientes/{id}', [clientesController::class, 'update'])->name('clientes');
+
 Route::get('/consultarClientes', [clientesController::class, 'query']);
 
 Route::get('/registrarEmpleados', [empleadosController::class, 'show']);

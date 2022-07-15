@@ -28,6 +28,7 @@
                 align-items: center;
                 justify-content: center;
                 width: 100%;
+                height: auto;
             }
 
             .tab-nav a:visited,.tab-nav a:link,.tab-nav a:active{
@@ -50,54 +51,58 @@
                 padding: 10px;
             }
 
-            .form-container{
-                width: 35%;
+            .container{
+                width: 80%;
                 margin: 100px;
             }
 
-            .form-container table thead{
-                border-radius: 10px;
+            table{
+                font-weight: bold;
             }
 
-            .form-container th, .form-container td{
-                width: fit-content;
+            thead{
+                border-bottom: 2px solid black; 
             }
 
-            .form-container th{
+            .container th{
                 background: #64B5F6;
             }
 
-            .form-container td{
+            .container td{
                 background: #90CAF9;
+                font-size: 14px;
             }
 
-            .form-container input, .form-container select, .form-container textarea{
+            .container input{
                 border: 1px solid #6c757d;
                 border-bottom: 3px solid #6c757d;
                 border-radius: 10px;
+                background: #90CAF9;
             }
 
-            .form-container input:hover, .form-container select:hover, .form-container textarea:hover{
+            .container input:hover{
                 border: 1px solid #1976d2;
                 border-bottom: 3px solid #1976d2;
             }
 
-            .form-container input:focus, .form-container select:focus, .form-container textarea:focus{
+            .container input:focus{
                 border: 1px solid #1976d2;
                 border-bottom: 3px solid #1976d2;
+                background: #90CAF9;
             }
 
-            .form-container button{
-                background: #1976d2;
-                width: 100px;
+            .container button, .container a{
+                width: fit-content;
                 height: 45px;
-                margin: 10px;
+                margin: 20px 5px 20px 5px; 
                 font-weight: bold;
                 border-radius: 10px;
             }
 
-            .form-container button:hover{
-                background: #1565C0;
+            .container .btn-editar{
+                width: 100px;
+                margin: 5px;
+                height: 40px;
             }
 
             .button-group{
@@ -116,7 +121,7 @@
         @auth
             @include('layouts.partials.navbar')
 
-            <main class="form-container">
+            <main class="container">
                 @yield('content')
             </main>
             

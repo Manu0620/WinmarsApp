@@ -91,14 +91,7 @@
            
         </div>
 
-        <div class="mb-3">
-            <label for="estemp">Estado Empleado</label>
-            <select class="form-select" name="estemp">
-                <option value="1" selected>Activo</option>
-                <option value="2">Inactivo</option>
-            </select>
-           
-        </div>
+        <input type="hidden" class="form-control" name="estemp" value="1">
 
         <div class="button-group">
             <button type="reset" class="btn btn-primary"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>

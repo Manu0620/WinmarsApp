@@ -68,6 +68,20 @@
                         <li><a class="dropdown-item" href="registrarCitas"><i class="fa-solid fa-calendar-check" style="position: initial;"></i>  Citas <i class="fa-solid fa-arrow-right"></i></a></li>
                     </ul>
                 </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-search"></i> Consultas
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="registrarUsuarios"><i class="fa-solid fa-user" style="position: initial;"></i>  Usuarios<i class="fa-solid fa-arrow-right"></i></a></li>
+                        <li><a class="dropdown-item" href="registrarEmpleados"><i class="fa-solid fa-user" style="position: initial;"></i>  Empleados<i class="fa-solid fa-arrow-right"></i></a></li>
+                        <li><a class="dropdown-item" href="consultarClientes"><i class="fa-solid fa-user-check" style="position: initial;"></i>  Clientes<i class="fa-solid fa-arrow-right"></i></a></li>
+                        <li><a class="dropdown-item" href="registrarPropiedades"><i class="fa-solid fa-building" style="position: initial;"></i>  Propiedades <i class="fa-solid fa-arrow-right"></i></a></li>
+                        <li><a class="dropdown-item" href="registrarCitas"><i class="fa-solid fa-calendar-check" style="position: initial;"></i>  Citas <i class="fa-solid fa-arrow-right"></i></a></li>
+                    </ul>
+                </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="fa-solid fa-gears"></i> Procesos

@@ -118,13 +118,7 @@
             <input type="text" class="form-control" name="citbis">
         </div>
 
-        <div class="mb-3">
-            <label for="estpro">Estado</label>
-            <select class="form-select" name="estpro">
-                <option value="activo" selected>Activo</option>
-                <option value="inactivo">Inactivo</option>
-            </select>
-        </div>
+        <input type="hidden" class="form-control" name="estpro" value="1">
 
         <div class="button-group">
             <button type="reset" class="btn btn-primary"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>

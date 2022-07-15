@@ -12,41 +12,64 @@
     <form action="/registrarClientes" method="POST">
         @csrf
 
+        @if (Session::get('success', false))
         @include('layouts.partials.messages')
+          @endif
         
         <div class="mb-3">
             <label for="nomcli">Nombre</label>
             <input type="text" class="form-control" name="nomcli" placeholder="Ingrese el nombre...">
+            @error('nomcli')
+            @include('layouts.partials.messages')
+        @enderror
         </div>
 
         <div class="mb-3">
             <label for="apecli">Apellido</label>
             <input type="text" class="form-control" name="apecli" placeholder="Ingrese el apellido...">
+            @error('apecli')
+            @include('layouts.partials.messages')
+        @enderror
         </div>
 
         <div class="mb-3">
             <label for="tecli1">Teléfono 1</label>
             <input type="text" class="form-control" name="tecli1" placeholder="Ingrese el teléfono 1...">
+            @error('tecli1')
+            @include('layouts.partials.messages')
+        @enderror
         </div>
 
         <div class="mb-3">
             <label for="tecli2">Teléfono 2</label>
             <input type="text" class="form-control" name="tecli2" placeholder="Ingrese el teléfono 2...">
+            @error('tecli2')
+            @include('layouts.partials.messages')
+        @enderror
         </div>
 
         <div class="mb-3">
             <label for="dircli">Dirección</label>
             <input type="text" class="form-control" name="dircli" placeholder="Ingrese la dirección...">
+            @error('dircli')
+            @include('layouts.partials.messages')
+        @enderror
         </div>
 
         <div class="mb-3">
             <label for="corcli">Correo Electrónico</label>
             <input type="text" class="form-control" name="corcli" placeholder="Ingrese el correo electrónico...">
+            @error('corcli')
+            @include('layouts.partials.messages')
+        @enderror
         </div>
 
         <div class="mb-3">
             <label for="cedrnc">Cédula/RNC</label>
             <input type="text" class="form-control" name="cedrnc" placeholder="Ingrese la cédula/RNC...">
+            @error('cedrnc')
+            @include('layouts.partials.messages')
+        @enderror
         </div>
 
         <div class="mb-3">
@@ -59,13 +82,7 @@
             </select>
         </div>
 
-        <div class="mb-3">
-            <label for="estcli">Estado</label>
-            <select class="form-select" name="estcli">
-                <option value="activo" selected>Activo</option>
-                <option value="inactivo">Inactivo</option>
-            </select>
-        </div>
+        <input type="hidden" class="form-control" name="estcli" value="1">
 
         <div class="button-group">
             <button type="reset" class="btn btn-primary"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
