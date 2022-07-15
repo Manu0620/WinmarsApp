@@ -16,6 +16,7 @@ class solicitudes extends Model
         'codcli',
         'codpro',
         'comentario',
+        'fecha',
         'estsol',
     ];
 }

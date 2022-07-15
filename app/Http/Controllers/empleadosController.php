@@ -30,14 +30,15 @@ class empleadosController extends Controller
    public function update(Request $request, $codemp){
       $empleado = empleados::find($codemp);
 
-      $empleado->nomcli = $request->input('nomcli');
-      $empleado->apecli = $request->input('apecli');
-      $empleado->tecli1 = $request->input('tecli1');
-      $empleado->tecli2 = $request->input('tecli2');
-      $empleado->dircli = $request->input('dircli');
-      $empleado->corcli = $request->input('corcli');
-      $empleado->cedrnc = $request->input('cedrnc');
-      $empleado->codtpcli = $request->input('codtpcli');
+      $empleado->nomemp = $request->input('nomemp');
+      $empleado->apeemp = $request->input('apeemp');
+      $empleado->telem1 = $request->input('telem1');
+      $empleado->telem2 = $request->input('telem2');
+      $empleado->direccion = $request->input('direccion');
+      $empleado->correo = $request->input('correo');
+      $empleado->cedula = $request->input('cedula');
+      $empleado->ctipemp = $request->input('ctipemp');
+      $empleado->codpos = $request->input('codpos');
       
       $empleado->save();
       return redirect('consultarEmpleados')->with('success', 'Edicion realizada correctamente');

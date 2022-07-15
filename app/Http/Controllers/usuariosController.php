@@ -20,7 +20,7 @@ class usuariosController extends Controller
     }
 
     public function query(){
-        $datos['user'] = user::paginate(5); 
+        $datos['User'] = User::paginate(5); 
         return view('usuarios.consultarUsuarios', $datos);
     }
 }
