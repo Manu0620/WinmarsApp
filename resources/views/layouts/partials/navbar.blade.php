@@ -42,7 +42,7 @@
     }
 </style>
 
-<nav class="navbar navbar-expand-lg bg-light navbar fixed-top">
+<nav class="navbar navbar-expand-lg navbar fixed-top" style="background-color: #E3F2FD;">
     <div class="container-fluid">
 
         <a class="navbar-brand" href="/home"><img src="../assets/img/LOGO WM PROPERTIE horizontal.png" alt="Logo"></a>
