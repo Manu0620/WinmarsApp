@@ -18,4 +18,9 @@ class usuariosController extends Controller
 
         return redirect('/registrarUsuarios')->with('success', 'Formulario enviado correctamente!');
     }
+
+    public function query(){
+        $datos['user'] = user::paginate(5); 
+        return view('usuarios.consultarUsuarios', $datos);
+    }
 }

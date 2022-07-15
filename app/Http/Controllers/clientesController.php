@@ -13,14 +13,14 @@ class clientesController extends Controller
         return view('clientes.registrarClientes');
     }
 
-    public function query(){
-        $datos['clientes'] = clientes::paginate(5); 
-        return view('clientes.consultarClientes', $datos);
-    }
-
     public function create(clienteRequest $request){
         $cliente = clientes::create($request->validated());
         return redirect()->to('clientes.registrarClientes')->with('success', 'Formulario enviado correctamente!');
+    }
+
+    public function query(){
+        $datos['clientes'] = clientes::paginate(5); 
+        return view('clientes.consultarClientes', $datos);
     }
 
     public function edit($codcli){

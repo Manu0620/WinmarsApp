@@ -27,4 +27,30 @@ class propiedadesController extends Controller
 
         return redirect('propiedades.registrarPropiedades')->with('success', 'Formulario enviado correctamente!');
     }
+
+    public function query(){
+        $datos['propiedades'] = propiedades::paginate(5); 
+        return view('propiedades.consultarPropiedades', $datos);
+     }
+  
+    public function edit($codpro){
+        $propiedad = propiedades::find($codpro);
+        return view('propiedades.editarPropiedades', compact('propiedad'));
+    }
+  
+    public function update(Request $request, $codpro){
+        $propiedad = propiedades::find($codpro);
+
+        $propiedad->nomcli = $request->input('nomcli');
+        $propiedad->apecli = $request->input('apecli');
+        $propiedad->tecli1 = $request->input('tecli1');
+        $propiedad->tecli2 = $request->input('tecli2');
+        $propiedad->dircli = $request->input('dircli');
+        $propiedad->corcli = $request->input('corcli');
+        $propiedad->cedrnc = $request->input('cedrnc');
+        $propiedad->codtpcli = $request->input('codtpcli');
+
+        $propiedad->save();
+        return redirect('consultarPropiedades')->with('success', 'Edicion realizada correctamente');
+    }
 }
