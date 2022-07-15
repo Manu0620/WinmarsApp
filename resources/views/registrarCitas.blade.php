@@ -18,7 +18,7 @@
         
         <div class="mb-3">
             <label for="codsol">Solicitud</label>
-            <input type="text" class="form-control" name="codsol">
+            <input type="text" class="form-control" name="codsol" value="{{ old('codsol') }}">
             @error('codsol')
             @include('layouts.partials.messages')
         @enderror
@@ -26,7 +26,7 @@
 
         <div class="mb-3">
             <label for="codusu">Usuario</label>
-            <input type="text" class="form-control" name="codusu">
+            <input type="text" class="form-control" name="codusu" value="{{ old('codusu') }}">
             @error('codusu')
             @include('layouts.partials.messages')
         @enderror
@@ -34,7 +34,7 @@
 
         <div class="mb-3">
             <label for="fecha">Fecha</label>
-            <input type="date" class="form-control" name="fecha" placeholder="Ingrese el fecha...">
+            <input type="date" class="form-control" name="fecha" placeholder="Ingrese el fecha..." value="{{ old('fecha') }}">
             @error('fecha')
             @include('layouts.partials.messages')
         @enderror
@@ -42,7 +42,7 @@
 
         <div class="mb-3">
             <label for="descrip">Descripcion</label>
-            <textarea class="form-control" name="descrip" rows="4" cols="50" placeholder="Descripcion..."> </textarea>
+            <textarea class="form-control" name="descrip" rows="4" cols="50" placeholder="Descripcion..." value="{{ old('descrip') }}"> </textarea>
             @error('descrip')
             @include('layouts.partials.messages')
         @enderror
@@ -50,7 +50,7 @@
 
         <div class="mb-3">
             <label for="estcit">Estado</label>
-            <select class="form-select" name="estcit">
+            <select class="form-select" name="estcit" value="{{ old('estcit') }}">
                 <option value="pendiente" selected>Pendiente</option>
                 <option value="en proceso">En proceso</option>
                 <option value="comletada">Completada</option>

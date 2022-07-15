@@ -18,7 +18,7 @@
         
         <div class="mb-3">
             <label for="nomcli">Nombre</label>
-            <input type="text" class="form-control" name="nomcli" placeholder="Ingrese el nombre...">
+            <input type="text" class="form-control" name="nomcli" value="{{ old('nomcli') }}" placeholder="Ingrese el nombre...">
             @error('nomcli')
             @include('layouts.partials.messages')
         @enderror
@@ -26,7 +26,7 @@
 
         <div class="mb-3">
             <label for="apecli">Apellido</label>
-            <input type="text" class="form-control" name="apecli" placeholder="Ingrese el apellido...">
+            <input type="text" class="form-control" name="apecli" value="{{ old('apecli') }}" placeholder="Ingrese el apellido...">
             @error('apecli')
             @include('layouts.partials.messages')
         @enderror
@@ -34,7 +34,7 @@
 
         <div class="mb-3">
             <label for="tecli1">Teléfono 1</label>
-            <input type="text" class="form-control" name="tecli1" placeholder="Ingrese el teléfono 1...">
+            <input type="text" class="form-control" name="tecli1" value="{{ old('tecli1') }}" placeholder="Ingrese el teléfono 1...">
             @error('tecli1')
             @include('layouts.partials.messages')
         @enderror
@@ -42,7 +42,7 @@
 
         <div class="mb-3">
             <label for="tecli2">Teléfono 2</label>
-            <input type="text" class="form-control" name="tecli2" placeholder="Ingrese el teléfono 2...">
+            <input type="text" class="form-control" name="tecli2" value="{{ old('tecli2') }}" placeholder="Ingrese el teléfono 2...">
             @error('tecli2')
             @include('layouts.partials.messages')
         @enderror
@@ -50,7 +50,7 @@
 
         <div class="mb-3">
             <label for="dircli">Dirección</label>
-            <input type="text" class="form-control" name="dircli" placeholder="Ingrese la dirección...">
+            <input type="text" class="form-control" name="dircli" value="{{ old('dircli') }}" placeholder="Ingrese la dirección...">
             @error('dircli')
             @include('layouts.partials.messages')
         @enderror
@@ -58,7 +58,7 @@
 
         <div class="mb-3">
             <label for="corcli">Correo Electrónico</label>
-            <input type="text" class="form-control" name="corcli" placeholder="Ingrese el correo electrónico...">
+            <input type="text" class="form-control" name="corcli" value="{{ old('corcli') }}" placeholder="Ingrese el correo electrónico...">
             @error('corcli')
             @include('layouts.partials.messages')
         @enderror
@@ -66,7 +66,7 @@
 
         <div class="mb-3">
             <label for="cedrnc">Cédula/RNC</label>
-            <input type="text" class="form-control" name="cedrnc" placeholder="Ingrese la cédula/RNC...">
+            <input type="text" class="form-control" name="cedrnc" value="{{ old('cedrnc') }}" placeholder="Ingrese la cédula/RNC...">
             @error('cedrnc')
             @include('layouts.partials.messages')
         @enderror
@@ -74,7 +74,7 @@
 
         <div class="mb-3">
             <label for="codtpcli">Tipo de Cliente</label>
-            <select class="form-select" name="codtpcli">
+            <select class="form-select" name="codtpcli" value="{{ old('codtpcli') }}">
                 <option selected>Selecciona el Tipo de cliente...</option>
                 <option value="1">Comprador</option>
                 <option value="2">Vendedor</option>
