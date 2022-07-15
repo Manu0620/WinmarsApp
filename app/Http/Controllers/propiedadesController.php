@@ -10,7 +10,7 @@ class propiedadesController extends Controller
 {
     public function show()
     {
-        return view('registrarPropiedades');
+        return view('propiedades.registrarPropiedades');
     }
 
     public function create(propiedadesRequest $request){
@@ -25,6 +25,6 @@ class propiedadesController extends Controller
 
         //propiedades::create($request->validated());
 
-        return redirect('registrarPropiedades')->with('success', 'Formulario enviado correctamente!');
+        return redirect('propiedades.registrarPropiedades')->with('success', 'Formulario enviado correctamente!');
     }
 }

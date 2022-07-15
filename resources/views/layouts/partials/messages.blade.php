@@ -1,5 +1,5 @@
 @if ( isset($errors) && count($errors) > 0 )
-    <ol style="margin: 0px; margin-left: 10px; padding:0px; color: crimson;"> 
+    <ol style="margin: 0px; margin-left: 10px; padding:0px; color: rgb(220, 20, 20);"> 
         <i class="fa-solid fa-circle-exclamation"></i>
         {{ $message }}
     </ol>

@@ -10,14 +10,14 @@ class solicitudesController extends Controller
 {
     public function show()
     {
-        return view('registrarSolicitudes');
+        return view('solicitudes.registrarSolicitudes');
     }
 
     public function create(solicitudesRequest $request)
     {
         $solicitud = solicitudes::create($request->validated());
 
-        return redirect('registrarSolicitudes')->with('success', 'Formulario enviado correctamente!');
+        return redirect('solicitudes.registrarSolicitudes')->with('success', 'Formulario enviado correctamente!');
     
 
     }

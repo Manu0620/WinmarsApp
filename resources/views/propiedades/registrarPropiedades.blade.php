@@ -1,4 +1,5 @@
 @extends('layouts.formulario-master')
+<title>Registro de Propiedades</title>
 
 @section('content')
 

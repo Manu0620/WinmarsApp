@@ -1,5 +1,5 @@
 @extends('layouts.formulario-master')
-
+<title>Registro de Empleados</title>
 
 @section('content')
 

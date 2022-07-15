@@ -1,4 +1,5 @@
 @extends('layouts.formulario-master')
+<title>Regitro de Usuarios</title>
 
 @section('content')
 

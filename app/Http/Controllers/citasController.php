@@ -9,12 +9,12 @@ use Illuminate\Http\Request;
 class citasController extends Controller
 {
     public function show(){
-        return view('registrarCitas');
+        return view('citas.registrarCitas');
     }
 
     public function create(citasRequest $request){
         $cita = citas::create($request->validated());
 
-        return redirect()->to('registrarCitas')->with('success', 'Formulario enviado correctamente!');
+        return redirect()->to('citas.registrarCitas')->with('success', 'Formulario enviado correctamente!');
     }
 }

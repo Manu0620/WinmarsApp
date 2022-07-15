@@ -9,7 +9,7 @@ class empleadosController extends Controller
 {
    public function show()
    {
-    return view('registrarEmpleados');
+    return view('empleados.registrarEmpleados');
 
     
    }
@@ -17,6 +17,6 @@ class empleadosController extends Controller
    public function create (empleadosRequest $request){
     $empleados = empleados::create($request ->validated());
 
-    return redirect()->to('registrarEmpleados')->with('success', 'Formulario enviado correctamente!');
+    return redirect()->to('empleados.registrarEmpleados')->with('success', 'Formulario enviado correctamente!');
    }
 }

@@ -27,7 +27,6 @@
     .dropdown-item{
         position: relative;
         padding: 10px 120px 10px 15px;
-        
     }
 
     .dropdown-item:hover{
@@ -74,11 +73,12 @@
                         <i class="fas fa-search"></i> Consultas
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="registrarUsuarios"><i class="fa-solid fa-user" style="position: initial;"></i>  Usuarios<i class="fa-solid fa-arrow-right"></i></a></li>
-                        <li><a class="dropdown-item" href="registrarEmpleados"><i class="fa-solid fa-user" style="position: initial;"></i>  Empleados<i class="fa-solid fa-arrow-right"></i></a></li>
+                        <li><a class="dropdown-item" href="consultarUsuarios"><i class="fa-solid fa-user" style="position: initial;"></i>  Usuarios<i class="fa-solid fa-arrow-right"></i></a></li>
+                        <li><a class="dropdown-item" href="consultarEmpleados"><i class="fa-solid fa-user" style="position: initial;"></i>  Empleados<i class="fa-solid fa-arrow-right"></i></a></li>
                         <li><a class="dropdown-item" href="consultarClientes"><i class="fa-solid fa-user-check" style="position: initial;"></i>  Clientes<i class="fa-solid fa-arrow-right"></i></a></li>
-                        <li><a class="dropdown-item" href="registrarPropiedades"><i class="fa-solid fa-building" style="position: initial;"></i>  Propiedades <i class="fa-solid fa-arrow-right"></i></a></li>
-                        <li><a class="dropdown-item" href="registrarCitas"><i class="fa-solid fa-calendar-check" style="position: initial;"></i>  Citas <i class="fa-solid fa-arrow-right"></i></a></li>
+                        <li><a class="dropdown-item" href="consultarPropiedades"><i class="fa-solid fa-building" style="position: initial;"></i>  Propiedades <i class="fa-solid fa-arrow-right"></i></a></li>
+                        <li><a class="dropdown-item" href="consultarCitas"><i class="fa-solid fa-calendar-check" style="position: initial;"></i>  Citas <i class="fa-solid fa-arrow-right"></i></a></li>
+                        <li><a class="dropdown-item" href="consultarCuentas"><i class="fa-solid fa-calendar-check" style="position: initial;"></i>  Estado de Cuentas <i class="fa-solid fa-arrow-right"></i></a></li>
                     </ul>
                 </li>
 
@@ -87,8 +87,8 @@
                         <i class="fa-solid fa-gears"></i> Procesos
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#"><i class="fa-solid fa-file-invoice-dollar" style="position: initial;"></i>  Facturas<i class="fa-solid fa-arrow-right"></i></a></li>
-                        <li><a class="dropdown-item" href="#"><i class="fa-solid fa-money-check-dollar" style="position: initial;"></i>  Cobros<i class="fa-solid fa-arrow-right"></i></a></li>
+                        <li><a class="dropdown-item" href="Facturacion"><i class="fa-solid fa-file-invoice-dollar" style="position: initial;"></i>  Facturas<i class="fa-solid fa-arrow-right"></i></a></li>
+                        <li><a class="dropdown-item" href="Cobros"><i class="fa-solid fa-money-check-dollar" style="position: initial;"></i>  Cobros<i class="fa-solid fa-arrow-right"></i></a></li>
                     </ul>
                 </li>
             </ul>
