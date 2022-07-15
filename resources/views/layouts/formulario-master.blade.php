@@ -36,17 +36,14 @@
             }
 
             .tab-nav{
-                border: 1px solid #6c757d;
                 border-bottom: 4px solid #6c757d;  
-                border-radius: 10px;
+                border-radius: 5px;
                 padding: 10px;
                 margin-bottom: 30px; 
             }
             
             .tab-nav:hover{
-                border: 1px solid #1976d2;
                 border-bottom: 4px solid #1976d2; 
-                border-radius: 10px;
                 padding: 10px;
             }
 

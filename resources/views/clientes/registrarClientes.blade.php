@@ -1,4 +1,5 @@
 @extends('layouts.formulario-master')
+<title>Registro de clientes</title>
 
 @section('content')
 
@@ -34,7 +35,7 @@
 
         <div class="mb-3">
             <label for="tecli1">Teléfono 1</label>
-            <input type="text" class="form-control" name="tecli1" value="{{ old('tecli1') }}" placeholder="Ingrese el teléfono 1...">
+            <input type="tel" class="form-control" name="tecli1" value="{{ old('tecli1') }}" placeholder="Ingrese el teléfono 1...">
             @error('tecli1')
             @include('layouts.partials.messages')
         @enderror
@@ -42,7 +43,7 @@
 
         <div class="mb-3">
             <label for="tecli2">Teléfono 2</label>
-            <input type="text" class="form-control" name="tecli2" value="{{ old('tecli2') }}" placeholder="Ingrese el teléfono 2...">
+            <input type="tel" class="form-control" name="tecli2" value="{{ old('tecli2') }}" placeholder="Ingrese el teléfono 2...">
             @error('tecli2')
             @include('layouts.partials.messages')
         @enderror

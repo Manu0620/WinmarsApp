@@ -18,10 +18,10 @@ class empleadosRequest extends FormRequest
         return [
         'nomemp'=>'required|string',
         'apeemp'=>'required|string',
-        'telem1'=>'required|integer|unique:empleados,telem1',
-        'telem2'=>'nullable|integer|unique:empleados,telem2',
+        'telem1'=>'required|numeric|digits:10|unique:empleados,telem1|starts_with:809,829,849',
+        'telem2'=>'nullable|numeric|digits:10|unique:empleados,telem2|starts_with:809,829,849',
         'direccion'=>'required',
-        'correo'=>'required|unique:empleados,correo',
+        'correo'=>'required|unique:empleados,correo|email',
         'cedula'=>'required|integer|unique:empleados,cedula',
         'ctipemp'=>'required|integer',
         'codpos'=>'required|integer',
