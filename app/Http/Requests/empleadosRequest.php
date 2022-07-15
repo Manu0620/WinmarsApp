@@ -28,4 +28,5 @@ class empleadosRequest extends FormRequest
         'estemp'=>'required',
         ];
     }
+
 }

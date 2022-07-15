@@ -30,4 +30,5 @@ class propiedadesRequest extends FormRequest
             'estpro' => 'required',
         ];
     }
+
 }
