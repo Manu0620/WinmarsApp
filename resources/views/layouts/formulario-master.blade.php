@@ -51,6 +51,7 @@
             .form-container{
                 width: 35%;
                 margin: 100px;
+                font-weight: 600;
             }
 
             .form-container table thead{
