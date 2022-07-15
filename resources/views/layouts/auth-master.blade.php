@@ -9,7 +9,7 @@
         <link rel="icon" href="assets/img/Solo logo.png">
 
         <!--Fonts-->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
         <!--Bootstrap-->
         <link rel="stylesheet" href="{{ url('assets/css/bootstrap.min.css') }}">
         <!--Styles-->

@@ -39,7 +39,6 @@
             .tab-nav{
                 border-bottom: 4px solid #6c757d;  
                 border-radius: 5px;
-                font-weight: bold;
                 padding: 10px;
                 margin-bottom: 30px; 
             }
@@ -50,7 +49,7 @@
             }
 
             .container{
-                width: 80%;
+                width: 100%;
                 margin: 100px;
             }
 

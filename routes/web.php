@@ -15,6 +15,10 @@ Route::get('/', function(){
     return view('welcome');
 });
 
+Route::get('/Facturacion', function(){
+    return view('/Facturacion');
+});
+
 Route::get('/registrarClientes', [clientesController::class, 'show']);
 Route::post('/registrarClientes', [clientesController::class, 'create']);
 

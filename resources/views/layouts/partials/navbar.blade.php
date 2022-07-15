@@ -7,11 +7,11 @@
 
     nav{
         background-color: rgb(224, 224, 224);
+        font-weight: bold;
     }
 
     .nav-item{
-        padding: 3px; 
-        font-weight: 700;
+        padding: 3px;    
         font-size: 16px;
     }
 
@@ -27,6 +27,7 @@
     .dropdown-item{
         position: relative;
         padding: 10px 120px 10px 15px;
+        font-weight: 600;
     }
 
     .dropdown-item:hover{

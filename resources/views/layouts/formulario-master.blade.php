@@ -8,7 +8,7 @@
         <link rel="icon" href="assets/img/Solo logo.png">
 
         <!--Fonts-->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
         <!--Bootstrap-->
         <link rel="stylesheet" href="{{ url('assets/css/bootstrap.min.css') }}">
         <!--Styles-->
@@ -38,6 +38,7 @@
             .tab-nav{
                 border-bottom: 4px solid #6c757d;  
                 border-radius: 5px;
+                font-weight: bold;
                 padding: 10px;
                 margin-bottom: 30px; 
             }

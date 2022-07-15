@@ -1,9 +1,14 @@
 @extends('layouts.consulta-master')
-<title>Consulta de clientes</title>
+<title>Consulta de Clientes</title>
 
 @section('content')
 
-    <h3>Consulta de clientes</h3>
+    <h3>Consulta de Clientes</h3>
+
+    <div class="tab-nav">
+        <a href="/home">Home</a>
+        <label for="form-label">/ Consulta de Clientes</label>
+    </div>
 
     @if (Session::get('success', false))
         @include('layouts.partials.messages')
