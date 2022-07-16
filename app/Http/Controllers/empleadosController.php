@@ -11,8 +11,9 @@ class empleadosController extends Controller
 {
    public function show(){
      $tipo_empleados = tipo_empleados::all();
-     $posiciones_empleado = posiciones_empleado::all();
-     return view('empleados.registrarEmpleados', compact('tipo_empleados','pocisiones_empleado'));
+     $posiciones_empleados = posiciones_empleado::all();
+     
+     return view('empleados.registrarEmpleados', compact(['tipo_empleados', 'posiciones_empleados']));
    }
 
    public function create (empleadosRequest $request){

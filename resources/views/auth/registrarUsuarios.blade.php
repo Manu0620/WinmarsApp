@@ -25,6 +25,9 @@
                     <option value="{{ $empleado->codemp}}" {{ (old('$empleado') == $empleado->codemp) ? 'selected' : ''}}>{{$empleado->nomemp.' '.$empleado->apeemp.' | '.$empleado->cedula}}</option>
                 @endforeach
             </select> 
+            @error('codemp')
+                @include('layouts.partials.messages')
+            @enderror
         </div>
         
         <div class="mb-3">
