@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\empleadosRequest;
 use App\Models\empleados;
+use App\Models\tipo_empleados;
 use Illuminate\Http\Request;
 
 class empleadosController extends Controller
 {
    public function show(){
-     return view('empleados.registrarEmpleados');
+     $tipo_empleados = tipo_empleados::all();
+     return view('empleados.registrarEmpleados', compact('tipo_empleados'));
    }
 
    public function create (empleadosRequest $request){

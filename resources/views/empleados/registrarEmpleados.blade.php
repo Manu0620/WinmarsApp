@@ -75,11 +75,12 @@
 
         <div class="mb-3">
             <label for="ctipemp">Tipo de Empleado</label>
-            <select class="form-select" name="ctipemp">
-                <option selected>Selecciona el Tipo de Empleado...</option>
-                <option value="fijo">Fijo</option>
-                <option value="temporal">Temporal</option>
-            </select>
+            <select class="form-select" id="ctipemp" name="ctipemp" value="{{ old('ctipemp') }}">
+                <option selected disabled>Seleccione el tipo de empleado...</option>
+                @foreach ($tipo_empleados as $tipo_empleado)
+                    <option value="{{ $tipo_empleado->ctipemp}}" {{ (old('$tipo_empleado') == $tipo_empleado->ctipemp) ? 'selected' : ''}}>{{$tipo_empleado->descripcion}}</option>
+                @endforeach
+            </select>    
            
         </div>
         <div class="mb-3">

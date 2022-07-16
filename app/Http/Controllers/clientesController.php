@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\clienteRequest;
 use App\Models\clientes;
+use App\Models\tipo_clientes;
 use Illuminate\Http\Request;
 
 class clientesController extends Controller
 {
 
     public function show(){
-        return view('clientes.registrarClientes');
+        $tipo_clientes = tipo_clientes::all();
+        return view('clientes.registrarClientes',compact('tipo_clientes'));
     }
 
     public function create(clienteRequest $request){

@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\propiedadesRequest;
 use App\Models\propiedades;
+use App\Models\tipo_propiedades;
 use Illuminate\Http\Request;
 
 class propiedadesController extends Controller
 {
     public function show()
     {
-        return view('propiedades.registrarPropiedades');
+        $tipo_propiedades = tipo_propiedades::all();
+        return view('propiedades.registrarPropiedades', compact('tipo_propiedades'));
     }
 
     public function create(propiedadesRequest $request){
