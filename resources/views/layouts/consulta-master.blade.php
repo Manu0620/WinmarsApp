@@ -31,6 +31,12 @@
                 height: auto;
             }
 
+
+            textarea{
+                background: transparent;
+                border: none;
+            }
+
             .tab-nav a:visited,.tab-nav a:link,.tab-nav a:active{
                 text-decoration: none;
                 color: #1976d2;
@@ -50,8 +56,8 @@
             }
 
             .container{
-                width: 80%;
-                margin: 100px;
+                width: 100%;
+                margin: 50px;
             }
 
             table{
@@ -97,10 +103,10 @@
                 border-radius: 10px;
             }
 
-            .container .btn-editar{
-                width: 100px;
+            .container .btn-editar, .container .btn-eliminar{
+                width: fit-content;
                 margin: 5px;
-                height: 40px;
+                height: fit-content;
             }
 
             .button-group{

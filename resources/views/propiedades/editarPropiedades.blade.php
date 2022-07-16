@@ -29,7 +29,7 @@
 
         <div class="mb-3">
             <label for="descrip">Descripcion</label>
-            <textarea type="text" class="form-control" name="descrip" rows="4" placeholder="Ingrese el descripcion..." value="{{ $propiedad->descrip }}"></textarea>
+            <textarea type="text" class="form-control" name="descrip" rows="4" placeholder="Ingrese el descripcion...">{{ $propiedad->descrip }}</textarea>
             @error('descrip')
             @include('layouts.partials.messages')
         @enderror
