@@ -83,11 +83,14 @@
             </select>    
            
         </div>
+
         <div class="mb-3">
             <label for="codpos">Posicion</label>
-            <select class="form-select" name="codpos">
-                <option selected>Selecciona el tipo de posicion...</option>
-                <option value="1">Tecnico</option>
+            <select class="form-select" id="codpos" name="codpos">
+                <option selected disabled>Seleccione la posicion del empleado...</option>
+                @foreach ($posiciones_empleados as $posiciones_empleado)
+                    <option value="{{$posiciones_empleado->codpos}}" {{ (old('$posiciones_empleado') == $posiciones_empleado->codpos) ? 'selected' : ''}}>{{$posiciones_empleado->posicion}}</option>
+                @endforeach
             </select>
            
         </div>

@@ -98,11 +98,13 @@
         </div>
 
         <div class="mb-3">
-            <label for="codcli">Cliente</label>
-            <input type="text" class="form-control" name="codcli">
-            @error('codcli')
-            @include('layouts.partials.messages')
-        @enderror
+            <label for="codtpro">Cliente</label>
+            <select class="form-select" id="codcli" name="codcli" value="{{ old('codcli') }}">
+                <option selected disabled>Seleccione el cliente...</option>
+                @foreach ($clientes as $cliente)
+                    <option value="{{ $cliente->codcli}}" {{ (old('$cliente') == $cliente->codcli) ? 'selected' : ''}}>{{$cliente->nomcli.' '.$cliente->apecli.' | '.$cliente->cedrnc}}</option>
+                @endforeach
+            </select> 
         </div>
 
         <div class="mb-3">
@@ -117,7 +119,12 @@
 
         <div class="mb-3">
             <label for="citbis">Itbis</label>
-            <input type="text" class="form-control" name="citbis">
+            <select class="form-select" id="citbis" name="citbis" value="{{ old('citbis') }}">
+                <option selected disabled>Seleccione el porcentaje de Itbis...</option>
+                @foreach ($itbis as $itbis)
+                    <option value="{{ $itbis->citbis}}" {{ (old('$itbis') == $itbis->citbis) ? 'selected' : ''}}>{{$itbis->itbis}}</option>
+                @endforeach
+            </select>
         </div>
 
         <input type="hidden" class="form-control" name="estpro" value="activo">

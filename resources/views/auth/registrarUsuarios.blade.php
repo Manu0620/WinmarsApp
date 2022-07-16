@@ -19,7 +19,12 @@
 
         <div class="mb-3">
             <label for="codemp" class="form-label">Empleado</label>
-            <input type="text" class="form-control" name="codemp" value="{{ old('codemp') }}" placeholder="Empleado..." >
+            <select class="form-select" id="codemp" name="codemp">
+                <option selected disabled>Seleccione el Empleado...</option>
+                @foreach ($empleados as $empleado)
+                    <option value="{{ $empleado->codemp}}" {{ (old('$empleado') == $empleado->codemp) ? 'selected' : ''}}>{{$empleado->nomemp.' '.$empleado->apeemp.' | '.$empleado->cedula}}</option>
+                @endforeach
+            </select> 
             @error('codemp')
                 @include('layouts.partials.messages')
             @enderror

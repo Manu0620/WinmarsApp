@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class posiciones_empleado extends Model
+class itbis extends Model
 {
     use HasFactory;
 
-    protected $table = 'posiciones_empleados';
-    protected $primaryKey = 'codpos';
+    protected $table = 'itbis';
+    protected $primaryKey = 'citbis';
 
     protected $fillable = [
-        'posicion',
+        'citbis',
+        'descripcion',
     ];
-
 }
