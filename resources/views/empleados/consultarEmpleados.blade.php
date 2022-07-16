@@ -1,5 +1,5 @@
 @extends('layouts.consulta-master')
-<title>Consulta de Clientes</title>
+<title>Consulta de Empleado</title>
 
 @section('content')
 
