@@ -31,14 +31,10 @@ class citasController extends Controller
     public function update(Request $request, $codcit){
         $cita = citas::find($codcit);
 
-        $cita->nomcli = $request->input('nomcli');
-        $cita->apecli = $request->input('apecli');
-        $cita->tecli1 = $request->input('tecli1');
-        $cita->tecli2 = $request->input('tecli2');
-        $cita->dircli = $request->input('dircli');
-        $cita->corcli = $request->input('corcli');
-        $cita->cedrnc = $request->input('cedrnc');
-        $cita->codtpcli = $request->input('codtpcli');
+        $cita->codsol = $request->input('codsol');
+        $cita->codusu = $request->input('codusu');
+        $cita->fecha = $request->input('fecha');
+        $cita->descrip = $request->input('descrip');
         
         $cita->save();
         return redirect('consultarCitas')->with('success', 'Edicion realizada correctamente');

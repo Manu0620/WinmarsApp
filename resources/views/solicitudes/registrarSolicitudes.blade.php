@@ -43,6 +43,14 @@
         </div>
 
         <div class="mb-3">
+            <label for="fecha">Fecha</label>
+            <input type="date" class="form-control" name="fecha" placeholder="Ingrese el fecha..." value="{{ old('fecha') }}">
+            @error('fecha')
+            @include('layouts.partials.messages')
+        @enderror
+        </div>
+
+        <div class="mb-3">
             <label for="estsol">Estado</label>
             <select class="form-select" name="estsol">
                 <option value="pendiente" selected>Pendiente</option>

@@ -43,14 +43,18 @@ class propiedadesController extends Controller
     public function update(Request $request, $codpro){
         $propiedad = propiedades::find($codpro);
 
-        $propiedad->nomcli = $request->input('nomcli');
-        $propiedad->apecli = $request->input('apecli');
-        $propiedad->tecli1 = $request->input('tecli1');
-        $propiedad->tecli2 = $request->input('tecli2');
-        $propiedad->dircli = $request->input('dircli');
-        $propiedad->corcli = $request->input('corcli');
-        $propiedad->cedrnc = $request->input('cedrnc');
-        $propiedad->codtpcli = $request->input('codtpcli');
+        $propiedad->titulo  = $request->input('titulo ');
+        $propiedad->descrip = $request->input('descrip');
+        $propiedad->habit = $request->input('habit');
+        $propiedad->baños = $request->input('baños');
+        $propiedad->metros = $request->input('metros');
+        $propiedad->parqueo = $request->input('parqueo');
+        $propiedad->preven = $request->input('preven');
+        $propiedad->preren = $request->input('preren');
+        $propiedad->comision = $request->input('comision');
+        $propiedad->codcli = $request->input('codcli');
+        $propiedad->codtpro = $request->input('codtpro');
+        $propiedad->citbis = $request->input('citbis');
 
         $propiedad->save();
         return redirect('consultarPropiedades')->with('success', 'Edicion realizada correctamente');
