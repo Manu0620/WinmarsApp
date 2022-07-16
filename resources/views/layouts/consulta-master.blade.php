@@ -31,7 +31,6 @@
                 height: auto;
             }
 
-
             textarea{
                 background: transparent;
                 border: none;
@@ -55,24 +54,27 @@
                 padding: 10px;
             }
 
-            .container{
+            .container-fluid{
                 width: 100%;
-                margin: 0px 10px 0px 10px;
             }
 
-            table{
+            .table{
                 font-weight: bold;
             }
 
-            thead{
+            .table thead{
                 border-bottom: 2px solid black; 
             }
 
-            .container th{
+            .table th{
+                white-space: nowrap;
+                text-align: center;
                 background: #64B5F6;
             }
 
-            .container td{
+            .table td{
+                white-space: nowrap;
+                text-align: center;
                 background: #90CAF9;
                 font-size: 14px;
             }
@@ -95,7 +97,7 @@
                 background: #90CAF9;
             }
 
-            .container button, .container a{
+            .button-group button, .table a, .button-group a{
                 width: fit-content;
                 height: 45px;
                 margin: 20px 5px 20px 5px; 
@@ -103,7 +105,13 @@
                 border-radius: 10px;
             }
 
-            .container .btn-editar, .container .btn-eliminar{
+            .btn{
+                width: fit-content;
+                font-weight: bold;
+                border-radius: 10px;
+            }
+
+            .table .btn-editar{
                 width: fit-content;
                 margin: 5px;
                 height: fit-content;
@@ -124,8 +132,8 @@
     <body>
         @auth
             @include('layouts.partials.navbar')
-
-            <main class="container">
+            
+            <main class="container-fluid">
                 @yield('content')
             </main>
             

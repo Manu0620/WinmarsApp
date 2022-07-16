@@ -45,4 +45,13 @@ class clientesController extends Controller
         $cliente->save();
         return redirect('consultarClientes')->with('success', 'Edicion realizada correctamente');
     }
+
+    public function delete($id){
+        $cliente = clientes::find($id); 
+
+        $cliente->estcli = 'inactivo';
+        $cliente->save();
+
+        return redirect('consultarClientes')->with('sucess', 'Usuario inhabilitado correctamente');
+    }
 }

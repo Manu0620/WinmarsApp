@@ -49,9 +49,16 @@
                     <td>{{ $cliente->corcli }}</td>
                     <td>{{ $cliente->cedrnc }}</td>
                     <td>{{ $cliente->codtpcli }}</td>
-                    <td>{{ $cliente->estcli }}</td>   
+                    @if($cliente->estcli == 'inactivo')
+                        <td><div class="btn btn-warning">{{ $cliente->estcli}}</div></td>
+                    @elseif($cliente->estcli == 'activo')
+                        <td><div class="btn btn-success">{{ $cliente->estcli}}</div></td>
+                    @endif 
                     
-                    <td><a href="{{ route('clientes', ['id' => $cliente->codcli]) }}" class="btn btn-warning btn-editar"><i class="fas fa-file-edit"></i> Editar</a></td>
+                    <td>
+                        <a href="{{ route('clientes', ['id' => $cliente->codcli]) }}" class="btn btn-warning btn-editar"><i class="fas fa-file-edit"></i></a>
+                        <a href="{{ route('inhabilitarCliente', ['id' => $cliente->codcli]) }}" class="btn btn-danger btn-editar"><i class="fas fa-ban"></i></a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

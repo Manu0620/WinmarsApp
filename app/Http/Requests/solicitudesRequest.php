@@ -19,8 +19,7 @@ class solicitudesRequest extends FormRequest
             'codcli' => 'required',
             'codpro' => 'required',
             'comentario' => 'required',
-            'fecha' => 'required',
-            'estsol' => 'required',
+            'estsol' => 'nullable',
         ];
     }
 }

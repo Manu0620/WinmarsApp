@@ -19,7 +19,7 @@
 
         <div class="mb-3">
             <label for="codemp" class="form-label">Empleado</label>
-            <input type="text" class="form-control" name="codemp" placeholder="Empleado..." >
+            <input type="text" class="form-control" name="codemp" value="{{ old('codemp') }}" placeholder="Empleado..." >
             @error('codemp')
                 @include('layouts.partials.messages')
             @enderror
@@ -27,7 +27,7 @@
         
         <div class="mb-3">
             <label for="username" class="form-label">Nombre de Usuario</label>
-            <input type="text" class="form-control" name="username" placeholder="Nombre de usuario...">
+            <input type="text" class="form-control" name="username" value="{{ old('username') }}" placeholder="Nombre de usuario...">
             @error('username')
                 @include('layouts.partials.messages')
             @enderror
@@ -35,7 +35,7 @@
 
         <div class="mb-3">
             <label for="password" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" name="password" placeholder="Contraseña...">
+            <input type="password" class="form-control" name="password" value="{{ old('password') }}" placeholder="Contraseña...">
             @error('password')
                 @include('layouts.partials.messages')
             @enderror
@@ -51,7 +51,7 @@
 
         <div class="mb-3">
             <label for="email">Correo</label>
-            <input type="email" class="form-control" name="email" placeholder="Correo...">
+            <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Correo...">
             @error('email')
                 @include('layouts.partials.messages')
             @enderror
@@ -61,16 +61,16 @@
             <label for="rol">Rol</label>
             <select class="form-select" name="rol">
                 <option selected>Selecciona el Rol...</option>
-                <option value="administrador">Administrador</option>
-                <option value="usuario">Usuario</option>
-                <option value="agente">Agente</option>
+                <option value="Administrador">Administrador</option>
+                <option value="Usuario">Usuario</option>
+                <option value="Agente">Agente</option>
             </select>
             @error('rol')
                 @include('layouts.partials.messages')
             @enderror
         </div>
 
-        <input type="hidden" class="form-control" name="status" value="1">
+        <input type="hidden" class="form-control" name="status" value="activo">
 
         <div class="button-group">
             <button type="reset" class="btn btn-primary"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>

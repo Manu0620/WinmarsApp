@@ -28,16 +28,19 @@ Route::post('/registrarClientes', [clientesController::class, 'create']);
 Route::get('/editarClientes/{id}', [clientesController::class, 'edit'])->name('clientes');
 Route::put('/editarClientes/{id}', [clientesController::class, 'update'])->name('clientes');
 Route::get('/consultarClientes', [clientesController::class, 'query']);
+Route::get('/clientes/{id}', [clientesController::class, 'delete'])->name('inhabilitarCliente');
 
 Route::get('/registrarEmpleados', [empleadosController::class, 'show']);
 Route::post('/registrarEmpleados', [empleadosController::class, 'create']);
 Route::get('/editarEmpleados/{id}', [empleadosController::class, 'edit'])->name('empleados');
 Route::put('/editarEmpleados/{id}', [empleadosController::class, 'update'])->name('empleados');
 Route::get('/consultarEmpleados', [empleadosController::class, 'query']);
+Route::get('/empleados/{id}', [empleadosController::class, 'delete'])->name('inhabilitarEmpleado');
 
 Route::get('/registrarUsuarios', [usuariosController::class, 'show']);
 Route::post('/registrarUsuarios', [usuariosController::class, 'create']);
 Route::get('/consultarUsuarios', [usuariosController::class, 'query']);
+Route::get('/usuarios/{id}', [usuariosController::class, 'delete'])->name('usuarios');
 
 Route::get('/registrarCitas', [citasController::class, 'show']);
 Route::post('/registrarCitas', [citasController::class, 'create']);
@@ -56,6 +59,7 @@ Route::post('/registrarPropiedades', [propiedadesController::class, 'create']);
 Route::get('/editarPropieades/{id}', [propiedadesController::class, 'edit'])->name('propiedades');
 Route::put('/editarPropieades/{id}', [propiedadesController::class, 'update'])->name('propiedades');
 Route::get('/consultarPropiedades', [propiedadesController::class, 'query']);
+Route::get('/propiedades/{id}', [propiedadesController::class, 'delete'])->name('inhabilitarPropiedad');
 
 Route::get('/registrarPosicionesEmpleado', [posicionEmpleadoController::class, 'show']);
 Route::post('/registrarPosicionesEmpleado', [posicionEmpleadoController::class, 'create']);

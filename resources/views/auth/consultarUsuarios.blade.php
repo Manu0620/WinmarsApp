@@ -1,8 +1,8 @@
 @extends('layouts.consulta-master')
+
 <title>Consulta de Usuarios</title>
 
 @section('content')
-
     <h3>Consulta de Usuarios</h3>
 
     <div class="tab-nav">
@@ -17,11 +17,11 @@
     <div class="button-group">
         <button type="submit" class="btn btn-danger"><i class="fas fa-file-pdf"></i> Print</button>
         <button type="reset" class="btn btn-warning"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
-        <a href="{{ url('registrarUsuarios') }}" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Nuevo cliente</a>
+        <a href="{{ url('registrarUsuarios') }}" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Nuevo Usuario</a>
 
     </div>
 
-    <table class="table table-striped table-hover table-borderless align-middle">
+    <table class="table table-striped table-hover text-align-center table-borderless align-middle">
         <thead>
             <tr>
                 <th>ID</th>
@@ -41,12 +41,15 @@
                     <td>{{ $usuario->username }}</td>
                     <td>{{ $usuario->email }}</td>
                     <td>{{ $usuario->rol }}</td>  
-                    <td>{{ $usuario->status }}</td>  
+                    @if($usuario->status == 'inactivo')
+                        <td><div class="btn btn-warning">{{ $usuario->status}}</div></td>
+                    @elseif($usuario->status == 'activo')
+                        <td><div class="btn btn-success">{{ $usuario->status}}</div></td>
+                    @endif
                     
-                    <td><a href="" class="btn btn-danger btn-eliminar"><i class="fas fa-file-edit"></i> Eliminar</a></td>
+                    <td><a href="{{ route('usuarios', ['id' => $usuario->id]) }}" class="btn btn-danger btn-editar"><i class="fas fa-ban"></i></a></td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-    
 @endsection

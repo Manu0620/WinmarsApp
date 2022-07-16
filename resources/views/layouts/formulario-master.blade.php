@@ -54,22 +54,6 @@
                 font-weight: 600;
             }
 
-            .form-container table thead{
-                border-radius: 10px;
-            }
-
-            .form-container th, .form-container td{
-                width: fit-content;
-            }
-
-            .form-container th{
-                background: #64B5F6;
-            }
-
-            .form-container td{
-                background: #90CAF9;
-            }
-
             .form-container input, .form-container select, .form-container textarea{
                 border: 1px solid #6c757d;
                 border-bottom: 3px solid #6c757d;

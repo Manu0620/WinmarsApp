@@ -52,9 +52,9 @@
         <div class="mb-3">
             <label for="estcit">Estado</label>
             <select class="form-select" name="estcit" value="{{ old('estcit') }}">
-                <option value="pendiente" selected>Pendiente</option>
-                <option value="en proceso">En proceso</option>
-                <option value="comletada">Completada</option>
+                <option value="Pendiente" selected>Pendiente</option>
+                <option value="En Proceso">En proceso</option>
+                <option value="Comletada">Completada</option>
             </select>
         </div>
 

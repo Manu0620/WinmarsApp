@@ -38,16 +38,8 @@
 
         <div class="mb-3">
             <label for="comentario">Comentario</label>
-            <textarea type="text" class="form-control" rows="4" cols="50" name="comentario" placeholder="Escriba su comentario..." value="{{ $solicitud->comentario }}"> </textarea>
+            <textarea type="text" class="form-control" rows="4" cols="50" name="comentario" placeholder="Escriba su comentario...">{{ $solicitud->comentario }}</textarea>
             @error('comentario')
-            @include('layouts.partials.messages')
-        @enderror
-        </div>
-
-        <div class="mb-3">
-            <label for="fecha">Fecha</label>
-            <input type="date" class="form-control" name="fecha" placeholder="Ingrese el fecha..." value="{{ $solicitud->fecha }}">
-            @error('fecha')
             @include('layouts.partials.messages')
         @enderror
         </div>

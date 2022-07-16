@@ -17,7 +17,7 @@
     <div class="button-group">
         <button type="submit" class="btn btn-danger"><i class="fas fa-file-pdf"></i> Print</button>
         <button type="reset" class="btn btn-warning"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
-        <a href="{{ url('registrarCitas') }}" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Nuevo cliente</a>
+        <a href="{{ url('registrarCitas') }}" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Nueva cita</a>
 
     </div>
 
@@ -25,8 +25,8 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Cod. Solicitud</th>
-                <th>Cod. Usuario</th>
+                <th>Solicitud</th>
+                <th>Usuario</th>
                 <th>Fecha</th>
                 <th>Descripcion</th>
                 <th>Estado</th>
@@ -41,9 +41,13 @@
                     <td>{{ $cita->codusu }}</td>
                     <td>{{ $cita->fecha }}</td>
                     <td>{{ $cita->descrip }}</td>
-                    <td>{{ $cita->estcit}}</td>
+                    @if($cita->estcit == 'Pendiente')
+                        <td><div class="btn btn-warning">{{ $cita->estcit}}</div></td>
+                    @elseif($cita->estcit == 'Completada')
+                        <td><div class="btn btn-success">{{ $cita->estcit}}</div></td>
+                    @endif
                    
-                    <td><a href="{{ route('citas', ['id' => $cita->codcit]) }}" class="btn btn-warning btn-editar"><i class="fas fa-file-edit"></i> Editar</a></td>
+                    <td><a href="{{ route('citas', ['id' => $cita->codcit]) }}" class="btn btn-warning btn-editar"><i class="fas fa-file-edit"></i></a></td>
                 </tr>
             @endforeach
         </tbody>

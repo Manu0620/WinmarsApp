@@ -8,13 +8,11 @@ use Illuminate\Http\Request;
 
 class solicitudesController extends Controller
 {
-    public function show()
-    {
+    public function show(){
         return view('solicitudes.registrarSolicitudes');
     }
 
-    public function create(solicitudesRequest $request)
-    {
+    public function create(solicitudesRequest $request){
         $solicitud = solicitudes::create($request->validated());
 
         return redirect('registrarSolicitudes')->with('success', 'Formulario enviado correctamente!');
@@ -36,7 +34,6 @@ class solicitudesController extends Controller
         $solicitud->codcli = $request->input('codcli');
         $solicitud->codpro = $request->input('codpro');
         $solicitud->comentario = $request->input('comentario');
-        $solicitud->fecha = $request->input('fecha');
     
         
         $solicitud->save();

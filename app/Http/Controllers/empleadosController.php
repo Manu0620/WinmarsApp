@@ -45,4 +45,13 @@ class empleadosController extends Controller
       $empleado->save();
       return redirect('consultarEmpleados')->with('success', 'Edicion realizada correctamente');
    }
+
+   public function delete($id){
+      $empleado = empleados::find($id); 
+
+      $empleado->estemp = 'inactivo';
+      $empleado->save();
+
+      return redirect('consultarEmpleados')->with('sucess', 'Empleado inhabilitado correctamente');
+  }
 }

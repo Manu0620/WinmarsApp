@@ -14,48 +14,38 @@
         @csrf
 
         @if (Session::get('success', false))
-        @include('layouts.partials.messages')
-          @endif
+            @include('layouts.partials.messages')
+        @endif
         
         <div class="mb-3">
             <label for="codcli">Cliente</label>
-            <input type="text" class="form-control" name="codcli">
+            <input type="text" class="form-control" name="codcli" value="{{ old('codcli') }}">
             @error('codcli')
-            @include('layouts.partials.messages')
-        @enderror
+                @include('layouts.partials.messages')
+            @enderror
         </div>
 
         <div class="mb-3">
             <label for="codpro">Propiedad</label>
-            <input type="text" class="form-control" name="codpro">
+            <input type="text" class="form-control" name="codpro" value="{{ old('codpro') }}">
             @error('codpro')
-            @include('layouts.partials.messages')
-        @enderror
-            
+                @include('layouts.partials.messages')
+            @enderror  
         </div>
 
         <div class="mb-3">
             <label for="comentario">Comentario</label>
-            <textarea type="text" class="form-control" rows="4" cols="50" name="comentario" placeholder="Escriba su comentario..."> </textarea>
+            <textarea type="text" class="form-control" rows="4" cols="50" name="comentario" placeholder="Escriba su comentario...">{{ old('comentario') }}</textarea>
             @error('comentario')
-            @include('layouts.partials.messages')
-        @enderror
-        </div>
-
-        <div class="mb-3">
-            <label for="fecha">Fecha</label>
-            <input type="date" class="form-control" name="fecha" placeholder="Ingrese el fecha..." value="{{ old('fecha') }}">
-            @error('fecha')
-            @include('layouts.partials.messages')
-        @enderror
+                @include('layouts.partials.messages')
+            @enderror
         </div>
 
         <div class="mb-3">
             <label for="estsol">Estado</label>
-            <select class="form-select" name="estsol">
-                <option value="pendiente" selected>Pendiente</option>
-                <option value="en proceso">En proceso</option>
-                <option value="procesada">Procesada</option>
+            <select class="form-select" name="estsol" disabled>
+                <option value="Pendiente" selected>Pendiente</option>
+                <option value="Procesada">Procesada</option>
             </select>
         </div>
 

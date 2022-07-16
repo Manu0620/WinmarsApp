@@ -59,4 +59,13 @@ class propiedadesController extends Controller
         $propiedad->save();
         return redirect('consultarPropiedades')->with('success', 'Edicion realizada correctamente');
     }
+
+    public function delete($id){
+        $propiedad = propiedades::find($id); 
+
+        $propiedad->estpro = 'inactivo';
+        $propiedad->save();
+
+        return redirect('consultarPropiedades')->with('sucess', 'Propiedad inhabilitada correctamente');
+    }
 }

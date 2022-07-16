@@ -16,11 +16,20 @@ class usuariosController extends Controller
     public function create(usuariosRequest $request){
         $usuario = User::create($request->validated());
 
-        return redirect('/registrarUsuarios')->with('success', 'Formulario enviado correctamente!');
+        return redirect('registrarUsuarios')->with('success', 'Formulario enviado correctamente!');
     }
 
     public function query(){
         $datos['users'] = User::paginate(5); 
         return view('auth.consultarUsuarios', $datos);
+    }
+
+    public function delete($id){
+        $usuario = User::find($id); 
+
+        $usuario->status = 'inactivo';
+        $usuario->save();
+
+        return redirect('consultarUsuarios')->with('sucess', 'Usuario desabilitado correctamente');
     }
 }

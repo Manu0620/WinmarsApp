@@ -17,8 +17,7 @@
     <div class="button-group">
         <button type="submit" class="btn btn-danger"><i class="fas fa-file-pdf"></i> Print</button>
         <button type="reset" class="btn btn-warning"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
-        <a href="{{ url('registrarEmpleados') }}" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Nuevo cliente</a>
-
+        <a href="{{ url('registrarEmpleados') }}" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Nuevo Empleado</a>
     </div>
 
     <table class="table table-striped table-hover table-borderless align-middle">
@@ -51,11 +50,18 @@
                     <td>{{ $empleado->correo }}</td>
                     <td>{{ $empleado->cedula }}</td>
                     <td>{{ $empleado->ctipemp }}</td>
-                    <td>{{ $empleado->codpos }}</td>
-                    <td>{{ $empleado->estemp }}</td> 
+                    <td>{{ $empleado->codpos }}</td> 
+                    @if($empleado->estemp == 'inactivo')
+                        <td><div class="btn btn-warning">{{ $empleado->estemp}}</div></td>
+                    @elseif($empleado->estemp == 'activo')
+                        <td><div class="btn btn-success">{{ $empleado->estemp}}</div></td>
+                    @endif 
                       
                     
-                    <td><a href="{{ route('empleados', ['id' => $empleado->codemp]) }}" class="btn btn-warning btn-editar"><i class="fas fa-file-edit"></i> Editar</a></td>
+                    <td>
+                        <a href="{{ route('empleados', ['id' => $empleado->codemp]) }}" class="btn btn-warning btn-editar"><i class="fas fa-file-edit"></i></a>
+                        <a href="{{ route('inhabilitarEmpleado', ['id' => $empleado->codemp]) }}" class="btn btn-danger btn-editar"><i class="fas fa-ban"></i></a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

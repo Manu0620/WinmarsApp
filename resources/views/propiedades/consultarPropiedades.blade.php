@@ -17,7 +17,7 @@
     <div class="button-group">
         <button type="submit" class="btn btn-danger"><i class="fas fa-file-pdf"></i> Print</button>
         <button type="reset" class="btn btn-warning"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
-        <a href="{{ url('registrarPropiedades') }}" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Nuevo cliente</a>
+        <a href="{{ url('registrarPropiedades') }}" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Nueva propiedad</a>
 
     </div>
 
@@ -58,8 +58,16 @@
                     <td>{{ $propiedad->codtpro }}</td>
                     <td>{{ $propiedad->citbis }}</td>
                     <td>{{ $propiedad->estpro }}</td>   
+                    @if($propiedad->estpro == 'inactivo')
+                        <td><div class="btn btn-warning">{{ $propiedad->estpro}}</div></td>
+                    @elseif($propiedad->estpro == 'activo')
+                        <td><div class="btn btn-success">{{ $propiedad->estpro}}</div></td>
+                    @endif 
                     
-                    <td><a href="{{ route('propiedades', ['id' => $propiedad->codpro]) }}" class="btn btn-warning btn-editar"><i class="fas fa-file-edit"></i> Editar</a></td>
+                    <td>
+                        <a href="{{ route('propiedades', ['id' => $propiedad->codpro]) }}" class="btn btn-warning btn-editar"><i class="fas fa-file-edit"></i></a>
+                        <a href="{{ route('inhabilitarPropiedad', ['id' => $propiedad->codpro]) }}" class="btn btn-danger btn-editar"><i class="fas fa-ban"></i></a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
