@@ -9,6 +9,8 @@ use App\Http\Controllers\logoutController;
 use App\Http\Controllers\propiedadesController;
 use App\Http\Controllers\usuariosController;
 use App\Http\Controllers\solicitudesController;
+use App\Http\Controllers\tipoClienteController;
+use App\Http\Controllers\tipoEmpleadoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function(){
@@ -52,6 +54,12 @@ Route::post('/registrarPropiedades', [propiedadesController::class, 'create']);
 Route::get('/editarPropieades/{id}', [propiedadesController::class, 'edit'])->name('propiedades');
 Route::put('/editarPropieades/{id}', [propiedadesController::class, 'update'])->name('propiedades');
 Route::get('/consultarPropiedades', [propiedadesController::class, 'query']);
+
+Route::get('/registrarTipoCliente', [tipoClienteController::class, 'show']);
+Route::post('/registrarTipoCliente', [tipoClienteController::class, 'create']);
+
+Route::get('/registrarTipoEmpleado', [tipoEmpleadoController::class, 'show']);
+Route::post('/registrarTipoEmpleado', [tipoEmpleadoController::class, 'create']);
 
 Route::get('/login', [loginController::class, 'show']);
 Route::post('/login', [loginController::class, 'login']);

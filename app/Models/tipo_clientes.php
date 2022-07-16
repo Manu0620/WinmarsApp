@@ -13,7 +13,6 @@ class tipo_clientes extends Model
     protected $primaryKey = 'codtpcli';
 
     protected $fillable = [
-        'codtpcli',
         'tipcli',
     ];
 }
