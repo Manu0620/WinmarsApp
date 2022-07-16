@@ -43,7 +43,7 @@ class propiedadesController extends Controller
     public function update(Request $request, $codpro){
         $propiedad = propiedades::find($codpro);
 
-        $propiedad->titulo  = $request->input('titulo ');
+        $propiedad->titulo = $request->input('titulo');
         $propiedad->descrip = $request->input('descrip');
         $propiedad->habit = $request->input('habit');
         $propiedad->baños = $request->input('baños');
