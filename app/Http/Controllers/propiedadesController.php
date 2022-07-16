@@ -14,7 +14,9 @@ class propiedadesController extends Controller
     public function show()
     {
         $tipo_propiedades = tipo_propiedades::all();
-        $clientes = clientes::where('codtpcli','2')->get();
+        $clientes = clientes::where('codtpcli','2')
+        -> where('estcli','activo')
+        ->get();
         $itbis = itbis::all();
         return view('propiedades.registrarPropiedades', compact(['tipo_propiedades','clientes','itbis']));
     }
@@ -35,7 +37,8 @@ class propiedadesController extends Controller
     }
 
     public function query(){
-        $datos['propiedades'] = propiedades::paginate(5); 
+        $datos['propiedades'] = propiedades::where('estpro','activo')
+        ->paginate(5); 
         return view('propiedades.consultarPropiedades', $datos);
      }
   

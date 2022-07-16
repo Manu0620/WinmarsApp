@@ -48,6 +48,13 @@
                     <td>{{ $cliente->dircli }}</td>
                     <td>{{ $cliente->corcli }}</td>
                     <td>{{ $cliente->cedrnc }}</td>
+                    @if($cliente->codtpcli == '1')
+                        {{$cliente->codtpcli='Comprador'}}
+
+                        @elseif($cliente->codtpcli == '2')
+                        {{$cliente->codtpcli='Vendedor'}}
+                    @endif
+                    
                     <td>{{ $cliente->codtpcli }}</td>
                     @if($cliente->estcli == 'inactivo')
                         <td><div class="btn btn-warning">{{ $cliente->estcli}}</div></td>

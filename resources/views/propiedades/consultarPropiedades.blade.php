@@ -35,8 +35,6 @@
                 <th>Pre. Renta</th>
                 <th>Comision</th>
                 <th>Cliente</th>
-                <th>Tipo Cliente</th>
-                <th>Itbis</th>
                 <th>Estado</th>
                 <th>Acciones</th>
             </tr>
@@ -55,9 +53,6 @@
                     <td>{{ $propiedad->preren }}</td>
                     <td>{{ $propiedad->comision }}</td>
                     <td>{{ $propiedad->codcli }}</td>
-                    <td>{{ $propiedad->codtpro }}</td>
-                    <td>{{ $propiedad->citbis }}</td>
-                    <td>{{ $propiedad->estpro }}</td>   
                     @if($propiedad->estpro == 'inactivo')
                         <td><div class="btn btn-warning">{{ $propiedad->estpro}}</div></td>
                     @elseif($propiedad->estpro == 'activo')
