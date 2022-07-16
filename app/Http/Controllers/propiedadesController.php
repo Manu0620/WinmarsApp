@@ -6,6 +6,7 @@ use App\Http\Requests\propiedadesRequest;
 use App\Models\propiedades;
 use App\Models\clientes;
 use App\Models\tipo_propiedades;
+use App\Models\itbis;
 use Illuminate\Http\Request;
 
 class propiedadesController extends Controller
@@ -14,7 +15,8 @@ class propiedadesController extends Controller
     {
         $tipo_propiedades = tipo_propiedades::all();
         $clientes = clientes::where('codtpcli','2')->get();
-        return view('propiedades.registrarPropiedades', compact(['tipo_propiedades','clientes']));
+        $itbis = itbis::all();
+        return view('propiedades.registrarPropiedades', compact(['tipo_propiedades','clientes','itbis']));
     }
 
     public function create(propiedadesRequest $request){

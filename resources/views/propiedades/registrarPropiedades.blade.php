@@ -19,7 +19,7 @@
         
         <div class="mb-3">
             <label for="titulo">Titulo/nombre</label>
-            <input type="text" class="form-control" name="titulo" placeholder="Ingrese el Titulo/Nombre...">
+            <input type="text" class="form-control" name="titulo" placeholder="Ingrese el Titulo/Nombre..." value="{{ old('titulo') }}">
             @error('titulo')
             @include('layouts.partials.messages')
         @enderror
@@ -27,7 +27,7 @@
 
         <div class="mb-3">
             <label for="descrip">Descripcion</label>
-            <textarea type="text" class="form-control" name="descrip" rows="4" placeholder="Ingrese la descripcion..."></textarea>
+            <textarea type="text" class="form-control" name="descrip" rows="4" placeholder="Ingrese la descripcion..." value="{{ old('descrip') }}"></textarea>
             @error('descrip')
             @include('layouts.partials.messages')
         @enderror
@@ -35,7 +35,7 @@
 
         <div class="mb-3">
             <label for="fotos">Fotos</label>
-            <input type="file" class="form-control" accept="image/*" multiple name="fotos">
+            <input type="file" class="form-control" accept="image/*" multiple name="fotos" value="{{ old('fotos') }}">
             @error('fotos')
             @include('layouts.partials.messages')
         @enderror
@@ -43,7 +43,7 @@
 
         <div class="mb-3">
             <label for="habit">Habitaciones</label>
-            <input type="number" class="form-control" name="habit" placeholder="Numero de habitaciones...">
+            <input type="number" class="form-control" name="habit" placeholder="Numero de habitaciones..." value="{{ old('habit') }}">
             @error('habit')
             @include('layouts.partials.messages')
         @enderror
@@ -51,7 +51,7 @@
 
         <div class="mb-3">
             <label for="baños">Baños</label>
-            <input type="number" class="form-control" name="baños" placeholder="Numero de baños...">
+            <input type="number" class="form-control" name="baños" placeholder="Numero de baños..." value="{{ old('baños') }}">
             @error('baños')
             @include('layouts.partials.messages')
         @enderror
@@ -59,7 +59,7 @@
 
         <div class="mb-3">
             <label for="metros">Metros</label>
-            <input type="text" class="form-control" name="metros" placeholder="Metros...">
+            <input type="text" class="form-control" name="metros" placeholder="Metros..." value="{{ old('metros') }}">
             @error('metros')
             @include('layouts.partials.messages')
         @enderror
@@ -67,7 +67,7 @@
 
         <div class="mb-3">
             <label for="parqueo">Parqueos</label>
-            <input type="number" class="form-control" name="parqueo" placeholder="Numero de parqueos...">
+            <input type="number" class="form-control" name="parqueo" placeholder="Numero de parqueos..." value="{{ old('parqueo') }}">
             @error('parqueo')
             @include('layouts.partials.messages')
         @enderror
@@ -75,7 +75,7 @@
 
         <div class="mb-3">
             <label for="preven">Precio de venta</label>
-            <input type="text" class="form-control" name="preven" placeholder="Ingrese precio de venta...">
+            <input type="text" class="form-control" name="preven" placeholder="Ingrese precio de venta..." value="{{ old('preven') }}">
             @error('preven')
             @include('layouts.partials.messages')
         @enderror
@@ -83,7 +83,7 @@
 
         <div class="mb-3">
             <label for="preren">Precio de renta</label>
-            <input type="text" class="form-control" name="preren" placeholder="Ingrese precio de renta...">
+            <input type="text" class="form-control" name="preren" placeholder="Ingrese precio de renta..." value="{{ old('preren') }}">
             @error('preren')
             @include('layouts.partials.messages')
         @enderror
@@ -91,7 +91,7 @@
 
         <div class="mb-3">
             <label for="comision">Comision(ganacia)</label>
-            <input type="text" class="form-control" name="comision" placeholder="Ingrese comision...">
+            <input type="text" class="form-control" name="comision" placeholder="Ingrese comision..." value="{{ old('comision') }}">
             @error('comision')
             @include('layouts.partials.messages')
         @enderror
@@ -119,10 +119,15 @@
 
         <div class="mb-3">
             <label for="citbis">Itbis</label>
-            <input type="text" class="form-control" name="citbis">
+            <select class="form-select" id="citbis" name="citbis" value="{{ old('citbis') }}">
+                <option selected disabled>Seleccione el porcentaje de Itbis...</option>
+                @foreach ($itbis as $itbis)
+                    <option value="{{ $itbis->citbis}}" {{ (old('$itbis') == $itbis->citbis) ? 'selected' : ''}}>{{$itbis->itbis}}</option>
+                @endforeach
+            </select>
         </div>
 
-        <input type="hidden" class="form-control" name="estpro" value="1">
+        <input type="hidden" class="form-control" name="estpro" value="activo">
 
         <div class="button-group">
             <button type="reset" class="btn btn-primary"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>

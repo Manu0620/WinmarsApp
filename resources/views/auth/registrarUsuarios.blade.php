@@ -19,10 +19,12 @@
 
         <div class="mb-3">
             <label for="codemp" class="form-label">Empleado</label>
-            <input type="text" class="form-control" name="codemp" placeholder="Empleado..." >
-            @error('codemp')
-                @include('layouts.partials.messages')
-            @enderror
+            <select class="form-select" id="codemp" name="codemp">
+                <option selected disabled>Seleccione el Empleado...</option>
+                @foreach ($empleados as $empleado)
+                    <option value="{{ $empleado->codemp}}" {{ (old('$empleado') == $empleado->codemp) ? 'selected' : ''}}>{{$empleado->nomemp.' '.$empleado->apeemp.' | '.$empleado->cedula}}</option>
+                @endforeach
+            </select> 
         </div>
         
         <div class="mb-3">
@@ -70,7 +72,7 @@
             @enderror
         </div>
 
-        <input type="hidden" class="form-control" name="status" value="1">
+        <input type="hidden" class="form-control" name="status" value="activo">
 
         <div class="button-group">
             <button type="reset" class="btn btn-primary"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
