@@ -27,7 +27,7 @@
 
         <div class="mb-3">
             <label for="descrip">Descripcion</label>
-            <textarea type="text" class="form-control" name="descrip" rows="4" placeholder="Ingrese el descripcion..."></textarea>
+            <textarea type="text" class="form-control" name="descrip" rows="4" placeholder="Ingrese la descripcion..."></textarea>
             @error('descrip')
             @include('layouts.partials.messages')
         @enderror
@@ -107,11 +107,12 @@
 
         <div class="mb-3">
             <label for="codtpro">Tipo de Propiedad</label>
-            <select class="form-select" name="codtpro">
-                <option selected>Tipo de propiedad...</option>
-                <option value="1">Apartamento</option>
-                <option value="2">Casa</option>
-            </select>
+            <select class="form-select" id="codtpro" name="codtpro" value="{{ old('codtpro') }}">
+                <option selected disabled>Seleccione el tipo de propiedad...</option>
+                @foreach ($tipo_propiedades as $tipo_propiedad)
+                    <option value="{{ $tipo_propiedad->codtpro}}" {{ (old('$tipo_propiedad') == $tipo_propiedad->codtpro) ? 'selected' : ''}}>{{$tipo_propiedad->tippro}}</option>
+                @endforeach
+            </select>    
         </div>
 
         <div class="mb-3">

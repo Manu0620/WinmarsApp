@@ -75,13 +75,18 @@
 
         <div class="mb-3">
             <label for="codtpcli">Tipo de Cliente</label>
-            <select class="form-select" name="codtpcli" value="{{ old('codtpcli') }}">
-                <option selected>Selecciona el Tipo de cliente...</option>
-                <option value="1">Comprador</option>
-                <option value="2">Vendedor</option>
+            <select class="form-select" id="codtpcli" name="codtpcli" value="{{ old('codtpcli') }}">
+                <option selected disabled>Seleccione el tipo de cliente...</option>
+                @foreach ($tipo_clientes as $tipo_cliente)
+                    <option value="{{ $tipo_cliente->codtpcli}}" {{ (old('$tipo_cliente') == $tipo_cliente->codtpcli) ? 'selected' : ''}}>{{$tipo_cliente->tipcli}}</option>
+                @endforeach
+            </select>    
                 
-            </select>
+        
         </div>
+
+
+
 
         <input type="hidden" class="form-control" name="estcli" value="1">
 
