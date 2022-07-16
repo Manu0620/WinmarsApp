@@ -6,6 +6,8 @@ use App\Http\Controllers\empleadosController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\logoutController;
+use App\Http\Controllers\tipoPropiedadController;
+use App\Http\Controllers\posicionEmpleadoController;
 use App\Http\Controllers\propiedadesController;
 use App\Http\Controllers\usuariosController;
 use App\Http\Controllers\solicitudesController;
@@ -53,8 +55,15 @@ Route::get('/editarPropieades/{id}', [propiedadesController::class, 'edit'])->na
 Route::put('/editarPropieades/{id}', [propiedadesController::class, 'update'])->name('propiedades');
 Route::get('/consultarPropiedades', [propiedadesController::class, 'query']);
 
+Route::get('/registrarPosicionesEmpleado', [posicionEmpleadoController::class, 'show']);
+Route::post('/registrarPosicionesEmpleado', [posicionEmpleadoController::class, 'create']);
+
+Route::get('/registrarTipoPropiedad', [tipoPropiedadController::class, 'show']);
+Route::post('/registrarTipoPropiedad', [tipoPropiedadController::class, 'create']);
+
 Route::get('/login', [loginController::class, 'show']);
 Route::post('/login', [loginController::class, 'login']);
+
 
 Route::get('/home', [homeController::class, 'index']);
 Route::get('/logout', [logoutController::class, 'logout']);

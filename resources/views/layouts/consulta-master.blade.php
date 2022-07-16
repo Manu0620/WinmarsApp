@@ -57,7 +57,7 @@
 
             .container{
                 width: 100%;
-                margin: 50px;
+                margin: 0px 10px 0px 10px;
             }
 
             table{

@@ -17,7 +17,7 @@ class solicitudesController extends Controller
     {
         $solicitud = solicitudes::create($request->validated());
 
-        return redirect('solicitudes.registrarSolicitudes')->with('success', 'Formulario enviado correctamente!');
+        return redirect('registrarSolicitudes')->with('success', 'Formulario enviado correctamente!');
     }
 
     public function query(){

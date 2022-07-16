@@ -16,7 +16,7 @@ class empleadosController extends Controller
    public function create (empleadosRequest $request){
       $empleados = empleados::create($request ->validated());
 
-      return redirect()->to('empleados.registrarEmpleados')->with('success', 'Formulario enviado correctamente!');
+      return redirect()->to('registrarEmpleados')->with('success', 'Formulario enviado correctamente!');
    }
 
    public function query(){

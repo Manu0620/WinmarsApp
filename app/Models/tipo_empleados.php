@@ -13,7 +13,6 @@ class tipo_empleados extends Model
     protected $primaryKey = 'ctipemp';
 
     protected $fillable = [
-        'ctipemp',
         'descripcion',
     ];
 }
