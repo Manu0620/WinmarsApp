@@ -11,6 +11,8 @@ use App\Http\Controllers\posicionEmpleadoController;
 use App\Http\Controllers\propiedadesController;
 use App\Http\Controllers\usuariosController;
 use App\Http\Controllers\solicitudesController;
+use App\Http\Controllers\tipoClienteController;
+use App\Http\Controllers\tipoEmpleadoController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function(){
@@ -60,6 +62,12 @@ Route::post('/registrarPosicionesEmpleado', [posicionEmpleadoController::class, 
 
 Route::get('/registrarTipoPropiedad', [tipoPropiedadController::class, 'show']);
 Route::post('/registrarTipoPropiedad', [tipoPropiedadController::class, 'create']);
+
+Route::get('/registrarTipoCliente', [tipoClienteController::class, 'show']);
+Route::post('/registrarTipoCliente', [tipoClienteController::class, 'create']);
+
+Route::get('/registrarTipoEmpleado', [tipoEmpleadoController::class, 'show']);
+Route::post('/registrarTipoEmpleado', [tipoEmpleadoController::class, 'create']);
 
 Route::get('/login', [loginController::class, 'show']);
 Route::post('/login', [loginController::class, 'login']);
