@@ -88,7 +88,7 @@
 
 
 
-        <input type="hidden" class="form-control" name="estcli" value="1">
+        <input type="hidden" class="form-control" name="estcli" value="activo">
 
         <div class="button-group">
             <button type="reset" class="btn btn-primary"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>

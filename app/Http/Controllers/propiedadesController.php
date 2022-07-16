@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\propiedadesRequest;
 use App\Models\propiedades;
+use App\Models\clientes;
 use App\Models\tipo_propiedades;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class propiedadesController extends Controller
     public function show()
     {
         $tipo_propiedades = tipo_propiedades::all();
-        return view('propiedades.registrarPropiedades', compact('tipo_propiedades'));
+        $clientes = clientes::where('codtpcli','2')->get();
+        return view('propiedades.registrarPropiedades', compact(['tipo_propiedades','clientes']));
     }
 
     public function create(propiedadesRequest $request){
