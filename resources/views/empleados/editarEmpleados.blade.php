@@ -10,8 +10,9 @@
         <label for="form-label">/ Formulario de Empleados</label>
     </div>
 
-    <form action="{{ route('empleados', ['id' => $empleados->codemp]) }}" method="POST">
+    <form action="{{ route('empleados', ['id' => $empleado->codemp]) }}" method="POST">
         @csrf
+
         @method('PUT')
 
         @if (Session::get('success', false))
@@ -20,7 +21,7 @@
 
         <div class="mb-3">
             <label for="nomemp">Nombre </label>
-            <input type="text" class="form-control" name="nomemp" placeholder="Ingrese el nombre..." value="{{ $empleados->nomemp }}">
+            <input type="text" class="form-control" name="nomemp" placeholder="Ingrese el nombre..." value="{{ $empleado->nomemp }}">
             @error('nomemp')
                 @include('layouts.partials.messages')
             @enderror
@@ -28,7 +29,7 @@
 
         <div class="mb-3">
             <label for="apeemp">Apellido</label>
-            <input type="text" class="form-control" name="apeemp" placeholder="Ingrese el apellido..." value="{{ $empleados->apeemp }}">
+            <input type="text" class="form-control" name="apeemp" placeholder="Ingrese el apellido..." value="{{ $empleado->apeemp }}">
             @error('apeemp')
                 @include('layouts.partials.messages')
             @enderror
@@ -36,7 +37,7 @@
 
         <div class="mb-3">
             <label for="telem1">Teléfono 1</label>
-            <input type="text" class="form-control" name="telem1" placeholder="Ingrese el teléfono 1..." value="{{ $empleados->telem1 }}">
+            <input type="text" class="form-control" name="telem1" placeholder="Ingrese el teléfono 1..." value="{{ $empleado->telem1 }}">
             @error('telem1')
                 @include('layouts.partials.messages')
             @enderror
@@ -44,7 +45,7 @@
 
         <div class="mb-3">
             <label for="telem2">Teléfono 2</label>
-            <input type="text" class="form-control" name="telem2" placeholder="Ingrese el teléfono 2..." value="{{ $empleados->telem2 }}">
+            <input type="text" class="form-control" name="telem2" placeholder="Ingrese el teléfono 2..." value="{{ $empleado->telem2 }}">
             @error('telem2')
                 @include('layouts.partials.messages')
             @enderror
@@ -52,7 +53,7 @@
 
         <div class="mb-3">
             <label for="direccion">Dirección</label>
-            <input type="text" class="form-control" name="direccion" placeholder="Ingrese la dirección..." value="{{ $empleados->direccion }}">
+            <input type="text" class="form-control" name="direccion" placeholder="Ingrese la dirección..." value="{{ $empleado->direccion }}">
             @error('direccion')
                 @include('layouts.partials.messages')
             @enderror
@@ -60,7 +61,7 @@
 
         <div class="mb-3">
             <label for="correo">Correo Electrónico</label>
-            <input type="text" class="form-control" name="correo" placeholder="Ingrese el correo electrónico..." value="{{ $empleados->correo }}">
+            <input type="text" class="form-control" name="correo" placeholder="Ingrese el correo electrónico..." value="{{ $empleado->correo }}">
             @error('correo')
                 @include('layouts.partials.messages')
             @enderror
@@ -68,7 +69,7 @@
 
         <div class="mb-3">
             <label for="cedula">Cédula/RNC</label>
-            <input type="text" class="form-control" name="cedula" placeholder="Ingrese la cédula/RNC..." value="{{ $empleados->cedula }}">
+            <input type="text" class="form-control" name="cedula" placeholder="Ingrese la cédula/RNC..." value="{{ $empleado->cedula }}">
             @error('cedula')
                 @include('layouts.partials.messages')
             @enderror
@@ -78,8 +79,8 @@
             <label for="ctipemp">Tipo de Empleado</label>
             <select class="form-select" name="ctipemp">
                 <option selected>Selecciona el Tipo de Empleado...</option>
-                <option value="fijo">Fijo</option>
-                <option value="temporal">Temporal</option>
+                <option value="1">Fijo</option>
+                <option value="2">Temporal</option>
             </select>
            
         </div>

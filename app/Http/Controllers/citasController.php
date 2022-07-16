@@ -15,7 +15,7 @@ class citasController extends Controller
     public function create(citasRequest $request){
         $cita = citas::create($request->validated());
 
-        return redirect()->to('citas.registrarCitas')->with('success', 'Formulario enviado correctamente!');
+        return redirect()->to('registrarCitas')->with('success', 'Formulario enviado correctamente!');
     }
 
     public function query(){

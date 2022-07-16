@@ -13,7 +13,6 @@ class tipo_propiedades extends Model
     protected $primaryKey = 'codtpro';
 
     protected $fillable = [
-        'codtpro',
         'tippro',
     ];
 }

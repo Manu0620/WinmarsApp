@@ -29,7 +29,7 @@ class propiedadesController extends Controller
 
         //propiedades::create($request->validated());
 
-        return redirect('propiedades.registrarPropiedades')->with('success', 'Formulario enviado correctamente!');
+        return redirect('registrarPropiedades')->with('success', 'Formulario enviado correctamente!');
     }
 
     public function query(){
@@ -45,7 +45,7 @@ class propiedadesController extends Controller
     public function update(Request $request, $codpro){
         $propiedad = propiedades::find($codpro);
 
-        $propiedad->titulo  = $request->input('titulo ');
+        $propiedad->titulo = $request->input('titulo');
         $propiedad->descrip = $request->input('descrip');
         $propiedad->habit = $request->input('habit');
         $propiedad->baños = $request->input('baños');

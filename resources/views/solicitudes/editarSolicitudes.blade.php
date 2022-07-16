@@ -13,6 +13,8 @@
     <form action="{{ route('solicitudes', ['id' => $solicitud->codsol]) }}" method="POST">
         @csrf
 
+        @method('PUT')
+
         @if (Session::get('success', false))
         @include('layouts.partials.messages')
           @endif
@@ -36,7 +38,7 @@
 
         <div class="mb-3">
             <label for="comentario">Comentario</label>
-            <textarea type="text" class="form-control" rows="4" cols="50" name="comentario" placeholder="Escriba su comentario..." value="{{ $solicitd->comentario }}"> </textarea>
+            <textarea type="text" class="form-control" rows="4" cols="50" name="comentario" placeholder="Escriba su comentario..." value="{{ $solicitud->comentario }}"> </textarea>
             @error('comentario')
             @include('layouts.partials.messages')
         @enderror
@@ -44,7 +46,7 @@
 
         <div class="mb-3">
             <label for="fecha">Fecha</label>
-            <input type="date" class="form-control" name="fecha" placeholder="Ingrese el fecha..." value="{{ $solicitd->fecha }}">
+            <input type="date" class="form-control" name="fecha" placeholder="Ingrese el fecha..." value="{{ $solicitud->fecha }}">
             @error('fecha')
             @include('layouts.partials.messages')
         @enderror

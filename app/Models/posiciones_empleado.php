@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class tipo_clientes extends Model
+class posiciones_empleado extends Model
 {
     use HasFactory;
-
-    protected $table = 'tipo_clientes';
-    protected $primaryKey = 'codtpcli';
+    
+    protected $table = 'posiciones_empleados';
+    protected $primaryKey = 'cospos';
 
     protected $fillable = [
-        'tipcli',
+        'posicion',
     ];
 }
