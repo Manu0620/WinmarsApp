@@ -10,7 +10,7 @@
         <label for="form-label">/ Formulario de Citas</label>
     </div>
 
-    <form action="{{ route('citas', ['id' => $cliente->codcli]) }}" method="POST">
+    <form action="{{ route('citas', ['id' => $cita->codcit]) }}" method="POST">
         @csrf
 
         @method('PUT')
@@ -21,7 +21,7 @@
         
         <div class="mb-3">
             <label for="codsol">Solicitud</label>
-            <input type="text" class="form-control" name="codsol" value="{{ $citas->codsol }}">
+            <input type="text" class="form-control" name="codsol" value="{{ $cita->codsol }}">
             @error('codsol')
             @include('layouts.partials.messages')
         @enderror
@@ -29,7 +29,7 @@
 
         <div class="mb-3">
             <label for="codusu">Usuario</label>
-            <input type="text" class="form-control" name="codusu" value="{{ $citas->codusu }}">
+            <input type="text" class="form-control" name="codusu" value="{{ $cita->codusu }}">
             @error('codusu')
             @include('layouts.partials.messages')
         @enderror
@@ -37,7 +37,7 @@
 
         <div class="mb-3">
             <label for="fecha">Fecha</label>
-            <input type="date" class="form-control" name="fecha" placeholder="Ingrese el fecha..." value="{{ $citas->fecha }}">
+            <input type="date" class="form-control" name="fecha" placeholder="Ingrese el fecha..." value="{{ $cita->fecha }}">
             @error('fecha')
             @include('layouts.partials.messages')
         @enderror
@@ -45,7 +45,7 @@
 
         <div class="mb-3">
             <label for="descrip">Descripcion</label>
-            <textarea class="form-control" name="descrip" rows="4" cols="50" placeholder="Descripcion..." value="{{ $citas->descrip }}"> </textarea>
+            <textarea class="form-control" name="descrip" rows="4" cols="50" placeholder="Descripcion..."> {{ $cita->descrip }} </textarea>
             @error('descrip')
             @include('layouts.partials.messages')
         @enderror

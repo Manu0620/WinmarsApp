@@ -77,8 +77,8 @@
             <label for="ctipemp">Tipo de Empleado</label>
             <select class="form-select" name="ctipemp">
                 <option selected>Selecciona el Tipo de Empleado...</option>
-                <option value="fijo">Fijo</option>
-                <option value="temporal">Temporal</option>
+                <option value="1">Fijo</option>
+                <option value="2">Temporal</option>
             </select>
            
         </div>

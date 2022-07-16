@@ -29,12 +29,18 @@ Route::get('/consultarClientes', [clientesController::class, 'query']);
 
 Route::get('/registrarEmpleados', [empleadosController::class, 'show']);
 Route::post('/registrarEmpleados', [empleadosController::class, 'create']);
+Route::get('/editarEmpleados/{id}', [empleadosController::class, 'edit'])->name('empleados');
+Route::put('/editarEmpleados/{id}', [empleadosController::class, 'update'])->name('empleados');
+Route::get('/consultarEmpleados', [empleadosController::class, 'query']);
 
 Route::get('/registrarUsuarios', [usuariosController::class, 'show']);
 Route::post('/registrarUsuarios', [usuariosController::class, 'create']);
 
 Route::get('/registrarCitas', [citasController::class, 'show']);
 Route::post('/registrarCitas', [citasController::class, 'create']);
+Route::get('/editarCitas/{id}', [citasController::class, 'edit'])->name('citas');
+Route::put('/editarCitas/{id}', [citasController::class, 'update'])->name('citas');
+Route::get('/consultarCitas', [citasController::class, 'query']);
 
 Route::get('/registrarSolicitudes', [solicitudesController::class, 'show']);
 Route::post('/registrarSolicitudes', [solicitudesController::class, 'create']);
