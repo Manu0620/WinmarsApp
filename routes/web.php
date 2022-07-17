@@ -23,6 +23,14 @@ Route::get('/Facturacion', function(){
     return view('/Facturacion');
 });
 
+Route::get('/Cobros', function(){
+    return view('/Cobros');
+});
+
+Route::get('/Cotizacion', function(){
+    return view('/Cotizacion');
+});
+
 Route::get('/registrarClientes', [clientesController::class, 'show']);
 Route::post('/registrarClientes', [clientesController::class, 'create']);
 Route::get('/editarClientes/{id}', [clientesController::class, 'edit'])->name('clientes');

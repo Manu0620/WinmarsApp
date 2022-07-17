@@ -21,8 +21,8 @@
             <label for="titulo">Titulo/nombre</label>
             <input type="text" class="form-control" name="titulo" value="{{ old('titulo') }}" placeholder="Ingrese el Titulo/Nombre...">
             @error('titulo')
-            @include('layouts.partials.messages')
-        @enderror
+                @include('layouts.partials.messages')
+            @enderror
         </div>
 
         <div class="mb-3">

@@ -16,13 +16,13 @@
         @if (Session::get('success', false))
         @include('layouts.partials.messages')
           @endif
-        
+
         <div class="mb-3">
             <label for="nomcli">Nombre</label>
             <input type="text" class="form-control" name="nomcli" value="{{ old('nomcli') }}" placeholder="Ingrese el nombre...">
             @error('nomcli')
-            @include('layouts.partials.messages')
-        @enderror
+                @include('layouts.partials.messages')
+            @enderror
         </div>
 
         <div class="mb-3">

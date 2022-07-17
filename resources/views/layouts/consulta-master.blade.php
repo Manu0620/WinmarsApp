@@ -46,7 +46,7 @@
                 border-radius: 5px;
                 font-weight: bold;
                 padding: 10px;
-                margin-bottom: 30px; 
+                margin: 30px; 
             }
             
             .tab-nav:hover{
@@ -60,6 +60,8 @@
 
             .table{
                 font-weight: bold;
+                margin: 30px;
+                width: 96.5%;
             }
 
             .table thead{
@@ -79,22 +81,25 @@
                 font-size: 14px;
             }
 
-            .container input{
+            .row{
+                font-weight: 600;
+                margin: 30px;
+            }
+
+            .container-fluid input, .container-fluid select, .container-fluid textarea{
                 border: 1px solid #6c757d;
                 border-bottom: 3px solid #6c757d;
                 border-radius: 10px;
-                background: #90CAF9;
             }
 
-            .container input:hover{
+            .container-fluid input:hover, .container-fluid select:hover, .container-fluid textarea:hover{
                 border: 1px solid #1976d2;
                 border-bottom: 3px solid #1976d2;
             }
 
-            .container input:focus{
+            .container-fluid input:focus, .container-fluid select:focus, .container-fluid textarea:focus{
                 border: 1px solid #1976d2;
                 border-bottom: 3px solid #1976d2;
-                background: #90CAF9;
             }
 
             .button-group button, .table a, .button-group a{
@@ -119,12 +124,15 @@
 
             .button-group{
                 text-align: right;
+                margin-right: 30px;
             }
 
             h3{
                 font-weight: bold;
                 text-align: left;
+                font-size: 30px;
                 margin: 30px;
+                margin-left: 60px;
             }
         </style>
     </head>

@@ -90,6 +90,7 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="Facturacion"><i class="fa-solid fa-file-invoice-dollar" style="position: initial;"></i>  Facturas<i class="fa-solid fa-arrow-right"></i></a></li>
                         <li><a class="dropdown-item" href="Cobros"><i class="fa-solid fa-money-check-dollar" style="position: initial;"></i>  Cobros<i class="fa-solid fa-arrow-right"></i></a></li>
+                        <li><a class="dropdown-item" href="Cotizacion"><i class="fas fa-file-invoice" style="position: initial;"></i>  Cotizacion<i class="fa-solid fa-arrow-right"></i></a></li>
                     </ul>
                 </li>
             </ul>

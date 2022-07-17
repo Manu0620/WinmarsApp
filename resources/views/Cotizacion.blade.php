@@ -1,13 +1,13 @@
 @extends('layouts.consulta-master')
-<title>Facturacion</title>
+<title>Cotizacion</title>
 
 @section('content')
 
-    <h3>Facturacion</h3>
+    <h3>Cotizacion</h3>
 
     <div class="tab-nav">
         <a href="/home">Home</a>
-        <label for="form-label">/ Facturacion</label>
+        <label for="form-label">/ Contizacion</label>
     </div>
 
     @if (Session::get('success', false))
@@ -61,9 +61,10 @@
         </div>
     </div>
 
+
     <div class="row">
         <div class="col">
-            <label for="numfac">Factura No.</label>
+            <label for="numfac">Cotizacion No.</label>
             <input type="text" class="form-control" name="numfac" value="{{ old('numfac') }}" disabled>
             @error('numfac')
                 @include('layouts.partials.messages')
