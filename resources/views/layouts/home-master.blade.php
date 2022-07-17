@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="{{ url('assets/css/bootstrap.min.css') }}">
         <!--Styles-->
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
         <style>
             *{
                 font-family: 'Nunito', sans-serif;
@@ -29,6 +30,7 @@
                 justify-content: center;
                 width: 100%;
                 height: 100vh;
+                margin-top: 30%;
             }
 
         </style>
