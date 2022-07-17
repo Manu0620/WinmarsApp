@@ -30,7 +30,11 @@
                 justify-content: center;
                 width: 100%;
                 height: 100vh;
-                margin-top: 30%;
+                margin-top: 13%;
+            }
+
+            .content{
+                width: 100%;
             }
 
         </style>

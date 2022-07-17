@@ -19,7 +19,7 @@ class solicitudesController extends Controller
     }
 
     public function query(){
-        $datos['solicitudes'] = solicitudes::paginate(5); 
+        $datos['solicitudes'] = solicitudes::where('estsol','Pendiente')->paginate(5); 
         return view('solicitudes.consultarSolicitudes', $datos);
     }
   

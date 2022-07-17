@@ -40,7 +40,7 @@ class propiedadesController extends Controller
         $datos['propiedades'] = propiedades::where('estpro','activo')
         ->paginate(5); 
         return view('propiedades.consultarPropiedades', $datos);
-     }
+    }
   
     public function edit($codpro){
         $propiedad = propiedades::find($codpro);

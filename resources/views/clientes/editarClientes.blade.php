@@ -18,21 +18,33 @@
         <div class="mb-3">
             <label for="nomcli">Nombre</label>
             <input type="text" class="form-control" name="nomcli" placeholder="Ingrese el nombre..." value="{{ $cliente->nomcli }}">
+            @error('nomcli')
+                @include('layouts.partials.messages')
+            @enderror
         </div>
 
         <div class="mb-3">
             <label for="apecli">Apellido</label>
             <input type="text" class="form-control" name="apecli" placeholder="Ingrese el apellido..." value="{{ $cliente->apecli }}">
+            @error('apecli')
+                @include('layouts.partials.messages')
+            @enderror
         </div>
 
         <div class="mb-3">
             <label for="tecli1">Teléfono 1</label>
             <input type="text" class="form-control" name="tecli1" placeholder="Ingrese el teléfono 1..." value="{{ $cliente->tecli1 }}">
+            @error('tecli1')
+                @include('layouts.partials.messages')
+            @enderror
         </div>
 
         <div class="mb-3">
             <label for="tecli2">Teléfono 2</label>
             <input type="text" class="form-control" name="tecli2" placeholder="Ingrese el teléfono 2..." value="{{ $cliente->tecli2 }}">
+            @error('tecli2')
+                @include('layouts.partials.messages')
+            @enderror
         </div>
 
         <div class="mb-3">
@@ -43,11 +55,17 @@
         <div class="mb-3">
             <label for="corcli">Correo Electrónico</label>
             <input type="text" class="form-control" name="corcli" placeholder="Ingrese el correo electrónico..." value="{{ $cliente->corcli }}">
+            @error('corcli')
+                @include('layouts.partials.messages')
+            @enderror
         </div>
 
         <div class="mb-3">
             <label for="cedrnc">Cédula/RNC</label>
             <input type="text" class="form-control" name="cedrnc" placeholder="Ingrese la cédula/RNC..." value="{{ $cliente->cedrnc }}">
+            @error('cedrnc')
+                @include('layouts.partials.messages')
+            @enderror
         </div>
 
         <div class="mb-3">

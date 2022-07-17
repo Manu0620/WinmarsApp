@@ -21,7 +21,8 @@ class clientesController extends Controller
     }
 
     public function query(){
-        $datos['clientes'] = clientes::paginate(5); 
+        $datos['clientes'] = clientes::where('estcli','activo')
+        ->paginate(5);
         return view('clientes.consultarClientes', $datos);
     }
 

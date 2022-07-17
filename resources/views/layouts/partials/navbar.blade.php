@@ -46,7 +46,7 @@
 <nav class="navbar navbar-expand-lg navbar fixed-top" style="background-color: #E3F2FD;">
     <div class="container-fluid">
 
-        <a class="navbar-brand" href="/home"><img src="../assets/img/LOGO WM PROPERTIE horizontal.png" alt="Logo"></a>
+        <a class="navbar-brand" href="/home" style="margin-left: 50px;"><img src="../assets/img/LOGO WM PROPERTIE horizontal.png" alt="Logo"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -103,6 +103,7 @@
                             {{auth()->user()->username}}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li class="dropdown-item"><i class="fas fa-circle" style="color: #38b000;"></i> Conectado</li>
                             <li><a class="dropdown-item" href="/logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
                         </ul>
                     </li>
