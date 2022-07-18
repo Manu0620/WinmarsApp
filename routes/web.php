@@ -37,7 +37,7 @@ Route::get('/view-image',[imageController::class,'viewImage'])->name('images.vie
 
 //Procesos
 Route::get('/Facturacion', [facturaController::class, 'create']);
-Route::post('/Facturacion', [facturaController::class, 'create']);
+Route::post('/Facturacion', [facturaController::class, 'save']);
 Route::get('/consultarFacturas', [facturaController::class, 'query']);
 
 Route::get('/Cobros', [cobroController::class, 'show']);

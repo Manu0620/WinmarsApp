@@ -11,6 +11,8 @@
 
     <form action="/Facturacion" method="POST" id="formulario">
 
+        @csrf
+
     <div class="row">
         <div class="col-sm-5">
             <div class="tab-nav">
@@ -20,52 +22,51 @@
         </div>
         <div class="col">
             <div class="button-group">
-                <button type="submit" class="btn btn-primary"><i class="fas fa-file-pdf"></i> Comprobante</button>
-                <button type="submit" class="btn btn-danger"><i class="fas fa-file-pdf"></i> Print</button>
+                <button type="button" class="btn btn-primary"><i class="fas fa-file-pdf"></i> Comprobante</button>
+                <button type="button" class="btn btn-danger"><i class="fas fa-file-pdf"></i> Print</button>
                 <button type="reset" class="btn btn-warning"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
 
-                <button type="reset" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+                <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Save</button>
             </div>
         </div>
     </div>
 
-    @csrf
+   
 
     <div class="row">
 
         <div class="col">
             <label for="codcli">Cliente</label>
-            <input type="text" class="form-control" id="codcli" name="codcli" value="" disabled>
+            <input type="text" class="form-control" id="codcli" name="codcli" disabled>
         </div>
 
         <div class="col-1" style="padding-top: 25px;">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable"><i class="fas fa-search"></i></button>
+            <button type="button" class="btn btn-primary" id="buscar-cli" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable"><i class="fas fa-search"></i></button>
         </div>
      
         <div class="col">
             <label for="nomcli">Nombre</label>
-            <input type="text" class="form-control" id="nomcli" name="nomcli" value="" disabled>
+            <input type="text" class="form-control" id="nomcli" name="nomcli" disabled>
         </div>
 
         <div class="col">
             <label for="tecli1">Teléfono</label>
-            <input type="tel" class="form-control" id="tecli1" name="tecli1" value="" disabled>
+            <input type="tel" class="form-control" id="tecli1" name="tecli1" disabled>
         </div>
 
         <div class="col">
             <label for="cedrnc">Cedula</label>
-            <input type="tel" class="form-control" id="cedrnc" name="cedrnc" value="" disabled>
+            <input type="tel" class="form-control" id="cedrnc" name="cedrnc"  disabled>
         </div>
     </div>
 
     <div class="row">
         <div class="col">
-            <label for="numfac">Factura No.</label>
-            <input type="text" class="form-control" id="numfac" name="numfac" value="" disabled>
+            
         </div>
         <div class="col">
             <label for="fecha">Fecha</label>
-            <input type="datetime-local" class="form-control" id="fecha" name="fecha" value="" disabled>
+            <input type="datetime" class="form-control" id="fecha" name="fecha" disabled>
         </div>
         <div class="col">
             <label for="concepto">Concepto</label>
@@ -81,12 +82,15 @@
                 <option value="Credito">Credito</option>
             </select>
         </div>
+        <div class="col">
+            
+        </div>
     </div>
 
     <div class="row">
         <div class="col">
             <label for="codpro">Propiedad</label>
-            <input type="text" class="form-control" id="codpro" name="codpro" value="" disabled>
+            <input type="text" class="form-control" id="codpro" name="codpro" disabled>
         </div>
 
         <div class="col-1" style="padding-top: 30px;">
@@ -95,7 +99,7 @@
 
         <div class="col">
             <label for="titulo">Titulo</label>
-            <input type="text" class="form-control" id="titulo" name="titulo" value="" disabled>
+            <input type="text" class="form-control" id="titulo" name="titulo" disabled>
         </div>
         <div class="col">
             <label for="preven">Precio de venta/renta</label>
@@ -103,7 +107,7 @@
         </div>
         <div class="col">
             <label for="cantidad">Cantidad</label>
-            <input type="number" class="form-control" id="cantidad" name="cantidad" value="">
+            <input type="number" class="form-control" id="cantidad" name="cantidad">
         </div>
     </div>
 
@@ -127,7 +131,8 @@
         </div>
     </div>
 
-    <table class="table table-striped table-hover table-borderless align-middle">
+
+    <!--<table class="table table-striped table-hover table-borderless align-middle">
         <thead>
             <tr>
                 <th>ID</th>
@@ -143,7 +148,7 @@
         <tbody>
             
         </tbody>
-    </table>
+    </table>-->
 
     <div class="modal fade" id="exampleModalScrollable" role="dialog" tabindex="-1" aria-labelledby="Seleccionar cliente" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
@@ -192,6 +197,18 @@
     </div>
 
     <script type="text/javascript">
+
+        document.getElementById('buscar-cli').addEventListener('click', onSearch);
+
+        function onSearch(){
+            var today = new Date();
+            var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+            var time = today.getHours() + ":" + today.getMinutes();
+            var dateTime = date+' '+time;
+
+            document.getElementById('fecha').value = dateTime;
+        }
+   
         function selectCliente(codcli, nomcli, apecli, tecli1, cedrnc){
             document.getElementById('codcli').value = codcli;
             document.getElementById('nomcli').value = nomcli + ' ' + apecli;
@@ -255,10 +272,11 @@
 
     <script>
 
+        var pventa, prenta, total = 0;
+
         document.getElementById('cantidad').addEventListener('click', updateValue);
         document.getElementById('cantidad').addEventListener('onchange', updateValue);
 
-        var total = 0;
 
         function updateValue(e) {
             if(document.getElementById('cantidad').value < 0){ document.getElementById('cantidad').value = 0 }
@@ -274,10 +292,16 @@
             var concepto = document.getElementById('concepto').value;
             if(concepto == 'Alquiler'){
                 document.getElementById('precio').value = preren;
+                prenta = preren;
                 document.getElementById('cantidad').disabled = false;
             }else{
                 document.getElementById('precio').value = preven;
                 document.getElementById('cantidad').value = 1;
+                pventa = preven;
+                document.getElementById('subtot').value = document.getElementById('precio').value*document.getElementById('cantidad').value;
+                document.getElementById('itbis').value = document.getElementById('subtot').value*document.getElementById('itbis-fijo').value;
+                total = parseFloat(document.getElementById('subtot').value)+parseFloat(document.getElementById('itbis').value); 
+                document.getElementById('total').value = total;
                 document.getElementById('cantidad').disabled = true;
             }
             document.getElementById('itbis-fijo').value = itbis;
@@ -287,5 +311,5 @@
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
-
+</form>
 @endsection
