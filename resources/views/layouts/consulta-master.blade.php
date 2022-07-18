@@ -28,7 +28,7 @@
                 align-items: center;
                 justify-content: center;
                 width: 100%;
-                height: auto;
+                margin-top: 10%;
             }
 
             textarea{
