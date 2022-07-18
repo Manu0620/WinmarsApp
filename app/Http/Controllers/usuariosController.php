@@ -8,10 +8,10 @@ use App\Models\empleados;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
+
 class usuariosController extends Controller
 {
     public function show(){
-
         $empleados = empleados::all();
         return view('auth.registrarUsuarios', compact('empleados'));
     }

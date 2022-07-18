@@ -35,7 +35,7 @@
 
         <div class="mb-3">
             <label for="fecha">Fecha</label>
-            <input type="date" class="form-control" name="fecha" placeholder="Ingrese el fecha..." value="{{ old('fecha') }}">
+            <input type="datetime-local" class="form-control" name="fecha" placeholder="Ingrese el fecha..." value="{{ old('fecha') }}">
             @error('fecha')
             @include('layouts.partials.messages')
         @enderror
@@ -51,7 +51,7 @@
 
         <div class="mb-3">
             <label for="estcit">Estado</label>
-            <select class="form-select" name="estcit" value="{{ old('estcit') }}">
+            <select class="form-select" name="estcit" value="{{ old('estcit') }}" disabled>
                 <option value="Pendiente" selected>Pendiente</option>
                 <option value="En Proceso">En proceso</option>
                 <option value="Comletada">Completada</option>

@@ -1,7 +1,12 @@
 @extends('layouts.consulta-master')
 <title>Consulta de Empleado</title>
 
+@php
+    $rol = auth()->user()->rol;
+@endphp
+
 @section('content')
+    @if($rol == 'Administrador')
 
     <h3>Consulta de Empleado</h3>
 
@@ -66,5 +71,7 @@
             @endforeach
         </tbody>
     </table>
-    
+    @else
+        <h3>No puede acceder a esta pagina, retornar a <a href="/home">Home</a></h3>
+    @endif
 @endsection

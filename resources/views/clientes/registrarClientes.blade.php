@@ -1,7 +1,12 @@
 @extends('layouts.formulario-master')
 <title>Registro de clientes</title>
 
+@php
+    $rol = auth()->user()->rol;
+@endphp
+
 @section('content')
+    @if($rol == 'Administrador' || $rol == 'Usuario')
 
     <h3>Formulario de Clientes</h3>
 
@@ -80,13 +85,8 @@
                 @foreach ($tipo_clientes as $tipo_cliente)
                     <option value="{{ $tipo_cliente->codtpcli}}" {{ (old('$tipo_cliente') == $tipo_cliente->codtpcli) ? 'selected' : ''}}>{{$tipo_cliente->tipcli}}</option>
                 @endforeach
-            </select>    
-                
-        
+            </select>        
         </div>
-
-
-
 
         <input type="hidden" class="form-control" name="estcli" value="activo">
 
@@ -96,6 +96,8 @@
         </div>
         
     </form>
-
+    @else
+        <h3>No puede acceder a esta pagina, retornar a <a href="/home">Home</a></h3>
+    @endif
 @endsection
             

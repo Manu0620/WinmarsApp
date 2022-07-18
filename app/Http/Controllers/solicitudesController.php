@@ -39,4 +39,22 @@ class solicitudesController extends Controller
         $solicitud->save();
         return redirect('consultarSolicitudes')->with('success', 'Edicion realizada correctamente');
     }
+
+    public function delete($id){
+        $solicitud = solicitudes::find($id); 
+
+        $solicitud->estsol = 'Rechazada';
+        $solicitud->save();
+
+        return redirect('consultarSolicitudes')->with('sucess', 'Solicitud rechazada correctamente');
+    }
+
+    public function approve($id){
+        $solicitud = solicitudes::find($id); 
+
+        $solicitud->estsol = 'Aprobada';
+        $solicitud->save();
+
+        return redirect('registrarCitas')->with('sucess', 'Solicitud Aprobada con exito, Procesa a crear la cita');
+    }
 }

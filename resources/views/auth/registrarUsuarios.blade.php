@@ -1,8 +1,12 @@
 @extends('layouts.formulario-master')
 <title>Regitro de Usuarios</title>
 
-@section('content')
+@php
+    $rol = auth()->user()->rol;
+@endphp
 
+@section('content')
+    @if($rol == 'Administrador')
     <h3>Formulario de Usuarios</h3>
 
     <div class="tab-nav">
@@ -83,5 +87,8 @@
         </div>
         
     </form>
-
+    @else
+        <h3>No puede acceder a esta pagina, retornar a <a href="/home">Home</a></h3>
+    @endif
 @endsection
+

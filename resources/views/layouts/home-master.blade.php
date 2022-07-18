@@ -33,7 +33,7 @@
                 margin-top: 13%;
             }
 
-            .content{
+            .container{
                 width: 100%;
             }
 

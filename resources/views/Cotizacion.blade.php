@@ -5,14 +5,27 @@
 
     <h3>Cotizacion</h3>
 
-    <div class="tab-nav">
-        <a href="/home">Home</a>
-        <label for="form-label">/ Contizacion</label>
-    </div>
-
     @if (Session::get('success', false))
         @include('layouts.partials.messages')
     @endif
+
+    <div class="row">
+        <div class="col-sm-7">
+            <div class="tab-nav">
+                <a href="/home">Home</a>
+                <label for="form-label">/ Cotizaicion</label>
+            </div>
+        </div>
+        <div class="col">
+            <div class="button-group">
+                <button type="submit" class="btn btn-primary"><i class="fas fa-file-pdf"></i> Comprobante</button>
+                <button type="submit" class="btn btn-danger"><i class="fas fa-file-pdf"></i> Print</button>
+                <button type="reset" class="btn btn-warning"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
+                <button type="reset" class="btn btn-success"><i class="fas fa-plus"></i> Add Property</button>
+                <button type="reset" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+            </div>
+        </div>
+    </div>
 
     <div class="row">
 
@@ -72,7 +85,7 @@
         </div>
         <div class="col">
             <label for="fecha">Fecha</label>
-            <input type="text" class="form-control" name="fecha" value="{{ old('fecha') }}" disabled>
+            <input type="datime-local" class="form-control" name="fecha" value="{{ old('fecha') }}" disabled>
             @error('fecha')
                 @include('layouts.partials.messages')
             @enderror
@@ -169,15 +182,6 @@
                 @include('layouts.partials.messages')
             @enderror
         </div>
-    </div>
-
-    
-    <div class="button-group">
-        <button type="submit" class="btn btn-primary"><i class="fas fa-file-pdf"></i> Comprobante</button>
-        <button type="submit" class="btn btn-danger"><i class="fas fa-file-pdf"></i> Print</button>
-        <button type="reset" class="btn btn-warning"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
-        <button type="reset" class="btn btn-success"><i class="fas fa-plus"></i> Add Property</button>
-        <button type="reset" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Save</button>
     </div>
 
     <table class="table table-striped table-hover table-borderless align-middle">

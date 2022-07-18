@@ -6,6 +6,8 @@ use App\Http\Requests\clienteRequest;
 use App\Models\clientes;
 use App\Models\tipo_clientes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class clientesController extends Controller
 {

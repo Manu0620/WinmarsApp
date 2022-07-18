@@ -49,7 +49,8 @@
                     
                     <td>
                         <a href="{{ route('solicitudes', ['id' => $solicitud->codsol]) }}" class="btn btn-warning btn-editar"><i class="fas fa-file-edit"></i></a>
-                        <a href="{{ route('solicitudes', ['id' => $solicitud->codsol]) }}" class="btn btn-success btn-editar"><i class="fas fa-check"></i></a>
+                        <a href="{{ route('rechazarSolicitud', ['id' => $solicitud->codsol]) }}" class="btn btn-danger btn-editar"><i class="fas fa-ban"></i></a>
+                        <a href="{{ route('aprobarSolicitud', ['id' => $solicitud->codsol]) }}" class="btn btn-success btn-editar"><i class="fas fa-check"></i></a>
                     </td>
                 </tr>
             @endforeach

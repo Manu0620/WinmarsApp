@@ -1,9 +1,16 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+
 use App\Http\Controllers\citasController;
 use App\Http\Controllers\clientesController;
+use App\Http\Controllers\cobroController;
+use App\Http\Controllers\cotizacionController;
+use App\Http\Controllers\cuentasController;
 use App\Http\Controllers\empleadosController;
+use App\Http\Controllers\facturaController;
 use App\Http\Controllers\homeController;
+use App\Http\Controllers\imageController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\logoutController;
 use App\Http\Controllers\tipoPropiedadController;
@@ -19,18 +26,31 @@ Route::get('/', function(){
     return view('welcome');
 });
 
-Route::get('/Facturacion', function(){
-    return view('/Facturacion');
-});
+//For adding an image
+Route::get('/add-image',[imageController::class,'addImage'])->name('images.add');
+//For storing an image
+Route::post('/store-image',[imageController::class,'storeImage'])
+->name('images.store');
+//For showing an image
+Route::get('/view-image',[imageController::class,'viewImage'])->name('images.view');
 
-Route::get('/Cobros', function(){
-    return view('/Cobros');
-});
 
-Route::get('/Cotizacion', function(){
-    return view('/Cotizacion');
-});
+//Procesos
+Route::get('/Facturacion', [facturaController::class, 'create']);
+Route::post('/Facturacion', [facturaController::class, 'create']);
+Route::get('/consultarFacturas', [facturaController::class, 'query']);
 
+Route::get('/Cobros', [cobroController::class, 'show']);
+Route::post('/Cobros', [cobroController::class, 'create']);
+Route::get('/consultarCobros', [cobroController::class, 'query']);
+
+Route::get('/Cotizacion', [cotizacionController::class, 'show']);
+Route::post('/Cotizacion', [cotizacionController::class, 'create']);
+Route::get('/consultarCotizaciones', [cotizacionController::class, 'query']);
+
+Route::get('/consultarCuentas', [cuentasController::class, 'query']);
+
+//
 Route::get('/registrarClientes', [clientesController::class, 'show']);
 Route::post('/registrarClientes', [clientesController::class, 'create']);
 Route::get('/editarClientes/{id}', [clientesController::class, 'edit'])->name('clientes');
@@ -61,6 +81,8 @@ Route::post('/registrarSolicitudes', [solicitudesController::class, 'create']);
 Route::get('/editarSolicitudes/{id}', [solicitudesController::class, 'edit'])->name('solicitudes');
 Route::put('/editarSolicitudes/{id}', [solicitudesController::class, 'update'])->name('solicitudes');
 Route::get('/consultarSolicitudes', [solicitudesController::class, 'query']);
+Route::get('/solicitudes/{id}', [solicitudesController::class, 'delete'])->name('rechazarSolicitud');
+Route::get('/solicitudesA/{id}', [solicitudesController::class, 'approve'])->name('aprobarSolicitud');
 
 Route::get('/registrarPropiedades', [propiedadesController::class, 'show']);
 Route::post('/registrarPropiedades', [propiedadesController::class, 'create']);
@@ -81,9 +103,10 @@ Route::post('/registrarTipoCliente', [tipoClienteController::class, 'create']);
 Route::get('/registrarTipoEmpleado', [tipoEmpleadoController::class, 'show']);
 Route::post('/registrarTipoEmpleado', [tipoEmpleadoController::class, 'create']);
 
+
+//
 Route::get('/login', [loginController::class, 'show']);
 Route::post('/login', [loginController::class, 'login']);
-
 
 Route::get('/home', [homeController::class, 'index']);
 Route::get('/logout', [logoutController::class, 'logout']);

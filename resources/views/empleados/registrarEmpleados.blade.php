@@ -1,7 +1,12 @@
 @extends('layouts.formulario-master')
 <title>Registro de Empleados</title>
 
+@php
+    $rol = auth()->user()->rol;
+@endphp
+
 @section('content')
+    @if($rol == 'Administrador')
 
 <h3>Formulario de Empleados</h3>
 
@@ -103,6 +108,8 @@
         </div>
         
     </form>
-
+    @else
+        <h3>No puede acceder a esta pagina, retornar a <a href="/home">Home</a></h3>
+    @endif
 
 @endsection

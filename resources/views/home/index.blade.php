@@ -1,6 +1,7 @@
 @extends('layouts.home-master')
 
 @section('content')
+  @auth
     <div class="container-fluid">
       <!-- Small boxes (Stat box) -->
       <div class="row">
@@ -228,13 +229,6 @@
       </ul>
     </div>
     
-    @auth
-    <div class="col md-6">
-        <p style="margin-top: 50px">Bienvenido {{auth()->user()->username}}, estas autenticado a la pagina</p>
-        <p>
-            <a href="/logout">Logout</a>
-        </p>
-    </div>
     @endauth
 
     @guest
