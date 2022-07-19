@@ -44,8 +44,8 @@ Route::get('/Cobros', [cobroController::class, 'show']);
 Route::post('/Cobros', [cobroController::class, 'create']);
 Route::get('/consultarCobros', [cobroController::class, 'query']);
 
-Route::get('/Cotizacion', [cotizacionController::class, 'show']);
-Route::post('/Cotizacion', [cotizacionController::class, 'create']);
+Route::get('/Cotizacion', [cotizacionController::class, 'create']);
+Route::post('/Cotizacion', [cotizacionController::class, 'save']);
 Route::get('/consultarCotizaciones', [cotizacionController::class, 'query']);
 
 Route::get('/consultarCuentas', [cuentasController::class, 'query']);
