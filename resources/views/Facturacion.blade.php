@@ -106,7 +106,7 @@
         </div>
         <div class="col">
             <label for="cantidad">Cantidad</label>
-            <input type="number" class="form-control" id="cantidad" name="cantidad" disabled>
+            <input type="number" class="form-control" id="cantidad" name="cantidad" readonly  >
         </div>
     </div>
 
@@ -130,13 +130,17 @@
         </div>
     </div>
 
+    <div class="button-group">
+        <button type="button" class="btn btn-success"><i class="fa-solid fa-circle-plus"></i> Agregar</button>
+    </div>
+
 </form>
 
-    <!--<table class="table table-striped table-hover table-borderless align-middle">
+    <table class="table table-striped table-hover table-borderless align-middle">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Titulo</th>
+                <th>Propiedad</th>
+                <th>Cliente</th>
                 <th>Concepto</th>
                 <th>Condicion</th>
                 <th>Cantidad</th>
@@ -148,7 +152,7 @@
         <tbody>
             
         </tbody>
-    </table>-->
+    </table>
 
     <div class="modal fade" id="exampleModalScrollable" role="dialog" tabindex="-1" aria-labelledby="Seleccionar cliente" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
@@ -290,7 +294,7 @@
             var concepto = document.getElementById('concepto').value;
             if(concepto == 'Venta'){
                 document.getElementById('precio').value = pventa;
-                document.getElementById('cantidad').disabled = true;
+                document.getElementById('cantidad').readOnly = true;
                 document.getElementById('cantidad').value = 1;
                 document.getElementById('subtot').value = parseFloat(pventa)*parseInt(document.getElementById('cantidad').value);
                 document.getElementById('itbis').value = parseFloat(document.getElementById('subtot').value)*parseFloat(itb); 
@@ -301,7 +305,7 @@
                 document.getElementById('itbis').value = 0;
                 document.getElementById('total').value = 0;
                 document.getElementById('cantidad').value = 1;
-                document.getElementById('cantidad').disabled = false;
+                document.getElementById('cantidad').readOnly = false;
             }
         }
 
@@ -315,7 +319,7 @@
             var concepto = document.getElementById('concepto').value;
             if(concepto == 'Venta'){
                 document.getElementById('precio').value = preven;
-                document.getElementById('cantidad').disabled = true;
+                document.getElementById('cantidad').readOnly = true;
                 document.getElementById('cantidad').value = 1;
                 document.getElementById('subtot').value = parseFloat(preven)*parseInt(document.getElementById('cantidad').value);
                 document.getElementById('itbis').value = parseFloat(document.getElementById('subtot').value)*parseFloat(itbis); 
@@ -326,7 +330,7 @@
                 document.getElementById('itbis').value = 0;
                 document.getElementById('total').value = 0;
                 document.getElementById('cantidad').value = 1;
-                document.getElementById('cantidad').disabled = false;
+                document.getElementById('cantidad').readOnly = false;
             }
         }
     </script>
