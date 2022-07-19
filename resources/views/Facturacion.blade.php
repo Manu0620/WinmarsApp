@@ -31,13 +31,12 @@
         </div>
     </div>
 
-   
 
     <div class="row">
 
         <div class="col">
             <label for="codcli">Cliente</label>
-            <input type="text" class="form-control" id="codcli" name="codcli" disabled>
+            <input type="text" class="form-control" id="codcli" name="codcli" readonly>
         </div>
 
         <div class="col-1" style="padding-top: 25px;">
@@ -46,17 +45,17 @@
      
         <div class="col">
             <label for="nomcli">Nombre</label>
-            <input type="text" class="form-control" id="nomcli" name="nomcli" disabled>
+            <input type="text" class="form-control" id="nomcli" name="nomcli" readonly>
         </div>
 
         <div class="col">
             <label for="tecli1">Teléfono</label>
-            <input type="tel" class="form-control" id="tecli1" name="tecli1" disabled>
+            <input type="tel" class="form-control" id="tecli1" name="tecli1" readonly>
         </div>
 
         <div class="col">
             <label for="cedrnc">Cedula</label>
-            <input type="tel" class="form-control" id="cedrnc" name="cedrnc"  disabled>
+            <input type="tel" class="form-control" id="cedrnc" name="cedrnc"  readonly>
         </div>
     </div>
 
@@ -90,7 +89,7 @@
     <div class="row">
         <div class="col">
             <label for="codpro">Propiedad</label>
-            <input type="text" class="form-control" id="codpro" name="codpro" disabled>
+            <input type="text" class="form-control" id="codpro" name="codpro" readonly>
         </div>
 
         <div class="col-1" style="padding-top: 30px;">
@@ -99,15 +98,15 @@
 
         <div class="col">
             <label for="titulo">Titulo</label>
-            <input type="text" class="form-control" id="titulo" name="titulo" disabled>
+            <input type="text" class="form-control" id="titulo" name="titulo" readonly>
         </div>
         <div class="col">
             <label for="preven">Precio de venta/renta</label>
-            <input type="text" class="form-control" id="precio" name="precio" disabled>
+            <input type="text" class="form-control" id="precio" name="precio" readonly>
         </div>
         <div class="col">
             <label for="cantidad">Cantidad</label>
-            <input type="number" class="form-control" id="cantidad" name="cantidad">
+            <input type="number" class="form-control" id="cantidad" name="cantidad" disabled>
         </div>
     </div>
 
@@ -118,19 +117,20 @@
         </div>
         <div class="col" style="margin-top: 35px;">
             <label for="subtot">Subtotal</label>
-            <input type="number" step="0.01" class="form-control" id="subtot" name="subtot" value="0.00" disabled>
+            <input type="number" step="0.01" class="form-control" id="subtot" name="subtot" value="0.00" readonly>
         </div>
         <div class="col" style="margin-top: 35px;">
             <label for="itbis">Itbis</label>
-            <input type="number" step="0.01" class="form-control" id="itbis" name="itbis" value="0.00" disabled>
-            <input type="number" step="0.01" class="form-control" id="itbis-fijo" name="itbis" value="0.00" hidden>
+            <input type="number" step="0.01" class="form-control" id="itbis" name="itbis" value="0.00" readonly>
+            <input type="number" step="0.01" class="form-control" id="itbis-fijo" name="itbis-fijo" value="0.00" hidden>
         </div>
         <div class="col" style="margin-top: 35px;">
             <label for="total">Total</label>
-            <input type="number" step="0.01" class="form-control" id="total" name="total" value="0.00" disabled>
+            <input type="number" step="0.01" class="form-control" id="total" name="total" value="0.00" readonly>
         </div>
     </div>
 
+</form>
 
     <!--<table class="table table-striped table-hover table-borderless align-middle">
         <thead>
@@ -272,44 +272,64 @@
 
     <script>
 
-        var pventa, prenta, total = 0;
+        var pventa, prenta, itb = 0;
 
         document.getElementById('cantidad').addEventListener('click', updateValue);
         document.getElementById('cantidad').addEventListener('onchange', updateValue);
+        document.getElementById('concepto').addEventListener('click', conceptoChange);
 
 
-        function updateValue(e) {
-            if(document.getElementById('cantidad').value < 0){ document.getElementById('cantidad').value = 0 }
-            document.getElementById('subtot').value = document.getElementById('precio').value*document.getElementById('cantidad').value;
-            document.getElementById('itbis').value = document.getElementById('subtot').value*document.getElementById('itbis-fijo').value;
-            total = parseFloat(document.getElementById('subtot').value)+parseFloat(document.getElementById('itbis').value); 
-            document.getElementById('total').value = total;
+        function updateValue(e){
+            if(document.getElementById('cantidad').value < 1){ document.getElementById('cantidad').value = 1 }
+            document.getElementById('subtot').value = parseFloat(document.getElementById('precio').value)*parseInt(document.getElementById('cantidad').value);
+            document.getElementById('itbis').value = document.getElementById('subtot').value*document.getElementById('itbis-fijo').value; 
+            document.getElementById('total').value = parseFloat(document.getElementById('subtot').value)+parseFloat(document.getElementById('itbis').value);
+        }
+
+        function conceptoChange(e){
+            var concepto = document.getElementById('concepto').value;
+            if(concepto == 'Venta'){
+                document.getElementById('precio').value = pventa;
+                document.getElementById('cantidad').disabled = true;
+                document.getElementById('cantidad').value = 1;
+                document.getElementById('subtot').value = parseFloat(pventa)*parseInt(document.getElementById('cantidad').value);
+                document.getElementById('itbis').value = parseFloat(document.getElementById('subtot').value)*parseFloat(itb); 
+                document.getElementById('total').value = parseFloat(document.getElementById('subtot').value)+parseFloat(document.getElementById('itbis').value);
+            }else{
+                document.getElementById('precio').value = parseFloat(prenta);
+                document.getElementById('subtot').value = 0;
+                document.getElementById('itbis').value = 0;
+                document.getElementById('total').value = 0;
+                document.getElementById('cantidad').value = 1;
+                document.getElementById('cantidad').disabled = false;
+            }
         }
 
         function selectPropiedad(codpro, titulo, preven, preren, itbis){
+            pventa = parseFloat(preven);
+            prenta = parseFloat(preren);
+            itb = parseFloat(itbis);
             document.getElementById('codpro').value = codpro;
             document.getElementById('titulo').value = titulo;
-            var concepto = document.getElementById('concepto').value;
-            if(concepto == 'Alquiler'){
-                document.getElementById('precio').value = preren;
-                prenta = preren;
-                document.getElementById('cantidad').disabled = false;
-            }else{
-                document.getElementById('precio').value = preven;
-                document.getElementById('cantidad').value = 1;
-                pventa = preven;
-                document.getElementById('subtot').value = document.getElementById('precio').value*document.getElementById('cantidad').value;
-                document.getElementById('itbis').value = document.getElementById('subtot').value*document.getElementById('itbis-fijo').value;
-                total = parseFloat(document.getElementById('subtot').value)+parseFloat(document.getElementById('itbis').value); 
-                document.getElementById('total').value = total;
-                document.getElementById('cantidad').disabled = true;
-            }
             document.getElementById('itbis-fijo').value = itbis;
-            document.getElementById('subtot').value = document.getElementById('precio').value*document.getElementById('cantidad').value;
+            var concepto = document.getElementById('concepto').value;
+            if(concepto == 'Venta'){
+                document.getElementById('precio').value = preven;
+                document.getElementById('cantidad').disabled = true;
+                document.getElementById('cantidad').value = 1;
+                document.getElementById('subtot').value = parseFloat(preven)*parseInt(document.getElementById('cantidad').value);
+                document.getElementById('itbis').value = parseFloat(document.getElementById('subtot').value)*parseFloat(itbis); 
+                document.getElementById('total').value = parseFloat(document.getElementById('subtot').value)+parseFloat(document.getElementById('itbis').value);
+            }else if(concepto == 'Alquiler'){
+                document.getElementById('precio').value = parseFloat(preren);
+                document.getElementById('subtot').value = 0;
+                document.getElementById('itbis').value = 0;
+                document.getElementById('total').value = 0;
+                document.getElementById('cantidad').value = 1;
+                document.getElementById('cantidad').disabled = false;
+            }
         }
-
     </script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
-</form>
 @endsection
