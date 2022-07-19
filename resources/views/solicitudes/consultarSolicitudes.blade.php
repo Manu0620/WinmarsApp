@@ -21,7 +21,7 @@
 
     </div>
 
-    <table class="table table-striped table-hover table-borderless align-middle">
+    <table id="dataTable" class="table table-striped table-hover table-borderless align-middle">
         <thead>
             <tr>
                 <th>ID</th>
@@ -56,5 +56,12 @@
             @endforeach
         </tbody>
     </table>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#dataTable').DataTable();
+        });
+    </script>
     
 @endsection

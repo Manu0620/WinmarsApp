@@ -37,8 +37,7 @@ class propiedadesController extends Controller
     }
 
     public function query(){
-        $datos['propiedades'] = propiedades::where('estpro','activo')
-        ->paginate(5); 
+        $datos['propiedades'] = propiedades::where('estpro','activo')->get();
         return view('propiedades.consultarPropiedades', $datos);
     }
   

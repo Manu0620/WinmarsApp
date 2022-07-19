@@ -25,7 +25,7 @@
         <a href="{{ url('registrarEmpleados') }}" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Nuevo Empleado</a>
     </div>
 
-    <table class="table table-striped table-hover table-borderless align-middle">
+    <table id="dataTable" class="table table-striped table-hover table-borderless align-middle">
         <thead>
             <tr>
                 <th>ID</th>
@@ -46,8 +46,7 @@
         <tbody>
             @foreach ($empleados as $empleado)
                 <tr>
-                    <td scope="row">{{ $cita->codcit }}</td>
-                    <td>{{ $empleado->codemp }}</td>
+                    <td scope="row">{{ $empleado->codemp }}</td>
                     <td>{{ $empleado->nomemp }}</td>
                     <td>{{ $empleado->apeemp }}</td>
                     <td>{{ $empleado->telem1 }}</td>
@@ -72,6 +71,13 @@
             @endforeach
         </tbody>
     </table>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#dataTable').DataTable();
+        });
+    </script>
     @else
         <h3>No puede acceder a esta pagina, retornar a <a href="/home">Home</a></h3>
     @endif
