@@ -44,14 +44,14 @@ class facturaController extends Controller
         $detalle->numfac = $numfac;
         $detalle->codpro = $request->codpro;
         $detalle->concepto = $request->concepto;
-        $detalle->cantidad = 1;
+        $detalle->cantidad = $request->cantidad;
         $detalle->precio = $request->total;
         if($request->condicion == 'Credito'){
             $detalle->estfac = 'Pendiente';
         }else{ $detalle->estfac = 'Completada'; }
         $detalle->save();
 
-        $cuentas = new cuentas();
+        /*$cuentas = new cuentas();
 
         if(is_null(cuentas::where('codcli', $request->codcli)->get()) && $condicion == 'Credito'){
             $cuentas->codcli = $request->codcli;
@@ -60,8 +60,7 @@ class facturaController extends Controller
             $cuentas->totpag = 0;
             $cuentas->balpend = $request->total;
             $cuentas->save();
-        }
-        /*else if($condicion == 'Credito'){
+        }else if($condicion == 'Credito'){
             $cuenta = cuentas::where('codcli', $request->codcli)->get();
             $balance = $cuenta->balance;
             $balpend = $cuenta->balpend;
