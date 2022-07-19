@@ -54,6 +54,29 @@
                 font-weight: 600;
             }
 
+            .table{
+                font-weight: bold;
+                margin: 30px;
+                width: 96.5%;
+            }
+
+            .table thead{
+                border-bottom: 2px solid black; 
+            }
+
+            .table th{
+                white-space: nowrap;
+                text-align: center;
+                background: #64B5F6;
+            }
+
+            .table td{
+                white-space: nowrap;
+                text-align: center;
+                background: #90CAF9;
+                font-size: 14px;
+            }
+
             .form-container input, .form-container select, .form-container textarea{
                 border: 1px solid #6c757d;
                 border-bottom: 3px solid #6c757d;

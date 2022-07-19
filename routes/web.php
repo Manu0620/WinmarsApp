@@ -75,6 +75,8 @@ Route::post('/registrarCitas', [citasController::class, 'create']);
 Route::get('/editarCitas/{id}', [citasController::class, 'edit'])->name('citas');
 Route::put('/editarCitas/{id}', [citasController::class, 'update'])->name('citas');
 Route::get('/consultarCitas', [citasController::class, 'query']);
+Route::get('/agendarCita/{id}', [citasController::class, 'approve'])->name('agendarCita');
+Route::put('/agendarCita/{id}', [citasController::class, 'agendar'])->name('agendarCita');
 
 Route::get('/registrarSolicitudes', [solicitudesController::class, 'show']);
 Route::post('/registrarSolicitudes', [solicitudesController::class, 'create']);
@@ -82,7 +84,6 @@ Route::get('/editarSolicitudes/{id}', [solicitudesController::class, 'edit'])->n
 Route::put('/editarSolicitudes/{id}', [solicitudesController::class, 'update'])->name('solicitudes');
 Route::get('/consultarSolicitudes', [solicitudesController::class, 'query']);
 Route::get('/solicitudes/{id}', [solicitudesController::class, 'delete'])->name('rechazarSolicitud');
-Route::get('/solicitudesA/{id}', [solicitudesController::class, 'approve'])->name('aprobarSolicitud');
 
 Route::get('/registrarPropiedades', [propiedadesController::class, 'show']);
 Route::post('/registrarPropiedades', [propiedadesController::class, 'create']);

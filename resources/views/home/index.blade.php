@@ -9,9 +9,9 @@
           <!-- small box -->
           <div class="small-box" style="background: #1976D2; color: white; border-radius: 10px;">
             <div class="inner">
-              <h3>150</h3>
+              <h3>5</h3>
 
-              <p>New Orders</p>
+              <p>Citas Pendientes</p>
             </div>
             <div class="icon">
               <i class="fas fa-shopping-bag"></i>
@@ -24,12 +24,12 @@
           <!-- small box -->
           <div class="small-box" style="background: #1E88E5; color: white; border-radius: 10px;">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
+              <h3>10<sup style="font-size: 20px"></sup></h3>
 
-              <p>Bounce Rate</p>
+              <p>Solicitud sin contestar</p>
             </div>
             <div class="icon">
-              <i class="ion ion-stats-bars"></i>
+              <i class="fa-solid fa-code-pull-request"></i>
             </div>
             <a href="#" class="small-box-footer">Mas informacion <i class="fas fa-arrow-circle-right"></i></a>
           </div>
@@ -39,12 +39,12 @@
           <!-- small box -->
           <div class="small-box" style="background: #2196F3; color: white; border-radius: 10px;">
             <div class="inner">
-              <h3>44</h3>
+              <h3>15</h3>
 
-              <p>User Registrations</p>
+              <p>Facturas Pendientes</p>
             </div>
             <div class="icon">
-              <i class="ion ion-person-add"></i>
+              <i class="fa-solid fa-file-invoice-dollar"></i>
             </div>
             <a href="#" class="small-box-footer">Mas informacion <i class="fas fa-arrow-circle-right"></i></a>
           </div>
@@ -54,12 +54,12 @@
           <!-- small box -->
           <div class="small-box" style="background: #42A5F5; color: white; border-radius: 10px;">
             <div class="inner">
-              <h3>65</h3>
+              <h3>50</h3>
 
-              <p>Unique Visitors</p>
+              <p>Propiedades vendidas</p>
             </div>
             <div class="icon">
-              <i class="ion ion-pie-graph"></i>
+              <i class="fa-solid fa-building"></i>
             </div>
             <a href="#" class="small-box-footer">Mas informacion <i class="fas fa-arrow-circle-right"></i></a>
           </div>
@@ -70,7 +70,7 @@
       <!-- Main row -->
       <div class="row">
         <!-- Left col -->
-        <section class="col-lg-7 connectedSortable">
+        <!--<section class="col-lg-7 connectedSortable">
           <!-- Custom tabs (Charts with tabs)-->
           <div class="card">
             <div class="card-header">
@@ -227,7 +227,7 @@
           </div>
         </li>
       </ul>
-    </div>
+    </div>-->
     
     @endauth
 

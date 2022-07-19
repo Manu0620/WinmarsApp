@@ -1,5 +1,5 @@
 @extends('layouts.formulario-master');
-<title>Edicion de Citas</title>
+<title>Agendar Citas</title>
 
 @section('content')
 
@@ -10,7 +10,7 @@
         <label for="form-label">/ Formulario de Citas</label>
     </div>
 
-    <form action="{{ route('citas', ['id' => $cita->codcit]) }}" method="POST">
+    <form action="{{ route('agendarCita', ['id' => $id]) }}" method="POST">
         @csrf
 
         @method('PUT')
@@ -21,7 +21,7 @@
         
         <div class="mb-3">
             <label for="codsol">Solicitud</label>
-            <input type="text" class="form-control" name="codsol" value="{{ $cita->codsol }}" readonly>
+            <input type="text" class="form-control" name="codsol" value="{{ $id }}" readonly>
             @error('codsol')
             @include('layouts.partials.messages')
         @enderror
@@ -29,7 +29,7 @@
 
         <div class="mb-3">
             <label for="codusu">Usuario</label>
-            <input type="text" class="form-control" name="codusu" value="{{ $cita->codusu }}" readonly>
+            <input type="text" class="form-control" name="codusu" value="{{ auth()->user()->id }}" readonly>
             @error('codusu')
             @include('layouts.partials.messages')
         @enderror
@@ -37,7 +37,7 @@
 
         <div class="mb-3">
             <label for="fecha">Fecha</label>
-            <input type="datetime-local" class="form-control" name="fecha" placeholder="Ingrese el fecha..." value="{{ $cita->fecha }}">
+            <input type="datetime-local" class="form-control" name="fecha" placeholder="Ingrese el fecha...">
             @error('fecha')
             @include('layouts.partials.messages')
         @enderror
@@ -45,7 +45,7 @@
 
         <div class="mb-3">
             <label for="descrip">Descripcion</label>
-            <textarea class="form-control" name="descrip" rows="4" cols="50" placeholder="Descripcion..."> {{ $cita->descrip }} </textarea>
+            <textarea class="form-control" name="descrip" rows="4" cols="50" placeholder="Descripcion..."> </textarea>
             @error('descrip')
             @include('layouts.partials.messages')
         @enderror
@@ -53,7 +53,7 @@
 
         <div class="mb-3">
             <label for="estcit">Estado</label>
-            <input type="text" class="form-control" name="estcit" value="{{ $cita->estcit }}" readonly>
+            <input type="text" class="form-control" name="estcit" value="Pendiente" readonly>
         </div>
 
         <div class="button-group">

@@ -3,13 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\solicitudesRequest;
+use App\Models\clientes;
+use App\Models\propiedades;
 use App\Models\solicitudes;
 use Illuminate\Http\Request;
 
 class solicitudesController extends Controller
 {
     public function show(){
-        return view('solicitudes.registrarSolicitudes');
+        $clientes = clientes::all();
+        $propiedades = propiedades::all();
+        return view('solicitudes.registrarSolicitudes',compact(['clientes', 'propiedades']));
     }
 
     public function create(solicitudesRequest $request){
@@ -54,7 +58,5 @@ class solicitudesController extends Controller
 
         $solicitud->estsol = 'Aprobada';
         $solicitud->save();
-
-        return redirect('registrarCitas')->with('sucess', 'Solicitud Aprobada con exito, Procesa a crear la cita');
     }
 }
