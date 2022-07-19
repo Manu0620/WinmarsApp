@@ -159,7 +159,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title" id="exampleModalScrollableTitle">Seleccionando Cliente</h3>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" style="background: #1976d2; width: 100px; height: 45px; margin: 10px; font-weight: bold; border-radius: 10px;">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -183,7 +183,7 @@
                                         <td>{{$cliente->tecli1}}</td>
                                         <td>{{$cliente->cedrnc}}</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary btn-xs" data-bs-dismiss="modal" onclick="selectCliente('{{$cliente->codcli}}', '{{$cliente->nomcli}}', '{{$cliente->apecli}}', '{{$cliente->tecli1}}', '{{$cliente->cedrnc}}')">
+                                            <button type="button" class="btn btn-primary btn-xs" data-bs-dismiss="modal" onclick="selectCliente('{{$cliente->codcli}}', '{{$cliente->nomcli}}', '{{$cliente->apecli}}', '{{$cliente->tecli1}}', '{{$cliente->cedrnc}}')" style="background: #1976d2; width: 100px; height: 45px; margin: 10px; font-weight: bold; border-radius: 10px;">
                                                 <i class="fas fa-hand-pointer"></i>
                                             </button>
                                         </td>
@@ -194,7 +194,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background: #1976d2; width: 100px; height: 45px; margin: 10px; font-weight: bold; border-radius: 10px;">Close</button>
                 </div>
             </div>
         </div>
@@ -230,7 +230,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title" id="exampleModalScrollableTitle1">Seleccionando Propiedad</h3>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" style="background: #1976d2; width: 100px; height: 45px; margin: 10px; font-weight: bold; border-radius: 10px;">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -257,7 +257,7 @@
                                         <td>{{$propiedad->itbis}}</td>
 
                                         <td>
-                                            <button type="button" class="btn btn-primary btn-xs" data-bs-dismiss="modal" onclick="selectPropiedad('{{$propiedad->codpro}}', '{{$propiedad->titulo}}','{{$propiedad->preven}}', '{{$propiedad->preren}}','{{$propiedad->itbis}}')">
+                                            <button type="button" class="btn btn-primary btn-xs" data-bs-dismiss="modal" onclick="selectPropiedad('{{$propiedad->codpro}}', '{{$propiedad->titulo}}','{{$propiedad->preven}}', '{{$propiedad->preren}}','{{$propiedad->itbis}}')" style="background: #1976d2; width: 100px; height: 45px; margin: 10px; font-weight: bold; border-radius: 10px;">
                                                 <i class="fas fa-hand-pointer"></i>
                                             </button>
                                         </td>
@@ -268,7 +268,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background: #1976d2; width: 100px; height: 45px; margin: 10px; font-weight: bold; border-radius: 10px;">Close</button>
                 </div>
             </div>
         </div>

@@ -22,7 +22,7 @@ class empleadosRequest extends FormRequest
         'telem2'=>'nullable|numeric|digits:10|unique:empleados,telem2|starts_with:809,829,849',
         'direccion'=>'required',
         'correo'=>'required|unique:empleados,correo|email',
-        'cedula'=>'required|integer|unique:empleados,cedula',
+        'cedula'=>'required|integer|digits:11|unique:empleados,cedula|starts_with:402,031',
         'ctipemp'=>'required|integer',
         'codpos'=>'required|integer',
         'estemp'=>'required',
