@@ -47,7 +47,7 @@
         <tbody>
             @foreach ($propiedades as $propiedad)
                 <tr>
-                    <td>{{ $propiedad->codpro }}</td>
+                    <td scope="row">{{ $propiedad->codpro }}</td>
                     <td>{{ $propiedad->titulo }}</td>
                     <td><textarea disabled>{{ $propiedad->descrip }}</textarea></td>
                     <td>{{ $propiedad->habit }}</td>

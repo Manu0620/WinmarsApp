@@ -40,7 +40,7 @@
         <tbody>
             @foreach ($clientes as $cliente)
                 <tr>
-                    <td>{{ $cliente->codcli }}</td>
+                    <td scope="row">{{ $cliente->codcli }}</td>
                     <td>{{ $cliente->nomcli }}</td>
                     <td>{{ $cliente->apecli }}</td>
                     <td>{{ $cliente->tecli1 }}</td>

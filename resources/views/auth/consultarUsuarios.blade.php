@@ -29,7 +29,7 @@
     <table class="table table-striped table-hover text-align-center table-borderless align-middle">
         <thead>
             <tr>
-                <th>ID</th>
+                <th scope="row">ID</th>
                 <th>Empleado</th>
                 <th>Nombre de Usuario</th>
                 <th>Correo</th>

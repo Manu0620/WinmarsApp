@@ -46,6 +46,7 @@
         <tbody>
             @foreach ($empleados as $empleado)
                 <tr>
+                    <td scope="row">{{ $cita->codcit }}</td>
                     <td>{{ $empleado->codemp }}</td>
                     <td>{{ $empleado->nomemp }}</td>
                     <td>{{ $empleado->apeemp }}</td>

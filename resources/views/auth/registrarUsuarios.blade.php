@@ -26,7 +26,7 @@
             <select class="form-select" id="codemp" name="codemp">
                 <option selected disabled>Seleccione el Empleado...</option>
                 @foreach ($empleados as $empleado)
-                    <option value="{{ $empleado->codemp}}" {{ (old('$empleado') == $empleado->codemp) ? 'selected' : ''}}>{{$empleado->nomemp.' '.$empleado->apeemp.' | '.$empleado->cedula}}</option>
+                    <option value="{{$empleado->codemp}}" {{ (old('$empleado') == $empleado->codemp) ? 'selected' : ''}}>{{$empleado->nomemp.' '.$empleado->apeemp.' | '.$empleado->cedula}}</option>
                 @endforeach
             </select> 
             @error('codemp')
@@ -60,7 +60,7 @@
 
         <div class="mb-3">
             <label for="email">Correo</label>
-            <input type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Correo...">
+            <input type="email" class="form-control" id="correo" name="email" placeholder="Correo...">
             @error('email')
                 @include('layouts.partials.messages')
             @enderror

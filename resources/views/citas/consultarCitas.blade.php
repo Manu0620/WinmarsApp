@@ -36,7 +36,7 @@
         <tbody>
             @foreach ($citas as $cita)
                 <tr>
-                    <td>{{ $cita->codcit }}</td>
+                    <td scope="row">{{ $cita->codcit }}</td>
                     <td>{{ $cita->codsol }}</td>
                     <td>{{ $cita->codusu }}</td>
                     <td>{{ $cita->fecha }}</td>

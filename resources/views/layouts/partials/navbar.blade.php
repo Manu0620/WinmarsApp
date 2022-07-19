@@ -67,17 +67,15 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @if($rol == 'Administrador')
                             <li><a class="dropdown-item" href="registrarUsuarios"><i class="fa-solid fa-user" style="position: initial;"></i>  Usuarios<i class="fa-solid fa-arrow-right"></i></a></li>
-                            <li><a class="dropdown-item" href="registrarEmpleados"><i class="fa-solid fa-user" style="position: initial;"></i>  Empleados<i class="fa-solid fa-arrow-right"></i></a></li>
+                            <li><a class="dropdown-item" href="registrarEmpleados"><i class="fa-solid fa-user" style="position: initial;"></i>  Empleados<i class="fa-solid fa-arrow-right"></i></a></li>                        
+                        @endif
+                        @if($rol == 'Administrador' || $rol == 'Usuario')  
                             <li><a class="dropdown-item" href="registrarClientes"><i class="fa-solid fa-user-check" style="position: initial;"></i>  Clientes<i class="fa-solid fa-arrow-right"></i></a></li>
                             <li><a class="dropdown-item" href="registrarPropiedades"><i class="fa-solid fa-building" style="position: initial;"></i>  Propiedades <i class="fa-solid fa-arrow-right"></i></a></li>
                             <li><a class="dropdown-item" href="registrarSolicitudes"><i class="fa-solid fa-code-pull-request" style="position: initial;"></i>  Solicitudes <i class="fa-solid fa-arrow-right"></i></a></li>
                             <li><a class="dropdown-item" href="registrarCitas"><i class="fa-solid fa-calendar-check" style="position: initial;"></i>  Citas <i class="fa-solid fa-arrow-right"></i></a></li>
-                        @elseif($rol == 'Usuario')  
-                            <li><a class="dropdown-item" href="registrarClientes"><i class="fa-solid fa-user-check" style="position: initial;"></i>  Clientes<i class="fa-solid fa-arrow-right"></i></a></li>
-                            <li><a class="dropdown-item" href="registrarPropiedades"><i class="fa-solid fa-building" style="position: initial;"></i>  Propiedades <i class="fa-solid fa-arrow-right"></i></a></li>
-                            <li><a class="dropdown-item" href="registrarSolicitudes"><i class="fa-solid fa-code-pull-request" style="position: initial;"></i>  Solicitudes <i class="fa-solid fa-arrow-right"></i></a></li>
-                            <li><a class="dropdown-item" href="registrarCitas"><i class="fa-solid fa-calendar-check" style="position: initial;"></i>  Citas <i class="fa-solid fa-arrow-right"></i></a></li>
-                        @else 
+                        @endif
+                        @if($rol == 'Agente')
                             <li><a class="dropdown-item" href="registrarSolicitudes"><i class="fa-solid fa-code-pull-request" style="position: initial;"></i>  Solicitudes <i class="fa-solid fa-arrow-right"></i></a></li>
                             <li><a class="dropdown-item" href="registrarCitas"><i class="fa-solid fa-calendar-check" style="position: initial;"></i>  Citas <i class="fa-solid fa-arrow-right"></i></a></li>
                         @endif
@@ -92,6 +90,8 @@
                         @if($rol == 'Administrador')
                             <li><a class="dropdown-item" href="consultarUsuarios"><i class="fa-solid fa-user" style="position: initial;"></i>  Usuarios<i class="fa-solid fa-arrow-right"></i></a></li>
                             <li><a class="dropdown-item" href="consultarEmpleados"><i class="fa-solid fa-user" style="position: initial;"></i>  Empleados<i class="fa-solid fa-arrow-right"></i></a></li>
+                        @endif
+                        @if($rol == 'Administrador' || $rol == 'Usuario')
                             <li><a class="dropdown-item" href="consultarClientes"><i class="fa-solid fa-user-check" style="position: initial;"></i>  Clientes<i class="fa-solid fa-arrow-right"></i></a></li>
                             <li><a class="dropdown-item" href="consultarPropiedades"><i class="fa-solid fa-building" style="position: initial;"></i>  Propiedades <i class="fa-solid fa-arrow-right"></i></a></li>
                             <li><a class="dropdown-item" href="consultarCitas"><i class="fa-solid fa-calendar-check" style="position: initial;"></i>  Citas <i class="fa-solid fa-arrow-right"></i></a></li>
@@ -100,16 +100,8 @@
                             <li><a class="dropdown-item" href="consultarCobros"><i class="fa-solid fa-money-check-dollar" style="position: initial;"></i>  Cobros<i class="fa-solid fa-arrow-right"></i></a></li>
                             <li><a class="dropdown-item" href="consultarCotizaciones"><i class="fas fa-file-invoice" style="position: initial;"></i>  Cotizacion<i class="fa-solid fa-arrow-right"></i></a></li>
                             <li><a class="dropdown-item" href="consultarCuentas"><i class="fa-solid fa-calendar-check" style="position: initial;"></i>  Estado de Cuentas <i class="fa-solid fa-arrow-right"></i></a></li>
-                        @elseif($rol == 'Usuario')
-                            <li><a class="dropdown-item" href="consultarClientes"><i class="fa-solid fa-user-check" style="position: initial;"></i>  Clientes<i class="fa-solid fa-arrow-right"></i></a></li>
-                            <li><a class="dropdown-item" href="consultarPropiedades"><i class="fa-solid fa-building" style="position: initial;"></i>  Propiedades <i class="fa-solid fa-arrow-right"></i></a></li>
-                            <li><a class="dropdown-item" href="consultarCitas"><i class="fa-solid fa-calendar-check" style="position: initial;"></i>  Citas <i class="fa-solid fa-arrow-right"></i></a></li>
-                            <li><a class="dropdown-item" href="consultarSolicitudes"><i class="fa-solid fa-code-pull-request" style="position: initial;"></i>  Solicitudes <i class="fa-solid fa-arrow-right"></i></a></li>
-                            <li><a class="dropdown-item" href="consultarFacturas"><i class="fa-solid fa-file-invoice-dollar" style="position: initial;"></i>  Facturas<i class="fa-solid fa-arrow-right"></i></a></li>
-                            <li><a class="dropdown-item" href="consultarCobros"><i class="fa-solid fa-money-check-dollar" style="position: initial;"></i>  Cobros<i class="fa-solid fa-arrow-right"></i></a></li>
-                            <li><a class="dropdown-item" href="consultarCotizaciones"><i class="fas fa-file-invoice" style="position: initial;"></i>  Cotizacion<i class="fa-solid fa-arrow-right"></i></a></li>
-                            <li><a class="dropdown-item" href="consultarCuentas"><i class="fa-solid fa-calendar-check" style="position: initial;"></i>  Estado de Cuentas <i class="fa-solid fa-arrow-right"></i></a></li>
-                        @else
+                        @endif
+                        @if($rol == 'Agente')
                             <li><a class="dropdown-item" href="consultarClientes"><i class="fa-solid fa-user-check" style="position: initial;"></i>  Clientes<i class="fa-solid fa-arrow-right"></i></a></li>
                             <li><a class="dropdown-item" href="consultarPropiedades"><i class="fa-solid fa-building" style="position: initial;"></i>  Propiedades <i class="fa-solid fa-arrow-right"></i></a></li>
                             <li><a class="dropdown-item" href="consultarSolicitudes"><i class="fa-solid fa-code-pull-request" style="position: initial;"></i>  Solicitudes <i class="fa-solid fa-arrow-right"></i></a></li>
@@ -132,6 +124,22 @@
                     </li>
                 @endif
             </ul>
+
+            @if($rol == 'Administrador' || $rol == 'Usuario')
+            <ul class="navbar-nav me-1 mb-2 mb-lg-0">
+                <li class="nav-item dropdown"> 
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa-solid fa-plus"></i> Registros fijos
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="registrarPosicionesEmpleado"><i class="fa-solid fa-plus" style="position: initial;"></i>  Posicion de empleado<i class="fa-solid fa-arrow-right"></i></a></li>
+                        <li><a class="dropdown-item" href="registrarTipoCliente"><i class="fa-solid fa-plus" style="position: initial;"></i>  Tipo de Cliente <i class="fa-solid fa-arrow-right"></i></a></li>
+                        <li><a class="dropdown-item" href="registrarTipoEmpleado"><i class="fa-solid fa-plus" style="position: initial;"></i>  Tipo de empleado <i class="fa-solid fa-arrow-right"></i></a></li>
+                        <li><a class="dropdown-item" href="registrarTipoPropiedad"><i class="fa-solid fa-plus" style="position: initial;"></i>  Tipo de propiedad <i class="fa-solid fa-arrow-right"></i></a></li>
+                    </ul>
+                </li>
+            </ul>
+            @endif
 
             <ul class="navbar-nav me-5 mb-2 mb-lg-0">
                 @auth

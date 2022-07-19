@@ -20,10 +20,21 @@ use App\Http\Controllers\usuariosController;
 use App\Http\Controllers\solicitudesController;
 use App\Http\Controllers\tipoClienteController;
 use App\Http\Controllers\tipoEmpleadoController;
+
+use App\Mail\informacionMail;
+use Illuminate\Support\Facades\Mail;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function(){
     return view('welcome');
+});
+
+Route::get('/citaAgendada', function($id){
+    $correo = new informacionMail;
+    Mail::to('maderamanuel25@gmail.com')->send($correo);
+
+    return "Mensaje enviado!";
 });
 
 //For adding an image

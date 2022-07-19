@@ -36,7 +36,7 @@
         <tbody>
             @foreach ($solicitudes as $solicitud)
                 <tr>
-                    <td>{{ $solicitud->codsol }}</td>
+                    <td scope="row">{{ $solicitud->codsol }}</td>
                     <td>{{ $solicitud->codcli }}</td>
                     <td>{{ $solicitud->codpro }}</td>
                     <td>{{ $solicitud->comentario }}</td>
