@@ -51,9 +51,13 @@ class facturaController extends Controller
         }else{ $detalle->estfac = 'Completada'; }
         $detalle->save();
 
-        /*$cuentas = new cuentas();
 
-        if(is_null(cuentas::where('codcli', $request->codcli)->get()) && $condicion == 'Credito'){
+        $cuenta = cuentas::find($request->codcli);
+        $cuentas = new cuentas();
+
+
+
+        if(is_null($cuenta) && $condicion == 'Credito'){
             $cuentas->codcli = $request->codcli;
             $cuentas->numfac = $numfac;
             $cuentas->balance = $request->total;
@@ -67,7 +71,7 @@ class facturaController extends Controller
             $cuenta->balance = $balance+$request->total;
             $cuenta->balpend = $balpend+$request->total;
             $cuenta->save();
-        }*/
+        }
 
         return redirect()->to('Facturacion')->with('success', 'Formulario enviado correctamente!');
     }
