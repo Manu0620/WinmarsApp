@@ -132,7 +132,7 @@
 
 </form>
 
-    <table class="table table-striped table-hover table-borderless align-middle">
+    <!--<table class="table table-striped table-hover table-borderless align-middle">
         <thead>
             <tr>
                 <th>Propiedad</th>
@@ -149,7 +149,7 @@
         <tbody>
             
         </tbody>
-    </table>
+    </table>-->
 
     <div class="modal fade" id="exampleModalScrollable" role="dialog" tabindex="-1" aria-labelledby="Seleccionar cliente" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
