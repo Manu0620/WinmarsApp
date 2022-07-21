@@ -6,11 +6,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="icon" href="assets/img/Solo logo.png">
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
+        
+        <!--JavaScript-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>      
         <!--Fonts-->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
         <!--Bootstrap-->
         <link rel="stylesheet" href="{{ url('assets/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
         <!--Styles-->
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
         <style>
@@ -59,7 +65,7 @@
             }
 
             .table{
-                width: 96.5%;
+                width: 100%;
                 border-collapse: collapse;
                 margin: 25px 0;
                 font-size: 0.9em;
@@ -94,6 +100,16 @@
             .row{
                 font-weight: 600;
                 margin: 30px;
+                margin-top: 0px;
+            }
+
+            .row input{
+                height: 40px;
+            }
+
+            .dataTables_paginate .pagination li{
+                height: 40px;
+                font-weight: bold;
             }
 
             .container-fluid input, .container-fluid select, .container-fluid textarea{
@@ -133,8 +149,7 @@
             }
 
             .button-group{
-                text-align: right;
-                margin-right: 30px;
+                text-align: center;
             }
 
             h3{

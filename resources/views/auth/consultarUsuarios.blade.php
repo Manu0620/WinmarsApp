@@ -59,13 +59,13 @@
             @endforeach
         </tbody>
     </table>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.js"></script>
+
     <script>
         $(document).ready(function() {
             $('#dataTable').DataTable();
         });
     </script>
+
     @else
         <h3>No puede acceder a esta pagina, retornar a <a href="/home">Home</a></h3>
     @endif
