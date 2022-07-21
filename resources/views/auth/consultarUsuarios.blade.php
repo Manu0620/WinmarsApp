@@ -4,6 +4,7 @@
 
 @php
     $rol = auth()->user()->rol;
+    use App\Models\empleados;
 @endphp
 
 @section('content')
@@ -42,14 +43,15 @@
             @foreach ($users as $usuario)
                 <tr>
                     <td>{{ $usuario->id }}</td>
-                    <td>{{ $usuario->codemp }}</td>
+                    @php $empleados = empleados::where('codemp',$usuario->codemp)->first() @endphp
+                    <td>{{ $empleados->codemp. ' - ' .$empleados->nomemp. '  ' .$empleados->apeemp }}</td>
                     <td>{{ $usuario->username }}</td>
                     <td>{{ $usuario->email }}</td>
                     <td>{{ $usuario->rol }}</td>  
                     @if($usuario->status == 'inactivo')
-                        <td><div class="btn btn-warning">{{ $usuario->status}}</div></td>
+                        <td><li class="btn btn-warning">{{ $usuario->status}}</li></td>
                     @elseif($usuario->status == 'activo')
-                        <td><div class="btn btn-success">{{ $usuario->status}}</div></td>
+                        <td><li class="btn btn-success">{{ $usuario->status}}</li></td>
                     @endif
                     
                     <td><a href="{{ route('usuarios', ['id' => $usuario->id]) }}" class="btn btn-danger btn-editar"><i class="fas fa-ban"></i></a></td>

@@ -18,7 +18,6 @@
         <button type="submit" class="btn btn-danger"><i class="fas fa-file-pdf"></i> Print</button>
         <button type="reset" class="btn btn-warning"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
         <a href="{{ url('registrarClientes') }}" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Nuevo cliente</a>
-
     </div>
 
     <table id="dataTable" class="table table-striped table-hover table-borderless align-middle">
@@ -54,9 +53,9 @@
                         <td>{{$cliente->codtpcli='Vendedor'}}</td>
                     @endif
                     @if($cliente->estcli == 'inactivo')
-                        <td><div class="btn btn-warning">{{ $cliente->estcli}}</div></td>
+                        <td><li class="btn btn-warning">{{ $cliente->estcli}}</li></td>
                     @elseif($cliente->estcli == 'activo')
-                        <td><div class="btn btn-success">{{ $cliente->estcli}}</div></td>
+                        <td><li class="btn btn-success">{{ $cliente->estcli}}</li></td>
                     @endif 
                     
                     <td>

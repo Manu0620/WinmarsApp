@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\facturaRequest;
 use App\Models\clientes;
 use App\Models\cuentas;
 use App\Models\detalle_factura;
@@ -20,7 +21,7 @@ class facturaController extends Controller
         return view('Facturacion', compact(['clientes', 'propiedades']));
     }
 
-    public function save(Request $request){
+    public function save(facturaRequest $request){
         
         $facturas = new facturas();
 
@@ -51,26 +52,17 @@ class facturaController extends Controller
         }else{ $detalle->estfac = 'Completada'; }
         $detalle->save();
 
-
-        $cuenta = cuentas::find($request->codcli);
+        $cliente = $request->codcli;
+        
         $cuentas = new cuentas();
 
-
-
-        if(is_null($cuenta) && $condicion == 'Credito'){
+        if($condicion == 'Credito'){
             $cuentas->codcli = $request->codcli;
             $cuentas->numfac = $numfac;
             $cuentas->balance = $request->total;
             $cuentas->totpag = 0;
             $cuentas->balpend = $request->total;
             $cuentas->save();
-        }else if($condicion == 'Credito'){
-            $cuenta = cuentas::where('codcli', $request->codcli)->get();
-            $balance = $cuenta->balance;
-            $balpend = $cuenta->balpend;
-            $cuenta->balance = $balance+$request->total;
-            $cuenta->balpend = $balpend+$request->total;
-            $cuenta->save();
         }
 
         return redirect()->to('Facturacion')->with('success', 'Formulario enviado correctamente!');

@@ -2,12 +2,10 @@
 <title>Consulta de Propiedades</title>
 
 @php
-    $rol = auth()->user()->rol;
+    use App\Models\clientes;
 @endphp
 
 @section('content')
-    @if($rol == 'Administrador' || $rol == 'Usuario')
-
     <h3>Consulta de Propiedades</h3>
 
     <div class="tab-nav">
@@ -49,7 +47,7 @@
                 <tr>
                     <td scope="row">{{ $propiedad->codpro }}</td>
                     <td>{{ $propiedad->titulo }}</td>
-                    <td><textarea disabled>{{ $propiedad->descrip }}</textarea></td>
+                    <td><textarea readonly cols="40" rows="3">{{ $propiedad->descrip }}</textarea></td>
                     <td>{{ $propiedad->habit }}</td>
                     <td>{{ $propiedad->baños }}</td>
                     <td>{{ $propiedad->metros }}</td>
@@ -57,11 +55,12 @@
                     <td>{{ $propiedad->preven }}</td>
                     <td>{{ $propiedad->preren }}</td>
                     <td>{{ $propiedad->comision }}</td>
-                    <td>{{ $propiedad->codcli }}</td>
+                    @php $clientes = clientes::where('codcli',$propiedad->codcli)->first() @endphp
+                    <td>{{ $clientes->codcli. ' - ' .$clientes->nomcli. '  ' .$clientes->apecli }}</td>
                     @if($propiedad->estpro == 'inactivo')
-                        <td><div class="btn btn-warning">{{ $propiedad->estpro}}</div></td>
+                        <td><li class="btn btn-warning">{{ $propiedad->estpro}}</li></td>
                     @elseif($propiedad->estpro == 'activo')
-                        <td><div class="btn btn-success">{{ $propiedad->estpro}}</div></td>
+                        <td><li class="btn btn-success">{{ $propiedad->estpro}}</li></td>
                     @endif 
                     
                     <td>
@@ -80,7 +79,4 @@
             $('#dataTable').DataTable();
         });
     </script>
-    @else
-        <h3>No puede acceder a esta pagina, retornar a <a href="/home">Home</a></h3>
-    @endif
 @endsection

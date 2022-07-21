@@ -1,6 +1,10 @@
 @extends('layouts.consulta-master')
 <title>Consulta de Citas</title>
 
+@php
+    use App\Models\empleados;
+@endphp
+
 @section('content')
 
     <h3>Consulta de Citas</h3>
@@ -38,13 +42,16 @@
                 <tr>
                     <td scope="row">{{ $cita->codcit }}</td>
                     <td>{{ $cita->codsol }}</td>
-                    <td>{{ $cita->codusu }}</td>
+                    @php 
+                        $empleado = empleados::where('codemp', auth()->user()->codemp)->first() 
+                    @endphp
+                    <td>{{ $empleado->codemp. ' - '. $empleado->nomemp. '  ' .$empleado->apeemp }}</td>
                     <td>{{ $cita->fecha }}</td>
                     <td>{{ $cita->descrip }}</td>
                     @if($cita->estcit == 'Pendiente')
-                        <td><div class="btn btn-warning">{{ $cita->estcit}}</div></td>
+                        <td><li class="btn btn-warning">{{ $cita->estcit}}</li></td>
                     @elseif($cita->estcit == 'Completada')
-                        <td><div class="btn btn-success">{{ $cita->estcit}}</div></td>
+                        <td><li class="btn btn-success">{{ $cita->estcit}}</li></td>
                     @endif
                    
                     <td><a href="{{ route('citas', ['id' => $cita->codcit]) }}" class="btn btn-warning btn-editar"><i class="fas fa-file-edit"></i></a></td>

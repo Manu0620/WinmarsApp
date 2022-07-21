@@ -31,8 +31,12 @@
                 margin-top: 10%;
             }
 
+            .container-fluid{
+                width: 100%;
+            }
+
             textarea{
-                background: transparent;
+                background-color: transparent;
                 border: none;
             }
 
@@ -54,31 +58,37 @@
                 padding: 10px;
             }
 
-            .container-fluid{
-                width: 100%;
-            }
-
             .table{
-                font-weight: bold;
-                margin: 30px;
                 width: 96.5%;
+                border-collapse: collapse;
+                margin: 25px 0;
+                font-size: 0.9em;
+                min-width: 400px;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 0 20px rgba( 0, 0, 0, 0.15)
             }
 
-            .table thead{
-                border-bottom: 2px solid black; 
-            }
-
-            .table th{
+            .table thead tr{
+                background-color: #1E88E5;
+                color: white;  
+                font-weight: bold;  
+                text-align: left;
                 white-space: nowrap;
-                text-align: center;
-                background: #64B5F6;
             }
 
+            .table th,
             .table td{
+                padding: 12px 15px;
+            }
+
+            .table tbody td{    
+                background-color: #64B5F6;
+                border-bottom: 1px solid #ffffff66;
+                font-size: 0.9em;
+                font-weight: 600;
+                text-align: left;
                 white-space: nowrap;
-                text-align: center;
-                background: #90CAF9;
-                font-size: 14px;
             }
 
             .row{
@@ -134,6 +144,11 @@
                 margin: 30px;
                 margin-left: 60px;
             }
+
+            td li{
+                height: 35px;
+                border-radius: 30px;
+            } 
         </style>
     </head>
 

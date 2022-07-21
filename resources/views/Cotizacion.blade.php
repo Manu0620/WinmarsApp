@@ -37,6 +37,9 @@
         <div class="col">
             <label for="codcli">Cliente</label>
             <input type="text" class="form-control" id="codcli" name="codcli" readonly>
+            @error('codcli')
+                @include('layouts.partials.messages')
+            @enderror
         </div>
 
         <div class="col-1" style="padding-top: 25px;">
@@ -90,6 +93,9 @@
         <div class="col">
             <label for="codpro">Propiedad</label>
             <input type="text" class="form-control" id="codpro" name="codpro" readonly>
+            @error('codpro')
+                @include('layouts.partials.messages')
+            @enderror
         </div>
 
         <div class="col-1" style="padding-top: 30px;">
@@ -107,6 +113,9 @@
         <div class="col">
             <label for="cantidad">Cantidad</label>
             <input type="number" class="form-control" id="cantidad" name="cantidad" readonly>
+            @error('cantidad')
+                @include('layouts.partials.messages')
+            @enderror
         </div>
     </div>
 

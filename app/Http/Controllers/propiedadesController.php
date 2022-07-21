@@ -15,7 +15,7 @@ class propiedadesController extends Controller
     {
         $tipo_propiedades = tipo_propiedades::all();
         $clientes = clientes::where('codtpcli','2')
-        -> where('estcli','activo')
+        ->where('estcli','activo')
         ->get();
         $itbis = itbis::all();
         return view('propiedades.registrarPropiedades', compact(['tipo_propiedades','clientes','itbis']));

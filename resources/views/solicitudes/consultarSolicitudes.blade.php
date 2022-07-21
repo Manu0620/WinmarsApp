@@ -1,6 +1,11 @@
 @extends('layouts.consulta-master')
 <title>Consulta de Solicitudes</title>
 
+@php
+    use App\Models\clientes;
+    use App\Models\propiedades;
+@endphp
+
 @section('content')
 
     <h3>Consulta de Solicitudes</h3>
@@ -37,14 +42,16 @@
             @foreach ($solicitudes as $solicitud)
                 <tr>
                     <td scope="row">{{ $solicitud->codsol }}</td>
-                    <td>{{ $solicitud->codcli }}</td>
-                    <td>{{ $solicitud->codpro }}</td>
+                    @php $clientes = clientes::where('codcli',$solicitud->codcli)->first() @endphp
+                    <td>{{ $clientes->codcli. ' - ' .$clientes->nomcli. '  ' .$clientes->apecli }}</td>
+                    @php $propiedad = propiedades::where('codpro',$solicitud->codpro)->first() @endphp
+                    <td>{{ $propiedad->codpro. ' - ' .$propiedad->titulo }}</td>
                     <td>{{ $solicitud->comentario }}</td>
                     <td>{{ $solicitud->fecha }}</td>
                     @if($solicitud->estsol == 'Pendiente')
-                        <td><div class="btn btn-warning">{{ $solicitud->estsol}}</div></td>
+                        <td><li class="btn btn-warning">{{ $solicitud->estsol}}</li></td>
                     @elseif($solicitud->estsol == 'Procesada')
-                        <td><div class="btn btn-success">{{ $solicitud->estsol}}</div></td>
+                        <td><li class="btn btn-success">{{ $solicitud->estsol}}</li></td>
                     @endif
                     
                     <td>

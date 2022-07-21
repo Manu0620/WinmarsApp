@@ -3,6 +3,8 @@
 
 @php
     $rol = auth()->user()->rol;
+    use App\Models\tipo_empleados;
+    use App\Models\posiciones_empleado;
 @endphp
 
 @section('content')
@@ -54,12 +56,18 @@
                     <td>{{ $empleado->direccion }}</td>
                     <td>{{ $empleado->correo }}</td>
                     <td>{{ $empleado->cedula }}</td>
-                    <td>{{ $empleado->ctipemp }}</td>
-                    <td>{{ $empleado->codpos }}</td> 
+                    @php
+                        $tipo_emp = tipo_empleados::where('ctipemp',$empleado->ctipemp)->first();
+                    @endphp
+                    <td>{{ $tipo_emp->descripcion }}</td>
+                    @php
+                        $pos_emp = posiciones_empleado::where('codpos',$empleado->codpos)->first();
+                    @endphp
+                    <td>{{ $pos_emp->posicion }}</td> 
                     @if($empleado->estemp == 'inactivo')
-                        <td><div class="btn btn-warning">{{ $empleado->estemp}}</div></td>
+                        <td><li class="btn btn-warning">{{ $empleado->estemp}}</li></td>
                     @elseif($empleado->estemp == 'activo')
-                        <td><div class="btn btn-success">{{ $empleado->estemp}}</div></td>
+                        <td><li class="btn btn-success">{{ $empleado->estemp}}</li></td>
                     @endif 
                       
                     

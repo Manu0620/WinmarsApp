@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\cotizacionRequest;
 use App\Models\clientes;
 use App\Models\cuentas;
 use App\Models\detalle_cotizacion;
@@ -20,7 +21,7 @@ class cotizacionController extends Controller
         return view('Cotizacion', compact(['clientes', 'propiedades']));
     }
 
-    public function save(Request $request){
+    public function save(cotizacionRequest $request){
         
         $cotizacion = new cotizaciones();
 
