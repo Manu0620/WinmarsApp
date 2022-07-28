@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -24,7 +23,7 @@ class clienteRequest extends FormRequest
             'dircli' => 'required', 
             'corcli' => 'required|string|unique:clientes,corcli|email',
             'cedrnc' => 'required|integer|digits:11|unique:clientes,cedrnc|starts_with:402,031',
-            'codtpcli' => 'required',
+            'codtpcli' => 'required|integer',
             'estcli' => 'required',
         ];
     }

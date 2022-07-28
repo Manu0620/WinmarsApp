@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="col">
-            <div class="button-group">
+            <div class="button-group" style="text-align: right;">
                 <button type="button" class="btn btn-primary"><i class="fas fa-file-pdf"></i> Comprobante</button>
                 <button type="button" class="btn btn-danger"><i class="fas fa-file-pdf"></i> Print</button>
                 <button type="reset" class="btn btn-warning"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
@@ -126,16 +126,16 @@
         </div>
         <div class="col" style="margin-top: 35px;">
             <label for="subtot">Subtotal</label>
-            <input type="number" step="0.01" class="form-control" id="subtot" name="subtot" value="0.00" readonly>
+            <input type="money" step="0.25" class="form-control" id="subtot" name="subtot" value="0.00" readonly>
         </div>
         <div class="col" style="margin-top: 35px;">
             <label for="itbis">Itbis</label>
-            <input type="number" step="0.01" class="form-control" id="itbis" name="itbis" value="0.00" readonly>
-            <input type="number" step="0.01" class="form-control" id="itbis-fijo" name="itbis-fijo" value="0.00" hidden>
+            <input type="number" step="0.25" class="form-control" id="itbis" name="itbis" value="0.00" readonly>
+            <input type="number" step="0.25" class="form-control" id="itbis-fijo" name="itbis-fijo" value="0.00" hidden>
         </div>
         <div class="col" style="margin-top: 35px;">
             <label for="total">Total</label>
-            <input type="number" step="0.01" class="form-control" id="total" name="total" value="0.00" readonly>
+            <input type="number" step="0.25" class="form-control" id="total" name="total" value="0.00" readonly>
         </div>
     </div>
 
@@ -168,13 +168,13 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title" id="exampleModalScrollableTitle">Seleccionando Cliente</h3>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" style="background: #1976d2; width: 100px; height: 45px; margin: 10px; font-weight: bold; border-radius: 10px;">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <table class="table table-responsive">
+                        <table class="table table-responsive" id="dataTable">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
@@ -187,12 +187,12 @@
                             <tbody>
                                 @foreach($clientes as $cliente)
                                     <tr>
-                                        <th scope="row">{{$cliente->codcli}}</th>
+                                        <td scope="row">{{$cliente->codcli}}</td>
                                         <td>{{$cliente->nomcli.' '.$cliente->apecli}}</td>
                                         <td>{{$cliente->tecli1}}</td>
                                         <td>{{$cliente->cedrnc}}</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary btn-xs" data-bs-dismiss="modal" onclick="selectCliente('{{$cliente->codcli}}', '{{$cliente->nomcli}}', '{{$cliente->apecli}}', '{{$cliente->tecli1}}', '{{$cliente->cedrnc}}')" style="background: #1976d2; width: 100px; height: 45px; margin: 10px; font-weight: bold; border-radius: 10px;">
+                                            <button type="button" class="btn btn-primary btn-xs" data-bs-dismiss="modal" onclick="selectCliente('{{$cliente->codcli}}', '{{$cliente->nomcli}}', '{{$cliente->apecli}}', '{{$cliente->tecli1}}', '{{$cliente->cedrnc}}')">
                                                 <i class="fas fa-hand-pointer"></i>
                                             </button>
                                         </td>
@@ -200,10 +200,15 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <script>
+                            $(document).ready(function() {
+                                $('#dataTable').DataTable();
+                            });
+                        </script>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background: #1976d2; width: 100px; height: 45px; margin: 10px; font-weight: bold; border-radius: 10px;">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -239,13 +244,13 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title" id="exampleModalScrollableTitle1">Seleccionando Propiedad</h3>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" style="background: #1976d2; width: 100px; height: 45px; margin: 10px; font-weight: bold; border-radius: 10px;">
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <table class="table">
+                        <table class="table table-responsive" id="dataTable1">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
@@ -259,14 +264,14 @@
                             <tbody>
                                 @foreach($propiedades as $propiedad)
                                     <tr>
-                                        <th scope="row">{{$propiedad->codpro}}</th>
+                                        <td scope="row">{{$propiedad->codpro}}</td>
                                         <td>{{$propiedad->titulo}}</td>
                                         <td>{{$propiedad->preven}}</td>
                                         <td>{{$propiedad->preren}}</td>
                                         <td>{{$propiedad->itbis}}</td>
 
                                         <td>
-                                            <button type="button" class="btn btn-primary btn-xs" data-bs-dismiss="modal" onclick="selectPropiedad('{{$propiedad->codpro}}', '{{$propiedad->titulo}}','{{$propiedad->preven}}', '{{$propiedad->preren}}','{{$propiedad->itbis}}')" style="background: #1976d2; width: 100px; height: 45px; margin: 10px; font-weight: bold; border-radius: 10px;">
+                                            <button type="button" class="btn btn-primary btn-xs" data-bs-dismiss="modal" onclick="selectPropiedad('{{$propiedad->codpro}}', '{{$propiedad->titulo}}','{{$propiedad->preven}}', '{{$propiedad->preren}}','{{$propiedad->itbis}}')">
                                                 <i class="fas fa-hand-pointer"></i>
                                             </button>
                                         </td>
@@ -274,10 +279,15 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <script>
+                            $(document).ready(function() {
+                                $('#dataTable1').DataTable();
+                            });
+                        </script>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="background: #1976d2; width: 100px; height: 45px; margin: 10px; font-weight: bold; border-radius: 10px;">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -343,6 +353,6 @@
             }
         }
     </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
 @endsection

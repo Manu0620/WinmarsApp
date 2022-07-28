@@ -1,6 +1,10 @@
 @extends('layouts.consulta-master')
 <title>Consulta de Clientes</title>
 
+@php
+    use App\Models\tipo_clientes;
+@endphp
+
 @section('content')
 
     <h3>Consulta de Clientes</h3>
@@ -47,11 +51,8 @@
                     <td>{{ $cliente->dircli }}</td>
                     <td>{{ $cliente->corcli }}</td>
                     <td>{{ $cliente->cedrnc }}</td>
-                    @if($cliente->codtpcli == '1')
-                        <td>{{$cliente->codtpcli='Comprador'}}</td>
-                    @elseif($cliente->codtpcli == '2')
-                        <td>{{$cliente->codtpcli='Vendedor'}}</td>
-                    @endif
+                    @php $tipcli = tipo_clientes::where('codtpcli',$cliente->codtpcli)->first() @endphp
+                    <td>{{ $tipcli->codtpcli.' - '.$tipcli->tipcli }}</td>
                     @if($cliente->estcli == 'inactivo')
                         <td><li class="btn btn-warning">{{ $cliente->estcli}}</li></td>
                     @elseif($cliente->estcli == 'activo')
@@ -59,8 +60,8 @@
                     @endif 
                     
                     <td>
-                        <a href="{{ route('clientes', ['id' => $cliente->codcli]) }}" class="btn btn-warning btn-editar"><i class="fas fa-file-edit"></i></a>
-                        <a href="{{ route('inhabilitarCliente', ['id' => $cliente->codcli]) }}" class="btn btn-danger btn-editar"><i class="fas fa-ban"></i></a>
+                        <a href='editCustomer?c={{$cliente->codcli}}' role="button" class="btn btn-warning btn-editar"><i class="fas fa-file-edit"></i></a>
+                        <a href="{{ route('inhabilitarCliente', ['id' => $cliente->codcli]) }}" role="button" class="btn btn-danger btn-editar"><i class="fas fa-ban"></i></a>
                     </td>
                 </tr>
             @endforeach

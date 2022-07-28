@@ -97,13 +97,13 @@
                 white-space: nowrap;
             }
 
-            .row{
+            form .row{
                 font-weight: 600;
                 margin: 30px;
                 margin-top: 0px;
             }
 
-            .row input{
+            form .row input{
                 height: 40px;
             }
 
@@ -133,6 +133,15 @@
                 height: 45px;
                 margin: 20px 5px 20px 5px; 
                 font-weight: bold;
+                border-radius: 10px;
+            }
+
+            .modal-content button{
+                background: #1976d2;
+                width: 70px; 
+                height: 40px; 
+                margin: 10px; 
+                font-weight: bold; 
                 border-radius: 10px;
             }
 

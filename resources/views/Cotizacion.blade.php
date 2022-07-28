@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="col">
-            <div class="button-group">
+            <div class="button-group" style="text-align: right;">
                 <button type="button" class="btn btn-primary"><i class="fas fa-file-pdf"></i> Comprobante</button>
                 <button type="button" class="btn btn-danger"><i class="fas fa-file-pdf"></i> Print</button>
                 <button type="reset" class="btn btn-warning"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
@@ -171,7 +171,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <table class="table table-responsive">
+                        <table class="table table-responsive" id="dataTable">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
@@ -184,7 +184,7 @@
                             <tbody>
                                 @foreach($clientes as $cliente)
                                     <tr>
-                                        <th scope="row">{{$cliente->codcli}}</th>
+                                        <td scope="row">{{$cliente->codcli}}</td>
                                         <td>{{$cliente->nomcli.' '.$cliente->apecli}}</td>
                                         <td>{{$cliente->tecli1}}</td>
                                         <td>{{$cliente->cedrnc}}</td>
@@ -197,6 +197,11 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <script>
+                            $(document).ready(function() {
+                                $('#dataTable').DataTable();
+                            });
+                        </script>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -242,7 +247,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <table class="table">
+                        <table class="table table-responsive" id="dataTable1">
                             <thead>
                                 <tr>
                                     <th scope="col">ID</th>
@@ -256,7 +261,7 @@
                             <tbody>
                                 @foreach($propiedades as $propiedad)
                                     <tr>
-                                        <th scope="row">{{$propiedad->codpro}}</th>
+                                        <td scope="row">{{$propiedad->codpro}}</td>
                                         <td>{{$propiedad->titulo}}</td>
                                         <td>{{$propiedad->preven}}</td>
                                         <td>{{$propiedad->preren}}</td>
@@ -271,6 +276,11 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <script>
+                            $(document).ready(function() {
+                                $('#dataTable1').DataTable();
+                            });
+                        </script>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -340,6 +350,6 @@
             }
         }
     </script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
 @endsection

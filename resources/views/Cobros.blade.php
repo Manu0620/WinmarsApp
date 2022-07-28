@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="col">
-            <div class="button-group">
+            <div class="button-group" style="text-align: right;">
                 <button type="submit" class="btn btn-danger"><i class="fas fa-file-pdf"></i> Print</button>
                 <button type="reset" class="btn btn-warning"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
                 <button type="reset" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Save</button>

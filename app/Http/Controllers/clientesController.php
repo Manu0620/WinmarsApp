@@ -28,22 +28,22 @@ class clientesController extends Controller
         return view('clientes.consultarClientes', $datos);
     }
 
-    public function edit($codcli){
-        $cliente = clientes::find($codcli);
+    public function edit(){
+        $cliente = clientes::find($_GET['c']);
         return view('clientes.editarClientes', compact('cliente'));
     }
 
-    public function update(Request $request, $codcli){
-        $cliente = clientes::find($codcli);
+    public function update(clienteRequest $request){
+        $cliente = clientes::find($request->codcli);
 
-        $cliente->nomcli = $request->input('nomcli');
-        $cliente->apecli = $request->input('apecli');
-        $cliente->tecli1 = $request->input('tecli1');
-        $cliente->tecli2 = $request->input('tecli2');
-        $cliente->dircli = $request->input('dircli');
-        $cliente->corcli = $request->input('corcli');
-        $cliente->cedrnc = $request->input('cedrnc');
-        $cliente->codtpcli = $request->input('codtpcli');
+        $cliente->nomcli = $request->nomcli;
+        $cliente->apecli = $request->apecli;
+        $cliente->tecli1 = $request->tecli1;
+        $cliente->tecli2 = $request->tecli2;
+        $cliente->dircli = $request->dircli;
+        $cliente->corcli = $request->corcli;
+        $cliente->cedrnc = $request->cedrnc;
+        $cliente->codtpcli = $request->codtpcli;
         
         $cliente->save();
         return redirect('consultarClientes')->with('success', 'Edicion realizada correctamente');

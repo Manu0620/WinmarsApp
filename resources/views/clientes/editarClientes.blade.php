@@ -1,19 +1,27 @@
 @extends('layouts.formulario-master')
 <title>Edicion de clientes</title>
 
+<!--<style>
+    nav{
+        opacity: 0;
+    }
+</style>-->
+
 @section('content')
 
     <h3>Formulario de Clientes</h3>
 
     <div class="tab-nav">
-        <a href="/home">Home</a>
+        <a href="/consultarClientes">Atras</a>
         <label for="form-label">/ Formulario de Clientes</label>
     </div>
 
-    <form action="{{ route('clientes', ['id' => $cliente->codcli]) }}" method="POST">
+    <form action="{{ route('updateClientes') }}" method="POST">
         @csrf
 
         @method('PUT')
+
+        <input type="hidden" name="codcli" value="{{ $_GET['c'] }}">
 
         <div class="mb-3">
             <label for="nomcli">Nombre</label>

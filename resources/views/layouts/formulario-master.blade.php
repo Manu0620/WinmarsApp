@@ -7,10 +7,16 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="icon" href="assets/img/Solo logo.png">
 
+        <!--JavaScritp-->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script> 
         <!--Fonts-->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
         <!--Bootstrap-->
         <link rel="stylesheet" href="{{ url('assets/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
         <!--Styles-->
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
         <style>
@@ -50,31 +56,46 @@
 
             .form-container{
                 width: 35%;
-                margin: 100px;
+                margin: 8%;
                 font-weight: 600;
             }
 
             .table{
-                font-weight: bold;
-                margin: 30px;
-                width: 96.5%;
+                width: 100%;
+                border-collapse: collapse;
+                margin: 25px 0;
+                font-size: 0.9em;
+                min-width: 400px;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 0 20px rgba( 0, 0, 0, 0.15)
             }
 
-            .table thead{
-                border-bottom: 2px solid black; 
-            }
-
-            .table th{
+            .table thead tr{
+                background-color: #1E88E5;
+                color: white;  
+                font-weight: bold;  
+                text-align: left;
                 white-space: nowrap;
-                text-align: center;
-                background: #64B5F6;
             }
 
+            .table th,
             .table td{
+                padding: 12px 15px;
+            }
+
+            .table tbody td{    
+                background-color: #64B5F6;
+                border-bottom: 1px solid #ffffff66;
+                font-size: 0.9em;
+                font-weight: 600;
+                text-align: left;
                 white-space: nowrap;
-                text-align: center;
-                background: #90CAF9;
-                font-size: 14px;
+            }
+
+            .dataTables_paginate .pagination li{
+                height: 40px;
+                font-weight: bold;
             }
 
             .form-container input, .form-container select, .form-container textarea{
@@ -104,6 +125,15 @@
 
             .form-container button:hover{
                 background: #1565C0;
+            }
+
+            .modal-content button{
+                background: #1976d2;
+                width: 70px; 
+                height: 40px; 
+                margin: 10px; 
+                font-weight: bold; 
+                border-radius: 10px;
             }
 
             .button-group{
