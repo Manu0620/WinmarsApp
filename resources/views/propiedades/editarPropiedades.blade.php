@@ -3,12 +3,13 @@
 
 @section('content')
 
-    <h3>Formulario de Propiedades</h3>
-
     <div class="tab-nav">
-        <a href="/home">Home</a>
-        <label for="form-label">/ Formulario de Propiedades</label>
+        <a href="{{ url()->previous() }}">Atras</a>
+        <label>/</label> 
+        <a> Formulario de Propiedades</a>
     </div>
+
+    <h3>Formulario de Propiedades</h3>
 
     <form action="{{ route('propiedades', ['id' => $propiedad->codpro]) }}" method="POST" enctype="multipart/form-data">
         @csrf

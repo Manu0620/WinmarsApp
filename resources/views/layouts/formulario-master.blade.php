@@ -42,7 +42,6 @@
             }
 
             .tab-nav{
-                border-bottom: 4px solid #6c757d;  
                 border-radius: 5px;
                 font-weight: bold;
                 padding: 10px;
@@ -50,7 +49,6 @@
             }
             
             .tab-nav:hover{
-                border-bottom: 4px solid #1976d2; 
                 padding: 10px;
             }
 

@@ -3,12 +3,13 @@
 
 @section('content')
     
-    <h3>Solicitudes</h3>
-
     <div class="tab-nav">
-        <a href="/home">Home</a>
-        <label for="form-label">/ Formulario de Solicitudes</label>
+        <a href="{{ url()->previous() }}">Atras</a>
+        <label>/</label> 
+        <a> Formulario de Solicitudes</a>
     </div>
+
+    <h3>Enviar Solicitud</h3>
 
     <form action="/registrarSolicitudes" method="POST">
         @csrf

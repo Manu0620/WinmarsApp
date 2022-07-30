@@ -8,12 +8,13 @@
 @section('content')
     @if($rol == 'Administrador' || $rol == 'Usuario')
 
-    <h3>Formulario de Clientes</h3>
-
     <div class="tab-nav">
-        <a href="/home">Home</a>
-        <label for="form-label">/ Formulario de Clientes</label>
+        <a href="{{ url()->previous() }}">Atras</a>
+        <label>/</label> 
+        <a> Formulario de Clientes</a>
     </div>
+
+    <h3>Formulario de Clientes</h3>
 
     <form action="/registrarClientes" method="POST">
         @csrf

@@ -8,12 +8,13 @@
 
 @section('content')
 
-    <h3>Consulta de Solicitudes</h3>
-
     <div class="tab-nav">
         <a href="/home">Home</a>
-        <label for="form-label">/ Consulta de Solicitudes</label>
+        <label>/</label> 
+        <a href="/consultarSolicitudes"> Consulta de Solicitudes</a>
     </div>
+
+    <h3>Consulta de Solicitudes</h3>
 
     @if (Session::get('success', false))
         @include('layouts.partials.messages')

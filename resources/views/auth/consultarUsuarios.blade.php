@@ -9,12 +9,14 @@
 
 @section('content')
     @if($rol == 'Administrador')
-    <h3>Consulta de Usuarios</h3>
-
+    
     <div class="tab-nav">
         <a href="/home">Home</a>
-        <label for="form-label">/ Consulta de Usuarios</label>
+        <label>/</label> 
+        <a href="/consultarUsuarios"> Consulta de Usuarios</a>
     </div>
+    
+    <h3>Consulta de Usuarios</h3>
 
     @if (Session::get('success', false))
         @include('layouts.partials.messages')

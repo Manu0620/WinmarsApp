@@ -3,12 +3,14 @@
 
 @section('content')
 
-    <h3>Formulario de Citas</h3>
-
     <div class="tab-nav">
-        <a href="/home">Home</a>
-        <label for="form-label">/ Formulario de Citas</label>
+        <a href="/consultarSolicitudes">Atras</a>
+        <label>/</label> 
+        <a>Agendar Cita</a>
     </div>
+
+    <h3>Agendar Cita</h3>
+    
 
     <form action="{{ route('agendarCita', ['id' => $id]) }}" method="POST">
         @csrf

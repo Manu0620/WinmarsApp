@@ -3,12 +3,13 @@
 
 @section('content')
 
-<h3>Formulario de Empleados</h3>
-
     <div class="tab-nav">
-        <a href="/home">Home</a>
-        <label for="form-label">/ Formulario de Empleados</label>
+        <a href="/consultarEmpleados">Atras</a>
+        <label>/</label> 
+        <a> Formulario de Empleados</a>
     </div>
+    
+    <h3>Formulario de Empleados</h3>
 
     <form action="{{ route('empleados', ['id' => $empleado->codemp]) }}" method="POST">
         @csrf

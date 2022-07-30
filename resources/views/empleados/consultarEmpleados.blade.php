@@ -1,5 +1,5 @@
 @extends('layouts.consulta-master')
-<title>Consulta de Empleado</title>
+<title>Consulta de Empleados</title>
 
 @php
     $rol = auth()->user()->rol;
@@ -10,12 +10,13 @@
 @section('content')
     @if($rol == 'Administrador')
 
-    <h3>Consulta de Empleado</h3>
-
     <div class="tab-nav">
         <a href="/home">Home</a>
-        <label for="form-label">/ Consulta de Empleado</label>
+        <label>/</label> 
+        <a href="/consultarEmpleados"> Consulta de Empleados</a>
     </div>
+    
+    <h3>Consulta de empleados</h3>
 
     @if (Session::get('success', false))
         @include('layouts.partials.messages')

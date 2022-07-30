@@ -8,12 +8,13 @@
 @section('content')
     @if($rol == 'Administrador')
 
-<h3>Formulario de Empleados</h3>
-
     <div class="tab-nav">
-        <a href="/home">Home</a>
-        <label for="form-label">/ Formulario de Empleados</label>
+        <a href="{{ url()->previous() }}">Atras</a>
+        <label>/</label> 
+        <a> Formulario de Empleados</a>
     </div>
+    
+    <h3>Formulario de Empleados</h3>
 
     <form action="/registrarEmpleados" method="POST">
         @csrf

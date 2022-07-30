@@ -2,13 +2,13 @@
 <title>Registro de Solicitudes</title>
 
 @section('content')
-    
-    <h3>Solicitudes</h3>
 
     <div class="tab-nav">
-        <a href="/home">Home</a>
+        <a href="{{ url()->previous() }}">Atras</a>
         <label for="form-label">/ Formulario de Solicitudes</label>
     </div>
+
+    <h3>Formulario de Solicitudes</h3>
 
     <form action="{{ route('solicitudes', ['id' => $solicitud->codsol]) }}" method="POST">
         @csrf

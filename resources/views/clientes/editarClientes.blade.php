@@ -9,12 +9,13 @@
 
 @section('content')
 
-    <h3>Formulario de Clientes</h3>
-
     <div class="tab-nav">
         <a href="/consultarClientes">Atras</a>
-        <label for="form-label">/ Formulario de Clientes</label>
+        <label>/</label> 
+        <a> Formulario de Clientes</a>
     </div>
+
+    <h3>Formulario de Clientes</h3>
 
     <form action="{{ route('updateClientes') }}" method="POST">
         @csrf
