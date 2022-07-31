@@ -54,15 +54,19 @@ class facturaController extends Controller
 
         $cliente = $request->codcli;
         
+        $cuenta = cuentas::where('codcli', $cliente)->first();
         $cuentas = new cuentas();
 
-        if($condicion == 'Credito'){
-            $cuentas->codcli = $request->codcli;
-            $cuentas->numfac = $numfac;
+        if(is_null($cuenta) && $condicion == 'Credito'){
+            $cuentas->codcli = $cliente;
             $cuentas->balance = $request->total;
             $cuentas->totpag = 0;
             $cuentas->balpend = $request->total;
             $cuentas->save();
+        }else if($condicion == 'Credito'){
+            $cuenta->balance = $cuenta->balance + $request->total;
+            $cuenta->balpend = $cuenta->balpend + $request->total;
+            $cuenta->save();
         }
 
         return redirect()->to('Facturacion')->with('success', 'Formulario enviado correctamente!');

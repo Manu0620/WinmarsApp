@@ -3,7 +3,10 @@
 
 @section('content')
 
-    <h3>Cotizacion</h3>
+    <div class="tab-nav">
+        <a href="/home">Home</a>
+        <label for="form-label">/ Cotizacion</label>
+    </div>
 
     @if (Session::get('success', false))
         @include('layouts.partials.messages')
@@ -14,19 +17,15 @@
         @csrf
 
     <div class="row">
-        <div class="col-sm-5">
-            <div class="tab-nav">
-                <a href="/home">Home</a>
-                <label for="form-label">/ Cotizacion</label>
-            </div>
+        <div class="col">
+            <h3>Cotizacion</h3>
         </div>
         <div class="col">
             <div class="button-group" style="text-align: right;">
-                <button type="button" class="btn btn-primary"><i class="fas fa-file-pdf"></i> Comprobante</button>
-                <button type="button" class="btn btn-danger"><i class="fas fa-file-pdf"></i> Print</button>
-                <button type="reset" class="btn btn-warning"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
-
-                <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+                <button type="button" class="btn btn-primary shadow-none" style="background: #2196F3;"><i class="fas fa-file-pdf"></i> Comprobante</button>
+                <button type="button" class="btn btn-primary shadow-none" style="background: #1E88E5;"><i class="fas fa-file-pdf"></i> Print</button>
+                <button type="reset" class="btn btn-primary shadow-none" style="background: #1976D2;"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
+                <button type="submit" class="btn btn-primary shadow-none" style="background: #0ead69;"><i class="fa-solid fa-floppy-disk"></i> Save</button>
             </div>
         </div>
     </div>
@@ -36,14 +35,14 @@
 
         <div class="col">
             <label for="codcli">Cliente</label>
-            <input type="text" class="form-control" id="codcli" name="codcli" readonly>
+            <div class="input-group">
+                <input type="text" class="form-control" id="codcli" name="codcli" readonly>
+                <button class="btn btn-primary shadow-none" style="background: #0ead69;" type="button" id="nuevo-cli" data-bs-toggle="modal" data-bs-target="#nuevoClienteModal"><i class="fa-solid fa-circle-plus"></i></button>
+                <button class="btn btn-primary shadow-none" style="background: #1976D2;" type="button" id="buscar-cli" data-bs-toggle="modal" data-bs-target="#buscarClienteModal"><i class="fas fa-search"></i></button>  
+            </div>
             @error('codcli')
                 @include('layouts.partials.messages')
             @enderror
-        </div>
-
-        <div class="col-1" style="padding-top: 25px;">
-            <button type="button" class="btn btn-primary" id="buscar-cli" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable"><i class="fas fa-search"></i></button>
         </div>
      
         <div class="col">
@@ -92,14 +91,14 @@
     <div class="row">
         <div class="col">
             <label for="codpro">Propiedad</label>
-            <input type="text" class="form-control" id="codpro" name="codpro" readonly>
+            <div class="input-group">
+                <input type="text" class="form-control" id="codpro" name="codpro" readonly>
+                <button class="btn btn-primary shadow-none" style="background: #0ead69;" type="button" id="nueva-pro" data-bs-toggle="modal" data-bs-target="#nuevaPropiedadModal"><i class="fa-solid fa-circle-plus"></i></button>
+                <button class="btn btn-primary shadow-none" style="background: #1976D2;" type="button" id="buscar-pro" data-bs-toggle="modal" data-bs-target="#buscarPropiedadModal"><i class="fas fa-search"></i></button>  
+            </div>
             @error('codpro')
                 @include('layouts.partials.messages')
             @enderror
-        </div>
-
-        <div class="col-1" style="padding-top: 30px;">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable1"><i class="fas fa-search"></i></button>
         </div>
 
         <div class="col">
@@ -139,9 +138,15 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="button-group" style="text-align: right;">
+            <button type="button" class="btn btn-primary shadow-none" style="background: #0ead69;"><i class="fa-solid fa-circle-plus"></i> Agregar</button>
+        </div>
+    </div>
+
 </form>
 
-    <!--<table class="table table-striped table-hover table-borderless align-middle">
+    <table class="table table-striped table-hover table-borderless align-middle">
         <thead>
             <tr>
                 <th>Propiedad</th>
@@ -158,9 +163,9 @@
         <tbody>
             
         </tbody>
-    </table>-->
+    </table>
 
-    <div class="modal fade" id="exampleModalScrollable" role="dialog" tabindex="-1" aria-labelledby="Seleccionar cliente" aria-hidden="true">
+    <div class="modal fade" id="buscarClienteModal" role="dialog" tabindex="-1" aria-labelledby="Seleccionar cliente" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -236,7 +241,7 @@
         }
     </script>
 
-    <div class="modal fade" id="exampleModalScrollable1" tabindex="-1" role="dialog" aria-labelledby="Seleccionar Propiedad" aria-hidden="true">
+    <div class="modal fade" id="buscarPropiedadModal" tabindex="-1" role="dialog" aria-labelledby="Seleccionar Propiedad" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">

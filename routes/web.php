@@ -10,7 +10,6 @@ use App\Http\Controllers\cuentasController;
 use App\Http\Controllers\empleadosController;
 use App\Http\Controllers\facturaController;
 use App\Http\Controllers\homeController;
-use App\Http\Controllers\imageController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\logoutController;
 use App\Http\Controllers\tipoPropiedadController;
@@ -37,15 +36,6 @@ Route::get('/citaAgendada', function($id){
     return "Mensaje enviado!";
 });
 
-//For adding an image
-Route::get('/add-image',[imageController::class,'addImage'])->name('images.add');
-//For storing an image
-Route::post('/store-image',[imageController::class,'storeImage'])
-->name('images.store');
-//For showing an image
-Route::get('/view-image',[imageController::class,'viewImage'])->name('images.view');
-
-
 //Procesos
 Route::get('/Facturacion', [facturaController::class, 'create']);
 Route::post('/Facturacion', [facturaController::class, 'save']);
@@ -61,10 +51,10 @@ Route::get('/consultarCotizaciones', [cotizacionController::class, 'query']);
 
 Route::get('/consultarCuentas', [cuentasController::class, 'query']);
 
-//
+//Registros/Consultas
 Route::get('/registrarClientes', [clientesController::class, 'show']);
 Route::post('/registrarClientes', [clientesController::class, 'create']);
-Route::get('/Clientes/editar', [clientesController::class, 'edit'])->name('editClientes');
+Route::get('/editarCliente', [clientesController::class, 'edit'])->name('editClientes');
 Route::put('/updateClientes', [clientesController::class, 'update'])->name('updateClientes');
 Route::get('/consultarClientes', [clientesController::class, 'query']);
 Route::get('/clientes/{id}', [clientesController::class, 'delete'])->name('inhabilitarCliente');
@@ -116,7 +106,7 @@ Route::get('/registrarTipoEmpleado', [tipoEmpleadoController::class, 'show']);
 Route::post('/registrarTipoEmpleado', [tipoEmpleadoController::class, 'create']);
 
 
-//
+//Login / Pagina Principal
 Route::get('/login', [loginController::class, 'show']);
 Route::post('/login', [loginController::class, 'login']);
 

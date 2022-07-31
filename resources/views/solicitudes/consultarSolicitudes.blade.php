@@ -14,17 +14,21 @@
         <a href="/consultarSolicitudes"> Consulta de Solicitudes</a>
     </div>
 
-    <h3>Consulta de Solicitudes</h3>
-
     @if (Session::get('success', false))
         @include('layouts.partials.messages')
     @endif
 
-    <div class="button-group">
-        <button type="submit" class="btn btn-danger"><i class="fas fa-file-pdf"></i> Print</button>
-        <button type="reset" class="btn btn-warning"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
-        <a href="{{ url('registrarSolicitudes') }}" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Nueva solicitud</a>
-
+    <div class="row">
+        <div class="col">
+            <h3>Consulta de Solicitudes</h3>
+        </div>
+        <div class="col">
+            <div class="button-group" style="text-align: right;">
+                <button type="button" class="btn btn-primary shadow-none" style="background: #1E88E5;"><i class="fas fa-file-pdf"></i> Print</button>
+                <button type="reset" class="btn btn-primary shadow-none" style="background: #1976D2;"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
+                <a href="{{ url('registrarSolicitudes') }}" type="button" class="btn btn-primary shadow-none" style="background: #0ead69;"><i class="fa-solid fa-circle-plus"></i> Nueva Solicitud</a>
+            </div>
+        </div>
     </div>
 
     <table id="dataTable" class="table table-striped table-hover table-borderless align-middle">

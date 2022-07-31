@@ -126,12 +126,22 @@
                 border-bottom: 3px solid #1976d2;
             }
 
+            .input-group{
+                justify-content: center;
+            }
+
             .button-group button, .table a, .button-group a{
+                border: none;
                 width: fit-content;
                 height: 45px;
                 margin: 20px 5px 20px 5px; 
                 font-weight: bold;
                 border-radius: 10px;
+            }
+
+            .input-group button{
+                border: 1px solid #6c757d;
+                border-bottom: 3px solid #6c757d;
             }
 
             .modal-content button{

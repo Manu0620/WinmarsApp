@@ -33,7 +33,7 @@ class clientesController extends Controller
         return view('clientes.editarClientes', compact('cliente'));
     }
 
-    public function update(clienteRequest $request){
+    public function update(Request $request){
         $cliente = clientes::find($request->codcli);
 
         $cliente->nomcli = $request->nomcli;
