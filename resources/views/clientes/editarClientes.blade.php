@@ -22,7 +22,7 @@
 
         @method('PUT')
 
-        <input type="hidden" name="codcli" value="{{ $_GET['c'] }}">
+        <input type="hidden" name="codcli" value="{{ $_GET['cliente'] }}">
 
         <div class="mb-3">
             <label for="nomcli">Nombre</label>

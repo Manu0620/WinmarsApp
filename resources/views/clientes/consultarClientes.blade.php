@@ -61,7 +61,7 @@
                     @endif 
                     
                     <td>
-                        <a href='editCustomer?c={{$cliente->codcli}}' role="button" class="btn btn-warning btn-editar"><i class="fas fa-file-edit"></i></a>
+                        <a href='/Clientes/editar?cliente={{$cliente->codcli}}' role="button" class="btn btn-warning btn-editar"><i class="fas fa-file-edit"></i></a>
                         <a href="{{ route('inhabilitarCliente', ['id' => $cliente->codcli]) }}" role="button" class="btn btn-danger btn-editar"><i class="fas fa-ban"></i></a>
                     </td>
                 </tr>

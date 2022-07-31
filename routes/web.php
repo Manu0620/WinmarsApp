@@ -64,7 +64,7 @@ Route::get('/consultarCuentas', [cuentasController::class, 'query']);
 //
 Route::get('/registrarClientes', [clientesController::class, 'show']);
 Route::post('/registrarClientes', [clientesController::class, 'create']);
-Route::get('/editCustomer', [clientesController::class, 'edit'])->name('editClientes');
+Route::get('/Clientes/editar', [clientesController::class, 'edit'])->name('editClientes');
 Route::put('/updateClientes', [clientesController::class, 'update'])->name('updateClientes');
 Route::get('/consultarClientes', [clientesController::class, 'query']);
 Route::get('/clientes/{id}', [clientesController::class, 'delete'])->name('inhabilitarCliente');

@@ -29,7 +29,7 @@ class clientesController extends Controller
     }
 
     public function edit(){
-        $cliente = clientes::find($_GET['c']);
+        $cliente = clientes::find($_GET['cliente']);
         return view('clientes.editarClientes', compact('cliente'));
     }
 
