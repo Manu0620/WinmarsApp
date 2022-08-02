@@ -27,13 +27,13 @@ class empleadosController extends Controller
       return view('empleados.consultarEmpleados', $datos);
    }
 
-   public function edit($codemp){
-      $empleado = empleados::find($codemp);
+   public function edit(){
+      $empleado = empleados::find($_GET['empleado']);
       return view('empleados.editarEmpleados', compact('empleado'));
    }
 
-   public function update(Request $request, $codemp){
-      $empleado = empleados::find($codemp);
+   public function update(Request $request){
+      $empleado = empleados::find($request->codemp);
 
       $empleado->nomemp = $request->input('nomemp');
       $empleado->apeemp = $request->input('apeemp');

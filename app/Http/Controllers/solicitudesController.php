@@ -27,13 +27,13 @@ class solicitudesController extends Controller
         return view('solicitudes.consultarSolicitudes', $datos);
     }
   
-     public function edit($codsol){
-        $solicitud = solicitudes::find($codsol);
+     public function edit(){
+        $solicitud = solicitudes::find($_GET['solicitud']);
         return view('solicitudes.editarSolicitudes', compact('solicitud'));
     }
   
-    public function update(Request $request, $codsol){
-        $solicitud = solicitudes::find($codsol);
+    public function update(Request $request){
+        $solicitud = solicitudes::find($request->codsol);
   
         $solicitud->codcli = $request->input('codcli');
         $solicitud->codpro = $request->input('codpro');

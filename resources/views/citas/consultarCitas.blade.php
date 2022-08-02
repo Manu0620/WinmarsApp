@@ -59,7 +59,7 @@
                         <td><li class="btn btn-success">{{ $cita->estcit}}</li></td>
                     @endif
                    
-                    <td><a href="{{ route('citas', ['id' => $cita->codcit]) }}" class="btn btn-warning btn-editar"><i class="fas fa-file-edit"></i></a></td>
+                    <td><a href='editarCitas?cita={{ $cita->codcit }}' class="btn btn-warning btn-editar"><i class="fas fa-file-edit"></i></a></td>
                 </tr>
             @endforeach
         </tbody>

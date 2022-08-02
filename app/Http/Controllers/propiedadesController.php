@@ -41,13 +41,13 @@ class propiedadesController extends Controller
         return view('propiedades.consultarPropiedades', $datos);
     }
   
-    public function edit($codpro){
-        $propiedad = propiedades::find($codpro);
+    public function edit(){
+        $propiedad = propiedades::find($_GET['propiedad']);
         return view('propiedades.editarPropiedades', compact('propiedad'));
     }
   
-    public function update(Request $request, $codpro){
-        $propiedad = propiedades::find($codpro);
+    public function update(Request $request){
+        $propiedad = propiedades::find($request->codpro);
 
         $propiedad->titulo = $request->input('titulo');
         $propiedad->descrip = $request->input('descrip');

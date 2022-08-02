@@ -17,7 +17,7 @@
 
     <h3>Formulario de Clientes</h3>
 
-    <form action="{{ route('updateClientes') }}" method="POST">
+    <form action="/updateClientes" method="POST">
         @csrf
 
         @method('PUT')

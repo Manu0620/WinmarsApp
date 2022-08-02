@@ -24,31 +24,31 @@ class citasController extends Controller
         return view('citas.consultarCitas', $datos);
     }
 
-    public function edit($codcit){
-        $cita = citas::find($codcit);
+    public function edit(){
+        $cita = citas::find($_GET['cita']);
         return view('citas.editarCitas', compact('cita'));
     }
 
-    public function update(Request $request, $codcit){
-        $cita = citas::find($codcit);
+    public function update(Request $request){
+        $cita = citas::find($request->codcit);
 
-        $cita->codsol = $request->input('codsol');
-        $cita->codusu = $request->input('codusu');
-        $cita->fecha = $request->input('fecha');
-        $cita->descrip = $request->input('descrip');
-        $cita->estcit = $request->input('estcit');
+        $cita->codsol = $request->codsol;
+        $cita->codusu = $request->codusu;
+        $cita->fecha = $request->fecha;
+        $cita->descrip = $request->descrip;
+        $cita->estcit = $request->estcit;
         
         $cita->save();
         return redirect('consultarCitas')->with('success', 'Edicion realizada correctamente');
     }
 
-    public function agendar(Request $request, $id){
+    public function agendar(Request $request){
         $citas = new citas();
 
         $fechaHoy = date("Y-m-d h:i",strtotime(date("Y-m-d h:i")));
 
         $request->validate([
-            'fecha' => 'required|after_or_equal:fechaHoy',
+            'fecha' => 'required|after_or_equal:'.$fechaHoy,
         ]);
 
         $citas->codsol = $request->input('codsol');
@@ -59,15 +59,15 @@ class citasController extends Controller
         
         $citas->save();
 
-        $solicitud = solicitudes::find($id); 
+        $solicitud = solicitudes::find($request->input('codsol')); 
 
         $solicitud->estsol = 'Aprobada';
         $solicitud->save();
         return redirect('consultarCitas')->with('success', 'Cita agendada correctamente');
     }
 
-    public function approve($codsol){
-        $id = $codsol;
-        return view('citas.agendarCita', compact('id'));
+    public function approve(){
+        $codsol = $_GET['solicitud'];
+        return view('citas.agendarCita', compact('codsol'));
     }
 }

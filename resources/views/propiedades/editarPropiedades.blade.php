@@ -11,7 +11,7 @@
 
     <h3>Formulario de Propiedades</h3>
 
-    <form action="{{ route('propiedades', ['id' => $propiedad->codpro]) }}" method="POST" enctype="multipart/form-data">
+    <form action="/updatePropiedad" method="POST" enctype="multipart/form-data">
         @csrf
 
         @method('PUT')
@@ -19,6 +19,8 @@
         @if (Session::get('success', false))
         @include('layouts.partials.messages')
           @endif
+
+        <input type="hidden" name="codpro" value="{{ $_GET['propiedad'] }}">
         
         <div class="mb-3">
             <label for="titulo">Titulo/nombre</label>

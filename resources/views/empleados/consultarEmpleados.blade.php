@@ -78,7 +78,7 @@
                       
                     
                     <td>
-                        <a href="{{ route('empleados', ['id' => $empleado->codemp]) }}" class="btn btn-warning btn-editar"><i class="fas fa-file-edit"></i></a>
+                        <a href='editarEmpleado?empleado={{ $empleado->codemp }}' class="btn btn-warning btn-editar"><i class="fas fa-file-edit"></i></a>
                         <a href="{{ route('inhabilitarEmpleado', ['id' => $empleado->codemp]) }}" class="btn btn-danger btn-editar"><i class="fas fa-ban"></i></a>
                     </td>
                 </tr>

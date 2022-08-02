@@ -12,7 +12,7 @@
     <h3>Agendar Cita</h3>
     
 
-    <form action="{{ route('agendarCita', ['id' => $id]) }}" method="POST">
+    <form action="/agendarCita" method="POST">
         @csrf
 
         @method('PUT')
@@ -23,7 +23,7 @@
         
         <div class="mb-3">
             <label for="codsol">Solicitud</label>
-            <input type="text" class="form-control" name="codsol" value="{{ $id }}" readonly>
+            <input type="text" class="form-control" name="codsol" value="{{ $codsol }}" readonly>
             @error('codsol')
             @include('layouts.partials.messages')
         @enderror

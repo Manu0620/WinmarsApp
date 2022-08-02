@@ -11,7 +11,7 @@
     
     <h3>Formulario de Citas</h3>
 
-    <form action="{{ route('citas', ['id' => $cita->codcit]) }}" method="POST">
+    <form action="/updateCitas" method="POST">
         @csrf
 
         @method('PUT')
@@ -19,6 +19,8 @@
         @if (Session::get('success', false))
         @include('layouts.partials.messages')
           @endif
+
+        <input type="hidden" name="codcit" value="{{ $_GET['cita'] }}">
         
         <div class="mb-3">
             <label for="codsol">Solicitud</label>

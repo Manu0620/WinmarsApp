@@ -10,7 +10,7 @@
 
     <h3>Formulario de Solicitudes</h3>
 
-    <form action="{{ route('solicitudes', ['id' => $solicitud->codsol]) }}" method="POST">
+    <form action="/updateSolicitudes" method="POST">
         @csrf
 
         @method('PUT')
@@ -18,6 +18,8 @@
         @if (Session::get('success', false))
         @include('layouts.partials.messages')
           @endif
+
+        <input type="hidden" name="codsol" value="{{ $_GET['solicitud'] }}">
         
         <div class="mb-3">
             <label for="codcli">Cliente</label>

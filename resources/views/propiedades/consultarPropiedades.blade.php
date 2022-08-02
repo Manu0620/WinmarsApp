@@ -70,7 +70,7 @@
                     @endif 
                     
                     <td>
-                        <a href="{{ route('propiedades', ['id' => $propiedad->codpro]) }}" class="btn btn-warning btn-editar"><i class="fas fa-file-edit"></i></a>
+                        <a href='editarPropiedad?propiedad={{ $propiedad->codpro }}' class="btn btn-warning btn-editar"><i class="fas fa-file-edit"></i></a>
                         <a href="{{ route('inhabilitarPropiedad', ['id' => $propiedad->codpro]) }}" class="btn btn-danger btn-editar"><i class="fas fa-ban"></i></a>
                     </td>
                 </tr>

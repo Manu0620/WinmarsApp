@@ -11,7 +11,7 @@
     
     <h3>Formulario de Empleados</h3>
 
-    <form action="{{ route('empleados', ['id' => $empleado->codemp]) }}" method="POST">
+    <form action="/updateEmpleado" method="POST">
         @csrf
 
         @method('PUT')
@@ -19,6 +19,8 @@
         @if (Session::get('success', false))
         @include('layouts.partials.messages')
              @endif
+
+        <input type="hidden" name="codemp" value="{{ $_GET['empleado'] }}">
 
         <div class="mb-3">
             <label for="nomemp">Nombre </label>
