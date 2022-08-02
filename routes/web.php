@@ -54,6 +54,7 @@ Route::get('/consultarCuentas', [cuentasController::class, 'query']);
 //Registros/Consultas
 Route::get('/registrarClientes', [clientesController::class, 'show']);
 Route::post('/registrarClientes', [clientesController::class, 'create']);
+Route::post('/registrarClientesModal', [clientesController::class, 'createModal']);
 Route::get('/editarCliente', [clientesController::class, 'edit']);
 Route::put('/updateClientes', [clientesController::class, 'update']);
 Route::get('/consultarClientes', [clientesController::class, 'query']);

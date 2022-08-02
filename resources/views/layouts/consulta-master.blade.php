@@ -126,6 +126,10 @@
                 border-bottom: 3px solid #1976d2;
             }
 
+            input[type=number] {
+                text-align: right;
+            }
+
             .input-group{
                 justify-content: center;
             }

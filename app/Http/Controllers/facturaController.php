@@ -8,6 +8,7 @@ use App\Models\cuentas;
 use App\Models\detalle_factura;
 use App\Models\facturas;
 use App\Models\propiedades;
+use App\Models\tipo_clientes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,7 +19,8 @@ class facturaController extends Controller
         $propiedades = propiedades::join('itbis','propiedades.citbis','=','itbis.citbis')
         ->select('itbis.itbis', 'propiedades.codpro', 'propiedades.titulo', 'propiedades.preven', 'propiedades.preren')
         ->get();
-        return view('Facturacion', compact(['clientes', 'propiedades']));
+        $tipo_clientes = tipo_clientes::all();
+        return view('Facturacion', compact(['clientes', 'propiedades', 'tipo_clientes']));
     }
 
     public function save(facturaRequest $request){
