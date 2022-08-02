@@ -3,6 +3,7 @@
 
 @php
     $rol = auth()->user()->rol;
+    use App\Models\User;
 @endphp
 
 @section('content')
@@ -23,19 +24,19 @@
             @include('layouts.partials.messages')
         @endif
 
+        <input type="hidden" class="form-control" id="codemp" name="codemp">
+
         <div class="mb-3">
-            <label for="codemp" class="form-label">Empleado</label>
-            <select class="form-select" id="codemp" name="codemp">
-                <option selected disabled>Seleccione el Empleado...</option>
-                @foreach ($empleados as $empleado)
-                    <option value="{{$empleado->codemp}}" {{ (old('$empleado') == $empleado->codemp) ? 'selected' : ''}}>{{$empleado->nomemp.' '.$empleado->apeemp.' | '.$empleado->cedula}}</option>
-                @endforeach
-            </select> 
+            <label for="nomemp" class="form-label">Empleado</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="nomemp" name="nomemp" readonly>
+                <button class="btn btn-primary shadow-none" style="background: #1976D2;" type="button" data-bs-toggle="modal" data-bs-target="#buscarEmpleadoModal"><i class="fas fa-search"></i></button>  
+            </div>
             @error('codemp')
                 @include('layouts.partials.messages')
             @enderror
         </div>
-        
+            
         <div class="mb-3">
             <label for="username" class="form-label">Nombre de Usuario</label>
             <input type="text" class="form-control" name="username" value="{{ old('username') }}" placeholder="Nombre de usuario...">
@@ -89,6 +90,68 @@
         </div>
         
     </form>
+
+    <div class="modal fade" id="buscarEmpleadoModal" role="dialog" tabindex="-1" aria-labelledby="Seleccionar Empleado" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalScrollableTitle">Seleccionando Empleado</h3>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <table class="table table-responsive" id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Telefono</th>
+                                    <th scope="col">Cedula</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($empleados as $empleado)
+                                    @php $usuario = User::where('codemp', $empleado->codemp)->first() @endphp
+                                    @if(is_null($usuario))
+                                        <tr>
+                                            <td scope="row">{{$empleado->codemp}}</td>
+                                            <td>{{$empleado->nomemp.' '.$empleado->apeemp}}</td>
+                                            <td>{{$empleado->telem1}}</td>
+                                            <td>{{$empleado->cedula}}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary btn-xs" data-bs-dismiss="modal" onclick="selectEmpleado('{{$empleado->codemp}}','{{$empleado->nomemp}}','{{$empleado->apeemp}}')">
+                                                    <i class="fas fa-hand-pointer"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <script>
+                            $(document).ready(function() {
+                                $('#dataTable').DataTable();
+                            });
+                        </script>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript"> 
+        function selectEmpleado(codemp, nomemp, apeemp){
+            document.getElementById('codemp').value = codemp;
+            document.getElementById('nomemp').value = nomemp+' '+apeemp;
+        }
+    </script>
+
     @else
         <h3>No puede acceder a esta pagina, retornar a <a href="/home">Home</a></h3>
     @endif

@@ -22,13 +22,6 @@ class clientesController extends Controller
         return redirect()->to('registrarClientes')->with('success', 'Formulario enviado correctamente!');
     }
 
-    public function createModal(clienteRequest $request){
-        $clienteGuardar = clientes::create($request->validated());
-        $codcli = $clienteGuardar->codcli;
-        $cliente = clientes::find($codcli);
-        return redirect()->to('Facturacion')->with(compact('cliente'));
-    }
-
     public function query(){
         $datos['clientes'] = clientes::where('estcli','activo')
         ->paginate(5);
@@ -62,6 +55,6 @@ class clientesController extends Controller
         $cliente->estcli = 'inactivo';
         $cliente->save();
 
-        return redirect('consultarClientes')->with('sucess', 'Usuario inhabilitado correctamente');
+        return redirect('consultarClientes')->with('success', 'Usuario inhabilitado correctamente');
     }
 }

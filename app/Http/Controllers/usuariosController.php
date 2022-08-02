@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class usuariosController extends Controller
 {
     public function show(){
-        $empleados = empleados::all();
+        $empleados = empleados::where('estemp', 'activo')->get();
         return view('auth.registrarUsuarios', compact('empleados'));
     }
 

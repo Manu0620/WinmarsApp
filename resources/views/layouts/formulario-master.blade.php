@@ -112,9 +112,18 @@
                 border-bottom: 3px solid #1976d2;
             }
 
+            .input-group input, .input-group button, .input-group{
+                height: 40px;
+            }
+
+            .input-group .btn{
+                margin: 0;
+                height: 40px;
+            }
+
             .form-container button{
                 background: #1976d2;
-                width: 100px;
+                width: fit-content;
                 height: 45px;
                 margin: 10px;
                 font-weight: bold;
@@ -127,7 +136,7 @@
 
             .modal-content button{
                 background: #1976d2;
-                width: 70px; 
+                width: fit-content; 
                 height: 40px; 
                 margin: 10px; 
                 font-weight: bold; 

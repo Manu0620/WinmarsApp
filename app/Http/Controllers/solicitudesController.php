@@ -11,8 +11,8 @@ use Illuminate\Http\Request;
 class solicitudesController extends Controller
 {
     public function show(){
-        $clientes = clientes::all();
-        $propiedades = propiedades::all();
+        $clientes = clientes::where('estcli', 'activo');
+        $propiedades = propiedades::where('estpro', 'activo');
         return view('solicitudes.registrarSolicitudes',compact(['clientes', 'propiedades']));
     }
 

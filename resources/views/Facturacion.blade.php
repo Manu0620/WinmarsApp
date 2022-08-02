@@ -30,7 +30,6 @@
         </div>
     </div>
 
-
     <div class="row">
         <div class="col">
             <label for="codcli">Cliente</label>
@@ -259,12 +258,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/registrarClientesModal" method="POST">
+                    <form action="/facturaNuevoCliente" method="POST">
                         @csrf
-                
-                        @if (Session::get('success', false))
-                        @include('layouts.partials.messages')
-                          @endif
                 
                         <div class="mb-3">
                             <label for="nomcli">Nombre</label>
@@ -336,7 +331,7 @@
                 
                         <div class="button-group">
                             <button type="reset" class="btn btn-primary"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
-                            <button type="submit" class="btn btn-primary" id="crearClienteModal" ><i class="fa-solid fa-floppy-disk"></i> Save</button>
+                            <button type="submit" class="btn btn-primary" id="crearClienteModal"><i class="fa-solid fa-floppy-disk"></i> Save</button>
                         </div>
                         
                     </form>
@@ -347,22 +342,6 @@
             </div>
         </div>
     </div>
-
-    <script type="text/javascript">
-
-        document.getElementById('crearClienteModal').addEventListener('click', selectCliente);
-   
-        function selectCliente(codcli, nomcli, apecli, tecli1, cedrnc){
-            document.getElementById('codcli').value = codcli;
-            document.getElementById('nomcli').value = nomcli + ' ' + apecli;
-            document.getElementById('tecli1').value = tecli1;
-            document.getElementById('cedrnc').value = cedrnc;
-        }
-
-        function stopDefAction(evt){
-            evt.preventDefault(evt);
-        }
-    </script>
 
     <div class="modal fade" id="buscarPropiedadModal" tabindex="-1" role="dialog" aria-labelledby="Seleccionar Propiedad" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">

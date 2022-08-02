@@ -150,7 +150,7 @@
 
             .modal-content button{
                 background: #1976d2;
-                width: 70px; 
+                width: fit-content; 
                 height: 40px; 
                 margin: 10px; 
                 font-weight: bold; 

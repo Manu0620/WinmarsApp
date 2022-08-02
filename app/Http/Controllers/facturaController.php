@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\clienteRequest;
 use App\Http\Requests\facturaRequest;
 use App\Models\clientes;
 use App\Models\cuentas;
@@ -21,6 +22,12 @@ class facturaController extends Controller
         ->get();
         $tipo_clientes = tipo_clientes::all();
         return view('Facturacion', compact(['clientes', 'propiedades', 'tipo_clientes']));
+    }
+
+    public function nuevoCliente(clienteRequest $request){
+        $cliente = clientes::create($request->validated());
+        $cliente = $cliente->codcli;
+        return redirect()->to(url()->previous())->with(compact('cliente'));
     }
 
     public function save(facturaRequest $request){

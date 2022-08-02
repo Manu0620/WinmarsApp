@@ -21,6 +21,7 @@ use App\Http\Controllers\tipoClienteController;
 use App\Http\Controllers\tipoEmpleadoController;
 
 use App\Mail\informacionMail;
+use App\Models\facturas;
 use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,7 @@ Route::get('/citaAgendada', function($id){
 //Procesos
 Route::get('/Facturacion', [facturaController::class, 'create']);
 Route::post('/Facturacion', [facturaController::class, 'save']);
+Route::post('/facturaNuevoCliente', [facturaController::class, 'nuevoCliente']);
 Route::get('/consultarFacturas', [facturaController::class, 'query']);
 
 Route::get('/Cobros', [cobroController::class, 'show']);
@@ -54,7 +56,6 @@ Route::get('/consultarCuentas', [cuentasController::class, 'query']);
 //Registros/Consultas
 Route::get('/registrarClientes', [clientesController::class, 'show']);
 Route::post('/registrarClientes', [clientesController::class, 'create']);
-Route::post('/registrarClientesModal', [clientesController::class, 'createModal']);
 Route::get('/editarCliente', [clientesController::class, 'edit']);
 Route::put('/updateClientes', [clientesController::class, 'update']);
 Route::get('/consultarClientes', [clientesController::class, 'query']);
