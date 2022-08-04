@@ -23,7 +23,7 @@ class usuariosController extends Controller
     }
 
     public function query(){
-        $datos['users'] = User::where('status', 'activo')->paginate(5); 
+        $datos['users'] = User::where('status', 'activo')->get(); 
         return view('auth.consultarUsuarios', $datos);
     }
 

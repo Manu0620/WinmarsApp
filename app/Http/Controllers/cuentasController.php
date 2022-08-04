@@ -9,7 +9,7 @@ class cuentasController extends Controller
 {
 
     public function query(){
-        $cuentas = cuentas::all();
+        $cuentas = cuentas::where('estcue', 'Pendiente')->get();
         return view('consultarCuentas', compact('cuentas'));
     }
 }

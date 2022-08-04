@@ -105,7 +105,10 @@
         </div>
         <div class="col">
             <label for="preven">Precio de venta/renta</label>
-            <input type="text" class="form-control" id="precio" name="precio" readonly>
+            <div class="input-group mb-3">
+                <span class="input-group-text">$</span>
+                <input type="text" style="text-align: right;" class="form-control" id="precio" name="precio" value="0.00" readonly>
+            </div>
         </div>
         <div class="col">
             <label for="cantidad">Cantidad</label>
@@ -126,22 +129,22 @@
             <label for="subtot">Subtotal</label>
             <div class="input-group mb-3">
                 <span class="input-group-text">$</span>
-                <input type="number" step="0.01" class="form-control" id="subtot" name="subtot" value="0.00" readonly>
+                <input type="text" style="text-align: right;" class="form-control" id="subtot" name="subtot" value="0.00" readonly>
             </div>
         </div>
         <div class="col" style="margin-top: 35px;">
             <label for="subtot">Itbis</label>
             <div class="input-group mb-3">
                 <span class="input-group-text">$</span>
-                <input type="number" step="0.01" class="form-control" id="itbis" name="itbis" value="0.00" readonly>
+                <input type="text" style="text-align: right;" class="form-control" id="itbis" name="itbis" value="0.00" readonly>
             </div>
-            <input type="number" step="0.01" class="form-control" id="itbis-fijo" name="itbis-fijo" value="0.00" hidden>
+            <input type="text" class="form-control" id="itbis-fijo" name="itbis-fijo" value="0.00" hidden>
         </div>
         <div class="col" style="margin-top: 35px;">
             <label for="subtot">Total</label>
             <div class="input-group mb-3">
                 <span class="input-group-text">$</span>
-                <input type="number" step="0.01" class="form-control" id="total" name="total" value="0.00" readonly>
+                <input type="text" style="text-align: right;" class="form-control" id="total" name="total" value="0.00" readonly>
             </div>
         </div>
     </div>
@@ -202,7 +205,7 @@
                                         <td>{{$cliente->cedrnc}}</td>
                                         <td>
                                             <button type="button" class="btn btn-primary btn-xs" data-bs-dismiss="modal" onclick="selectCliente('{{$cliente->codcli}}', '{{$cliente->nomcli}}', '{{$cliente->apecli}}', '{{$cliente->tecli1}}', '{{$cliente->cedrnc}}')">
-                                                <i class="fas fa-hand-pointer"></i>
+                                                <i class="fa-solid fa-check"></i>
                                             </button>
                                         </td>
                                     </tr>
@@ -258,7 +261,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="/facturaNuevoCliente" method="POST">
+                    <form id="modal-form">
                         @csrf
                 
                         <div class="mb-3">
@@ -376,7 +379,7 @@
 
                                         <td>
                                             <button type="button" class="btn btn-primary btn-xs" data-bs-dismiss="modal" onclick="selectPropiedad('{{$propiedad->codpro}}', '{{$propiedad->titulo}}','{{$propiedad->preven}}', '{{$propiedad->preren}}','{{$propiedad->itbis}}')">
-                                                <i class="fas fa-hand-pointer"></i>
+                                                <i class="fa-solid fa-check"></i>
                                             </button>
                                         </td>
                                     </tr>
@@ -400,6 +403,7 @@
     <script>
 
         var pventa, prenta, itb = 0;
+        const cero = parseFloat(0).toFixed(2);
 
         document.getElementById('cantidad').addEventListener('click', updateValue);
         document.getElementById('cantidad').addEventListener('onchange', updateValue);
@@ -408,26 +412,26 @@
 
         function updateValue(e){
             if(document.getElementById('cantidad').value < 1){ document.getElementById('cantidad').value = 1 }
-            document.getElementById('subtot').value = parseFloat(document.getElementById('precio').value)*parseInt(document.getElementById('cantidad').value);
-            document.getElementById('itbis').value = document.getElementById('subtot').value*document.getElementById('itbis-fijo').value; 
-            document.getElementById('total').value = parseFloat(document.getElementById('subtot').value)+parseFloat(document.getElementById('itbis').value);
+            document.getElementById('subtot').value = (parseFloat(document.getElementById('precio').value)*parseInt(document.getElementById('cantidad').value)).toFixed(2);
+            document.getElementById('itbis').value = (parseFloat(document.getElementById('subtot').value)*parseFloat(document.getElementById('itbis-fijo').value)).toFixed(2); 
+            document.getElementById('total').value = (parseFloat(document.getElementById('subtot').value)+parseFloat(document.getElementById('itbis').value)).toFixed(2);
         }
 
         function conceptoChange(e){
             var concepto = document.getElementById('concepto').value;
             if(concepto == 'Venta'){
-                document.getElementById('precio').value = pventa;      
+                document.getElementById('precio').value = parseFloat(pventa).toFixed(2);      
                 document.getElementById('cantidad').value = 1;        
-                document.getElementById('subtot').value = parseFloat(pventa)*parseInt(document.getElementById('cantidad').value);
-                document.getElementById('itbis').value = parseFloat(document.getElementById('subtot').value)*parseFloat(itb); 
-                document.getElementById('total').value = parseFloat(document.getElementById('subtot').value)+parseFloat(document.getElementById('itbis').value);
+                document.getElementById('subtot').value = (parseFloat(pventa)*parseInt(document.getElementById('cantidad').value)).toFixed(2);
+                document.getElementById('itbis').value = (parseFloat(document.getElementById('subtot').value)*parseFloat(itb)).toFixed(2); 
+                document.getElementById('total').value = (parseFloat(document.getElementById('subtot').value)+parseFloat(document.getElementById('itbis').value)).toFixed(2);
                 document.getElementById('cantidad').readOnly = true;
-            }else{
-                document.getElementById('precio').value = parseFloat(prenta);
-                document.getElementById('subtot').value = 0;
-                document.getElementById('itbis').value = 0;
-                document.getElementById('total').value = 0;
+            }else{  
+                document.getElementById('precio').value = parseFloat(prenta).toFixed(2);
                 document.getElementById('cantidad').value = 1;
+                document.getElementById('subtot').value = (parseFloat(prenta)*parseInt(document.getElementById('cantidad').value)).toFixed(2);
+                document.getElementById('itbis').value = (parseFloat(document.getElementById('subtot').value)*parseFloat(itb)).toFixed(2); 
+                document.getElementById('total').value = (parseFloat(document.getElementById('subtot').value)+parseFloat(document.getElementById('itbis').value)).toFixed(2);
                 document.getElementById('cantidad').readOnly = false;
             }
         }
@@ -441,22 +445,23 @@
             document.getElementById('itbis-fijo').value = itbis;
             var concepto = document.getElementById('concepto').value;
             if(concepto == 'Venta'){
-                document.getElementById('precio').value = preven;
+                document.getElementById('precio').value = parseFloat(preven).toFixed(2);
                 document.getElementById('cantidad').value = 1;
-                document.getElementById('subtot').value = parseFloat(preven).toFixed(2)*parseInt(document.getElementById('cantidad').value).toFixed(2);
-                document.getElementById('itbis').value = parseFloat(document.getElementById('subtot').value)*parseFloat(itbis); 
-                document.getElementById('total').value = parseFloat(document.getElementById('subtot').value)+parseFloat(document.getElementById('itbis').value);
+                document.getElementById('subtot').value = (parseFloat(preven)*parseInt(document.getElementById('cantidad').value)).toFixed(2);
+                document.getElementById('itbis').value = (parseFloat(document.getElementById('subtot').value)*parseFloat(itbis)).toFixed(2); 
+                document.getElementById('total').value = (parseFloat(document.getElementById('subtot').value)+parseFloat(document.getElementById('itbis').value)).toFixed(2);
                 document.getElementById('cantidad').readOnly = true;
-            }else if(concepto == 'Alquiler'){
-                document.getElementById('precio').value = parseFloat(preren);
+            }else{
+                document.getElementById('precio').value = parseFloat(preren).toFixed(2);
                 document.getElementById('cantidad').value = 1;
-                document.getElementById('subtot').value = 0;
-                document.getElementById('itbis').value = 0;
-                document.getElementById('total').value = 0;
+                document.getElementById('subtot').value = (parseFloat(preren)*parseInt(document.getElementById('cantidad').value)).toFixed(2);
+                document.getElementById('itbis').value = (parseFloat(document.getElementById('subtot').value)*parseFloat(itbis)).toFixed(2); 
+                document.getElementById('total').value = (parseFloat(document.getElementById('subtot').value)+parseFloat(document.getElementById('itbis').value)).toFixed(2);
                 document.getElementById('cantidad').readOnly = false;
             }
         }
     </script>
+
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
 @endsection

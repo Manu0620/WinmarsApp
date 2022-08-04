@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\cotizacionRequest;
 use App\Models\clientes;
-use App\Models\cuentas;
 use App\Models\detalle_cotizacion;
 use App\Models\cotizaciones;
 use App\Models\propiedades;
@@ -15,12 +14,12 @@ use Illuminate\Support\Facades\Auth;
 class cotizacionController extends Controller
 {
     public function create(){
-        $clientes = clientes::all();
+        $clientes = clientes::where('codtpcli','2' && 'estcli','activo')->get();
         $propiedades = propiedades::join('itbis','propiedades.citbis','=','itbis.citbis')
         ->select('itbis.itbis', 'propiedades.codpro', 'propiedades.titulo', 'propiedades.preven', 'propiedades.preren')
-        ->get();
+        ->where('propiedades.estpro','activo')->get();
         $tipo_clientes = tipo_clientes::all();
-        return view('Cotizacion', compact(['clientes', 'propiedades','tipo_clientes']));
+        return view('Cotizacion', compact(['clientes', 'propiedades', 'tipo_clientes']));
     }
 
     public function save(cotizacionRequest $request){

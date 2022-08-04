@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\propiedadesRequest;
 use App\Models\propiedades;
 use App\Models\clientes;
+use App\Models\imagenes;
 use App\Models\tipo_propiedades;
 use App\Models\itbis;
 use Illuminate\Http\Request;
@@ -24,15 +25,20 @@ class propiedadesController extends Controller
     public function create(propiedadesRequest $request){
 
         $datos = request()->except('_token');
+        $datos['fotos'] = $request->file('fotos')->store('uploads', 'public');
 
-        if($request->hasFile('fotos')){
-            $datos['fotos'] = $request->file('fotos')->store('uploads','public');
+        $propiedad = propiedades::create($datos);
+        $codpro = $propiedad->codpro;
+
+        foreach($request->file('fotos') as $image){
+            $imagen = new imagenes();
+            $path = $image->store('uploads', 'public');
+            $imagen->codpro = $codpro;
+            $imagen->url = 'Hola';
+            $imagen->descrip = 'Foto propiedad no. '.$codpro;
+            $imagen->save();
         }
-
-        propiedades::insert($datos);
-
-        //propiedades::create($request->validated());
-
+        
         return redirect('registrarPropiedades')->with('success', 'Formulario enviado correctamente!');
     }
 

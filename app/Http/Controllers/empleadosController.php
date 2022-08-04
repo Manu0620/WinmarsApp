@@ -23,7 +23,7 @@ class empleadosController extends Controller
    }
 
    public function query(){
-      $datos['empleados'] = empleados::where('estemp','activo')->paginate(5); 
+      $datos['empleados'] = empleados::where('estemp','activo')->get(); 
       return view('empleados.consultarEmpleados', $datos);
    }
 

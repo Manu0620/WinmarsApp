@@ -36,7 +36,7 @@
 
         <div class="mb-3">
             <label for="fotos">Fotos</label>
-            <input type="file" class="form-control" value="{{ old('fotos') }}" accept="image/*" multiple name="fotos">
+            <input type="file" class="form-control" name="fotos" value="{{ old('fotos') }}" accept="image/*" multiple>
             @error('fotos')
             @include('layouts.partials.messages')
         @enderror
@@ -44,7 +44,7 @@
 
         <div class="mb-3">
             <label for="habit">Habitaciones</label>
-            <input type="number" class="form-control" name="habit" value="{{ old('habit') }}" placeholder="Numero de habitaciones...">
+            <input type="number" min="0" class="form-control" name="habit" value="{{ old('habit') }}" placeholder="Numero de habitaciones...">
             @error('habit')
             @include('layouts.partials.messages')
         @enderror
@@ -52,7 +52,7 @@
 
         <div class="mb-3">
             <label for="baños">Baños</label>
-            <input type="number" class="form-control" name="baños" value="{{ old('baños') }}" placeholder="Numero de baños...">
+            <input type="number" min="0" class="form-control" name="baños" value="{{ old('baños') }}" placeholder="Numero de baños...">
             @error('baños')
             @include('layouts.partials.messages')
         @enderror
@@ -68,7 +68,7 @@
 
         <div class="mb-3">
             <label for="parqueo">Parqueos</label>
-            <input type="number" class="form-control" name="parqueo" value="{{ old('parqueo') }}" placeholder="Numero de parqueos...">
+            <input type="number" min="0" class="form-control" name="parqueo" value="{{ old('parqueo') }}" placeholder="Numero de parqueos...">
             @error('parqueo')
             @include('layouts.partials.messages')
         @enderror

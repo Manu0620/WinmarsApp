@@ -70,7 +70,7 @@
         </div>
         <div class="col">
             <label for="montpag">Monto a Pagar</label>
-            <input type="number" step="0.01" class="form-control" name="montpag" readonly>
+            <input type="text" class="form-control" name="montpag" readonly>
         </div>
     </div>
 
@@ -81,15 +81,15 @@
         </div>
         <div class="col" style="margin-top: 35px;">
                 <label for="balance">Balance</label>
-                <input type="number" step="0.01"  class="form-control" name="balance" readonly>
+                <input type="text"  class="form-control" name="balance" readonly>
         </div>
         <div class="col" style="margin-top: 35px;">
             <label for="totpag">Total Pagado</label>
-            <input type="number" step="0.01" class="form-control" name="totpag" readonly>
+            <input type="text" class="form-control" name="totpag" readonly>
         </div>
         <div class="col" style="margin-top: 35px;">
             <label for="balpend">Balance Pendiente</label>
-            <input type="number" step="0.01" class="form-control" name="balpend" readonly>
+            <input type="text" class="form-control" name="balpend" readonly>
         </div>
     </div>
 
@@ -125,7 +125,7 @@
                                         <td>{{$cliente->cedrnc}}</td>
                                         <td>
                                             <button type="button" class="btn btn-primary btn-xs" data-bs-dismiss="modal" onclick="selectCliente('{{$cliente->codcli}}', '{{$cliente->nomcli}}', '{{$cliente->apecli}}', '{{$cliente->tecli1}}', '{{$cliente->cedrnc}}')">
-                                                <i class="fas fa-hand-pointer"></i>
+                                                <i class="fa-solid fa-check"></i>
                                             </button>
                                         </td>
                                     </tr>

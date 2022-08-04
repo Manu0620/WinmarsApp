@@ -16,19 +16,21 @@ use Illuminate\Support\Facades\Auth;
 class facturaController extends Controller
 {
     public function create(){
-        $clientes = clientes::all();
+        $clientes = clientes::where('codtpcli','2' && 'estcli','activo')->get();
         $propiedades = propiedades::join('itbis','propiedades.citbis','=','itbis.citbis')
         ->select('itbis.itbis', 'propiedades.codpro', 'propiedades.titulo', 'propiedades.preven', 'propiedades.preren')
-        ->get();
+        ->where('propiedades.estpro','activo')->get();
         $tipo_clientes = tipo_clientes::all();
         return view('Facturacion', compact(['clientes', 'propiedades', 'tipo_clientes']));
     }
 
-    public function nuevoCliente(clienteRequest $request){
+    /* Modal */
+    
+    /*public function nuevoCliente(clienteRequest $request){
         $cliente = clientes::create($request->validated());
         $cliente = $cliente->codcli;
         return redirect()->to(url()->previous())->with(compact('cliente'));
-    }
+    }*/
 
     public function save(facturaRequest $request){
         
@@ -71,10 +73,12 @@ class facturaController extends Controller
             $cuentas->balance = $request->total;
             $cuentas->totpag = 0;
             $cuentas->balpend = $request->total;
+            $cuentas->estcue = 'Pendiente';
             $cuentas->save();
         }else if($condicion == 'Credito'){
             $cuenta->balance = $cuenta->balance + $request->total;
             $cuenta->balpend = $cuenta->balpend + $request->total;
+            $cuenta->estcue = 'Pendiente';
             $cuenta->save();
         }
 

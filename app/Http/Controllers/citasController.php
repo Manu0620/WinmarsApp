@@ -20,7 +20,7 @@ class citasController extends Controller
     }
 
     public function query(){
-        $datos['citas'] = citas::where('estcit', 'Pendiente')->paginate(5); 
+        $datos['citas'] = citas::where('estcit', 'Pendiente')->get(); 
         return view('citas.consultarCitas', $datos);
     }
 

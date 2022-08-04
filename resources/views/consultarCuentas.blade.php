@@ -3,6 +3,7 @@
 
 @php
     $rol = auth()->user()->rol;
+    use App\Models\clientes;
 @endphp
 
 @section('content')
@@ -38,16 +39,28 @@
                 <th>Balance</th>
                 <th>Total Pagado</th>
                 <th>Balance Pendiente</th>
+                <th>Estado</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($cuentas as $cuenta)
                 <tr>
                     <td scope="row">{{ $cuenta->codcue }}</td>
-                    <td>{{ $cuenta->codcli }}</td>
+                    @php $clientes = clientes::where('codcli',$cuenta->codcli)->first() @endphp
+                    <td>{{ $clientes->codcli. ' - ' .$clientes->nomcli. '  ' .$clientes->apecli }}</td>
                     <td>{{ $cuenta->balance }}</td>
                     <td>{{ $cuenta->totpag }}</td>
                     <td>{{ $cuenta->balpend }}</td>
+                    @if($cuenta->estcue == 'Pendiente')
+                        <td><li class="btn btn-warning">{{ $cuenta->estcue}}</li></td>
+                    @elseif($cuenta->estcue == 'Completada')
+                        <td><li class="btn btn-success">{{ $cuenta->estcue}}</li></td>
+                    @endif
+
+                    <td>
+                        <a href='Cobros' class="btn btn-success btn-editar"><i class="fa-solid fa-check"></i> Pagar</a>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
