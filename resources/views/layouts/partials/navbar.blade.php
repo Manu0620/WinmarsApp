@@ -6,7 +6,6 @@
     }
 
     nav{
-        background-color: rgb(224, 224, 224);
         font-weight: bold;
     }
 
@@ -133,7 +132,6 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="registrarPosicionesEmpleado"><i class="fa-solid fa-plus" style="position: initial;"></i>  Posicion de empleado<i class="fa-solid fa-arrow-right"></i></a></li>
-                        <li><a class="dropdown-item" href="registrarTipoCliente"><i class="fa-solid fa-plus" style="position: initial;"></i>  Tipo de Cliente <i class="fa-solid fa-arrow-right"></i></a></li>
                         <li><a class="dropdown-item" href="registrarTipoEmpleado"><i class="fa-solid fa-plus" style="position: initial;"></i>  Tipo de empleado <i class="fa-solid fa-arrow-right"></i></a></li>
                         <li><a class="dropdown-item" href="registrarTipoPropiedad"><i class="fa-solid fa-plus" style="position: initial;"></i>  Tipo de propiedad <i class="fa-solid fa-arrow-right"></i></a></li>
                     </ul>

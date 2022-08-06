@@ -1,3 +1,7 @@
+@php
+    use Carbon\Carbon;
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
     
@@ -9,6 +13,7 @@
 
         <!--JavaScritp-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="{{ url('assets/js/bootstrap.bundle.min.js') }}"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script> 
         <!--Fonts-->
@@ -36,6 +41,24 @@
                 width: 100%;
             }
 
+            .footer{
+                display: flex;
+                font-weight: bold;
+                background: #E3F2FD;
+                justify-content: center;
+                height: 50px;
+                width: 100%;
+            }
+
+            .rights, .date{
+                line-height: 50px;
+            }
+
+            .date{
+                position: absolute;
+                right: 20px;
+            }
+
             .tab-nav a:visited,.tab-nav a:link,.tab-nav a:active{
                 text-decoration: none;
                 color: #1976d2;
@@ -60,14 +83,11 @@
 
             .modal-content{
                 border-radius: 12px;
+                background: #E3F2FD;
             }
 
             .modal-body{
-                padding: 20px 100px 20px 100px;
-            }
-
-            .modal-header, .modal-footer{
-                background-color: #E3F2FD;
+                padding: 40px 80px 40px 80px;
             }
 
             .modal-header button{
@@ -131,7 +151,6 @@
             }
 
             label{
-                margin-left: 8px;
                 font-weight: 600;
             }
 
@@ -185,14 +204,27 @@
             <main class="form-container">
                 @yield('content')
             </main>
-            
         @endauth
 
         @guest
             <h3>Para ver el contenido <a href="/login">inicia sesion</a></h3>
         @endguest
-        
-        <script src="{{ url('assets/js/bootstrap.bundle.min.js') }}"></script>
     </body>
+    <footer class="footer footer-expand-lg fixed-bottom">
+        <p class="rights"> © 2022 Winmars Properties S.R.L. All rights reserved. </p>
+        <p class="date" id="date"></p>
+    </footer>
 
+    <script type="text/javascript">
+        function fecha(){
+            var today = new Date();
+            var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+            var time = today.getHours() + ":" + today.getMinutes();
+            var dateTime = date+' '+time;
+
+            document.getElementById('date').innerHTML = dateTime;
+        }
+      
+        setInterval(fecha, 1000);
+      </script>
 </html>

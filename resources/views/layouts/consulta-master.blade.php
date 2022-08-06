@@ -16,6 +16,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
         <!--Bootstrap-->
         <link rel="stylesheet" href="{{ url('assets/css/bootstrap.min.css') }}">
+        <script src="{{ url('assets/js/bootstrap.bundle.min.js') }}"></script>
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
         <!--Styles-->
@@ -36,6 +37,25 @@
                 justify-content: center;
                 width: 100%;
                 margin-top: 10%;
+                margin-bottom: 5%;
+            }
+
+            .footer{
+                display: flex;
+                font-weight: bold;
+                background: #E3F2FD;
+                justify-content: center;
+                height: 50px;
+                width: 100%;
+            }
+
+            .rights, .date{
+                line-height: 50px;
+            }
+
+            .date{
+                position: absolute;
+                right: 20px;
             }
 
             .container-fluid{
@@ -44,14 +64,11 @@
 
             .modal-content{
                 border-radius: 12px;
+                background: #E3F2FD;
             }
 
             .modal-body{
-                padding: 20px 100px 20px 100px;
-            }
-
-            .modal-header, .modal-footer{
-                background-color: #E3F2FD;
+                padding: 40px 80px 40px 80px;
             }
 
             .modal-header button{
@@ -146,7 +163,6 @@
             }
 
             label{
-                margin-left: 8px;
                 font-weight: 600;
             }
 
@@ -212,19 +228,30 @@
 
     <body>
         @auth
-            @include('layouts.partials.navbar')
-            
+            @include('layouts.partials.navbar')        
             <main class="container-fluid">
                 @yield('content')
             </main>
-            
         @endauth
-
         @guest
             <h3>Para ver el contenido <a href="/login">inicia sesion</a></h3>
         @endguest
-        
-        <script src="{{ url('assets/js/bootstrap.bundle.min.js') }}"></script>
     </body>
+    <footer class="footer footer-expand-lg fixed-bottom">
+        <p class="rights"> © 2022 Winmars Properties S.R.L. All rights reserved. </p>
+        <p class="date" id="date"></p>
+    </footer>
 
+    <script type="text/javascript">
+        function fecha(){
+            var today = new Date();
+            var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
+            var time = today.getHours() + ":" + today.getMinutes();
+            var dateTime = date+' '+time;
+
+            document.getElementById('date').innerHTML = dateTime;
+        }
+      
+        setInterval(fecha, 1000);
+      </script>
 </html>

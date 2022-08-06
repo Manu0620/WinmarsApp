@@ -267,12 +267,15 @@
                             title: 'Exito',
                             text: 'Cliente/a '+ result.clientes[0].nomcli +' registrado correctamente!',
                             icon: 'success',
+                            iconColor: '#0ead69',
+                            showConfirmButton: true,
+                            confirmButtonColor: '#1976D2',
                             buttonsStyling: false,
                             confirmButtonText: "OK!",
                             customClass: {
                                 confirmButton: "btn btn-primary"
-                            },
-                            timer: 2200
+
+                            }
                         })
                     },
                     error: function(err){
