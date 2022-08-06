@@ -96,7 +96,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title" id="exampleModalScrollableTitle">Seleccionando Empleado</h3>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <button type="button" class="btn btn-primary" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>

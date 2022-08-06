@@ -33,6 +33,6 @@ class usuariosController extends Controller
         $usuario->status = 'inactivo';
         $usuario->save();
 
-        return redirect('consultarUsuarios')->with('sucess', 'Usuario desabilitado correctamente');
+        return redirect('consultarUsuarios')->with('success', 'Usuario desabilitado correctamente');
     }
 }

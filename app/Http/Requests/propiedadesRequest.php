@@ -16,7 +16,6 @@ class propiedadesRequest extends FormRequest
         return [
             'titulo' => 'required',
             'descrip' => 'required',
-            'fotos' => 'required|image',
             'habit' => 'required|integer',
             'baños' => 'required|integer',
             'metros' => 'required|integer',

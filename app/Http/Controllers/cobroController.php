@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class cobroController extends Controller
 {
     public function show(){
-        $clientes = clientes::where('codtpcli','2' && 'estcli','activo')->get();
+        $clientes = clientes::where('codtpcli','1')->where('estcli', 'activo')->get();
         $tipo_clientes = tipo_clientes::all();
         return view('Cobros', compact(['clientes', 'tipo_clientes']));
     }

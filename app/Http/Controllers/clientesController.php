@@ -6,8 +6,6 @@ use App\Http\Requests\clienteRequest;
 use App\Models\clientes;
 use App\Models\tipo_clientes;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-
 
 class clientesController extends Controller
 {
@@ -20,6 +18,41 @@ class clientesController extends Controller
     public function create(clienteRequest $request){
         $cliente = clientes::create($request->validated());
         return redirect()->to('registrarClientes')->with('success', 'Formulario enviado correctamente!');
+    }
+
+    /* Modal crear cliente */
+    public function nuevoCliente(Request $request){
+        $cliente = new clientes();
+
+        $this->validate($request, [
+            'nomcli' => 'required|string', 
+            'apecli' => 'required|string', 
+            'tecli1' => 'required|numeric|digits:10|starts_with:809,829,849|unique:clientes,tecli1',
+            'tecli2' => 'nullable|numeric|digits:10|starts_with:809,829,849|unique:clientes,tecli2',
+            'dircli' => 'required', 
+            'corcli' => 'required|string|email|unique:clientes,corcli',
+            'cedrnc' => 'required|numeric|digits:11|starts_with:402,031|unique:clientes,cedrnc',
+            'codtpcli' => 'required|integer',
+            'estcli' => 'required',
+        ]);
+
+        $cliente->nomcli = $request->nomcli;
+        $cliente->apecli = $request->apecli;
+        $cliente->tecli1 = $request->tecli1;
+        $cliente->tecli2 = $request->tecli2;
+        $cliente->dircli = $request->dircli;
+        $cliente->corcli = $request->corcli;
+        $cliente->cedrnc = $request->cedrnc;
+        $cliente->codtpcli = $request->codtpcli;
+        $cliente->estcli = $request->estcli;
+        
+        $cliente->save();
+        
+        $clientes = clientes::where('codcli', $cliente->codcli)->get(); //Cliente Registrado
+
+        return response()->json([
+            'clientes'=>$clientes
+        ]);
     }
 
     public function query(){
@@ -54,6 +87,6 @@ class clientesController extends Controller
         $cliente->estcli = 'inactivo';
         $cliente->save();
 
-        return redirect('consultarClientes')->with('success', 'Usuario inhabilitado correctamente');
+        return redirect('consultarClientes')->with('success', 'Cliente inhabilitado correctamente');
     }
 }

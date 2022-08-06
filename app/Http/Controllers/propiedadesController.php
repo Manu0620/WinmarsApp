@@ -24,17 +24,14 @@ class propiedadesController extends Controller
 
     public function create(propiedadesRequest $request){
 
-        $datos = request()->except('_token');
-        $datos['fotos'] = $request->file('fotos')->store('uploads', 'public');
-
-        $propiedad = propiedades::create($datos);
+        $propiedad = propiedades::create($request->validated());
         $codpro = $propiedad->codpro;
 
         foreach($request->file('fotos') as $image){
             $imagen = new imagenes();
             $path = $image->store('uploads', 'public');
             $imagen->codpro = $codpro;
-            $imagen->url = 'Hola';
+            $imagen->url = $path;
             $imagen->descrip = 'Foto propiedad no. '.$codpro;
             $imagen->save();
         }
@@ -78,6 +75,6 @@ class propiedadesController extends Controller
         $propiedad->estpro = 'inactivo';
         $propiedad->save();
 
-        return redirect('consultarPropiedades')->with('sucess', 'Propiedad inhabilitada correctamente');
+        return redirect('consultarPropiedades')->with('success', 'Propiedad inhabilitada correctamente');
     }
 }

@@ -61,8 +61,10 @@
                     <td>{{ $propiedad->preven }}</td>
                     <td>{{ $propiedad->preren }}</td>
                     <td>{{ $propiedad->comision }}</td>
-                    @php $clientes = clientes::where('codcli',$propiedad->codcli)->first() @endphp
-                    <td>{{ $clientes->codcli. ' - ' .$clientes->nomcli. '  ' .$clientes->apecli }}</td>
+                    @php $clientes = clientes::where('codcli',$propiedad->codcli)->first(); @endphp
+                    @if(!is_null($clientes))
+                        <td>{{ $clientes->codcli. ' - ' .$clientes->nomcli. '  ' .$clientes->apecli }}</td>
+                    @endif
                     @if($propiedad->estpro == 'inactivo')
                         <td><li class="btn btn-warning">{{ $propiedad->estpro}}</li></td>
                     @elseif($propiedad->estpro == 'activo')

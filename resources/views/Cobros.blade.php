@@ -57,21 +57,20 @@
     </div>
 
     <div class="row">
-        <div class="col">
-            <label for="codpag">Pago No.</label>
-            <input type="text" class="form-control" name="codpag" disabled>
-            @error('codpag')
-                @include('layouts.partials.messages')
-            @enderror
-        </div>
+        <div class="col"></div>
         <div class="col">
             <label for="fecha">Fecha</label>
-            <input type="datetime-local" class="form-control" name="fecha" readonly>
+            <input type="datetime" class="form-control" id="fecha" name="fecha" disabled>
         </div>
+        <div class="col-1"></div>
         <div class="col">
             <label for="montpag">Monto a Pagar</label>
-            <input type="text" class="form-control" name="montpag" readonly>
+            <div class="input-group mb-3">
+                <span class="input-group-text">$</span>
+                <input type="text" style="text-align: right;" class="form-control" id="montpag" name="montpag">
+            </div>
         </div>
+        <div class="col"></div>
     </div>
 
     <div class="row">
@@ -80,16 +79,25 @@
             <textarea type="text" class="form-control" name="observaciones" rows="4"></textarea>
         </div>
         <div class="col" style="margin-top: 35px;">
-                <label for="balance">Balance</label>
-                <input type="text"  class="form-control" name="balance" readonly>
+            <label for="balance">Balance</label>
+            <div class="input-group mb-3">
+                <span class="input-group-text">$</span>
+                <input type="text" style="text-align: right;" class="form-control" id="balance" name="balance" value="0.00" readonly>
+            </div>
         </div>
         <div class="col" style="margin-top: 35px;">
             <label for="totpag">Total Pagado</label>
-            <input type="text" class="form-control" name="totpag" readonly>
+            <div class="input-group mb-3">
+                <span class="input-group-text">$</span>
+                <input type="text" style="text-align: right;" class="form-control" id="totpag" name="totpag" value="0.00" readonly>
+            </div>
         </div>
         <div class="col" style="margin-top: 35px;">
             <label for="balpend">Balance Pendiente</label>
-            <input type="text" class="form-control" name="balpend" readonly>
+            <div class="input-group mb-3">
+                <span class="input-group-text">$</span>
+                <input type="text" style="text-align: right;" class="form-control" id="balpend" name="balpend" value="0.00" readonly>
+            </div>
         </div>
     </div>
 
@@ -100,44 +108,12 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title" id="exampleModalScrollableTitle">Seleccionando Cliente</h3>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <button type="button" class="btn btn-primary" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <table class="table table-responsive" id="dataTable">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Telefono</th>
-                                    <th scope="col">Cedula</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($clientes as $cliente)
-                                    <tr>
-                                        <td scope="row">{{$cliente->codcli}}</td>
-                                        <td>{{$cliente->nomcli.' '.$cliente->apecli}}</td>
-                                        <td>{{$cliente->tecli1}}</td>
-                                        <td>{{$cliente->cedrnc}}</td>
-                                        <td>
-                                            <button type="button" class="btn btn-primary btn-xs" data-bs-dismiss="modal" onclick="selectCliente('{{$cliente->codcli}}', '{{$cliente->nomcli}}', '{{$cliente->apecli}}', '{{$cliente->tecli1}}', '{{$cliente->cedrnc}}')">
-                                                <i class="fa-solid fa-check"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        <script>
-                            $(document).ready(function() {
-                                $('#dataTable').DataTable();
-                            });
-                        </script>
-                    </div>
+                    @include('layouts.modals.seleccionarCliente')
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
@@ -148,9 +124,15 @@
 
     <script type="text/javascript">
 
-        document.getElementById('buscar-cli').addEventListener('click', onSearch);
+        var montpag = document.getElementById('montpag');
 
-        function onSearch(){
+        montpag.addEventListener('blur', setFixed2);
+
+        function setFixed2(){
+            montpag.value = parseFloat(montpag.value).toFixed(2);
+        }
+
+        function fecha(){
             var today = new Date();
             var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
             var time = today.getHours() + ":" + today.getMinutes();
@@ -160,6 +142,7 @@
         }
    
         function selectCliente(codcli, nomcli, apecli, tecli1, cedrnc){
+            fecha();
             document.getElementById('codcli').value = codcli;
             document.getElementById('nomcli').value = nomcli + ' ' + apecli;
             document.getElementById('tecli1').value = tecli1;
@@ -172,95 +155,18 @@
     </script>
 
 <div class="modal fade" id="nuevoClienteModal" role="dialog" tabindex="-1" aria-labelledby="Nuevo Cliente" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h3 class="modal-title" id="exampleModalScrollableTitle">Nuevo Cliente</h3>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                <button type="button" class="btn btn-primary" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/registrarClientesModal" method="POST">
+                <form id="modal-form" method="POST" action="/nuevoClienteModal">
                     @csrf
-            
-                    @if (Session::get('success', false))
-                    @include('layouts.partials.messages')
-                      @endif
-            
-                    <div class="mb-3">
-                        <label for="nomcli">Nombre</label>
-                        <input type="text" class="form-control" name="nomcli" value="{{ old('nomcli') }}" placeholder="Ingrese el nombre...">
-                        @error('nomcli')
-                            @include('layouts.partials.messages')
-                        @enderror
-                    </div>
-            
-                    <div class="mb-3">
-                        <label for="apecli">Apellido</label>
-                        <input type="text" class="form-control" name="apecli" value="{{ old('apecli') }}" placeholder="Ingrese el apellido...">
-                        @error('apecli')
-                        @include('layouts.partials.messages')
-                    @enderror
-                    </div>
-            
-                    <div class="mb-3">
-                        <label for="tecli1">Teléfono 1</label>
-                        <input type="tel" class="form-control" name="tecli1" value="{{ old('tecli1') }}" placeholder="Ingrese el teléfono 1...">
-                        @error('tecli1')
-                        @include('layouts.partials.messages')
-                    @enderror
-                    </div>
-            
-                    <div class="mb-3">
-                        <label for="tecli2">Teléfono 2</label>
-                        <input type="tel" class="form-control" name="tecli2" value="{{ old('tecli2') }}" placeholder="Ingrese el teléfono 2...">
-                        @error('tecli2')
-                        @include('layouts.partials.messages')
-                    @enderror
-                    </div>
-            
-                    <div class="mb-3">
-                        <label for="dircli">Dirección</label>
-                        <input type="text" class="form-control" name="dircli" value="{{ old('dircli') }}" placeholder="Ingrese la dirección...">
-                        @error('dircli')
-                        @include('layouts.partials.messages')
-                    @enderror
-                    </div>
-            
-                    <div class="mb-3">
-                        <label for="corcli">Correo Electrónico</label>
-                        <input type="text" class="form-control" name="corcli" value="{{ old('corcli') }}" placeholder="Ingrese el correo electrónico...">
-                        @error('corcli')
-                        @include('layouts.partials.messages')
-                    @enderror
-                    </div>
-            
-                    <div class="mb-3">
-                        <label for="cedrnc">Cédula/RNC</label>
-                        <input type="text" class="form-control" name="cedrnc" value="{{ old('cedrnc') }}" placeholder="Ingrese la cédula/RNC...">
-                        @error('cedrnc')
-                        @include('layouts.partials.messages')
-                    @enderror
-                    </div>
-            
-                    <div class="mb-3">
-                        <label for="codtpcli">Tipo de Cliente</label>
-                        <select class="form-select" id="codtpcli" name="codtpcli" value="{{ old('codtpcli') }}">
-                            <option selected disabled>Seleccione el tipo de cliente...</option>
-                            @foreach ($tipo_clientes as $tipo_cliente)
-                                <option value="{{ $tipo_cliente->codtpcli}}" {{ (old('$tipo_cliente') == $tipo_cliente->codtpcli) ? 'selected' : ''}}>{{$tipo_cliente->tipcli}}</option>
-                            @endforeach
-                        </select>        
-                    </div>
-            
-                    <input type="hidden" class="form-control" name="estcli" value="activo">
-            
-                    <div class="button-group">
-                        <button type="reset" class="btn btn-primary"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
-                        <button type="submit" class="btn btn-primary" id="crearClienteModal" ><i class="fa-solid fa-floppy-disk"></i> Save</button>
-                    </div>
-                    
+                    @include('layouts.modals.clienteModalForm')
                 </form>
             </div>
             <div class="modal-footer">
@@ -270,21 +176,32 @@
     </div>
 </div>
 
-<script type="text/javascript">
-
-    document.getElementById('crearClienteModal').addEventListener('click', selectCliente);
-
-    function selectCliente(codcli, nomcli, apecli, tecli1, cedrnc){
-        document.getElementById('codcli').value = codcli;
-        document.getElementById('nomcli').value = nomcli + ' ' + apecli;
-        document.getElementById('tecli1').value = tecli1;
-        document.getElementById('cedrnc').value = cedrnc;
-    }
-
-    function stopDefAction(evt){
-        evt.preventDefault(evt);
-    }
-</script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#enviarCliente').click(function (e){
+                e.preventDefault(); //evita recargar la pagina
+                //var route = $('#modal-form').data('route'); Lo mismo
+                var form  = $("#modal-form").attr("action");
+                //var formValues = $(this).serialize(); Lo mismo
+                var dataString = $("#modal-form").serialize();
+                $.ajax({
+                    method:'POST',
+                    url:form,
+                    data:dataString,
+                    dataType:'json', 
+                    //data:formValues,
+                    success: function(result){
+                        $('#codcli').val(result.clientes[0].codcli);
+                        $('#nomcli').val(result.clientes[0].nomcli+' '+result.clientes[0].apecli);
+                        $('#tecli1').val(result.clientes[0].tecli1);
+                        $('#cedrnc').val(result.clientes[0].cedrnc);
+                        
+                        $("#modal-form")[0].reset(); //limpiar Formulario
+                    }
+                });
+            });
+        });
+    </script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
 @endsection

@@ -55,6 +55,6 @@ class empleadosController extends Controller
       $empleado->estemp = 'inactivo';
       $empleado->save();
 
-      return redirect('consultarEmpleados')->with('sucess', 'Empleado inhabilitado correctamente');
+      return redirect('consultarEmpleados')->with('success', 'Empleado inhabilitado correctamente');
   }
 }

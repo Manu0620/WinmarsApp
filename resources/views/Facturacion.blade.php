@@ -12,7 +12,7 @@
         @include('layouts.partials.messages')
     @endif
 
-    <form method="POST" action="/Facturacion">
+    <form method="POST" action="/Facturacion" id="formulario">
 
     @csrf
 
@@ -176,48 +176,16 @@
     </table>
 
     <div class="modal fade" id="buscarClienteModal" role="dialog" tabindex="-1" aria-labelledby="Seleccionar cliente" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title" id="exampleModalScrollableTitle">Seleccionando Cliente</h3>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <button type="button" class="btn btn-primary" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <table class="table table-responsive" id="dataTable">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Telefono</th>
-                                    <th scope="col">Cedula</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($clientes as $cliente)
-                                    <tr>
-                                        <td scope="row">{{$cliente->codcli}}</td>
-                                        <td>{{$cliente->nomcli.' '.$cliente->apecli}}</td>
-                                        <td>{{$cliente->tecli1}}</td>
-                                        <td>{{$cliente->cedrnc}}</td>
-                                        <td>
-                                            <button type="button" class="btn btn-primary btn-xs" data-bs-dismiss="modal" onclick="selectCliente('{{$cliente->codcli}}', '{{$cliente->nomcli}}', '{{$cliente->apecli}}', '{{$cliente->tecli1}}', '{{$cliente->cedrnc}}')">
-                                                <i class="fa-solid fa-check"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        <script>
-                            $(document).ready(function() {
-                                $('#dataTable').DataTable();
-                            });
-                        </script>
-                    </div>
+                    @include('layouts.modals.seleccionarCliente')
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
@@ -228,9 +196,7 @@
 
     <script type="text/javascript">
 
-        document.getElementById('buscar-cli').addEventListener('click', onSearch);
-
-        function onSearch(){
+        function fecha(){
             var today = new Date();
             var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
             var time = today.getHours() + ":" + today.getMinutes();
@@ -240,6 +206,7 @@
         }
    
         function selectCliente(codcli, nomcli, apecli, tecli1, cedrnc){
+            fecha();
             document.getElementById('codcli').value = codcli;
             document.getElementById('nomcli').value = nomcli + ' ' + apecli;
             document.getElementById('tecli1').value = tecli1;
@@ -252,91 +219,18 @@
     </script>
 
     <div class="modal fade" id="nuevoClienteModal" role="dialog" tabindex="-1" aria-labelledby="Nuevo Cliente" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title" id="exampleModalScrollableTitle">Nuevo Cliente</h3>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <button type="button" class="btn btn-primary" class="btn btn-primary" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="modal-form">
+                    <form id="cliente-modal-form" method="POST" action="/nuevoClienteModal">
                         @csrf
-                
-                        <div class="mb-3">
-                            <label for="nomcli">Nombre</label>
-                            <input type="text" class="form-control" name="nomcli" value="{{ old('nomcli') }}" placeholder="Ingrese el nombre...">
-                            @error('nomcli')
-                                @include('layouts.partials.messages')
-                            @enderror
-                        </div>
-                
-                        <div class="mb-3">
-                            <label for="apecli">Apellido</label>
-                            <input type="text" class="form-control" name="apecli" value="{{ old('apecli') }}" placeholder="Ingrese el apellido...">
-                            @error('apecli')
-                            @include('layouts.partials.messages')
-                        @enderror
-                        </div>
-                
-                        <div class="mb-3">
-                            <label for="tecli1">Teléfono 1</label>
-                            <input type="tel" class="form-control" name="tecli1" value="{{ old('tecli1') }}" placeholder="Ingrese el teléfono 1...">
-                            @error('tecli1')
-                            @include('layouts.partials.messages')
-                        @enderror
-                        </div>
-                
-                        <div class="mb-3">
-                            <label for="tecli2">Teléfono 2</label>
-                            <input type="tel" class="form-control" name="tecli2" value="{{ old('tecli2') }}" placeholder="Ingrese el teléfono 2...">
-                            @error('tecli2')
-                            @include('layouts.partials.messages')
-                        @enderror
-                        </div>
-                
-                        <div class="mb-3">
-                            <label for="dircli">Dirección</label>
-                            <input type="text" class="form-control" name="dircli" value="{{ old('dircli') }}" placeholder="Ingrese la dirección...">
-                            @error('dircli')
-                            @include('layouts.partials.messages')
-                        @enderror
-                        </div>
-                
-                        <div class="mb-3">
-                            <label for="corcli">Correo Electrónico</label>
-                            <input type="text" class="form-control" name="corcli" value="{{ old('corcli') }}" placeholder="Ingrese el correo electrónico...">
-                            @error('corcli')
-                            @include('layouts.partials.messages')
-                        @enderror
-                        </div>
-                
-                        <div class="mb-3">
-                            <label for="cedrnc">Cédula/RNC</label>
-                            <input type="text" class="form-control" name="cedrnc" value="{{ old('cedrnc') }}" placeholder="Ingrese la cédula/RNC...">
-                            @error('cedrnc')
-                            @include('layouts.partials.messages')
-                        @enderror
-                        </div>
-                
-                        <div class="mb-3">
-                            <label for="codtpcli">Tipo de Cliente</label>
-                            <select class="form-select" id="codtpcli" name="codtpcli" value="{{ old('codtpcli') }}">
-                                <option selected disabled>Seleccione el tipo de cliente...</option>
-                                @foreach ($tipo_clientes as $tipo_cliente)
-                                    <option value="{{ $tipo_cliente->codtpcli}}" {{ (old('$tipo_cliente') == $tipo_cliente->codtpcli) ? 'selected' : ''}}>{{$tipo_cliente->tipcli}}</option>
-                                @endforeach
-                            </select>        
-                        </div>
-                
-                        <input type="hidden" class="form-control" name="estcli" value="activo">
-                
-                        <div class="button-group">
-                            <button type="reset" class="btn btn-primary"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
-                            <button type="submit" class="btn btn-primary" id="crearClienteModal"><i class="fa-solid fa-floppy-disk"></i> Save</button>
-                        </div>
-                        
+                        @include('layouts.modals.clienteModalForm')
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -346,52 +240,83 @@
         </div>
     </div>
 
+    <script type="text/javascript">
+
+    $(document).ready(function(){
+            $('#enviarCliente').click(function (e){
+                e.preventDefault(); //evita recargar la pagina
+                //var route = $('#cliente-modal-form').data('route'); Lo mismo
+                var form  = $("#cliente-modal-form").attr("action");
+                //var formValues = $(this).serialize(); Lo mismo
+                var dataString = $("#cliente-modal-form").serialize();
+                $.ajax({
+                    method:'POST',
+                    url:form,
+                    data:dataString,
+                    dataType:'json', 
+                    //data:formValues,
+                    success: function(result){
+                        $('#codcli').val(result.clientes[0].codcli);
+                        $('#nomcli').val(result.clientes[0].nomcli+' '+result.clientes[0].apecli);
+                        $('#tecli1').val(result.clientes[0].tecli1);
+                        $('#cedrnc').val(result.clientes[0].cedrnc);
+                        
+                        $("#cliente-modal-form")[0].reset(); //limpiar Formulario
+                        $("#nuevoClienteModal").modal('hide'); //cerrar Modal
+                        Swal.fire({
+                            title: 'Exito',
+                            text: 'Cliente/a '+ result.clientes[0].nomcli +' registrado correctamente!',
+                            icon: 'success',
+                            buttonsStyling: false,
+                            confirmButtonText: "OK!",
+                            customClass: {
+                                confirmButton: "btn btn-primary"
+                            },
+                            timer: 2200
+                        })
+                    },
+                    error: function(err){
+                        if (err.status == 422) { // when status code is 422, it's a validation issue
+                            console.log(err.responseJSON);
+                            $('#success_message').fadeIn().html(err.responseJSON.message);
+                            
+                            // you can loop through the errors object and show it to the user
+                            console.warn(err.responseJSON.errors);
+                            // display errors on each form field
+                            $.each(err.responseJSON.errors, function (i, error) {
+                                var el = $('#cliente-modal-form').find('[name="'+i+'"]');
+                                el.after($('<ol style="margin: 0px; margin-left: 10px; padding:0px; color: #d62828;"><i class="fa-solid fa-circle-exclamation"></i> '+error[0]+'</ol>').fadeIn());        
+                                $("ol").each(function(index) {
+                                    setTimeout(() => {
+                                        $("ol").fadeOut(1000);
+                                    }, 2500);
+                                });
+                            });
+                        }
+                        /*Swal.fire({
+                            icon: 'error',
+                            title: 'Intentelo de nuevo...',
+                            text: 'Puede que el dato en el campo telefono, correo o cedula/rnc ya esten en uso o tengan formato incorrecto',
+                            footer: '<a href="consultarClientes"  style="text-decoration: none; color: #1976d2;">Que puedo hacer? <p style="font-weight: bold;">Consultar clientes</p></a>',
+                            showConfirmButton: false
+                        })*/
+                    }
+                });
+            });
+        });
+    </script>
+
     <div class="modal fade" id="buscarPropiedadModal" tabindex="-1" role="dialog" aria-labelledby="Seleccionar Propiedad" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title" id="exampleModalScrollableTitle1">Seleccionando Propiedad</h3>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <button type="button" class="btn btn-primary" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">
-                        <table class="table table-responsive" id="dataTable1">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Titulo</th>
-                                    <th scope="col">Precio de venta</th>
-                                    <th scope="col">Precio de renta</th>
-                                    <th scope="col">Itbis</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($propiedades as $propiedad)
-                                    <tr>
-                                        <td scope="row">{{$propiedad->codpro}}</td>
-                                        <td>{{$propiedad->titulo}}</td>
-                                        <td>{{$propiedad->preven}}</td>
-                                        <td>{{$propiedad->preren}}</td>
-                                        <td>{{$propiedad->itbis}}</td>
-
-                                        <td>
-                                            <button type="button" class="btn btn-primary btn-xs" data-bs-dismiss="modal" onclick="selectPropiedad('{{$propiedad->codpro}}', '{{$propiedad->titulo}}','{{$propiedad->preven}}', '{{$propiedad->preren}}','{{$propiedad->itbis}}')">
-                                                <i class="fa-solid fa-check"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        <script>
-                            $(document).ready(function() {
-                                $('#dataTable1').DataTable();
-                            });
-                        </script>
-                    </div>
+                    @include('layouts.modals.seleccionarPropiedad')
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
@@ -461,6 +386,7 @@
             }
         }
     </script>
+
 
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>

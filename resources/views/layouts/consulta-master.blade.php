@@ -8,7 +8,8 @@
         <link rel="icon" href="assets/img/Solo logo.png">
         
         <!--JavaScript-->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.25/dist/sweetalert2.all.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>      
         <!--Fonts-->
@@ -41,6 +42,24 @@
                 width: 100%;
             }
 
+            .modal-content{
+                border-radius: 12px;
+            }
+
+            .modal-body{
+                padding: 20px 100px 20px 100px;
+            }
+
+            .modal-header, .modal-footer{
+                background-color: #E3F2FD;
+            }
+
+            .modal-header button{
+                border: none;
+                color: white;
+                width: 200px;
+            }
+
             textarea{
                 background-color: transparent;
                 border: none;
@@ -70,7 +89,7 @@
                 min-width: 400px;
                 border-radius: 10px;
                 overflow: hidden;
-                box-shadow: 0 0 20px rgba( 0, 0, 0, 0.15)
+                box-shadow: 0 0 20px rgba( 0, 0, 0, 0.15);
             }
 
             .table thead tr{
@@ -110,7 +129,7 @@
                 font-weight: bold;
             }
 
-            .container-fluid input, .container-fluid select, .container-fluid textarea{
+            .container-fluid input, .container-fluid select, .container-fluid textarea, .input-group-text{
                 border: 1px solid #6c757d;
                 border-bottom: 3px solid #6c757d;
                 border-radius: 10px;
@@ -126,8 +145,15 @@
                 border-bottom: 3px solid #1976d2;
             }
 
-            .input-group{
-                justify-content: center;
+            label{
+                margin-left: 8px;
+                font-weight: 600;
+            }
+
+            .input-group-text{
+                height: 40px;
+                color: #0ead69;
+                font-weight: bold;
             }
 
             .button-group button, .table a, .button-group a{

@@ -58,6 +58,24 @@
                 font-weight: 600;
             }
 
+            .modal-content{
+                border-radius: 12px;
+            }
+
+            .modal-body{
+                padding: 20px 100px 20px 100px;
+            }
+
+            .modal-header, .modal-footer{
+                background-color: #E3F2FD;
+            }
+
+            .modal-header button{
+                border: none;
+                color: white;
+                width: 200px;
+            }
+
             .table{
                 width: 100%;
                 border-collapse: collapse;
@@ -110,6 +128,11 @@
             .form-container input:focus, .form-container select:focus, .form-container textarea:focus{
                 border: 1px solid #1976d2;
                 border-bottom: 3px solid #1976d2;
+            }
+
+            label{
+                margin-left: 8px;
+                font-weight: 600;
             }
 
             .input-group input, .input-group button, .input-group{

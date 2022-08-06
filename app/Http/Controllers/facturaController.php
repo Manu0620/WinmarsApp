@@ -16,21 +16,13 @@ use Illuminate\Support\Facades\Auth;
 class facturaController extends Controller
 {
     public function create(){
-        $clientes = clientes::where('codtpcli','2' && 'estcli','activo')->get();
+        $clientes = clientes::where('codtpcli','1')->where('estcli', 'activo')->get();
         $propiedades = propiedades::join('itbis','propiedades.citbis','=','itbis.citbis')
         ->select('itbis.itbis', 'propiedades.codpro', 'propiedades.titulo', 'propiedades.preven', 'propiedades.preren')
         ->where('propiedades.estpro','activo')->get();
         $tipo_clientes = tipo_clientes::all();
         return view('Facturacion', compact(['clientes', 'propiedades', 'tipo_clientes']));
     }
-
-    /* Modal */
-    
-    /*public function nuevoCliente(clienteRequest $request){
-        $cliente = clientes::create($request->validated());
-        $cliente = $cliente->codcli;
-        return redirect()->to(url()->previous())->with(compact('cliente'));
-    }*/
 
     public function save(facturaRequest $request){
         
