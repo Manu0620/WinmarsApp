@@ -10,26 +10,29 @@ use Illuminate\Http\Request;
 class clientesController extends Controller
 {
 
-    public function show(){
+    public function show()
+    {
         $tipo_clientes = tipo_clientes::all();
-        return view('clientes.registrarClientes',compact('tipo_clientes'));
+        return view('clientes.registrarClientes', compact('tipo_clientes'));
     }
 
-    public function create(clienteRequest $request){
+    public function create(clienteRequest $request)
+    {
         $cliente = clientes::create($request->validated());
         return redirect()->to('registrarClientes')->with('success', 'Formulario enviado correctamente!');
     }
 
     /* Modal crear cliente */
-    public function nuevoCliente(Request $request){
+    public function nuevoCliente(Request $request)
+    {
         $cliente = new clientes();
 
         $this->validate($request, [
-            'nomcli' => 'required|string', 
-            'apecli' => 'required|string', 
+            'nomcli' => 'required|string',
+            'apecli' => 'required|string',
             'tecli1' => 'required|numeric|digits:10|starts_with:809,829,849|unique:clientes,tecli1',
             'tecli2' => 'nullable|numeric|digits:10|starts_with:809,829,849|unique:clientes,tecli2',
-            'dircli' => 'required', 
+            'dircli' => 'required',
             'corcli' => 'required|string|email|unique:clientes,corcli',
             'cedrnc' => 'required|numeric|digits:11|starts_with:402,031|unique:clientes,cedrnc',
             'codtpcli' => 'required|integer',
@@ -45,27 +48,30 @@ class clientesController extends Controller
         $cliente->cedrnc = $request->cedrnc;
         $cliente->codtpcli = $request->codtpcli;
         $cliente->estcli = $request->estcli;
-        
+
         $cliente->save();
-        
+
         $clientes = clientes::where('codcli', $cliente->codcli)->get(); //Cliente Registrado
 
         return response()->json([
-            'clientes'=>$clientes
+            'clientes' => $clientes
         ]);
     }
 
-    public function query(){
-        $datos['clientes'] = clientes::where('estcli','activo')->get();
+    public function query()
+    {
+        $datos['clientes'] = clientes::where('estcli', 'activo')->get();
         return view('clientes.consultarClientes', $datos);
     }
 
-    public function edit(){
+    public function edit()
+    {
         $cliente = clientes::find($_GET['cliente']);
         return view('clientes.editarClientes', compact('cliente'));
     }
 
-    public function update(Request $request){
+    public function update(Request $request)
+    {
         $cliente = clientes::find($request->codcli);
 
         $cliente->nomcli = $request->nomcli;
@@ -76,13 +82,14 @@ class clientesController extends Controller
         $cliente->corcli = $request->corcli;
         $cliente->cedrnc = $request->cedrnc;
         $cliente->codtpcli = $request->codtpcli;
-        
+
         $cliente->save();
         return redirect('consultarClientes')->with('success', 'Edicion realizada correctamente');
     }
 
-    public function delete($id){
-        $cliente = clientes::find($id); 
+    public function delete($id)
+    {
+        $cliente = clientes::find($id);
 
         $cliente->estcli = 'inactivo';
         $cliente->save();

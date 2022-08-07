@@ -16,8 +16,8 @@
         @method('PUT')
 
         @if (Session::get('success', false))
-        @include('layouts.partials.messages')
-          @endif
+            @include('layouts.partials.messages')
+        @endif
 
         <input type="hidden" name="codsol" value="{{ $_GET['solicitud'] }}">
         

@@ -15,48 +15,52 @@ class propiedadesController extends Controller
     public function show()
     {
         $tipo_propiedades = tipo_propiedades::all();
-        $clientes = clientes::where('codtpcli','2')
-        ->where('estcli','activo')
-        ->get();
+        $clientes = clientes::where('codtpcli', '2')
+            ->where('estcli', 'activo')
+            ->get();
         $itbis = itbis::all();
-        return view('propiedades.registrarPropiedades', compact(['tipo_propiedades','clientes','itbis']));
+        return view('propiedades.registrarPropiedades', compact(['tipo_propiedades', 'clientes', 'itbis']));
     }
 
-    public function create(propiedadesRequest $request){
+    public function create(propiedadesRequest $request)
+    {
 
         $propiedad = propiedades::create($request->validated());
         $codpro = $propiedad->codpro;
 
-        if($request->hasFile('fotos')){
-            foreach($request->file('fotos') as $image){
+        if ($request->hasFile('fotos')) {
+            foreach ($request->file('fotos') as $image) {
                 $imagen = new imagenes();
                 $name = $image->getClientOriginalName();
-                $path = $image->move(public_path().'/uploads/',$name);
+                $path = $image->move(public_path() . '/uploads/', $name);
                 $imagen->codpro = $codpro;
                 $imagen->url = $path;
-                $imagen->descrip = 'Foto propiedad no. '.$codpro;
+                $imagen->descrip = 'Foto propiedad no. ' . $codpro;
             }
             $imagen->save();
         }
         return redirect('registrarPropiedades')->with('success', 'Formulario enviado correctamente!');
     }
 
-    public function query(){
-        $datos['propiedades'] = propiedades::where('estpro','activo')->get();
+    public function query()
+    {
+        $datos['propiedades'] = propiedades::where('estpro', 'activo')->get();
         return view('propiedades.consultarPropiedades', $datos);
     }
-  
-    public function edit(){
+
+    public function edit()
+    {
         $tipo_propiedades = tipo_propiedades::all();
-        $clientes = clientes::where('codtpcli','2')
-        ->where('estcli','activo')
-        ->get();
+        $clientes = clientes::where('codtpcli', '2')
+            ->where('estcli', 'activo')
+            ->get();
         $itbis = itbis::all();
         $propiedad = propiedades::find($_GET['propiedad']);
-        return view('propiedades.editarPropiedades', compact(['tipo_propiedades','clientes','itbis', 'propiedad']));
+        return view('propiedades.editarPropiedades', compact(['tipo_propiedades', 'clientes', 'itbis', 'propiedad']));
     }
-  
-    public function update(Request $request){
+
+    public function update(Request $request)
+    {
         $propiedad = propiedades::find($request->codpro);
 
         $propiedad->titulo = $request->input('titulo');
@@ -76,8 +80,9 @@ class propiedadesController extends Controller
         return redirect('consultarPropiedades')->with('success', 'Edicion realizada correctamente');
     }
 
-    public function delete($id){
-        $propiedad = propiedades::find($id); 
+    public function delete($id)
+    {
+        $propiedad = propiedades::find($id);
 
         $propiedad->estpro = 'inactivo';
         $propiedad->save();

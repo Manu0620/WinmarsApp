@@ -148,16 +148,16 @@
             </div>
         </div>
     </div>
-
-    <div class="row">
-        <div class="button-group" style="text-align: right;">
-            <button type="button" id="agregar" class="btn btn-primary shadow-none" style="background: #0ead69;"><i class="fa-solid fa-circle-plus"></i> Agregar</button>
-        </div>
-    </div>
     
     </form>
 
-    <table class="table table-striped table-hover table-borderless align-middle">
+    <div class="row">
+        <div class="button-group" style="text-align: right;">
+            <button id="agregar" class="btn btn-primary shadow-none" style="background: #0ead69;"><i class="fa-solid fa-circle-plus"></i> Agregar</button>
+        </div>
+    </div>
+
+    <table id="detalleFactura" class="table table-striped table-hover table-borderless align-middle">
         <thead>
             <tr>
                 <th>Propiedad</th>
@@ -165,6 +165,7 @@
                 <th>Concepto</th>
                 <th>Condicion</th>
                 <th>Cantidad</th>
+                <th>Observaciones</th>
                 <th>Subtotal</th>
                 <th>Itbis</th>
                 <th>Total</th>
@@ -174,6 +175,43 @@
             
         </tbody>
     </table>
+
+    <script type="text/javascript">
+        var cliente = $('#codcli').val();
+        var propiedad = $('#codpro').val();
+        
+        $("#agregar").click(function (e){ 
+            e.preventDefault();
+            if(cliente && propiedad != ''){
+                var html = '';
+                html += '<tr>' +
+                    '<td>' + $('#codpro').val(); + '</td>'+  
+                    '<td>' + $('#codcli').val(); + '</td>'+
+                    '<td>' + $('#concepto').val(); + '</td>'+
+                    '<td>' + $('#condicion').val(); + '</td>'+
+                    '<td>' + $('#cantidad').val(); + '</td>'+
+                    '<td>' '<textarea readonly cols="40" rows="3">' + $('#observaciones').val(); + '</textarea>' '</td>'+
+                    '<td>' + $('#subtot').val(); + '</td>'+
+                    '<td>' + $('#itbis').val(); + '</td>'+  
+                    '<td>' + $('#total').val(); + '</td>'+  
+                '</tr>'
+                $('#detalleFactura').html(html);
+                $('#formulario')[0].reset();
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Intentelo de nuevo...',
+                    text: 'Llene los campos correctamente',
+                    confirmButtonColor: '#1976D2',
+                    buttonsStyling: false,
+                    confirmButtonText: "OK!",
+                    customClass: {
+                        confirmButton: "btn btn-primary"
+                    }
+                })
+            }
+        });
+    </script>
 
     <div class="modal fade" id="buscarClienteModal" role="dialog" tabindex="-1" aria-labelledby="Seleccionar cliente" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
@@ -204,9 +242,10 @@
 
             document.getElementById('fecha').value = dateTime;
         }
+
+        setInterval(fecha, 1000);
    
         function selectCliente(codcli, nomcli, apecli, tecli1, cedrnc){
-            fecha();
             document.getElementById('codcli').value = codcli;
             document.getElementById('nomcli').value = nomcli + ' ' + apecli;
             document.getElementById('tecli1').value = tecli1;
@@ -327,7 +366,7 @@
         </div>
     </div>
 
-    <script>
+    <script type="text/javascript">
 
         var pventa, prenta, itb = 0;
         const cero = parseFloat(0).toFixed(2);
@@ -388,6 +427,8 @@
             }
         }
     </script>
+
+
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
 @endsection

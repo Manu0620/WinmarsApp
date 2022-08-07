@@ -147,6 +147,8 @@
 
             document.getElementById('fecha').value = dateTime;
         }
+
+        setInterval(fecha, 1000);
    
         function selectCliente(codcli, nomcli, apecli, tecli1, cedrnc){
             fecha();

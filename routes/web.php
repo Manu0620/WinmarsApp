@@ -25,11 +25,11 @@ use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function(){
+Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/citaAgendada', function($id){
+Route::get('/citaAgendada', function ($id) {
     $correo = new informacionMail;
     Mail::to('maderamanuel25@gmail.com')->send($correo);
 
@@ -113,5 +113,3 @@ Route::post('/login', [loginController::class, 'login']);
 
 Route::get('/home', [homeController::class, 'index']);
 Route::get('/logout', [logoutController::class, 'logout']);
-
-

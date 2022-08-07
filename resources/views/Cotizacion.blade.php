@@ -206,9 +206,9 @@
 
             document.getElementById('fecha').value = dateTime;
         }
+        setInterval(fecha, 1000);
    
         function selectCliente(codcli, nomcli, apecli, tecli1, cedrnc){
-            fecha();
             document.getElementById('codcli').value = codcli;
             document.getElementById('nomcli').value = nomcli + ' ' + apecli;
             document.getElementById('tecli1').value = tecli1;

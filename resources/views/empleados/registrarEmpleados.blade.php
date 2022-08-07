@@ -20,8 +20,8 @@
         @csrf
 
         @if (Session::get('success', false))
-        @include('layouts.partials.messages')
-             @endif
+            @include('layouts.partials.messages')
+        @endif
 
         <div class="mb-3">
             <label for="nomemp">Nombre </label>
