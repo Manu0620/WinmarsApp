@@ -1,6 +1,12 @@
 @extends('layouts.formulario-master')
 <title>Edicion de Propiedades</title>
 
+@php
+    use App\Models\clientes;
+    use App\Models\tipo_propiedades;
+    use App\Models\itbis;
+@endphp
+
 @section('content')
 
     <div class="tab-nav">
@@ -103,25 +109,42 @@
         </div>
 
         <div class="mb-3">
+            <input type="hidden" name="codcli" id="codcli" value="{{ $propiedad->codcli }}">
             <label for="codcli">Cliente</label>
-            <input type="text" class="form-control" name="codcli" value="{{ $propiedad->codcli }}">
+            @php $c = clientes::where('codcli',$propiedad->codcli)->first() @endphp
+            <div class="input-group">
+                <input type="text" class="form-control" id="nomcli" name="nomcli" value="{{ $c->nomcli.' '.$c->apecli }}" readonly>
+                <button class="btn btn-primary shadow-none" style="background: #1976D2;" type="button" id="buscar-cli" data-bs-toggle="modal" data-bs-target="#buscarClienteModal"><i class="fas fa-search"></i></button>  
+            </div>
             @error('codcli')
-            @include('layouts.partials.messages')
-        @enderror
+                @include('layouts.partials.messages')
+            @enderror
         </div>
 
         <div class="mb-3">
+            <input type="hidden" name="codtpro" id="codtpro" value="{{ $propiedad->codtpro }}">
             <label for="codtpro">Tipo de Propiedad</label>
-            <select class="form-select" name="codtpro">
-                <option selected>Tipo de propiedad...</option>
-                <option value="1">Apartamento</option>
-                <option value="2">Casa</option>
-            </select>
+            @php $tp = tipo_propiedades::where('codtpro',$propiedad->codtpro)->first() @endphp
+            <div class="input-group">
+                <input type="text" class="form-control" id="tippro" name="tippro" value="{{ $tp->tippro }}" readonly>
+                <button class="btn btn-primary shadow-none" style="background: #1976D2;" type="button" id="buscar-tpro" data-bs-toggle="modal" data-bs-target="#tipoPropiedadModal"><i class="fas fa-search"></i></button>  
+            </div>
+            @error('codtpro')
+                @include('layouts.partials.messages')
+            @enderror 
         </div>
 
         <div class="mb-3">
+            <input type="hidden" name="citbis" id="citbis" value="{{ $propiedad->citbis }}">
             <label for="citbis">Itbis</label>
-            <input type="text" class="form-control" name="citbis" value="{{ $propiedad->citbis }}">
+            @php $it = itbis::where('citbis',$propiedad->citbis)->first() @endphp
+            <div class="input-group">
+                <input type="text" class="form-control" id="itbis" name="itbis" value="{{ $it->itbis }}" readonly>
+                <button class="btn btn-primary shadow-none" style="background: #1976D2;" type="button" id="buscar-itb" data-bs-toggle="modal" data-bs-target="#itbisModal"><i class="fas fa-search"></i></button>  
+            </div>
+            @error('citbis')
+                @include('layouts.partials.messages')
+            @enderror
         </div>
 
         <input type="hidden" class="form-control" name="estpro" value="1">
@@ -132,5 +155,142 @@
         </div>
         
     </form>
+
+    <div class="modal fade" id="buscarClienteModal" role="dialog" tabindex="-1" aria-labelledby="Seleccionar cliente" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalScrollableTitle">Seleccionando Cliente</h3>
+                    <button type="button" class="btn btn-primary" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @include('layouts.modals.seleccionarCliente')
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript"> 
+        function selectCliente(codcli, nomcli, apecli){
+            document.getElementById('codcli').value = codcli;
+            document.getElementById('nomcli').value = nomcli+' '+apecli;
+        }
+    </script>
+
+    <div class="modal fade" id="itbisModal" role="dialog" tabindex="-1" aria-labelledby="Seleccionar itbis" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalScrollableTitle">Seleccionando Itbis</h3>
+                    <button type="button" class="btn btn-primary" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <table class="table table-responsive" id="dataTable1">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Itbis</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($itbis as $itb)
+                                    <tr>
+                                        <td scope="row">{{$itb->citbis}}</td>
+                                        <td>{{$itb->itbis}}</td>
+
+                                        <td>
+                                            <button type="button" class="btn btn-primary btn-xs" data-bs-dismiss="modal" onclick="selectItbis('{{$itb->citbis}}', '{{$itb->itbis}}')">
+                                                <i class="fa-solid fa-check"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <script>
+                            $(document).ready(function() {
+                                $('#dataTable1').DataTable();
+                            });
+                        </script>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript"> 
+        function selectItbis(citbis, itbis){
+            document.getElementById('citbis').value = citbis;
+            document.getElementById('itbis').value = itbis;
+        }
+    </script>
+
+    <div class="modal fade" id="tipoPropiedadModal" role="dialog" tabindex="-1" aria-labelledby="Seleccionar tipo propiedad" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalScrollableTitle">Seleccionando Tipo de Propiedad</h3>
+                    <button type="button" class="btn btn-primary" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <table class="table table-responsive" id="dataTable2">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Tipo de Propiedad</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($tipo_propiedades as $tpropiedad)
+                                    <tr>
+                                        <td scope="row">{{$tpropiedad->codtpro}}</td>
+                                        <td>{{$tpropiedad->tippro}}</td>
+
+                                        <td>
+                                            <button type="button" class="btn btn-primary btn-xs" data-bs-dismiss="modal" onclick="selectTPropiedad('{{$tpropiedad->codtpro}}', '{{$tpropiedad->tippro}}')">
+                                                <i class="fa-solid fa-check"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <script>
+                            $(document).ready(function() {
+                                $('#dataTable2').DataTable();
+                            });
+                        </script>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript"> 
+        function selectTPropiedad(codtpro, tippro){
+            document.getElementById('codtpro').value = codtpro;
+            document.getElementById('tippro').value = tippro;
+        }
+    </script>
+
 
 @endsection

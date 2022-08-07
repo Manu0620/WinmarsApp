@@ -72,8 +72,7 @@
         <div class="mb-3">
             <label for="rol">Rol</label>
             <select class="form-select" name="rol">
-                <option selected>Selecciona el Rol...</option>
-                <option value="Administrador">Administrador</option>
+                <option value="Administrador" selected>Administrador</option>
                 <option value="Usuario">Usuario</option>
                 <option value="Agente">Agente</option>
             </select>

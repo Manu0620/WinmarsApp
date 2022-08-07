@@ -18,24 +18,26 @@
             @include('layouts.partials.messages')
         @endif
 
-        <div class="row">
-            <div class="col">
-                <label for="codcli">Cliente</label>
-                <input type="text" class="form-control" name="codcli" id="codcli" value="{{ old('codcli') }}" readonly>
+        <div class="mb-3">
+            <label for="codcli" class="form-label">Cliente</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="codcli" name="codcli" readonly>
+                <button class="btn btn-primary shadow-none" style="background: #1976D2;" type="button" data-bs-toggle="modal" data-bs-target="#buscarClienteModal"><i class="fas fa-search"></i></button>  
             </div>
-            <div class="col-1" style="padding-top:1.8%;">
-                <button type="button" class="btn btn-primary" id="buscar-cli" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable"><i class="fas fa-search"></i></button>
-            </div>
+            @error('codcli')
+                @include('layouts.partials.messages')
+            @enderror
         </div>
         
-        <div class="row">
-            <div class="col">
-                <label for="codpro">Propiedad</label>
-                <input type="text" class="form-control" name="codpro" id="codpro" value="{{ old('codpro') }}" readonly> 
+        <div class="mb-3">
+            <label for="codpro" class="form-label">Propiedad</label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="codpro" name="codpro" readonly>
+                <button class="btn btn-primary shadow-none" style="background: #1976D2;" type="button" data-bs-toggle="modal" data-bs-target="#buscarPropiedadModal"><i class="fas fa-search"></i></button>  
             </div>
-            <div class="col-1" style="padding-top: 1.8%;">
-                <button type="button" class="btn btn-primary" id="buscar-pro" data-bs-toggle="modal" data-bs-target="#exampleModalScrollable1"><i class="fas fa-search"></i></button>
-            </div>
+            @error('codpro')
+                @include('layouts.partials.messages')
+            @enderror
         </div>
        
 
@@ -62,12 +64,12 @@
         
     </form>
 
-    <div class="modal fade" id="exampleModalScrollable" role="dialog" tabindex="-1" aria-labelledby="Seleccionar cliente" aria-hidden="true">
+    <div class="modal fade" id="buscarClienteModal" role="dialog" tabindex="-1" aria-labelledby="Seleccionar cliente" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title" id="exampleModalScrollableTitle">Seleccionando Cliente</h3>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <button type="button" class="btn btn-primary" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -119,7 +121,7 @@
         }
     </script>
 
-    <div class="modal fade" id="exampleModalScrollable1" tabindex="-1" role="dialog" aria-labelledby="Seleccionar Propiedad" aria-hidden="true">
+    <div class="modal fade" id="buscarPropiedadModal" tabindex="-1" role="dialog" aria-labelledby="Seleccionar Propiedad" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">

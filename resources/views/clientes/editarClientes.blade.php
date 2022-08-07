@@ -80,10 +80,8 @@
         <div class="mb-3">
             <label for="codtpcli">Tipo de Cliente</label>
             <select class="form-select" name="codtpcli">
-                <option selected>Selecciona el Tipo de cliente...</option>
-                <option value="1">Comprador</option>
-                <option value="2">Vendedor</option>
-                
+                <option value="1" {{($cliente->codtpcli == '1') ? 'selected' : ''}}>Comprador</option>
+                <option value="2" {{($cliente->codtpcli == '2') ? 'selected' : ''}}>Vendedor</option>
             </select>
         </div>
 

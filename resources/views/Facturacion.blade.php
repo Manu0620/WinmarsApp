@@ -151,7 +151,7 @@
 
     <div class="row">
         <div class="button-group" style="text-align: right;">
-            <button type="button" class="btn btn-primary shadow-none" style="background: #0ead69;"><i class="fa-solid fa-circle-plus"></i> Agregar</button>
+            <button type="button" id="agregar" class="btn btn-primary shadow-none" style="background: #0ead69;"><i class="fa-solid fa-circle-plus"></i> Agregar</button>
         </div>
     </div>
     
@@ -242,7 +242,7 @@
 
     <script type="text/javascript">
 
-    $(document).ready(function(){
+        $(document).ready(function(){
             $('#enviarCliente').click(function (e){
                 e.preventDefault(); //evita recargar la pagina
                 //var route = $('#cliente-modal-form').data('route'); Lo mismo
@@ -274,7 +274,6 @@
                             confirmButtonText: "OK!",
                             customClass: {
                                 confirmButton: "btn btn-primary"
-
                             }
                         })
                     },
@@ -389,8 +388,6 @@
             }
         }
     </script>
-
-
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
 @endsection

@@ -77,6 +77,21 @@
                 width: 200px;
             }
 
+            .swal2-popup{
+                background: #E3F2FD;
+                border-radius: 12px;
+            }
+
+            .swal2-popup .btn{
+                margin-top: 20px;
+                background: #1976d2;
+                border: none;
+            }
+
+            .swal2-title{
+                font-weight: bold;
+            }
+
             textarea{
                 background-color: transparent;
                 border: none;
@@ -226,7 +241,7 @@
         </style>
     </head>
 
-    <body>
+    <body class="antialiased">
         @auth
             @include('layouts.partials.navbar')        
             <main class="container-fluid">
@@ -245,13 +260,13 @@
     <script type="text/javascript">
         function fecha(){
             var today = new Date();
-            var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
-            var time = today.getHours() + ":" + today.getMinutes();
+            var date = today.getDate().toString().padStart(2, "0")+'/'+(today.getMonth()+1).toString().padStart(2, "0")+'/'+today.getFullYear();
+            var time = today.getHours().toString().padStart(2, "0") + ":" + today.getMinutes().toString().padStart(2, "0") + ":" + today.getSeconds().toString().padStart(2, "0");
             var dateTime = date+' '+time;
 
             document.getElementById('date').innerHTML = dateTime;
         }
       
         setInterval(fecha, 1000);
-      </script>
+    </script>
 </html>

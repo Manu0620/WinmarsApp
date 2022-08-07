@@ -27,15 +27,17 @@ class propiedadesController extends Controller
         $propiedad = propiedades::create($request->validated());
         $codpro = $propiedad->codpro;
 
-        foreach($request->file('fotos') as $image){
-            $imagen = new imagenes();
-            $path = $image->store('uploads', 'public');
-            $imagen->codpro = $codpro;
-            $imagen->url = $path;
-            $imagen->descrip = 'Foto propiedad no. '.$codpro;
+        if($request->hasFile('fotos')){
+            foreach($request->file('fotos') as $image){
+                $imagen = new imagenes();
+                $name = $image->getClientOriginalName();
+                $path = $image->move(public_path().'/uploads/',$name);
+                $imagen->codpro = $codpro;
+                $imagen->url = $path;
+                $imagen->descrip = 'Foto propiedad no. '.$codpro;
+            }
             $imagen->save();
         }
-        
         return redirect('registrarPropiedades')->with('success', 'Formulario enviado correctamente!');
     }
 
@@ -45,8 +47,13 @@ class propiedadesController extends Controller
     }
   
     public function edit(){
+        $tipo_propiedades = tipo_propiedades::all();
+        $clientes = clientes::where('codtpcli','2')
+        ->where('estcli','activo')
+        ->get();
+        $itbis = itbis::all();
         $propiedad = propiedades::find($_GET['propiedad']);
-        return view('propiedades.editarPropiedades', compact('propiedad'));
+        return view('propiedades.editarPropiedades', compact(['tipo_propiedades','clientes','itbis', 'propiedad']));
     }
   
     public function update(Request $request){

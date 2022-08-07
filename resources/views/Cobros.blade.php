@@ -16,7 +16,7 @@
 
     <div class="row">
         <div class="col">  
-            <h3>Formulario de Cobros</h3>
+            <h3>Cobros</h3>
         </div>
         <div class="col">
             <div class="button-group" style="text-align: right;">
@@ -68,6 +68,13 @@
             <div class="input-group mb-3">
                 <span class="input-group-text">$</span>
                 <input type="text" style="text-align: right;" class="form-control" id="montpag" name="montpag">
+            </div>
+        </div>
+        <div class="col">
+            <label for="formpag">Forma de Pago</label>
+            <div class="input-group">
+                <button class="btn btn-primary shadow-none" style="background: #0ead69;" type="button" id="efectivo" data-bs-toggle="modal" data-bs-target="#nuevoClienteModal"><i class="fa-solid fa-money-bills"></i> Efectivo</button>
+                <button class="btn btn-primary shadow-none" style="background: #1976D2;" type="button" id="tarjeta" data-bs-toggle="modal" data-bs-target="#buscarClienteModal"><i class="fa-solid fa-credit-card"></i> Tarjeta</button>  
             </div>
         </div>
         <div class="col"></div>
@@ -154,36 +161,37 @@
         }
     </script>
 
-<div class="modal fade" id="nuevoClienteModal" role="dialog" tabindex="-1" aria-labelledby="Nuevo Cliente" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalScrollableTitle">Nuevo Cliente</h3>
-                <button type="button" class="btn btn-primary" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="modal-form" method="POST" action="/nuevoClienteModal">
-                    @csrf
-                    @include('layouts.modals.clienteModalForm')
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+    <div class="modal fade" id="nuevoClienteModal" role="dialog" tabindex="-1" aria-labelledby="Nuevo Cliente" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalScrollableTitle">Nuevo Cliente</h3>
+                    <button type="button" class="btn btn-primary" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="cliente-modal-form" method="POST" action="/nuevoClienteModal">
+                        @csrf
+                        @include('layouts.modals.clienteModalForm')
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
     <script type="text/javascript">
+
         $(document).ready(function(){
             $('#enviarCliente').click(function (e){
                 e.preventDefault(); //evita recargar la pagina
-                //var route = $('#modal-form').data('route'); Lo mismo
-                var form  = $("#modal-form").attr("action");
+                //var route = $('#cliente-modal-form').data('route'); Lo mismo
+                var form  = $("#cliente-modal-form").attr("action");
                 //var formValues = $(this).serialize(); Lo mismo
-                var dataString = $("#modal-form").serialize();
+                var dataString = $("#cliente-modal-form").serialize();
                 $.ajax({
                     method:'POST',
                     url:form,
@@ -196,7 +204,47 @@
                         $('#tecli1').val(result.clientes[0].tecli1);
                         $('#cedrnc').val(result.clientes[0].cedrnc);
                         
-                        $("#modal-form")[0].reset(); //limpiar Formulario
+                        $("#cliente-modal-form")[0].reset(); //limpiar Formulario
+                        $("#nuevoClienteModal").modal('hide'); //cerrar Modal
+                        Swal.fire({
+                            title: 'Exito',
+                            text: 'Cliente/a '+ result.clientes[0].nomcli +' registrado correctamente!',
+                            icon: 'success',
+                            iconColor: '#0ead69',
+                            showConfirmButton: true,
+                            confirmButtonColor: '#1976D2',
+                            buttonsStyling: false,
+                            confirmButtonText: "OK!",
+                            customClass: {
+                                confirmButton: "btn btn-primary"
+                            }
+                        })
+                    },
+                    error: function(err){
+                        if (err.status == 422) { // when status code is 422, it's a validation issue
+                            console.log(err.responseJSON);
+                            $('#success_message').fadeIn().html(err.responseJSON.message);
+                            
+                            // you can loop through the errors object and show it to the user
+                            console.warn(err.responseJSON.errors);
+                            // display errors on each form field
+                            $.each(err.responseJSON.errors, function (i, error) {
+                                var el = $('#cliente-modal-form').find('[name="'+i+'"]');
+                                el.after($('<ol style="margin: 0px; margin-left: 10px; padding:0px; color: #d62828;"><i class="fa-solid fa-circle-exclamation"></i> '+error[0]+'</ol>').fadeIn());        
+                                $("ol").each(function(index) {
+                                    setTimeout(() => {
+                                        $("ol").fadeOut(1000);
+                                    }, 2500);
+                                });
+                            });
+                        }
+                        /*Swal.fire({
+                            icon: 'error',
+                            title: 'Intentelo de nuevo...',
+                            text: 'Puede que el dato en el campo telefono, correo o cedula/rnc ya esten en uso o tengan formato incorrecto',
+                            footer: '<a href="consultarClientes"  style="text-decoration: none; color: #1976d2;">Que puedo hacer? <p style="font-weight: bold;">Consultar clientes</p></a>',
+                            showConfirmButton: false
+                        })*/
                     }
                 });
             });

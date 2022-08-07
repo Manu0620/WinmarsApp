@@ -50,6 +50,8 @@
         </thead>
         <tbody>
             @foreach ($propiedades as $propiedad)
+                @php $clientes = clientes::where('codcli',$propiedad->codcli)->first(); @endphp
+                @if(!is_null($clientes))
                 <tr>
                     <td scope="row">{{ $propiedad->codpro }}</td>
                     <td>{{ $propiedad->titulo }}</td>
@@ -61,10 +63,7 @@
                     <td>{{ $propiedad->preven }}</td>
                     <td>{{ $propiedad->preren }}</td>
                     <td>{{ $propiedad->comision }}</td>
-                    @php $clientes = clientes::where('codcli',$propiedad->codcli)->first(); @endphp
-                    @if(!is_null($clientes))
-                        <td>{{ $clientes->codcli. ' - ' .$clientes->nomcli. '  ' .$clientes->apecli }}</td>
-                    @endif
+                    <td>{{ $clientes->codcli. ' - ' .$clientes->nomcli. '  ' .$clientes->apecli }}</td>
                     @if($propiedad->estpro == 'inactivo')
                         <td><li class="btn btn-warning">{{ $propiedad->estpro}}</li></td>
                     @elseif($propiedad->estpro == 'activo')
@@ -76,6 +75,7 @@
                         <a href="{{ route('inhabilitarPropiedad', ['id' => $propiedad->codpro]) }}" class="btn btn-danger btn-editar"><i class="fas fa-ban"></i></a>
                     </td>
                 </tr>
+                @endif
             @endforeach
         </tbody>
     </table>

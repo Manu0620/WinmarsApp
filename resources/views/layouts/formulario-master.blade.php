@@ -76,7 +76,7 @@
             }
 
             .form-container{
-                width: 35%;
+                width: 45%;
                 margin: 8%;
                 font-weight: 600;
             }
@@ -197,7 +197,7 @@
         </style>
     </head>
 
-    <body>
+    <body class="antialiased">
         @auth
             @include('layouts.partials.navbar')
 
@@ -218,13 +218,13 @@
     <script type="text/javascript">
         function fecha(){
             var today = new Date();
-            var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
-            var time = today.getHours() + ":" + today.getMinutes();
+            var date = today.getDate().toString().padStart(2, "0")+'/'+(today.getMonth()+1).toString().padStart(2, "0")+'/'+today.getFullYear();
+            var time = today.getHours().toString().padStart(2, "0") + ":" + today.getMinutes().toString().padStart(2, "0") + ":" + today.getSeconds().toString().padStart(2, "0");
             var dateTime = date+' '+time;
 
             document.getElementById('date').innerHTML = dateTime;
         }
       
         setInterval(fecha, 1000);
-      </script>
+    </script>
 </html>
