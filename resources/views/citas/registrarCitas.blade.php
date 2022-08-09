@@ -36,7 +36,7 @@
 
         <div class="mb-3">
             <label for="fecha">Fecha</label>
-            <input type="datetime-local" class="form-control" name="fecha" placeholder="Ingrese el fecha..." value="{{ old('fecha') }}">
+            <input type="datetime-local" min="{{  $fechaHoy = date("Y-m-d h:i", strtotime(date("Y-m-d h:i")."+ 2 days")) }}" class="form-control" name="fecha" placeholder="Ingrese el fecha..." value="{{ old('fecha') }}">
             @error('fecha')
             @include('layouts.partials.messages')
         @enderror
@@ -44,7 +44,7 @@
 
         <div class="mb-3">
             <label for="descrip">Descripcion</label>
-            <textarea class="form-control" name="descrip" rows="4" cols="50" placeholder="Descripcion..." value="{{ old('descrip') }}"> </textarea>
+            <textarea class="form-control" name="descrip" rows="4" cols="50" placeholder="Descripcion..." value="{{ old('descrip') }}"></textarea>
             @error('descrip')
             @include('layouts.partials.messages')
         @enderror

@@ -41,6 +41,19 @@
                 width: 100%;
             }
 
+            ::-webkit-scrollbar{
+                background: #E3F2FD;
+            }
+
+            ::-webkit-scrollbar-button{
+                display: none;
+            }
+
+            ::-webkit-scrollbar-thumb{
+                background: #bfe4ff;
+                border-radius: 10px;
+            }
+
             .footer{
                 display: flex;
                 font-weight: bold;

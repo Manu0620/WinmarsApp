@@ -39,13 +39,15 @@
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
-                <th>Telefono 1</th>
-                <th>Telefono 2</th>
+                <th>Telefono</th>
+                <th>Celular</th>
                 <th>Direccion</th>
                 <th>Correo</th>
                 <th>Cedula/RNC</th>
-                <th>Tip.Empleado</th>
+                <th>Tipo (Empleado)</th>
                 <th>Posicion</th>
+                <th>Entrada</th>
+                <th>Salida</th>
                 <th>Estado</th>
                 <th>Acciones</th>
 
@@ -70,6 +72,8 @@
                         $pos_emp = posiciones_empleado::where('codpos',$empleado->codpos)->first();
                     @endphp
                     <td>{{ $pos_emp->posicion }}</td> 
+                    <td>{{ $empleado->hora_entrada }}</td> 
+                    <td>{{ $empleado->hora_salida }}</td> 
                     @if($empleado->estemp == 'inactivo')
                         <td><li class="btn btn-warning">{{ $empleado->estemp}}</li></td>
                     @elseif($empleado->estemp == 'activo')

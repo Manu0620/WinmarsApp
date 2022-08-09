@@ -32,6 +32,24 @@
                 height: 100vh;
             }
 
+            .footer{
+                display: flex;
+                font-weight: bold;
+                background: #E3F2FD;
+                justify-content: center;
+                height: 50px;
+                width: 100%;
+            }
+
+            .rights, .date{
+                line-height: 50px;
+            }
+
+            .date{
+                position: absolute;
+                right: 20px;
+            }
+
             label{
                 margin-left: 10px;
             }
@@ -85,5 +103,22 @@
 
         <script src="{{ url('assets/js/bootstrap.bundle.min.js') }}"></script>
     </body>
+    <footer class="footer footer-expand-lg fixed-bottom">
+        <p class="rights"> © 2022 Winmars Properties S.R.L. All rights reserved. </p>
+        <p class="date" id="date"></p>
+    </footer>
+
+    <script type="text/javascript">
+        function fecha(){
+            var today = new Date();
+            var date = today.getDate().toString().padStart(2, "0")+'/'+(today.getMonth()+1).toString().padStart(2, "0")+'/'+today.getFullYear();
+            var time = today.getHours().toString().padStart(2, "0") + ":" + today.getMinutes().toString().padStart(2, "0") + ":" + today.getSeconds().toString().padStart(2, "0");
+            var dateTime = date+' '+time;
+
+            document.getElementById('date').innerHTML = dateTime;
+        }
+      
+        setInterval(fecha, 1000);
+    </script>
 
 </html>

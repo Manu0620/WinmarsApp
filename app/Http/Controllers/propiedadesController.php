@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\propiedadesRequest;
 use App\Models\propiedades;
 use App\Models\clientes;
+use App\Models\direcciones;
 use App\Models\imagenes;
 use App\Models\tipo_propiedades;
 use App\Models\itbis;
@@ -28,17 +29,22 @@ class propiedadesController extends Controller
         $propiedad = propiedades::create($request->validated());
         $codpro = $propiedad->codpro;
 
-        if ($request->hasFile('fotos')) {
-            foreach ($request->file('fotos') as $image) {
-                $imagen = new imagenes();
-                $name = $image->getClientOriginalName();
-                $path = $image->move(public_path() . '/uploads/', $name);
-                $imagen->codpro = $codpro;
-                $imagen->url = $path;
-                $imagen->descrip = 'Foto propiedad no. ' . $codpro;
-            }
-            $imagen->save();
+        foreach ($request->file('fotos') as $foto) {
+            $path = $foto->store('fotos');
+            imagenes::create([
+                'codpro' => $codpro,
+                'url' => $path,
+                'descrip' => 'Foto propiedad no. ' . $codpro
+            ]);
         }
+
+        $direccion = new direcciones();
+        $direccion->codpro = $codpro;
+        $direccion->ciudad = $request->ciudad;
+        $direccion->municipio = $request->municipio;
+        $direccion->direccion = $request->direccion;
+        $direccion->save();
+
         return redirect('registrarPropiedades')->with('success', 'Formulario enviado correctamente!');
     }
 

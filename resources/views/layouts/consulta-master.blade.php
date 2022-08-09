@@ -11,7 +11,7 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.25/dist/sweetalert2.all.min.js"></script>
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>      
+        <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script> 
         <!--Fonts-->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
         <!--Bootstrap-->
@@ -36,8 +36,21 @@
                 align-items: center;
                 justify-content: center;
                 width: 100%;
-                margin-top: 10%;
+                margin-top: 7%;
                 margin-bottom: 5%;
+            }
+
+            ::-webkit-scrollbar{
+                background: #E3F2FD;
+            }
+
+            ::-webkit-scrollbar-button{
+                display: none;
+            }
+
+            ::-webkit-scrollbar-thumb{
+                background: #bfe4ff;
+                border-radius: 10px;
             }
 
             .footer{
@@ -185,6 +198,12 @@
                 height: 40px;
                 color: #0ead69;
                 font-weight: bold;
+            }
+
+            .modal-body .input-group .btn{
+                background: #1976d2;
+                margin: 0;
+                height: 41px;
             }
 
             .button-group button, .table a, .button-group a{

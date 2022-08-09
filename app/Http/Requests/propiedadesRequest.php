@@ -16,6 +16,10 @@ class propiedadesRequest extends FormRequest
         return [
             'titulo' => 'required',
             'descrip' => 'required',
+            'direccion' => 'required',
+            'municipio' => 'required|regex:/^[a-zA-Z]+$/u',
+            'ciudad' => 'required|regex:/^[a-zA-Z]+$/u',
+            'fotos' => 'required',
             'habit' => 'required|integer',
             'baños' => 'required|integer',
             'metros' => 'required|integer',
@@ -29,5 +33,4 @@ class propiedadesRequest extends FormRequest
             'estpro' => 'required',
         ];
     }
-
 }

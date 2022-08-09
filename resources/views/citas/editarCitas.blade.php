@@ -48,7 +48,7 @@
 
         <div class="mb-3">
             <label for="descrip">Descripcion</label>
-            <textarea class="form-control" name="descrip" rows="4" cols="50" placeholder="Descripcion..."> {{ $cita->descrip }} </textarea>
+            <textarea class="form-control" name="descrip" rows="4" cols="50" placeholder="Descripcion...">{{ $cita->descrip }}</textarea>
             @error('descrip')
             @include('layouts.partials.messages')
         @enderror

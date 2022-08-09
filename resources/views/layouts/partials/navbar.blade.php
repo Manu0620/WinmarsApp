@@ -75,6 +75,7 @@
                             <li><a class="dropdown-item" href="registrarCitas"><i class="fa-solid fa-calendar-check" style="position: initial;"></i>  Citas <i class="fa-solid fa-arrow-right"></i></a></li>
                         @endif
                         @if($rol == 'Agente')
+                            <li><a class="dropdown-item" href="registrarPropiedades"><i class="fa-solid fa-building" style="position: initial;"></i>  Propiedades <i class="fa-solid fa-arrow-right"></i></a></li>
                             <li><a class="dropdown-item" href="registrarSolicitudes"><i class="fa-solid fa-code-pull-request" style="position: initial;"></i>  Solicitudes <i class="fa-solid fa-arrow-right"></i></a></li>
                             <li><a class="dropdown-item" href="registrarCitas"><i class="fa-solid fa-calendar-check" style="position: initial;"></i>  Citas <i class="fa-solid fa-arrow-right"></i></a></li>
                         @endif

@@ -41,16 +41,16 @@
         </div>
 
         <div class="mb-3">
-            <label for="tecli1">Teléfono 1</label>
-            <input type="text" class="form-control" name="tecli1" placeholder="Ingrese el teléfono 1..." value="{{ $cliente->tecli1 }}">
+            <label for="tecli1">Teléfono</label>
+            <input type="text" class="form-control" name="tecli1" placeholder="Ingrese el teléfono..." value="{{ $cliente->tecli1 }}">
             @error('tecli1')
                 @include('layouts.partials.messages')
             @enderror
         </div>
 
         <div class="mb-3">
-            <label for="tecli2">Teléfono 2</label>
-            <input type="text" class="form-control" name="tecli2" placeholder="Ingrese el teléfono 2..." value="{{ $cliente->tecli2 }}">
+            <label for="tecli2">Celular</label>
+            <input type="text" class="form-control" name="tecli2" placeholder="Ingrese el celular..." value="{{ $cliente->tecli2 }}">
             @error('tecli2')
                 @include('layouts.partials.messages')
             @enderror

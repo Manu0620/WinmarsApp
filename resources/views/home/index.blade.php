@@ -7,26 +7,24 @@
       <div class="row">
         <div class="col-lg-3 col-6">
           <!-- small box -->
-          <div class="small-box" style="background: #1976D2; color: white; border-radius: 10px;">
+          <div class="small-box">
             <div class="inner">
               <h3>5</h3>
-
               <p>Citas Pendientes</p>
             </div>
             <div class="icon">
-              <i class="fas fa-shopping-bag"></i>
+              <i class="fa-solid fa-calendar-check"></i>
             </div>
-            <a href="#" class="small-box-footer">Mas informacion <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="/consultarCitas" class="small-box-footer">Mas informacion <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
         <div class="col-lg-3 col-6">
           <!-- small box -->
-          <div class="small-box" style="background: #1E88E5; color: white; border-radius: 10px;">
+          <div class="small-box">
             <div class="inner">
-              <h3>10<sup style="font-size: 20px"></sup></h3>
-
-              <p>Solicitud sin contestar</p>
+              <h3>10</h3>
+              <p>Solicitudes sin contestar</p>
             </div>
             <div class="icon">
               <i class="fa-solid fa-code-pull-request"></i>
@@ -37,10 +35,9 @@
         <!-- ./col -->
         <div class="col-lg-3 col-6">
           <!-- small box -->
-          <div class="small-box" style="background: #2196F3; color: white; border-radius: 10px;">
+          <div class="small-box">
             <div class="inner">
               <h3>15</h3>
-
               <p>Facturas Pendientes</p>
             </div>
             <div class="icon">
@@ -52,10 +49,9 @@
         <!-- ./col -->
         <div class="col-lg-3 col-6">
           <!-- small box -->
-          <div class="small-box" style="background: #42A5F5; color: white; border-radius: 10px;">
+          <div class="small-box">
             <div class="inner">
               <h3>50</h3>
-
               <p>Propiedades vendidas</p>
             </div>
             <div class="icon">
@@ -72,51 +68,55 @@
           <h3 class="card-title">Ventas</h3>
           <div class="card-tools">
             <!-- Collapse Button -->
-            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+            <button type="button" class="btn btn-primary" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
           </div>
           <!-- /.card-tools -->
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-          <div>
-            <canvas id="myChart"></canvas>
-          </div>  
+          <div id="chartContainer" style="height: 370px; width: 100%;"></div>
           
-          <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+          <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+          <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
     
           {{-- SCRIPT DEL GRAFICO --}}
           <script>
-            const labels = [
-              'January',
-              'February',
-              'March',
-              'April',
-              'May',
-              'June',
-            ];
-          
-            const data = {
-              labels: labels,
-              datasets: [{
-                label: 'My First dataset',
-                backgroundColor: 'rgb(255, 99, 132)',
-                borderColor: 'rgb(255, 99, 132)',
-                data: [0, 10, 5, 2, 20, 30, 45],
-              }]
-            };
-          
-            const config = {
-              type: 'line',
-              data: data,
-              options: {}
-            };
-          </script>
-    
-          <script>
-            const myChart = new Chart(
-              document.getElementById('myChart'),
-              config
-            );
+            window.onload = function () {
+
+              var options = {
+                animationEnabled: true,  
+                title:{
+                  text: "Monthly Sales - 2017"
+                },
+                axisX: {
+                  valueFormatString: "MMM"
+                },
+                axisY: {
+                  title: "Sales (in USD)",
+                  prefix: "$"
+                },
+                data: [{
+                  yValueFormatString: "$#,###",
+                  xValueFormatString: "MMMM",
+                  type: "spline",
+                  dataPoints: [
+                    { x: new Date(2017, 0), y: 25060 },
+                    { x: new Date(2017, 1), y: 27980 },
+                    { x: new Date(2017, 2), y: 33800 },
+                    { x: new Date(2017, 3), y: 49400 },
+                    { x: new Date(2017, 4), y: 40260 },
+                    { x: new Date(2017, 5), y: 33900 },
+                    { x: new Date(2017, 6), y: 48000 },
+                    { x: new Date(2017, 7), y: 31500 },
+                    { x: new Date(2017, 8), y: 32300 },
+                    { x: new Date(2017, 9), y: 42000 },
+                    { x: new Date(2017, 10), y: 52160 },
+                    { x: new Date(2017, 11), y: 49400 }
+                  ]
+                }]
+              };
+              $("#chartContainer").CanvasJSChart(options);
+            }
           </script>
         </div>
         <!-- /.card-body -->

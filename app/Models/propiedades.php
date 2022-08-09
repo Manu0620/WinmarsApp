@@ -15,7 +15,6 @@ class propiedades extends Model
     protected $fillable = [
         'titulo',
         'descrip',
-        'fotos',
         'habit',
         'baños',
         'metros',

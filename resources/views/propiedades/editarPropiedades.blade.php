@@ -52,52 +52,55 @@
         @enderror
         </div>
 
-        <div class="mb-3">
-            <label for="habit">Habitaciones</label>
-            <input type="number" class="form-control" name="habit" placeholder="Numero de habitaciones..." value="{{ $propiedad->habit }}">
-            @error('habit')
-            @include('layouts.partials.messages')
-        @enderror
+        <div class="row" style="margin-bottom: 12px;">
+            <div class="col">
+                <label for="habit">Habitaciones</label>
+                <input type="number" class="form-control" name="habit" placeholder="Numero de habitaciones..." value="{{ $propiedad->habit }}">
+                @error('habit')
+                    @include('layouts.partials.messages')
+                @enderror
+            </div>
+            <div class="col">
+                <label for="baños">Baños</label>
+                <input type="number" class="form-control" name="baños" placeholder="Numero de baños..." value="{{ $propiedad->baños }}">
+                @error('baños')
+                    @include('layouts.partials.messages')
+                @enderror
+            </div>
         </div>
 
-        <div class="mb-3">
-            <label for="baños">Baños</label>
-            <input type="number" class="form-control" name="baños" placeholder="Numero de baños..." value="{{ $propiedad->baños }}">
-            @error('baños')
-            @include('layouts.partials.messages')
-        @enderror
+        <div class="row" style="margin-bottom: 12px;">
+            <div class="col">
+                <label for="metros">Metros</label>
+                <input type="text" class="form-control" name="metros" placeholder="Metros..." value="{{ $propiedad->metros }}">
+                @error('metros')
+                    @include('layouts.partials.messages')
+                @enderror
+            </div>
+            <div class="col">
+                <label for="parqueo">Parqueos</label>
+                <input type="number" class="form-control" name="parqueo" placeholder="Numero de parqueos..." value="{{ $propiedad->parqueo }}">
+                @error('parqueo')
+                    @include('layouts.partials.messages')
+                @enderror
+            </div>
         </div>
 
-        <div class="mb-3">
-            <label for="metros">Metros</label>
-            <input type="text" class="form-control" name="metros" placeholder="Metros..." value="{{ $propiedad->metros }}">
-            @error('metros')
-            @include('layouts.partials.messages')
-        @enderror
-        </div>
-
-        <div class="mb-3">
-            <label for="parqueo">Parqueos</label>
-            <input type="number" class="form-control" name="parqueo" placeholder="Numero de parqueos..." value="{{ $propiedad->parqueo }}">
-            @error('parqueo')
-            @include('layouts.partials.messages')
-        @enderror
-        </div>
-
-        <div class="mb-3">
-            <label for="preven">Precio de venta</label>
-            <input type="text" class="form-control" name="preven" placeholder="Ingrese precio de venta..." value="{{ $propiedad->preven }}">
-            @error('preven')
-            @include('layouts.partials.messages')
-        @enderror
-        </div>
-
-        <div class="mb-3">
-            <label for="preren">Precio de renta</label>
-            <input type="text" class="form-control" name="preren" placeholder="Ingrese precio de renta..." value="{{ $propiedad->preren }}">
-            @error('preren')
-            @include('layouts.partials.messages')
-        @enderror
+        <div class="row" style="margin-bottom: 12px;">
+            <div class="col">
+                <label for="preven">Precio de venta</label>
+                <input type="text" class="form-control" name="preven" placeholder="Ingrese precio de venta..." value="{{ $propiedad->preven }}">
+                @error('preven')
+                    @include('layouts.partials.messages')
+                @enderror
+            </div>
+            <div class="col">
+                <label for="preren">Precio de renta</label>
+                <input type="text" class="form-control" name="preren" placeholder="Ingrese precio de renta..." value="{{ $propiedad->preren }}">
+                @error('preren')
+                    @include('layouts.partials.messages')
+                @enderror
+            </div>
         </div>
 
         <div class="mb-3">

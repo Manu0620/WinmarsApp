@@ -141,8 +141,8 @@
 
         function fecha(){
             var today = new Date();
-            var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
-            var time = today.getHours() + ":" + today.getMinutes();
+            var date = today.getDate().toString().padStart(2, "0")+'/'+(today.getMonth()+1).toString().padStart(2, "0")+'/'+today.getFullYear();
+            var time = today.getHours().toString().padStart(2, "0") + ":" + today.getMinutes().toString().padStart(2, "0");
             var dateTime = date+' '+time;
 
             document.getElementById('fecha').value = dateTime;
@@ -167,7 +167,7 @@
         <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="exampleModalScrollableTitle">Nuevo Cliente</h3>
+                    <h3 class="modal-title" id="exampleModalScrollableTitle">Registrar Cliente</h3>
                     <button type="button" class="btn btn-primary" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

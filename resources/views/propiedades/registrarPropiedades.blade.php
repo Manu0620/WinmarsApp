@@ -1,6 +1,12 @@
 @extends('layouts.formulario-master')
 <title>Registro de Propiedades</title>
 
+@php
+    use App\Models\clientes;
+    use App\Models\tipo_propiedades;
+    use App\Models\itbis;
+@endphp
+
 @section('content')
 
     <div class="tab-nav">
@@ -35,74 +41,102 @@
         </div>
 
         <div class="mb-3">
+            <label for="direccion">Direccion</label>
+            <textarea type="text" class="form-control" name="direccion" rows="3" placeholder="Ingrese la direccion...">{{ old('direccion') }}</textarea>
+            @error('direccion')
+            @include('layouts.partials.messages')
+        @enderror
+        </div>
+
+        <div class="row" style="margin-bottom: 12px;">
+            <div class="col">
+                <label for="ciudad">Provincia</label>
+                <input type="text" class="form-control" name="ciudad" value="{{ old('ciudad') }}" placeholder="Ingrese el ciudad...">
+                @error('ciudad')
+                    @include('layouts.partials.messages')
+                @enderror
+            </div>
+            <div class="col">
+                <label for="municipio">Municipio</label>
+                <input type="text" class="form-control" name="municipio" value="{{ old('municipio') }}" placeholder="Ingrese el municipio...">
+                @error('municipio')
+                    @include('layouts.partials.messages')
+                @enderror
+            </div>
+        </div>
+
+        <div class="mb-3">
             <label for="fotos">Fotos</label>
-            <input type="file" class="form-control" name="fotos" value="{{ old('fotos') }}" accept="image/*" multiple>
+            <input type="file" class="form-control" name="fotos[]" accept="image/*" multiple="multiple">
             @error('fotos')
             @include('layouts.partials.messages')
         @enderror
         </div>
 
-        <div class="mb-3">
-            <label for="habit">Habitaciones</label>
-            <input type="number" min="0" class="form-control" name="habit" value="{{ old('habit') }}" placeholder="Numero de habitaciones...">
-            @error('habit')
-            @include('layouts.partials.messages')
-        @enderror
+        <div class="row" style="margin-bottom: 12px;">
+            <div class="col">
+                <label for="habit">Habitaciones</label>
+                <input type="number" min="0" class="form-control" name="habit" value="{{ old('habit') }}" placeholder="Numero de habitaciones...">
+                @error('habit')
+                    @include('layouts.partials.messages')
+                @enderror
+            </div>
+            <div class="col">
+                <label for="baños">Baños</label>
+                <input type="number" min="0" class="form-control" name="baños" value="{{ old('baños') }}" placeholder="Numero de baños...">
+                @error('baños')
+                    @include('layouts.partials.messages')
+                @enderror
+            </div>
         </div>
 
-        <div class="mb-3">
-            <label for="baños">Baños</label>
-            <input type="number" min="0" class="form-control" name="baños" value="{{ old('baños') }}" placeholder="Numero de baños...">
-            @error('baños')
-            @include('layouts.partials.messages')
-        @enderror
+        <div class="row" style="margin-bottom: 12px;">
+            <div class="col">
+                <label for="metros">Metros</label>
+                <input type="text" class="form-control" name="metros" value="{{ old('metros') }}" placeholder="Metros...">
+                @error('metros')
+                    @include('layouts.partials.messages')
+                @enderror
+            </div>
+            <div class="col">
+                <label for="parqueo">Parqueos</label>
+                <input type="number" min="0" class="form-control" name="parqueo" value="{{ old('parqueo') }}" placeholder="Numero de parqueos...">
+                @error('parqueo')
+                    @include('layouts.partials.messages')
+                @enderror
+            </div>
         </div>
 
-        <div class="mb-3">
-            <label for="metros">Metros</label>
-            <input type="text" class="form-control" name="metros" value="{{ old('metros') }}" placeholder="Metros...">
-            @error('metros')
-            @include('layouts.partials.messages')
-        @enderror
-        </div>
-
-        <div class="mb-3">
-            <label for="parqueo">Parqueos</label>
-            <input type="number" min="0" class="form-control" name="parqueo" value="{{ old('parqueo') }}" placeholder="Numero de parqueos...">
-            @error('parqueo')
-            @include('layouts.partials.messages')
-        @enderror
-        </div>
-
-        <div class="mb-3">
-            <label for="preven">Precio de venta</label>
-            <input type="text" class="form-control" name="preven" value="{{ old('preven') }}" placeholder="Ingrese precio de venta...">
-            @error('preven')
-            @include('layouts.partials.messages')
-        @enderror
-        </div>
-
-        <div class="mb-3">
-            <label for="preren">Precio de renta</label>
-            <input type="text" class="form-control" name="preren" value="{{ old('preren') }}" placeholder="Ingrese precio de renta...">
-            @error('preren')
-            @include('layouts.partials.messages')
-        @enderror
+        <div class="row" style="margin-bottom: 12px;">
+            <div class="col">
+                <label for="preven">Precio de venta</label>
+                <input type="text" class="form-control" name="preven" value="{{ old('preven') }}" placeholder="Ingrese precio de venta...">
+                @error('preven')
+                    @include('layouts.partials.messages')
+                @enderror
+            </div>
+            <div class="col">
+                <label for="preren">Precio de renta</label>
+                <input type="text" class="form-control" name="preren" value="{{ old('preren') }}" placeholder="Ingrese precio de renta...">
+                @error('preren')
+                    @include('layouts.partials.messages')
+                @enderror
+            </div>
         </div>
 
         <div class="mb-3">
             <label for="comision">Comision(ganacia)</label>
             <input type="text" class="form-control" name="comision" value="{{ old('comision') }}" placeholder="Ingrese comision...">
             @error('comision')
-            @include('layouts.partials.messages')
-        @enderror
+                @include('layouts.partials.messages')
+            @enderror
         </div>
 
         <div class="mb-3">
-            <input type="hidden" name="codcli" id="codcli">
+            <input type="hidden" name="codcli" id="codcli" value="{{ old('codcli') }}">
             <label for="codcli">Cliente</label>
             <div class="input-group">
-                <input type="text" class="form-control" id="nomcli" name="nomcli" readonly>
+                <input type="text" class="form-control" value="{{ old('nomcli') }}" id="nomcli" name="nomcli" readonly>
                 <button class="btn btn-primary shadow-none" style="background: #1976D2;" type="button" id="buscar-cli" data-bs-toggle="modal" data-bs-target="#buscarClienteModal"><i class="fas fa-search"></i></button>  
             </div>
             @error('codcli')
@@ -111,10 +145,10 @@
         </div>
 
         <div class="mb-3">
-            <input type="hidden" name="codtpro" id="codtpro">
+            <input type="hidden" name="codtpro" id="codtpro" value="{{ old('codtpro') }}">
             <label for="codtpro">Tipo de Propiedad</label>
             <div class="input-group">
-                <input type="text" class="form-control" id="tippro" name="tippro" readonly>
+                <input type="text" class="form-control" value="{{ old('tippro') }}" id="tippro" name="tippro" readonly>
                 <button class="btn btn-primary shadow-none" style="background: #1976D2;" type="button" id="buscar-tpro" data-bs-toggle="modal" data-bs-target="#tipoPropiedadModal"><i class="fas fa-search"></i></button>  
             </div>
             @error('codtpro')
@@ -123,10 +157,10 @@
         </div>
 
         <div class="mb-3">
-            <input type="hidden" name="citbis" id="citbis">
+            <input type="hidden" name="citbis" id="citbis" value="{{ old('citbis') }}">
             <label for="citbis">Itbis</label>
             <div class="input-group">
-                <input type="text" class="form-control" id="itbis" name="itbis" readonly>
+                <input type="text" class="form-control" value="{{ old('itbis') }}" id="itbis" name="itbis" readonly>
                 <button class="btn btn-primary shadow-none" style="background: #1976D2;" type="button" id="buscar-itb" data-bs-toggle="modal" data-bs-target="#itbisModal"><i class="fas fa-search"></i></button>  
             </div>
             @error('citbis')

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\clienteRequest;
 use App\Models\clientes;
 use App\Models\tipo_clientes;
+use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\Request;
 
 class clientesController extends Controller
@@ -28,12 +29,12 @@ class clientesController extends Controller
         $cliente = new clientes();
 
         $this->validate($request, [
-            'nomcli' => 'required|string',
-            'apecli' => 'required|string',
+            'nomcli' => 'required|regex:/^[a-zA-Z]+$/u',
+            'apecli' => 'required|regex:/^[a-zA-Z]+$/u',
             'tecli1' => 'required|numeric|digits:10|starts_with:809,829,849|unique:clientes,tecli1',
             'tecli2' => 'nullable|numeric|digits:10|starts_with:809,829,849|unique:clientes,tecli2',
             'dircli' => 'required',
-            'corcli' => 'required|string|email|unique:clientes,corcli',
+            'corcli' => 'required|email|unique:clientes,corcli',
             'cedrnc' => 'required|numeric|digits:11|starts_with:402,031|unique:clientes,cedrnc',
             'codtpcli' => 'required|integer',
             'estcli' => 'required',

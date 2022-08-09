@@ -30,11 +30,75 @@
                 align-items: center;
                 justify-content: center;
                 width: 100%;
-                margin-top: 13%;
+                margin-top: 10%;
+                margin-bottom: 5%;
+            }
+
+            ::-webkit-scrollbar{
+                background: #E3F2FD;
+            }
+
+            ::-webkit-scrollbar-button{
+                display: none;
+            }
+
+            ::-webkit-scrollbar-thumb{
+                background: #bfe4ff;
+                border-radius: 10px;
+            }
+
+            .small-box, .small-box-footer{
+                background: #1976d2;
+                color: #E3F2FD;
+                border-radius: 12px;
+            }
+
+            .small-box .icon i{
+                font-size: 50px;
+            }
+
+            .inner p{
+                font-weight: 600;
+            }
+
+            .footer{
+                display: flex;
+                font-weight: bold;
+                font-size: 16px;
+                background: #E3F2FD;
+                justify-content: center;
+                height: 50px;
+                width: 100%;
+            }
+
+            .rights, .date{
+                line-height: 50px;
+            }
+
+            .date{
+                position: absolute;
+                right: 20px;
             }
 
             .container{
                 width: 100%;
+            }
+
+            .card{
+                background: #E3F2FD;
+                border-radius: 12px;
+            }
+
+            .card-title, .card-tools{
+                font-weight: bold;
+                vertical-align: center;
+            }
+
+            .card-tools button{
+                width: fit-content;
+                background: #1976d2;
+                border-radius: 10px;
+                border: none;
             }
 
         </style>
@@ -56,5 +120,22 @@
 
         <script src="{{ url('assets/js/bootstrap.bundle.min.js') }}"></script>
     </body>
+    <footer class="footer footer-expand-lg fixed-bottom">
+        <p class="rights"> © 2022 Winmars Properties S.R.L. All rights reserved. </p>
+        <p class="date" id="date"></p>
+    </footer>
+
+    <script type="text/javascript">
+        function fecha(){
+            var today = new Date();
+            var date = today.getDate().toString().padStart(2, "0")+'/'+(today.getMonth()+1).toString().padStart(2, "0")+'/'+today.getFullYear();
+            var time = today.getHours().toString().padStart(2, "0") + ":" + today.getMinutes().toString().padStart(2, "0") + ":" + today.getSeconds().toString().padStart(2, "0");
+            var dateTime = date+' '+time;
+
+            document.getElementById('date').innerHTML = dateTime;
+        }
+      
+        setInterval(fecha, 1000);
+    </script>
 
 </html>

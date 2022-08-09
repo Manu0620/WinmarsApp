@@ -12,11 +12,11 @@ class tipoClienteRequest extends FormRequest
         return true;
     }
 
-    
+
     public function rules()
     {
         return [
-           'tipcli' => 'required|string',
+            'tipcli' => 'required|regex:/^[a-zA-Z]+$/u',
         ];
     }
 }

@@ -1,7 +1,7 @@
 
     <div class="mb-3">
         <label for="nomcli">Nombre</label>
-        <input type="text" class="form-control" name="nomcli" value="{{ old('nomcli') }}" id="mnomcli" placeholder="Ingrese el nombre...">
+        <input type="text" class="form-control" name="nomcli" value="{{ old('mnomcli') }}" id="mnomcli" placeholder="Ingrese el nombre...">
         @error('nomcli')
             @include('layouts.partials.messages')
         @enderror
@@ -9,7 +9,7 @@
 
     <div class="mb-3">
         <label for="apecli">Apellido</label>
-        <input type="text" class="form-control" name="apecli" value="{{ old('apecli') }}" id="mapecli" placeholder="Ingrese el apellido...">
+        <input type="text" class="form-control" name="apecli" value="{{ old('mapecli') }}" id="mapecli" placeholder="Ingrese el apellido...">
         @error('apecli')
         @include('layouts.partials.messages')
     @enderror
@@ -17,7 +17,7 @@
 
     <div class="mb-3">
         <label for="tecli1">Teléfono 1</label>
-        <input type="tel" class="form-control" name="tecli1" id="mtecli1" value="{{ old('tecli1') }}" placeholder="Ingrese el teléfono 1...">
+        <input type="tel" class="form-control" name="tecli1" id="mtecli1" value="{{ old('mtecli1') }}" placeholder="Ingrese el teléfono 1...">
         @error('tecli1')
         @include('layouts.partials.messages')
     @enderror
@@ -25,7 +25,7 @@
 
     <div class="mb-3">
         <label for="tecli2">Teléfono 2</label>
-        <input type="tel" class="form-control" name="tecli2" id="mtecli2" value="{{ old('tecli2') }}" placeholder="Ingrese el teléfono 2...">
+        <input type="tel" class="form-control" name="tecli2" id="mtecli2" value="{{ old('mtecli2') }}" placeholder="Ingrese el teléfono 2...">
         @error('tecli2')
         @include('layouts.partials.messages')
     @enderror
@@ -33,7 +33,7 @@
 
     <div class="mb-3">
         <label for="dircli">Dirección</label>
-        <input type="text" class="form-control" name="dircli" id="mdircli" value="{{ old('dirccli') }}" placeholder="Ingrese la dirección...">
+        <input type="text" class="form-control" name="dircli" id="mdircli" value="{{ old('mdirccli') }}" placeholder="Ingrese la dirección...">
         @error('dircli')
         @include('layouts.partials.messages')
     @enderror
@@ -41,7 +41,7 @@
 
     <div class="mb-3">
         <label for="corcli">Correo Electrónico</label>
-        <input type="text" class="form-control" name="corcli" id="mcorcli" value="{{ old('corcli') }}" placeholder="Ingrese el correo electrónico...">
+        <input type="text" class="form-control" name="corcli" id="mcorcli" value="{{ old('mcorcli') }}" placeholder="Ingrese el correo electrónico...">
         @error('corcli')
         @include('layouts.partials.messages')
     @enderror
@@ -49,7 +49,7 @@
 
     <div class="mb-3">
         <label for="cedrnc">Cédula/RNC</label>
-        <input type="text" class="form-control" name="cedrnc" id="mcedrnc" value="{{ old('cedrnc') }}" placeholder="Ingrese la cédula/RNC...">
+        <input type="text" class="form-control" name="cedrnc" id="mcedrnc" value="{{ old('mcedrnc') }}" placeholder="Ingrese la cédula/RNC...">
         @error('cedrnc')
         @include('layouts.partials.messages')
     @enderror

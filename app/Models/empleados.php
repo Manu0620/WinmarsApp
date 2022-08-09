@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class empleados extends Model
 {
     use HasFactory;
-    protected $table ='empleados';
+    protected $table = 'empleados';
     protected $primaryKey = 'codemp';
 
     protected $fillable = [
@@ -21,6 +21,8 @@ class empleados extends Model
         'cedula',
         'ctipemp',
         'codpos',
+        'hora_entrada',
+        'hora_salida',
         'estemp',
     ];
 }

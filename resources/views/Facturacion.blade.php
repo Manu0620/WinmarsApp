@@ -91,7 +91,7 @@
             <label for="codpro">Propiedad</label>
             <div class="input-group">
                 <input type="text" class="form-control" id="codpro" name="codpro" readonly>
-                <button class="btn btn-primary shadow-none" style="background: #0ead69;" type="button" id="nueva-pro" data-bs-toggle="modal" data-bs-target="#nuevaPropiedadModal"><i class="fa-solid fa-circle-plus"></i></button>
+                {{-- <button class="btn btn-primary shadow-none" style="background: #0ead69;" type="button" id="nueva-pro" data-bs-toggle="modal" data-bs-target="#nuevaPropiedadModal"><i class="fa-solid fa-circle-plus"></i></button> --}}
                 <button class="btn btn-primary shadow-none" style="background: #1976D2;" type="button" id="buscar-pro" data-bs-toggle="modal" data-bs-target="#buscarPropiedadModal"><i class="fas fa-search"></i></button>  
             </div>
             @error('codpro')
@@ -122,7 +122,7 @@
     <div class="row">
         <div class="col-md-6">
             <label for="observaciones">Observaciones</label>
-            <textarea type="text" class="form-control" name="observaciones" rows="4"></textarea>
+            <textarea type="text" class="form-control" name="observaciones" id="observaciones" rows="4"></textarea>
         </div>
 
         <div class="col" style="margin-top: 35px;">
@@ -157,7 +157,7 @@
         </div>
     </div>
 
-    <table id="detalleFactura" class="table table-striped table-hover table-borderless align-middle">
+    <table class="table table-striped table-hover table-borderless align-middle" id="detalleFactura">
         <thead>
             <tr>
                 <th>Propiedad</th>
@@ -169,39 +169,30 @@
                 <th>Subtotal</th>
                 <th>Itbis</th>
                 <th>Total</th>
+                <th></th>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="body">
             
         </tbody>
     </table>
 
     <script type="text/javascript">
-        var cliente = $('#codcli').val();
-        var propiedad = $('#codpro').val();
-        
+        var table = $('#detalleFactura').DataTable({
+            "bPaginate": false,
+            "bFilter": false,
+            "bInfo": false, 
+        })
+
+        var counter = 1;
         $("#agregar").click(function (e){ 
             e.preventDefault();
-            if(cliente && propiedad != ''){
-                var html = '';
-                html += '<tr>' +
-                    '<td>' + $('#codpro').val(); + '</td>'+  
-                    '<td>' + $('#codcli').val(); + '</td>'+
-                    '<td>' + $('#concepto').val(); + '</td>'+
-                    '<td>' + $('#condicion').val(); + '</td>'+
-                    '<td>' + $('#cantidad').val(); + '</td>'+
-                    '<td>' '<textarea readonly cols="40" rows="3">' + $('#observaciones').val(); + '</textarea>' '</td>'+
-                    '<td>' + $('#subtot').val(); + '</td>'+
-                    '<td>' + $('#itbis').val(); + '</td>'+  
-                    '<td>' + $('#total').val(); + '</td>'+  
-                '</tr>'
-                $('#detalleFactura').html(html);
-                $('#formulario')[0].reset();
-            }else{
+            if($('#codcli').val() == '' || $('#codpro').val() == ''){
                 Swal.fire({
                     icon: 'error',
+                    iconColor: '#d62828',
                     title: 'Intentelo de nuevo...',
-                    text: 'Llene los campos correctamente',
+                    text: 'Seleccione un Cliente y una Propiedad',
                     confirmButtonColor: '#1976D2',
                     buttonsStyling: false,
                     confirmButtonText: "OK!",
@@ -209,6 +200,42 @@
                         confirmButton: "btn btn-primary"
                     }
                 })
+            }else{             
+                /*html += '<tr id="">' +
+                    '<td>' + $('#codpro').val() + '</td>'+  
+                    '<td>' + $('#codcli').val() + '</td>'+
+                    '<td>' + $('#concepto').val() + '</td>'+
+                    '<td>' + $('#condicion').val() + '</td>'+
+                    '<td>' + $('#cantidad').val() + '</td>'+
+                    '<td>' + '<textarea readonly cols="40" rows="3">' + $('#observaciones').val() + '</textarea>' + '</td>'+
+                    '<td>' + $('#subtot').val() + '</td>'+
+                    '<td>' + $('#itbis').val() + '</td>'+  
+                    '<td>' + $('#total').val() + '</td>'+  
+                    '<td>' + '<button id="eliminarDetalle" class="btn btn-danger btn-xs"><i class="fa-solid fa-xmark"></i></button>' + '</td>'+ 
+                    '</tr>';
+                $('#body').append(html);*/
+                document.getElementById('buscar-cli').disabled = true;
+                document.getElementById('nuevo-cli').disabled = true;
+                table.row.add([$('#codpro').val(),$('#codcli').val(),$('#concepto').val(), 
+                    $('#condicion').val(),$('#cantidad').val(), '<textarea readonly cols="40" rows="3">' + $('#observaciones').val() + '</textarea>', 
+                    $('#subtot').val(), $('#itbis').val(), $('#total').val(), '<button id="eliminarDetalle" class="btn btn-danger btn-xs"><i class="fa-solid fa-xmark"></i></button>']).draw(false);
+ 
+                counter++;
+                $('#codpro').val('');
+                $('#titulo').val('');
+                $('#precio').val('');
+                $('#cantidad').val('');
+                $('#subtot').val('');
+                $('#itbis').val('');
+                $('#total').val('');
+            }
+        });
+
+        $('#detalleFactura tbody').on('click','#eliminarDetalle',function () {
+            table.row($(this).parents('tr')).remove().draw();
+            if(!table.data().count()){
+                document.getElementById('buscar-cli').disabled = false;
+                document.getElementById('nuevo-cli').disabled = false;
             }
         });
     </script>
@@ -236,8 +263,8 @@
 
         function fecha(){
             var today = new Date();
-            var date = today.getDate()+'/'+(today.getMonth()+1)+'/'+today.getFullYear();
-            var time = today.getHours() + ":" + today.getMinutes();
+            var date = today.getDate().toString().padStart(2, "0")+'/'+(today.getMonth()+1).toString().padStart(2, "0")+'/'+today.getFullYear();
+            var time = today.getHours().toString().padStart(2, "0") + ":" + today.getMinutes().toString().padStart(2, "0");
             var dateTime = date+' '+time;
 
             document.getElementById('fecha').value = dateTime;
@@ -261,7 +288,7 @@
         <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h3 class="modal-title" id="exampleModalScrollableTitle">Nuevo Cliente</h3>
+                    <h3 class="modal-title" id="exampleModalScrollableTitle">Registrar Cliente</h3>
                     <button type="button" class="btn btn-primary" class="btn btn-primary" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -334,13 +361,6 @@
                                 });
                             });
                         }
-                        /*Swal.fire({
-                            icon: 'error',
-                            title: 'Intentelo de nuevo...',
-                            text: 'Puede que el dato en el campo telefono, correo o cedula/rnc ya esten en uso o tengan formato incorrecto',
-                            footer: '<a href="consultarClientes"  style="text-decoration: none; color: #1976d2;">Que puedo hacer? <p style="font-weight: bold;">Consultar clientes</p></a>',
-                            showConfirmButton: false
-                        })*/
                     }
                 });
             });
@@ -427,8 +447,6 @@
             }
         }
     </script>
-
-
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
 @endsection

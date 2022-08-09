@@ -23,7 +23,7 @@
         </div>
         <div class="col">
             <div class="button-group" style="text-align: right;">
-                <button type="button" class="btn btn-primary shadow-none" style="background: #1E88E5;"><i class="fas fa-file-pdf"></i> Print</button>
+                <button id="imprimir" class="btn btn-primary shadow-none" style="background: #1E88E5;"><i class="fas fa-file-pdf"></i> Print</button>
                 <button type="reset" class="btn btn-primary shadow-none" style="background: #1976D2;"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
                 <a href="{{ url('registrarClientes') }}" type="button" class="btn btn-primary shadow-none" style="background: #0ead69;"><i class="fa-solid fa-circle-plus"></i> Nuevo Cliente</a>
             </div>
@@ -36,12 +36,12 @@
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
-                <th>Telefono 1</th>
-                <th>Telefono 2</th>
+                <th>Telefono</th>
+                <th>Celular</th>
                 <th>Direccion</th>
                 <th>Correo</th>
                 <th>Cedula/RNC</th>
-                <th>Tipo(cliente)</th>
+                <th>Tipo (Cliente)</th>
                 <th>Estado</th>
                 <th>Acciones</th>
             </tr>
@@ -77,6 +77,15 @@
     <script>
         $(document).ready(function() {
             $('#dataTable').DataTable();
+            /*$('#imprimir').click(function (e) { 
+                e.preventDefault();
+                window.print();
+            });*/
+            document.querySelectorAll('#imprimir').forEach(function(element) {
+                element.addEventListener('click', function() {
+                    print();
+                });
+            });
         });
     </script>
 
