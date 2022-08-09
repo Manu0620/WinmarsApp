@@ -93,6 +93,7 @@
             .swal2-popup{
                 background: #E3F2FD;
                 border-radius: 12px;
+                color: black;
             }
 
             .swal2-popup .btn{
@@ -137,7 +138,7 @@
                 box-shadow: 0 0 20px rgba( 0, 0, 0, 0.15);
             }
 
-            .table thead tr{
+            .table thead tr {
                 background-color: #1E88E5;
                 color: white;  
                 font-weight: bold;  
@@ -150,13 +151,17 @@
                 padding: 12px 15px;
             }
 
-            .table tbody td{    
+            .table tbody td,.table tfoot tr{    
                 background-color: #64B5F6;
                 border-bottom: 1px solid #ffffff66;
                 font-size: 0.9em;
                 font-weight: 600;
                 text-align: left;
                 white-space: nowrap;
+            }
+
+            tbody>tr>:nth-child(7), tbody>tr>:nth-child(8), tbody>tr>:nth-child(9){
+                text-align: right;
             }
 
             form .row{

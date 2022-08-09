@@ -4,9 +4,13 @@
     use App\Models\citas;  
     use App\Models\solicitudes;
     use App\Models\facturas;
+    use App\Models\clientes;
+    
     $numeroCitas = citas::where('estcit', 'Pendiente')->count();
     $numeroSolicitudes = solicitudes::where('estsol', 'Pendiente')->count();
     $numeroFacturas = facturas::where('estfac', 'Pendiente')->count();
+    $numeroClientes = clientes::join('tipo_clientes','tipo_clientes.codtpcli','=','clientes.codtpcli')
+    ->select('tipo_clientes.tipcli')->where('tipo_clientes.tipcli', "Comprador")->count();
 @endphp
 
 @section('content')
@@ -33,7 +37,7 @@
           <div class="small-box">
             <div class="inner">
               <h3>{{ $numeroSolicitudes }}</h3>
-              <p>Solicitudes de cita pendientes</p>
+              <p>Solicitudes</p>
             </div>
             <div class="icon">
               <i class="fa-solid fa-code-pull-request"></i>
@@ -60,13 +64,13 @@
           <!-- small box -->
           <div class="small-box">
             <div class="inner">
-              <h3>0</h3>
-              <p>Propiedades vendidas</p>
+              <h3>{{ $numeroClientes }}</h3>
+              <p>Clientes</p>
             </div>
             <div class="icon">
               <i class="fa-solid fa-building"></i>
             </div>
-            <a href="#" class="small-box-footer">Mas informacion <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="/consultarClientes" class="small-box-footer">Mas informacion <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -74,7 +78,7 @@
 
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Ventas</h3>
+          <label class="card-title" style="margin: 10px; font-size: 18px; font-weight: bold;">Ventas</label>
           <div class="card-tools">
             <!-- Collapse Button -->
             <button type="button" class="btn btn-primary" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
@@ -83,49 +87,62 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-          <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+          <div id="chart" style="height: 350px; width: 100%;"></div>
           
-          <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
-          <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+          <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+          
     
           {{-- SCRIPT DEL GRAFICO --}}
           <script>
-            window.onload = function () {
-
-              var options = {
-                animationEnabled: true,  
-                title:{
-                  text: "Monthly Sales - 2017"
-                },
-                axisX: {
-                  valueFormatString: "MMM"
-                },
-                axisY: {
-                  title: "Sales (in USD)",
-                  prefix: "$"
-                },
-                data: [{
-                  yValueFormatString: "$#,###",
-                  xValueFormatString: "MMMM",
-                  type: "spline",
-                  dataPoints: [
-                    { x: new Date(2017, 0), y: 25060 },
-                    { x: new Date(2017, 1), y: 27980 },
-                    { x: new Date(2017, 2), y: 33800 },
-                    { x: new Date(2017, 3), y: 49400 },
-                    { x: new Date(2017, 4), y: 40260 },
-                    { x: new Date(2017, 5), y: 33900 },
-                    { x: new Date(2017, 6), y: 48000 },
-                    { x: new Date(2017, 7), y: 31500 },
-                    { x: new Date(2017, 8), y: 32300 },
-                    { x: new Date(2017, 9), y: 42000 },
-                    { x: new Date(2017, 10), y: 52160 },
-                    { x: new Date(2017, 11), y: 49400 }
-                  ]
-                }]
-              };
-              $("#chartContainer").CanvasJSChart(options);
-            }
+              var chart = new CanvasJS.Chart("chart", {
+                  animationEnabled: true,  
+                  backgroundColor: "#E3F2FD",
+                  toolTip:{
+                    backgroundColor: "#E3F2FD",
+                    fontWeight: "bold",
+                    fontFamily: "Nunito",
+                    borderColor: "#1976d2",
+                    cornerRadius:10
+                  },
+                  title:{
+                    text: "Ventas mensuales - "+{{ date('Y') }}+" (USD)",
+                    fontFamily: "Nunito",
+                    margin: 20,
+                    fontWeight: "bold",
+                    fontSize: 20
+                  },
+                  axisX: {
+                    labelFontFamily: "Nunito",
+                    labelFontWeight: "bold",
+                    valueFormatString: "MMM"
+                  },
+                  axisY: {
+                    labelFontFamily: "Nunito",
+                    labelFontWeight: "bold",
+                    prefix: "$"
+                  },
+                  data: [{
+                    yValueFormatString: "$#,###",
+                    xValueFormatString: "MMMM",
+                    type: "splineArea",
+                    color: "#1976d2",
+                    dataPoints: [
+                      { x: new Date(2017, 0), y: 30000 },
+                      { x: new Date(2017, 1), y: 27980 },
+                      { x: new Date(2017, 2), y: 33800 },
+                      { x: new Date(2017, 3), y: 49400 },
+                      { x: new Date(2017, 4), y: 40260 },
+                      { x: new Date(2017, 5), y: 33900 },
+                      { x: new Date(2017, 6), y: 48000 },
+                      { x: new Date(2017, 7), y: 31500 },
+                      { x: new Date(2017, 8), y: 32300 },
+                      { x: new Date(2017, 9), y: 42000 },
+                      { x: new Date(2017, 10), y: 52160 },
+                      { x: new Date(2017, 11), y: 49400 }
+                    ]
+                  }]
+              });
+              chart.render();
           </script>
         </div>
         <!-- /.card-body -->

@@ -23,9 +23,9 @@
         <div class="col">
             <div class="button-group" style="text-align: right;">
                 <button type="button" class="btn btn-primary shadow-none" style="background: #2196F3;"><i class="fas fa-file-pdf"></i> Comprobante</button>
-                <button type="button" class="btn btn-primary shadow-none" style="background: #1E88E5;"><i class="fas fa-file-pdf"></i> Print</button>
-                <button type="reset" class="btn btn-primary shadow-none" style="background: #1976D2;"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
-                <button type="submit" class="btn btn-primary shadow-none" style="background: #0ead69;"><i class="fa-solid fa-floppy-disk"></i> Save</button>
+                <button type="button" class="btn btn-primary shadow-none" style="background: #1E88E5;"><i class="fas fa-file-pdf"></i> Imprimir</button>
+                <button type="reset" class="btn btn-primary shadow-none" style="background: #1976D2;"><i class="fa-solid fa-arrow-rotate-left"></i> Limpiar</button>
+                <button type="submit" class="btn btn-primary shadow-none" style="background: #0ead69;"><i class="fa-solid fa-floppy-disk"></i> Procesar</button>
             </div>
         </div>
     </div>
@@ -175,18 +175,90 @@
         <tbody id="body">
             
         </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="6" style="text-align:right">Totales:</th>
+                <td rowspan="1" colspan="1" style="text-align:right"></td>
+                <td rowspan="1" colspan="1" style="text-align:right"></td>
+                <td rowspan="1" colspan="1" style="text-align:right"></td>
+                <td></td>
+            </tr>
+        </tfoot>
     </table>
 
     <script type="text/javascript">
         var table = $('#detalleFactura').DataTable({
             "bPaginate": false,
             "bFilter": false,
-            "bInfo": false, 
+            "bInfo": true, 
+            footerCallback: function (row, data, start, end, display) {
+                var api = this.api();
+    
+                // Remove the formatting to get integer data for summation
+                var intVal = function (i) {
+                    return typeof i === 'string' ? i.replace(/[\$,]/g, '') * 1 : typeof i === 'number' ? i : 0;
+                };
+    
+                // Total over this page
+                subtotal = api.column(6, { page: 'current' }).data().reduce(function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+
+                itbis = api.column(7, { page: 'current' }).data().reduce(function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+
+                total = api.column(8, { page: 'current' }).data().reduce(function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
+    
+                // Update footer
+                $(api.column(6).footer()).html('$' + parseFloat(subtotal).toFixed(2));
+                $(api.column(7).footer()).html('$' + parseFloat(itbis).toFixed(2));
+                $(api.column(8).footer()).html('$' + parseFloat(total).toFixed(2));
+            },
         })
+    
+        function propiedadSeleccionada(){
+            var data = table.rows().data();
+            for(var i=0 ; data.length>i;i++){
+                var n = data[i].length;
+                for(var j = 0 ; data.length>j;j++){ 
+                    if($('#codpro').val() == data[i][j]){
+                        return true;
+                    }  
+                }
+            }
+        }
+
+        function verificarPropiedad(){
+            if(propiedadSeleccionada()){
+                Swal.fire({
+                    icon: 'error',
+                    iconColor: '#d62828',
+                    title: 'Ya seleccionaste esta propiedad',
+                    text: 'Intenta con otra',
+                    confirmButtonColor: '#1976D2',
+                    buttonsStyling: false,
+                    confirmButtonText: "OK!",
+                    customClass: {
+                        confirmButton: "btn btn-primary"
+                    }
+                })
+                $('#codpro').val('');
+                $('#titulo').val('');
+                $('#precio').val('');
+                $('#cantidad').val('');
+                $('#subtot').val('');
+                $('#itbis').val('');
+                $('#total').val('');
+            }
+        }
 
         var counter = 1;
         $("#agregar").click(function (e){ 
             e.preventDefault();
+            
             if($('#codcli').val() == '' || $('#codpro').val() == ''){
                 Swal.fire({
                     icon: 'error',
@@ -229,6 +301,7 @@
                 $('#itbis').val('');
                 $('#total').val('');
             }
+
         });
 
         $('#detalleFactura tbody').on('click','#eliminarDetalle',function () {
@@ -445,6 +518,7 @@
                 document.getElementById('total').value = (parseFloat(document.getElementById('subtot').value)+parseFloat(document.getElementById('itbis').value)).toFixed(2);
                 document.getElementById('cantidad').readOnly = false;
             }
+            verificarPropiedad();
         }
     </script>
 
