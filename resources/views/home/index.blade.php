@@ -1,5 +1,14 @@
 @extends('layouts.home-master')
 
+@php
+    use App\Models\citas;  
+    use App\Models\solicitudes;
+    use App\Models\facturas;
+    $numeroCitas = citas::where('estcit', 'Pendiente')->count();
+    $numeroSolicitudes = solicitudes::where('estsol', 'Pendiente')->count();
+    $numeroFacturas = facturas::where('estfac', 'Pendiente')->count();
+@endphp
+
 @section('content')
   @auth
     <div class="container-fluid">
@@ -9,7 +18,7 @@
           <!-- small box -->
           <div class="small-box">
             <div class="inner">
-              <h3>5</h3>
+              <h3>{{ $numeroCitas }}</h3>
               <p>Citas Pendientes</p>
             </div>
             <div class="icon">
@@ -23,13 +32,13 @@
           <!-- small box -->
           <div class="small-box">
             <div class="inner">
-              <h3>10</h3>
-              <p>Solicitudes sin contestar</p>
+              <h3>{{ $numeroSolicitudes }}</h3>
+              <p>Solicitudes de cita pendientes</p>
             </div>
             <div class="icon">
               <i class="fa-solid fa-code-pull-request"></i>
             </div>
-            <a href="#" class="small-box-footer">Mas informacion <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="/consultarSolicitudes" class="small-box-footer">Mas informacion <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->
@@ -37,7 +46,7 @@
           <!-- small box -->
           <div class="small-box">
             <div class="inner">
-              <h3>15</h3>
+              <h3>{{ $numeroFacturas }}</h3>
               <p>Facturas Pendientes</p>
             </div>
             <div class="icon">
@@ -51,7 +60,7 @@
           <!-- small box -->
           <div class="small-box">
             <div class="inner">
-              <h3>50</h3>
+              <h3>0</h3>
               <p>Propiedades vendidas</p>
             </div>
             <div class="icon">

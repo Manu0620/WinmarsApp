@@ -19,9 +19,10 @@
         @endif
 
         <div class="mb-3">
+            <input type="hidden" name="codcli" id="codcli" value="{{ old('codcli') }}">
             <label for="codcli" class="form-label">Cliente</label>
             <div class="input-group">
-                <input type="text" class="form-control" id="codcli" name="codcli" readonly>
+                <input type="text" class="form-control" value="{{ old('nomcli') }}" id="nomcli" name="nomcli" readonly>
                 <button class="btn btn-primary shadow-none" style="background: #1976D2;" type="button" data-bs-toggle="modal" data-bs-target="#buscarClienteModal"><i class="fas fa-search"></i></button>  
             </div>
             @error('codcli')
@@ -30,9 +31,10 @@
         </div>
         
         <div class="mb-3">
+            <input type="hidden" name="codpro" id="codpro" value="{{ old('codpro') }}">
             <label for="codpro" class="form-label">Propiedad</label>
             <div class="input-group">
-                <input type="text" class="form-control" id="codpro" name="codpro" readonly>
+                <input type="text" class="form-control" value="{{ old('titulo') }}" id="titulo" name="titulo" readonly>
                 <button class="btn btn-primary shadow-none" style="background: #1976D2;" type="button" data-bs-toggle="modal" data-bs-target="#buscarPropiedadModal"><i class="fas fa-search"></i></button>  
             </div>
             @error('codpro')
@@ -65,7 +67,7 @@
     </form>
 
     <div class="modal fade" id="buscarClienteModal" role="dialog" tabindex="-1" aria-labelledby="Seleccionar cliente" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title" id="exampleModalScrollableTitle">Seleccionando Cliente</h3>
@@ -93,7 +95,7 @@
                                         <td>{{$cliente->tecli1}}</td>
                                         <td>{{$cliente->cedrnc}}</td>
                                         <td>
-                                            <button type="button" class="btn btn-primary btn-xs" data-bs-dismiss="modal" onclick="selectCliente('{{$cliente->codcli}}')">
+                                            <button type="button" class="btn btn-primary btn-xs" data-bs-dismiss="modal" onclick="selectCliente('{{$cliente->codcli}}','{{$cliente->nomcli}}','{{$cliente->apecli}}')">
                                                 <i class="fas fa-hand-pointer"></i>
                                             </button>
                                         </td>
@@ -116,8 +118,9 @@
     </div>
 
     <script type="text/javascript"> 
-        function selectCliente(codcli){
+        function selectCliente(codcli, nomcli, apecli){
             document.getElementById('codcli').value = codcli;
+            document.getElementById('nomcli').value = nomcli+' '+apecli;
         }
     </script>
 
@@ -159,7 +162,7 @@
                                         <td>{{$propiedad->preren}}</td>
 
                                         <td>
-                                            <button type="button" class="btn btn-primary btn-xs" data-bs-dismiss="modal" onclick="selectPropiedad('{{$propiedad->codpro}}')">
+                                            <button type="button" class="btn btn-primary btn-xs" data-bs-dismiss="modal" onclick="selectPropiedad('{{$propiedad->codpro}}','{{$propiedad->titulo}}')">
                                                 <i class="fas fa-hand-pointer"></i>
                                             </button>
                                         </td>
@@ -183,8 +186,9 @@
 
     <script type="text/javascript">
 
-        function selectPropiedad(codpro){
+        function selectPropiedad(codpro, titulo){
             document.getElementById('codpro').value = codpro;
+            document.getElementById('titulo').value = titulo;
         }
     </script>
 
