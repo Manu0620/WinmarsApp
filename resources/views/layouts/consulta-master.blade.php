@@ -8,17 +8,17 @@
         <link rel="icon" href="assets/img/Solo logo.png">
         
         <!--JavaScript-->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.25/dist/sweetalert2.all.min.js"></script>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script> 
+        <script src="{{ url('assets/js/sweetalert2.all.min.js') }}"></script>
+        <script src="{{ url('assets/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="{{ url('assets/js/datatables.min.js') }}"></script>
+        <script src="{{ url('assets/js/vfs_fonts.js') }}"></script>
+        <script src="{{ url('assets/js/pdfmake.min.js') }}"></script>
         <!--Fonts-->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
         <!--Bootstrap-->
         <link rel="stylesheet" href="{{ url('assets/css/bootstrap.min.css') }}">
-        <script src="{{ url('assets/js/bootstrap.bundle.min.js') }}"></script>
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+        <link rel="stylesheet" href="{{ url('assets/css/datatables.min.css') }}">
         <!--Styles-->
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
         <style>
@@ -174,11 +174,6 @@
                 height: 40px;
             }
 
-            .dataTables_paginate .pagination li{
-                height: 40px;
-                font-weight: bold;
-            }
-
             .container-fluid input, .container-fluid select, .container-fluid textarea, .input-group-text{
                 border: 1px solid #6c757d;
                 border-bottom: 3px solid #6c757d;
@@ -246,8 +241,16 @@
                 height: fit-content;
             }
 
-            .button-group{
-                text-align: center;
+            .button-group a{
+                padding-top: 10px;
+            }
+
+            .buttons .buttons-print{
+                background: #ba0c0c;
+            }
+
+            .buttons .buttons-excel{
+                background: #208b3a;
             }
 
             h3{
