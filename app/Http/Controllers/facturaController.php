@@ -27,21 +27,15 @@ class facturaController extends Controller
 
     public function save(facturaRequest $request)
     {
-
         $facturas = new facturas();
 
         $facturas->codcli = $request->codcli;
         $facturas->codusu = Auth::user()->id;
-        $facturas->condicion = $request->condicion;
-        $facturas->subtot = $request->subtot;
-        $facturas->total = $request->total;
+        $facturas->subtot = priceToFloat($request->subtot);
+        $facturas->total = priceToFloat($request->total);
         $facturas->fecvenc = date("Y-m-d h:i", strtotime(date("Y-m-d h:i") . "+ 30 days"));
         $facturas->observaciones = $request->observaciones;
-        if ($request->condicion == 'Credito') {
-            $facturas->estfac = 'Pendiente';
-        } else {
-            $facturas->estfac = 'Completada';
-        }
+        $facturas->estfac = 'Pendiente';
         $facturas->save();
         $numfac = $facturas->numfac;
 
@@ -52,8 +46,9 @@ class facturaController extends Controller
         $detalle->numfac = $numfac;
         $detalle->codpro = $request->codpro;
         $detalle->concepto = $request->concepto;
+        $detalle->condicion = $request->condicion;
         $detalle->cantidad = $request->cantidad;
-        $detalle->precio = $request->total;
+        $detalle->precio = priceToFloat($request->subtot);
         if ($request->condicion == 'Credito') {
             $detalle->estfac = 'Pendiente';
         } else {
@@ -68,17 +63,21 @@ class facturaController extends Controller
 
         if (is_null($cuenta) && $condicion == 'Credito') {
             $cuentas->codcli = $cliente;
-            $cuentas->balance = $request->total;
+            $cuentas->balance = priceToFloat($request->total);
             $cuentas->totpag = 0;
-            $cuentas->balpend = $request->total;
+            $cuentas->balpend = priceToFloat($request->total);
             $cuentas->estcue = 'Pendiente';
             $cuentas->save();
         } else if ($condicion == 'Credito') {
-            $cuenta->balance = $cuenta->balance + $request->total;
-            $cuenta->balpend = $cuenta->balpend + $request->total;
+            $cuenta->balance = priceToFloat($cuenta->balance) + priceToFloat($request->total);
+            $cuenta->balpend = priceToFloat($cuenta->balpend) + priceToFloat($request->total);
             $cuenta->estcue = 'Pendiente';
             $cuenta->save();
         }
+
+        $propiedad = propiedades::find($request->codpro);
+        $propiedad->estpro = 'Vendida';
+        $propiedad->save();
 
         return redirect()->to('Facturacion')->with('success', 'Formulario enviado correctamente!');
     }
@@ -87,4 +86,27 @@ class facturaController extends Controller
     {
         return view('consultarFacturas');
     }
+}
+
+function priceToFloat($s)
+{
+    // is negative number
+    $neg = strpos((string)$s, '-') !== false;
+
+    // convert "," to "."
+    $s = str_replace(',', '.', $s);
+
+    // remove everything except numbers and dot "."
+    $s = preg_replace("/[^0-9\.]/", "", $s);
+
+    // remove all seperators from first part and keep the end
+    $s = str_replace('.', '', substr($s, 0, -3)) . substr($s, -3);
+
+    // Set negative number
+    if ($neg) {
+        $s = '-' . $s;
+    }
+
+    // return float
+    return (float) $s;
 }

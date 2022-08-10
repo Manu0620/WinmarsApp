@@ -159,6 +159,63 @@
         </div>
     </div>
 
+    <script type="text/javascript">
+        function limpiarPropiedad(){
+            $('#codpro').val('');
+            $('#titulo').val('');
+            $('#precio').val('');
+            $('#cantidad').val('');
+            $('#subtot').val('');
+            $('#itbis').val('');
+            $('#total').val('');
+        }
+
+        var formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+
+            // These options are needed to round to whole numbers if that's what you want.
+            //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+            //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+        });
+
+        function verificarPropiedad(){
+            var data = table.rows().data();
+            for(var i=0 ; data.length>i;i++){
+                var n = data[i].length;
+                for(var j = 0 ; data.length>j;j++){ 
+                    if($('#codpro').val() == data[i][j]){
+                        Swal.fire({
+                            icon: 'error',
+                            iconColor: '#d62828',
+                            title: 'Ya seleccionaste esta propiedad',
+                            text: 'Intenta con otra',
+                            confirmButtonColor: '#1976D2',
+                            buttonsStyling: false,
+                            confirmButtonText: "OK!",
+                            customClass: {
+                                confirmButton: "btn btn-primary"
+                            }
+                        })
+                        limpiarPropiedad();
+                    }  
+                }
+            }
+        }
+
+        function llenarForm(concepto, precio, itbis, subtotal, total){
+            if(concepto == 'Venta'){ 
+                document.getElementById('cantidad').readOnly = true; 
+                document.getElementById('cantidad').value = cantidad;  
+            }
+            else{ document.getElementById('cantidad').readOnly = false; }
+            document.getElementById('precio').value = formatter.format(precio);
+            document.getElementById('subtot').value = formatter.format(subtotal);
+            document.getElementById('itbis').value = formatter.format(itbis); 
+            document.getElementById('total').value = formatter.format(total);
+        }
+    </script>
+
     <table class="table table-striped table-hover table-borderless align-middle" id="detalleFactura">
         <thead>
             <tr>
@@ -215,47 +272,11 @@
                 }, 0);
     
                 // Update footer
-                $(api.column(6).footer()).html('$' + parseFloat(subtotal).toFixed(2));
-                $(api.column(7).footer()).html('$' + parseFloat(itbis).toFixed(2));
-                $(api.column(8).footer()).html('$' + parseFloat(total).toFixed(2));
+                $(api.column(6).footer()).html(formatter.format(subtotal));
+                $(api.column(7).footer()).html(formatter.format(itbis));
+                $(api.column(8).footer()).html(formatter.format(total));
             },
         })
-    
-        function propiedadSeleccionada(){
-            var data = table.rows().data();
-            for(var i=0 ; data.length>i;i++){
-                var n = data[i].length;
-                for(var j = 0 ; data.length>j;j++){ 
-                    if($('#codpro').val() == data[i][j]){
-                        return true;
-                    }  
-                }
-            }
-        }
-
-        function verificarPropiedad(){
-            if(propiedadSeleccionada()){
-                Swal.fire({
-                    icon: 'error',
-                    iconColor: '#d62828',
-                    title: 'Ya seleccionaste esta propiedad',
-                    text: 'Intenta con otra',
-                    confirmButtonColor: '#1976D2',
-                    buttonsStyling: false,
-                    confirmButtonText: "OK!",
-                    customClass: {
-                        confirmButton: "btn btn-primary"
-                    }
-                })
-                $('#codpro').val('');
-                $('#titulo').val('');
-                $('#precio').val('');
-                $('#cantidad').val('');
-                $('#subtot').val('');
-                $('#itbis').val('');
-                $('#total').val('');
-            }
-        }
 
         var counter = 1;
         $("#agregar").click(function (e){ 
@@ -275,19 +296,6 @@
                     }
                 })
             }else{             
-                /*html += '<tr id="">' +
-                    '<td>' + $('#codpro').val() + '</td>'+  
-                    '<td>' + $('#codcli').val() + '</td>'+
-                    '<td>' + $('#concepto').val() + '</td>'+
-                    '<td>' + $('#condicion').val() + '</td>'+
-                    '<td>' + $('#cantidad').val() + '</td>'+
-                    '<td>' + '<textarea readonly cols="40" rows="3">' + $('#observaciones').val() + '</textarea>' + '</td>'+
-                    '<td>' + $('#subtot').val() + '</td>'+
-                    '<td>' + $('#itbis').val() + '</td>'+  
-                    '<td>' + $('#total').val() + '</td>'+  
-                    '<td>' + '<button id="eliminarDetalle" class="btn btn-danger btn-xs"><i class="fa-solid fa-xmark"></i></button>' + '</td>'+ 
-                    '</tr>';
-                $('#body').append(html);*/
                 document.getElementById('buscar-cli').disabled = true;
                 document.getElementById('nuevo-cli').disabled = true;
                 table.row.add([$('#codpro').val(),$('#codcli').val(),$('#concepto').val(), 
@@ -295,13 +303,7 @@
                     $('#subtot').val(), $('#itbis').val(), $('#total').val(), '<button id="eliminarDetalle" class="btn btn-danger btn-xs"><i class="fa-solid fa-xmark"></i></button>']).draw(false);
  
                 counter++;
-                $('#codpro').val('');
-                $('#titulo').val('');
-                $('#precio').val('');
-                $('#cantidad').val('');
-                $('#subtot').val('');
-                $('#itbis').val('');
-                $('#total').val('');
+                limpiarPropiedad();
             }
 
         });
@@ -328,7 +330,7 @@
                     @include('layouts.modals.seleccionarCliente')
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -344,6 +346,7 @@
 
             document.getElementById('fecha').value = dateTime;
         }
+
         setInterval(fecha, 1000);
    
         function selectCliente(codcli, nomcli, apecli, tecli1, cedrnc){
@@ -363,7 +366,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h3 class="modal-title" id="exampleModalScrollableTitle">Registrar Cliente</h3>
-                    <button type="button" class="btn btn-primary" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <button type="button" class="btn btn-primary" class="btn btn-primary" class="close" data-bs-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -435,13 +438,6 @@
                                 });
                             });
                         }
-                        /*Swal.fire({
-                            icon: 'error',
-                            title: 'Intentelo de nuevo...',
-                            text: 'Puede que el dato en el campo telefono, correo o cedula/rnc ya esten en uso o tengan formato incorrecto',
-                            footer: '<a href="consultarClientes"  style="text-decoration: none; color: #1976d2;">Que puedo hacer? <p style="font-weight: bold;">Consultar clientes</p></a>',
-                            showConfirmButton: false
-                        })*/
                     }
                 });
             });
@@ -461,15 +457,18 @@
                     @include('layouts.modals.seleccionarPropiedad')
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
+    <script type="text/javascript">
 
-        var pventa, prenta, itb = 0;
+        const cantidad = 1;
+        let precio, itbis, itbis_fijo, subtotal, total = 0;
+        let pventa, prenta = 0;
+        var concepto;
         const cero = parseFloat(0).toFixed(2);
 
         document.getElementById('cantidad').addEventListener('click', updateValue);
@@ -478,56 +477,44 @@
 
 
         function updateValue(e){
-            if(document.getElementById('cantidad').value < 1){ document.getElementById('cantidad').value = 1 }
-            document.getElementById('subtot').value = (parseFloat(document.getElementById('precio').value)*parseInt(document.getElementById('cantidad').value)).toFixed(2);
-            document.getElementById('itbis').value = (parseFloat(document.getElementById('subtot').value)*parseFloat(document.getElementById('itbis-fijo').value)).toFixed(2); 
-            document.getElementById('total').value = (parseFloat(document.getElementById('subtot').value)+parseFloat(document.getElementById('itbis').value)).toFixed(2);
+            subtotal = parseFloat(precio)*parseInt(document.getElementById('cantidad').value);
+            itbis = parseFloat(subtotal)*parseFloat(itbis_fijo); 
+            total = parseFloat(subtotal)+parseFloat(itbis);
+            llenarForm(concepto, precio, itbis, subtotal, total);
         }
 
         function conceptoChange(e){
-            var concepto = document.getElementById('concepto').value;
+            concepto = document.getElementById('concepto').value;
             if(concepto == 'Venta'){
-                document.getElementById('precio').value = parseFloat(pventa).toFixed(2);      
-                document.getElementById('cantidad').value = 1;        
-                document.getElementById('subtot').value = (parseFloat(pventa)*parseInt(document.getElementById('cantidad').value)).toFixed(2);
-                document.getElementById('itbis').value = (parseFloat(document.getElementById('subtot').value)*parseFloat(itb)).toFixed(2); 
-                document.getElementById('total').value = (parseFloat(document.getElementById('subtot').value)+parseFloat(document.getElementById('itbis').value)).toFixed(2);
-                document.getElementById('cantidad').readOnly = true;
-            }else{  
-                document.getElementById('precio').value = parseFloat(prenta).toFixed(2);
-                document.getElementById('cantidad').value = 1;
-                document.getElementById('subtot').value = (parseFloat(prenta)*parseInt(document.getElementById('cantidad').value)).toFixed(2);
-                document.getElementById('itbis').value = (parseFloat(document.getElementById('subtot').value)*parseFloat(itb)).toFixed(2); 
-                document.getElementById('total').value = (parseFloat(document.getElementById('subtot').value)+parseFloat(document.getElementById('itbis').value)).toFixed(2);
-                document.getElementById('cantidad').readOnly = false;
+                precio = parseFloat(pventa);  
+            }else{
+                precio = parseFloat(prenta);
             }
+            subtotal = parseFloat(precio)*parseInt(cantidad);
+            itbis = parseFloat(subtotal)*parseFloat(itbis_fijo); 
+            total = parseFloat(subtotal)+parseFloat(itbis);
+            llenarForm(concepto, precio, itbis, subtotal, total);
         }
 
         function selectPropiedad(codpro, titulo, preven, preren, itbis){
-            pventa = parseFloat(preven);
-            prenta = parseFloat(preren);
-            itb = parseFloat(itbis);
             document.getElementById('codpro').value = codpro;
             document.getElementById('titulo').value = titulo;
-            document.getElementById('itbis-fijo').value = itbis;
-            var concepto = document.getElementById('concepto').value;
+            pventa = preven;
+            prenta = preren;
+            itbis_fijo = itbis;
+            concepto = document.getElementById('concepto').value;
             if(concepto == 'Venta'){
-                document.getElementById('precio').value = parseFloat(preven).toFixed(2);
-                document.getElementById('cantidad').value = 1;
-                document.getElementById('subtot').value = (parseFloat(preven)*parseInt(document.getElementById('cantidad').value)).toFixed(2);
-                document.getElementById('itbis').value = (parseFloat(document.getElementById('subtot').value)*parseFloat(itbis)).toFixed(2); 
-                document.getElementById('total').value = (parseFloat(document.getElementById('subtot').value)+parseFloat(document.getElementById('itbis').value)).toFixed(2);
-                document.getElementById('cantidad').readOnly = true;
+                precio = parseFloat(preven);   
             }else{
-                document.getElementById('precio').value = parseFloat(preren).toFixed(2);
-                document.getElementById('cantidad').value = 1;
-                document.getElementById('subtot').value = (parseFloat(preren)*parseInt(document.getElementById('cantidad').value)).toFixed(2);
-                document.getElementById('itbis').value = (parseFloat(document.getElementById('subtot').value)*parseFloat(itbis)).toFixed(2); 
-                document.getElementById('total').value = (parseFloat(document.getElementById('subtot').value)+parseFloat(document.getElementById('itbis').value)).toFixed(2);
-                document.getElementById('cantidad').readOnly = false;
+                precio = parseFloat(preren);
             }
+            subtotal = parseFloat(precio)*parseInt(cantidad);
+            itbis = parseFloat(subtotal)*parseFloat(itbis); 
+            total = parseFloat(subtotal)+parseFloat(itbis);
+            llenarForm(concepto, precio, itbis, subtotal, total);
             verificarPropiedad();
         }
+
     </script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>

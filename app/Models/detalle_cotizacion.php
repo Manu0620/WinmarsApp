@@ -15,8 +15,9 @@ class detalle_cotizacion extends Model
         'numcoct',
         'codpro',
         'concepto',
+        'condicion',
         'cantidad',
         'precio',
-        'estfac',
+        'estcot',
     ];
 }

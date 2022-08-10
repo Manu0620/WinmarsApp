@@ -11,4 +11,16 @@ class cotizaciones extends Model
 
     protected $table = 'cotizacion';
     protected $primaryKey = 'numcot';
+
+    protected $fillable = [
+        'codcli',
+        'codusu',
+        'subtot',
+        'total',
+        'codcom',
+        'fecemis',
+        'fecvenc',
+        'observaciones',
+        'estcot',
+    ];
 }

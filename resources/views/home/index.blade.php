@@ -68,7 +68,7 @@
               <p>Clientes</p>
             </div>
             <div class="icon">
-              <i class="fa-solid fa-building"></i>
+              <i class="fa-solid fa-user"></i></i>
             </div>
             <a href="/consultarClientes" class="small-box-footer">Mas informacion <i class="fas fa-arrow-circle-right"></i></a>
           </div>

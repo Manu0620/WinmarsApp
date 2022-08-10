@@ -15,7 +15,6 @@ class facturas extends Model
     protected $fillable = [
         'codcli',
         'codusu',
-        'condicion',
         'subtot',
         'total',
         'codcom',
@@ -24,6 +23,4 @@ class facturas extends Model
         'observaciones',
         'estfac',
     ];
-
 }
-
