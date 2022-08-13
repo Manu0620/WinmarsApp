@@ -53,6 +53,8 @@ class empleadosController extends Controller
       $empleado->cedula = $request->input('cedula');
       $empleado->ctipemp = $request->input('ctipemp');
       $empleado->codpos = $request->input('codpos');
+      $empleado->hora_entrada = $request->input('hora_entrada');
+      $empleado->hora_salida = $request->input('hora_salida');
       $empleado->estemp = $request->input('estemp');
 
       $empleado->save();

@@ -158,11 +158,11 @@
     
     </form>
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="button-group" style="text-align: right;">
             <button id="agregar" class="btn btn-primary shadow-none" style="background: #208b3a;"><i class="fa-solid fa-circle-plus"></i> Agregar</button>
         </div>
-    </div>
+    </div> --}}
 
     <script type="text/javascript">
         function limpiarPropiedad(){
@@ -227,12 +227,10 @@
                 <th>Propiedad</th>
                 <th>Cliente</th>
                 <th>Concepto</th>
-                <th>Condicion</th>
                 <th>Fecha de pago estimada</th>
                 <th>Subtotal</th>
                 <th>Itbis</th>
                 <th>Total</th>
-                <th></th>
             </tr>
         </thead>
         <tbody id="body">
@@ -240,11 +238,10 @@
         </tbody>
         <tfoot>
             <tr>
-                <th colspan="6" style="text-align:right">Totales:</th>
+                <th colspan="4" style="text-align:right">Totales:</th>
                 <td rowspan="1" colspan="1" style="text-align:right"></td>
                 <td rowspan="1" colspan="1" style="text-align:right"></td>
                 <td rowspan="1" colspan="1" style="text-align:right"></td>
-                <td></td>
             </tr>
         </tfoot>
     </table>
@@ -263,26 +260,26 @@
                 };
     
                 // Total over this page
-                subtotal = api.column(6, { page: 'current' }).data().reduce(function (a, b) {
+                subtotal = api.column(4, { page: 'current' }).data().reduce(function (a, b) {
                         return intVal(a) + intVal(b);
                     }, 0);
 
-                itbis = api.column(7, { page: 'current' }).data().reduce(function (a, b) {
+                itbis = api.column(5, { page: 'current' }).data().reduce(function (a, b) {
                         return intVal(a) + intVal(b);
                     }, 0);
 
-                total = api.column(8, { page: 'current' }).data().reduce(function (a, b) {
+                total = api.column(6, { page: 'current' }).data().reduce(function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0);
     
                 // Update footer
-                $(api.column(6).footer()).html(formatter.format(subtotal));
-                $(api.column(7).footer()).html(formatter.format(itbis));
-                $(api.column(8).footer()).html(formatter.format(total));
+                $(api.column(4).footer()).html(formatter.format(subtotal));
+                $(api.column(5).footer()).html(formatter.format(itbis));
+                $(api.column(6).footer()).html(formatter.format(total));
             },
         })
 
-        var counter = 1;
+        /* var counter = 1;
         $("#agregar").click(function (e){ 
             e.preventDefault();
             
@@ -318,7 +315,7 @@
                 document.getElementById('buscar-cli').disabled = false;
                 document.getElementById('nuevo-cli').disabled = false;
             }
-        });
+        }); */
     </script>
 
     <div class="modal fade" id="buscarClienteModal" role="dialog" tabindex="-1" aria-labelledby="Seleccionar cliente" aria-hidden="true">
@@ -476,7 +473,6 @@
 
         document.getElementById('cantidad').addEventListener('click', updateValue);
         document.getElementById('cantidad').addEventListener('onchange', updateValue);
-        document.getElementById('cantidad').addEventListener('onchange', llenarTabla);
         document.getElementById('concepto').addEventListener('click', conceptoChange);
 
 
@@ -485,9 +481,8 @@
             itbis = parseFloat(subtotal)*parseFloat(itbis_fijo); 
             total = parseFloat(subtotal)+parseFloat(itbis);
             llenarForm(concepto, precio, itbis, subtotal, total);
-            table.row.add([$('#codpro').val(),$('#codcli').val(),$('#concepto').val(), 
-                    $('#subtot').val(), $('#itbis').val(), $('#total').val()]).draw(false);
-
+            table.row.add([$('#codpro').val(),$('#codcli').val(),$('#concepto').val(), $('#fecha').val(),
+            formatter.format(precio), formatter.format(parseFloat(precio)*parseFloat(itbis_fijo)), formatter.format((parseFloat(precio))+(parseFloat(precio)*parseFloat(itbis_fijo)))]).draw(false);
         }
 
 

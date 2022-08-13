@@ -30,6 +30,10 @@ Route::get('/', function () {
     return view('inicio');
 });
 
+Route::get('/reporteFactura', function () {
+    return view('reportes.factura');
+});
+
 Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::group(['middleware' => 'isAuth'], function () {
 

@@ -161,7 +161,11 @@
                 white-space: nowrap;
             }
 
-            tbody>tr>:nth-child(7), tbody>tr>:nth-child(8), tbody>tr>:nth-child(9){
+            tbody>tr>:nth-child(5), tbody>tr>:nth-child(6), tbody>tr>:nth-child(7){
+                text-align: right;
+            }
+
+            thead>th>:nth-child(5), thead>th>:nth-child(6), thead>th>:nth-child(7){
                 text-align: right;
             }
 
