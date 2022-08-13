@@ -30,6 +30,10 @@ Route::get('/', function () {
     return view('inicio');
 });
 
+Route::get('/ReporteFactura', function () {
+    return view('reportes.factura');
+});
+
 Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::group(['middleware' => 'isAuth'], function () {
 
@@ -123,3 +127,4 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
 Route::get('/login', [loginController::class, 'show']);
 Route::post('/login', [loginController::class, 'login']);
 Route::get('/inicio', [inicioController::class, 'inicio']);
+

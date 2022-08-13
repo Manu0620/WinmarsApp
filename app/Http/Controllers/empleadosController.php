@@ -54,6 +54,8 @@ class empleadosController extends Controller
       $empleado->ctipemp = $request->input('ctipemp');
       $empleado->codpos = $request->input('codpos');
       $empleado->estemp = $request->input('estemp');
+      $empleado->hora_entrada = $request->input('hora_entrada');
+      $empleado->hora_salida = $request->input('hora_salida');
 
       $empleado->save();
       return redirect('consultarEmpleados')->with('success', 'Edicion realizada correctamente');
