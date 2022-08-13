@@ -21,8 +21,9 @@ class facturaController extends Controller
             ->select('itbis.itbis', 'propiedades.codpro', 'propiedades.titulo', 'propiedades.preven', 'propiedades.preren')
             ->where('propiedades.estpro', 'activo')->get();
         $tipo_clientes = tipo_clientes::all();
+        $numfac1 = facturas::select('numfac')->orderBy('numfac', 'desc')->first();
 
-        return view('facturas.Facturacion', compact(['clientes', 'propiedades', 'tipo_clientes']));
+        return view('facturas.Facturacion', compact(['clientes', 'propiedades', 'tipo_clientes','numfac1']));
     }
 
     public function save(facturaRequest $request)
@@ -56,13 +57,13 @@ class facturaController extends Controller
         }
         $detalle->save();
 
-        $cliente = $request->codcli;
+        $codcli = $request->codcli;
 
-        $cuenta = cuentas::where('codcli', $cliente)->first();
+        $cuenta = cuentas::where('codcli', $codcli)->first();
         $cuentas = new cuentas();
 
         if (is_null($cuenta) && $condicion == 'Financiamiento') {
-            $cuentas->codcli = $cliente;
+            $cuentas->codcli = $codcli;
             $cuentas->balance = priceToFloat($request->total);
             $cuentas->totpag = 0;
             $cuentas->balpend = priceToFloat($request->total);
@@ -78,6 +79,8 @@ class facturaController extends Controller
         $propiedad = propiedades::find($request->codpro);
         $propiedad->estpro = 'Vendida';
         $propiedad->save();
+
+        $cliente = clientes::find($codcli);
 
         return redirect()->to('Facturacion')->with('success', 'Formulario enviado correctamente!');
     }

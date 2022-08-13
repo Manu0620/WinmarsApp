@@ -3,10 +3,22 @@
 
 @section('content')
 
-    <div class="tab-nav">
-        <a href="/home">Home</a>
-        <label for="form-label">/ Facturacion</label>
-    </div> 
+   
+
+    <div class="row">
+        <div class="col">
+            <div class="tab-nav">
+                <a href="/home">Home</a>
+                <label for="form-label">/ Facturacion</label>
+            </div> 
+        </div>
+
+        <div class="col" style="text-align: right;">
+            <label for="" style="font-weight:bold; font-size: 18px;">Factura No. #{{$numfac1+1}}</label>
+        </div>
+    </div>
+
+    
 
     @if (Session::get('success', false))
         @include('layouts.partials.messages')
