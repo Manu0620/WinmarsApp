@@ -2,7 +2,7 @@
 
 @section('content')
     
-    <h3><img src="{{ url('assets/img/Solo logo.png') }}" alt="Logo">Login</h3>
+    <h3><img src="{{ url('assets/img/Solo_logo.png') }}" alt="Logo">Login</h3>
 
     <form action="/login" method="POST">
         

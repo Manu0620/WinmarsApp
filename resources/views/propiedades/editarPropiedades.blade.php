@@ -44,14 +44,6 @@
         @enderror
         </div>
 
-        <div class="mb-3">
-            <label for="fotos">Fotos</label>
-            <input type="file" class="form-control" accept="image/*" multiple name="fotos">
-            @error('fotos')
-            @include('layouts.partials.messages')
-        @enderror
-        </div>
-
         <div class="row" style="margin-bottom: 12px;">
             <div class="col">
                 <label for="habit">Habitaciones</label>
@@ -105,7 +97,7 @@
 
         <div class="mb-3">
             <label for="comision">Comision(ganacia)</label>
-            <input type="text" class="form-control" name="comision" placeholder="Ingrese comision..." value="{{ $propiedad->comision }}">
+            <input type="number" min="1" max="5" class="form-control" name="comision" placeholder="Ingrese comision..." value="{{ $propiedad->comision }}">
             @error('comision')
             @include('layouts.partials.messages')
         @enderror

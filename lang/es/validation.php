@@ -51,7 +51,7 @@ return [
         'array'   => 'El campo :attribute debe contener más de :value elementos.',
     ],
     'gte'                  => [
-        'numeric' => 'El campo :attribute debe ser mayor o igual a :value.',
+        'numeric' => 'Este campo debe ser mayor o igual a :value.',
         'file'    => 'El archivo :attribute debe pesar :value o más kilobytes.',
         'string'  => 'El campo :attribute debe contener :value o más caracteres.',
         'array'   => 'El campo :attribute debe contener :value o más elementos.',

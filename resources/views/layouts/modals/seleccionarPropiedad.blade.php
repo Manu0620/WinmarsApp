@@ -11,14 +11,13 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($propiedades as $propiedad)
+            @foreach($propiedades as $propiedad)        
                 <tr>
                     <td scope="row">{{$propiedad->codpro}}</td>
                     <td>{{$propiedad->titulo}}</td>
-                    <td>{{$propiedad->preven}}</td>
-                    <td>{{$propiedad->preren}}</td>
+                    <td id="preven1">{{'$'.$money_number = number_format($propiedad->preven,2,'.',',')}}</td>
+                    <td id="preren1">{{'$'.$money_number = number_format($propiedad->preren,2,'.',',')}}</td>
                     <td>{{$propiedad->itbis}}</td>
-
                     <td>
                         <button type="button" class="btn btn-primary btn-xs" data-bs-dismiss="modal" onclick="selectPropiedad('{{$propiedad->codpro}}', '{{$propiedad->titulo}}','{{$propiedad->preven}}', '{{$propiedad->preren}}','{{$propiedad->itbis}}')">
                             <i class="fa-solid fa-check"></i>
@@ -28,6 +27,7 @@
             @endforeach
         </tbody>
     </table>
+
     <script>
         $(document).ready(function() {
             $('#dataTable1').DataTable();

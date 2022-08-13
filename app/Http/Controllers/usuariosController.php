@@ -11,24 +11,28 @@ use Illuminate\Support\Facades\Auth;
 
 class usuariosController extends Controller
 {
-    public function show(){
+    public function show()
+    {
         $empleados = empleados::where('estemp', 'activo')->get();
         return view('auth.registrarUsuarios', compact('empleados'));
     }
 
-    public function create(usuariosRequest $request){
+    public function create(usuariosRequest $request)
+    {
         $usuario = User::create($request->validated());
 
         return redirect('registrarUsuarios')->with('success', 'Formulario enviado correctamente!');
     }
 
-    public function query(){
-        $datos['users'] = User::where('status', 'activo')->get(); 
+    public function query()
+    {
+        $datos['users'] = User::where('status', 'activo')->get();
         return view('auth.consultarUsuarios', $datos);
     }
 
-    public function delete($id){
-        $usuario = User::find($id); 
+    public function delete($id)
+    {
+        $usuario = User::find($id);
 
         $usuario->status = 'inactivo';
         $usuario->save();

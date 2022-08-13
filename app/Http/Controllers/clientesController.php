@@ -7,6 +7,7 @@ use App\Models\clientes;
 use App\Models\tipo_clientes;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class clientesController extends Controller
 {
@@ -71,7 +72,7 @@ class clientesController extends Controller
         return view('clientes.editarClientes', compact('cliente'));
     }
 
-    public function update(Request $request)
+    public function update(clienteRequest $request)
     {
         $cliente = clientes::find($request->codcli);
 

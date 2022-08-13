@@ -15,7 +15,6 @@ class detalle_factura extends Model
         'numfac',
         'codpro',
         'concepto',
-        'condicion',
         'cantidad',
         'precio',
         'estfac',

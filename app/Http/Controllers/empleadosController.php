@@ -7,6 +7,7 @@ use App\Models\empleados;
 use App\Models\posiciones_empleado;
 use App\Models\tipo_empleados;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class empleadosController extends Controller
 {
@@ -39,7 +40,7 @@ class empleadosController extends Controller
       return view('empleados.editarEmpleados', compact(['empleado', 'tipo_empleados', 'posiciones_empleados']));
    }
 
-   public function update(Request $request)
+   public function update(empleadosRequest $request)
    {
       $empleado = empleados::find($request->codemp);
 
@@ -52,6 +53,7 @@ class empleadosController extends Controller
       $empleado->cedula = $request->input('cedula');
       $empleado->ctipemp = $request->input('ctipemp');
       $empleado->codpos = $request->input('codpos');
+      $empleado->estemp = $request->input('estemp');
 
       $empleado->save();
       return redirect('consultarEmpleados')->with('success', 'Edicion realizada correctamente');

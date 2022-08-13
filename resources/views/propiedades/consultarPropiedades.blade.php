@@ -66,8 +66,8 @@
                     <td>{{ $propiedad->baños }}</td>
                     <td>{{ $propiedad->metros }}</td>
                     <td>{{ $propiedad->parqueo }}</td>
-                    <td>{{ $propiedad->preven }}</td>
-                    <td>{{ $propiedad->preren }}</td>
+                    <td>{{ $money_number ='$'. number_format($propiedad->preven,2,'.',',') }}</td>
+                    <td>{{ $money_number ='$'. number_format($propiedad->preren,2,'.',',') }}</td>
                     <td>{{ $propiedad->comision }}</td>
                     <td>{{ $clientes->codcli. ' - ' .$clientes->nomcli. '  ' .$clientes->apecli }}</td>
                     @if($propiedad->estpro == 'inactivo')
@@ -98,9 +98,9 @@
                         title: ' ',
                         customize: function ( win ) {
                             $(win.document.body)
-                                .css( 'font-size', '11px' )
+                                .css( 'font-size', '6px' )
                                 .prepend(
-                                    '<img src="assets/img/Solo logo.png" style="position:absolute; top:10; left:10; opacity:0.6; " />'
+                                    /* '<img src="+'{{ url("assets/img/Solo_logo.png") }}'+" style="position:absolute; top:10; left:10; opacity:0.6; " />' */
                                 );
         
                             $(win.document.body).find( 'table' )

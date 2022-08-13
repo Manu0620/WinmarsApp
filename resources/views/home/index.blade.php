@@ -5,16 +5,18 @@
     use App\Models\solicitudes;
     use App\Models\facturas;
     use App\Models\clientes;
-    
+@endphp
+
+@auth
+@php
     $numeroCitas = citas::where('estcit', 'Pendiente')->count();
     $numeroSolicitudes = solicitudes::where('estsol', 'Pendiente')->count();
     $numeroFacturas = facturas::where('estfac', 'Pendiente')->count();
     $numeroClientes = clientes::join('tipo_clientes','tipo_clientes.codtpcli','=','clientes.codtpcli')
     ->select('tipo_clientes.tipcli')->where('tipo_clientes.tipcli', "Comprador")->count();
 @endphp
-
 @section('content')
-  @auth
+ 
     <div class="container-fluid">
       <!-- Small boxes (Stat box) -->
       <div class="row">
@@ -87,11 +89,7 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-          <div id="chart" style="height: 350px; width: 100%;"></div>
-          
-          <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-          
-    
+          <div id="chart" style="height: 350px; width: 100%;"></div> 
           {{-- SCRIPT DEL GRAFICO --}}
           <script>
               var chart = new CanvasJS.Chart("chart", {

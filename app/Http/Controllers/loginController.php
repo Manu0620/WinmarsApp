@@ -14,7 +14,7 @@ class loginController extends Controller
     public function show()
     {
         if (Auth::check()) {
-            return redirect()->to('/home');
+            return redirect()->to('home');
         }
         return view('auth.login');
     }
@@ -51,6 +51,6 @@ class loginController extends Controller
 
     public function authenticated(Request $request, $user)
     {
-        return redirect()->to('/home')->with('success');
+        return redirect()->to('home')->with('success');
     }
 }

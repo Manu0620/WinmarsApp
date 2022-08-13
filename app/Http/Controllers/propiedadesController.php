@@ -10,6 +10,7 @@ use App\Models\imagenes;
 use App\Models\tipo_propiedades;
 use App\Models\itbis;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class propiedadesController extends Controller
 {
@@ -29,21 +30,23 @@ class propiedadesController extends Controller
         $propiedad = propiedades::create($request->validated());
         $codpro = $propiedad->codpro;
 
-        foreach ($request->file('fotos') as $foto) {
-            $path = $foto->store('fotos');
-            imagenes::create([
-                'codpro' => $codpro,
-                'url' => $path,
-                'descrip' => 'Foto propiedad no. ' . $codpro
-            ]);
-        }
+        if ($request->getMethod() !== 'PUT') {
+            foreach ($request->file('fotos') as $foto) {
+                $path = $foto->store('fotos');
+                imagenes::create([
+                    'codpro' => $codpro,
+                    'url' => $path,
+                    'descrip' => 'Foto propiedad no. ' . $codpro
+                ]);
+            }
 
-        $direccion = new direcciones();
-        $direccion->codpro = $codpro;
-        $direccion->ciudad = $request->ciudad;
-        $direccion->municipio = $request->municipio;
-        $direccion->direccion = $request->direccion;
-        $direccion->save();
+            $direccion = new direcciones();
+            $direccion->codpro = $codpro;
+            $direccion->ciudad = $request->ciudad;
+            $direccion->municipio = $request->municipio;
+            $direccion->direccion = $request->direccion;
+            $direccion->save();
+        }
 
         return redirect('registrarPropiedades')->with('success', 'Formulario enviado correctamente!');
     }
@@ -65,7 +68,7 @@ class propiedadesController extends Controller
         return view('propiedades.editarPropiedades', compact(['tipo_propiedades', 'clientes', 'itbis', 'propiedad']));
     }
 
-    public function update(Request $request)
+    public function update(propiedadesRequest $request)
     {
         $propiedad = propiedades::find($request->codpro);
 
@@ -75,8 +78,8 @@ class propiedadesController extends Controller
         $propiedad->baños = $request->input('baños');
         $propiedad->metros = $request->input('metros');
         $propiedad->parqueo = $request->input('parqueo');
-        $propiedad->preven = $request->input('preven');
-        $propiedad->preren = $request->input('preren');
+        $propiedad->preven = priceToFloat($request->input('preven'));
+        $propiedad->preren = priceToFloat($request->input('preren'));
         $propiedad->comision = $request->input('comision');
         $propiedad->codcli = $request->input('codcli');
         $propiedad->codtpro = $request->input('codtpro');
@@ -95,4 +98,27 @@ class propiedadesController extends Controller
 
         return redirect('consultarPropiedades')->with('success', 'Propiedad inhabilitada correctamente');
     }
+}
+
+function priceToFloat($s)
+{
+    // is negative number
+    $neg = strpos((string)$s, '-') !== false;
+
+    // convert "," to "."
+    $s = str_replace(',', '.', $s);
+
+    // remove everything except numbers and dot "."
+    $s = preg_replace("/[^0-9\.]/", "", $s);
+
+    // remove all seperators from first part and keep the end
+    $s = str_replace('.', '', substr($s, 0, -3)) . substr($s, -3);
+
+    // Set negative number
+    if ($neg) {
+        $s = '-' . $s;
+    }
+
+    // return float
+    return (float) $s;
 }

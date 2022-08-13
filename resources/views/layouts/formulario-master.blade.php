@@ -9,7 +9,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="icon" href="assets/img/Solo logo.png">
+        <link rel="icon" href="assets/img/Solo_logo.png">
 
         <!--JavaScritp-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -209,19 +209,15 @@
             }
         </style>
     </head>
-
+    
     <body class="antialiased">
-        @auth
-            @include('layouts.partials.navbar')
+        
+        @include('layouts.partials.navbar')
 
-            <main class="form-container">
-                @yield('content')
-            </main>
-        @endauth
-
-        @guest
-            <h3>Para ver el contenido <a href="/login">inicia sesion</a></h3>
-        @endguest
+        <main class="form-container">
+            @yield('content')
+        </main>
+        
     </body>
     <footer class="footer footer-expand-lg fixed-bottom">
         <p class="rights"> © 2022 Winmars Properties S.R.L. All rights reserved. </p>

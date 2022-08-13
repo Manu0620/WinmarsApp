@@ -126,7 +126,7 @@
 
         <div class="mb-3">
             <label for="comision">Comision(ganacia)</label>
-            <input type="text" class="form-control" name="comision" value="{{ old('comision') }}" placeholder="Ingrese comision...">
+            <input type="number" min="1" max="5" class="form-control" name="comision" value="{{ old('comision') }}" placeholder="Ingrese comision...">
             @error('comision')
                 @include('layouts.partials.messages')
             @enderror

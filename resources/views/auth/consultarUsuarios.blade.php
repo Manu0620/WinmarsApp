@@ -1,14 +1,10 @@
 @extends('layouts.consulta-master')
-
 <title>Consulta de Usuarios</title>
-
 @php
-    $rol = auth()->user()->rol;
     use App\Models\empleados;
 @endphp
 
 @section('content')
-    @if($rol == 'Administrador')
     
     <div class="tab-nav">
         <a href="/home">Home</a>
@@ -112,8 +108,4 @@
             });
         });
     </script>
-
-    @else
-        <h3>No puede acceder a esta pagina, retornar a <a href="/home">Home</a></h3>
-    @endif
 @endsection

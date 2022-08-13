@@ -2,12 +2,10 @@
 <title>Regitro de Usuarios</title>
 
 @php
-    $rol = auth()->user()->rol;
     use App\Models\User;
 @endphp
 
 @section('content')
-    @if($rol == 'Administrador')
 
     <div class="tab-nav">
         <a href="{{ url()->previous() }}">Atras</a>
@@ -74,7 +72,6 @@
             <select class="form-select" name="rol">
                 <option value="Administrador" selected>Administrador</option>
                 <option value="Usuario">Usuario</option>
-                <option value="Agente">Agente</option>
             </select>
             @error('rol')
                 @include('layouts.partials.messages')
@@ -151,8 +148,5 @@
         }
     </script>
 
-    @else
-        <h3>No puede acceder a esta pagina, retornar a <a href="/home">Home</a></h3>
-    @endif
 @endsection
 

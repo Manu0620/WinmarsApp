@@ -6,6 +6,7 @@ use App\Http\Requests\citasRequest;
 use App\Models\citas;
 use App\Models\solicitudes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class citasController extends Controller
 {
@@ -33,7 +34,7 @@ class citasController extends Controller
         return view('citas.editarCitas', compact('cita'));
     }
 
-    public function update(Request $request)
+    public function update(citasRequest $request)
     {
         $cita = citas::find($request->codcit);
 
@@ -47,7 +48,7 @@ class citasController extends Controller
         return redirect('consultarCitas')->with('success', 'Edicion realizada correctamente');
     }
 
-    public function agendar(Request $request)
+    public function agendar(citasRequest $request)
     {
         $citas = new citas();
 

@@ -127,7 +127,7 @@
             @enderror
         </div>
 
-        <input type="hidden" class="form-control" name="estemp" value="1">
+        <input type="hidden" class="form-control" name="estemp" value="activo">
 
         <div class="button-group">
             <button type="reset" class="btn btn-primary"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>

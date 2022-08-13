@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Session;
 
 class logoutController extends Controller
 {
-    public function logout(){
+    public function logout()
+    {
         Session::flush();
-
         Auth::logout();
 
         return redirect()->to('/login')->with('success', 'Sesion cerrada con exito!');

@@ -7,6 +7,7 @@ use App\Models\clientes;
 use App\Models\propiedades;
 use App\Models\solicitudes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class solicitudesController extends Controller
 {
@@ -36,7 +37,7 @@ class solicitudesController extends Controller
         return view('solicitudes.editarSolicitudes', compact('solicitud'));
     }
 
-    public function update(Request $request)
+    public function update(solicitudesRequest $request)
     {
         $solicitud = solicitudes::find($request->codsol);
 

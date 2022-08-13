@@ -22,7 +22,7 @@ class facturaController extends Controller
             ->where('propiedades.estpro', 'activo')->get();
         $tipo_clientes = tipo_clientes::all();
 
-        return view('Facturacion', compact(['clientes', 'propiedades', 'tipo_clientes']));
+        return view('facturas.Facturacion', compact(['clientes', 'propiedades', 'tipo_clientes']));
     }
 
     public function save(facturaRequest $request)
@@ -31,6 +31,7 @@ class facturaController extends Controller
 
         $facturas->codcli = $request->codcli;
         $facturas->codusu = Auth::user()->id;
+        $facturas->condicion = $request->condicion;
         $facturas->subtot = priceToFloat($request->subtot);
         $facturas->total = priceToFloat($request->total);
         $facturas->fecvenc = date("Y-m-d h:i", strtotime(date("Y-m-d h:i") . "+ 30 days"));
@@ -46,10 +47,9 @@ class facturaController extends Controller
         $detalle->numfac = $numfac;
         $detalle->codpro = $request->codpro;
         $detalle->concepto = $request->concepto;
-        $detalle->condicion = $request->condicion;
         $detalle->cantidad = $request->cantidad;
         $detalle->precio = priceToFloat($request->subtot);
-        if ($request->condicion == 'Credito') {
+        if ($request->condicion == 'Financiamiento') {
             $detalle->estfac = 'Pendiente';
         } else {
             $detalle->estfac = 'Completada';
@@ -61,14 +61,14 @@ class facturaController extends Controller
         $cuenta = cuentas::where('codcli', $cliente)->first();
         $cuentas = new cuentas();
 
-        if (is_null($cuenta) && $condicion == 'Credito') {
+        if (is_null($cuenta) && $condicion == 'Financiamiento') {
             $cuentas->codcli = $cliente;
             $cuentas->balance = priceToFloat($request->total);
             $cuentas->totpag = 0;
             $cuentas->balpend = priceToFloat($request->total);
             $cuentas->estcue = 'Pendiente';
             $cuentas->save();
-        } else if ($condicion == 'Credito') {
+        } else if ($condicion == 'Financiamiento') {
             $cuenta->balance = priceToFloat($cuenta->balance) + priceToFloat($request->total);
             $cuenta->balpend = priceToFloat($cuenta->balpend) + priceToFloat($request->total);
             $cuenta->estcue = 'Pendiente';
@@ -84,7 +84,7 @@ class facturaController extends Controller
 
     public function query()
     {
-        return view('consultarFacturas');
+        return view('facturas.consultarFacturas');
     }
 }
 

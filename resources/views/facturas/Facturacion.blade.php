@@ -25,7 +25,7 @@
                 <button type="button" class="btn btn-primary shadow-none" style="background: #2196F3;"><i class="fas fa-file-pdf"></i> Comprobante</button>
                 <button type="button" class="btn btn-primary shadow-none" style="background: #1E88E5;"><i class="fas fa-file-pdf"></i> Imprimir</button>
                 <button type="reset" class="btn btn-primary shadow-none" style="background: #1976D2;"><i class="fa-solid fa-arrow-rotate-left"></i> Limpiar</button>
-                <button type="submit" class="btn btn-primary shadow-none" style="background: #0ead69;"><i class="fa-solid fa-floppy-disk"></i> Procesar</button>
+                <button type="submit" class="btn btn-primary shadow-none" style="background: #208b3a;"><i class="fa-solid fa-floppy-disk"></i> Procesar</button>
             </div>
         </div>
     </div>
@@ -60,7 +60,7 @@
     </div>
 
     <div class="row">
-        <div class="col">
+        <div class="col-1">
             
         </div>
         <div class="col">
@@ -78,10 +78,17 @@
             <label for="condicion">Condicion</label>
             <select class="form-select" name="condicion" id="condicion">
                 <option value="Al Contado" selected>Al Contado</option>
-                <option value="Credito">Credito</option>
+                <option value="Financiamiento">Financiamiento</option>
             </select>
         </div>
         <div class="col">
+            <label for="Metodo de pago">Metodo de pago</label>
+            <select class="form-select" name="met_pag" id="met_pag">
+                <option value="Efectivo" selected>Efectivo</option>
+                <option value="Transferencia">Transferencia</option>
+            </select>
+        </div>
+        <div class="col-1">
             
         </div>
     </div>
@@ -112,7 +119,7 @@
         </div>
         <div class="col">
             <label for="cantidad">Cantidad</label>
-            <input type="number" min="1" class="form-control" id="cantidad"  name="cantidad" style="text-align: left;" readonly>
+            <input type="number" min="1" max="12" class="form-control" id="cantidad"  name="cantidad" style="text-align: left;" readonly>
             @error('cantidad')
                 @include('layouts.partials.messages')
             @enderror
@@ -153,7 +160,7 @@
 
     <div class="row">
         <div class="button-group" style="text-align: right;">
-            <button id="agregar" class="btn btn-primary shadow-none" style="background: #0ead69;"><i class="fa-solid fa-circle-plus"></i> Agregar</button>
+            <button id="agregar" class="btn btn-primary shadow-none" style="background: #208b3a;"><i class="fa-solid fa-circle-plus"></i> Agregar</button>
         </div>
     </div>
 
@@ -221,8 +228,7 @@
                 <th>Cliente</th>
                 <th>Concepto</th>
                 <th>Condicion</th>
-                <th>Cantidad</th>
-                <th>Observaciones</th>
+                <th>Fecha de pago estimada</th>
                 <th>Subtotal</th>
                 <th>Itbis</th>
                 <th>Total</th>
@@ -464,13 +470,13 @@
     <script type="text/javascript">
 
         const cantidad = 1;
-        let precio, itbis, itbis_fijo, subtotal, total = 0;
-        let pventa, prenta = 0;
+        let pventa, prenta, precio, itbis, itbis_fijo, subtotal, total = 0;
         var concepto;
         const cero = parseFloat(0).toFixed(2);
 
         document.getElementById('cantidad').addEventListener('click', updateValue);
         document.getElementById('cantidad').addEventListener('onchange', updateValue);
+        document.getElementById('cantidad').addEventListener('onchange', llenarTabla);
         document.getElementById('concepto').addEventListener('click', conceptoChange);
 
 
@@ -479,7 +485,11 @@
             itbis = parseFloat(subtotal)*parseFloat(itbis_fijo); 
             total = parseFloat(subtotal)+parseFloat(itbis);
             llenarForm(concepto, precio, itbis, subtotal, total);
+            table.row.add([$('#codpro').val(),$('#codcli').val(),$('#concepto').val(), 
+                    $('#subtot').val(), $('#itbis').val(), $('#total').val()]).draw(false);
+
         }
+
 
         function conceptoChange(e){
             concepto = document.getElementById('concepto').value;
@@ -497,14 +507,14 @@
         function selectPropiedad(codpro, titulo, preven, preren, itbis){
             document.getElementById('codpro').value = codpro;
             document.getElementById('titulo').value = titulo;
-            pventa = preven;
-            prenta = preren;
+            pventa = accounting.unformat(preven, ",");
+            prenta = accounting.unformat(preren, ",");
             itbis_fijo = itbis;
             concepto = document.getElementById('concepto').value;
             if(concepto == 'Venta'){
-                precio = parseFloat(preven);   
+                precio = parseFloat(accounting.unformat(preven, ","));   
             }else{
-                precio = parseFloat(preren);
+                precio = parseFloat(accounting.unformat(preren, ","));
             }
             subtotal = parseFloat(precio)*parseInt(cantidad);
             itbis = parseFloat(subtotal)*parseFloat(itbis); 

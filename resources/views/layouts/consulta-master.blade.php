@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="icon" href="assets/img/Solo logo.png">
+        <link rel="icon" href="assets/img/Solo_logo.png">
         
         <!--JavaScript-->
         <script src="{{ url('assets/js/sweetalert2.all.min.js') }}"></script>
@@ -14,8 +14,9 @@
         <script src="{{ url('assets/js/datatables.min.js') }}"></script>
         <script src="{{ url('assets/js/vfs_fonts.js') }}"></script>
         <script src="{{ url('assets/js/pdfmake.min.js') }}"></script>
+        <script src="{{ url('assets/js/accounting.min.js') }}"></script>
         <!--Fonts-->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url('assets/css/font-nunito.css') }}" >
         <!--Bootstrap-->
         <link rel="stylesheet" href="{{ url('assets/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ url('assets/css/datatables.min.css') }}">
@@ -166,7 +167,7 @@
 
             form .row{
                 font-weight: 600;
-                margin: 30px;
+                margin: 30px 0px 30px 0px; 
                 margin-top: 0px;
             }
 
@@ -269,15 +270,12 @@
     </head>
 
     <body class="antialiased">
-        @auth
-            @include('layouts.partials.navbar')        
-            <main class="container-fluid">
-                @yield('content')
-            </main>
-        @endauth
-        @guest
-            <h3>Para ver el contenido <a href="/login">inicia sesion</a></h3>
-        @endguest
+
+        @include('layouts.partials.navbar')        
+        <main class="container-fluid">
+            @yield('content')
+        </main>
+
     </body>
     <footer class="footer footer-expand-lg fixed-bottom">
         <p class="rights"> © 2022 Winmars Properties S.R.L. All rights reserved. </p>

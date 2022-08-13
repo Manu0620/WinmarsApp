@@ -85,6 +85,8 @@
             </select>
         </div>
 
+        <input type="text" name="estcli" value="activo" hidden>
+
         <div class="button-group">
             <button type="reset" class="btn btn-primary"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
             <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Update</button>

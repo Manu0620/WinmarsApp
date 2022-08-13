@@ -5,20 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\clientes;
 use App\Models\tipo_clientes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class cobroController extends Controller
 {
-    public function show(){
-        $clientes = clientes::where('codtpcli','1')->where('estcli', 'activo')->get();
+    public function show()
+    {
+        $clientes = clientes::where('codtpcli', '1')->where('estcli', 'activo')->get();
         $tipo_clientes = tipo_clientes::all();
-        return view('Cobros', compact(['clientes', 'tipo_clientes']));
+        return view('cobros.Cobros', compact(['clientes', 'tipo_clientes']));
     }
 
-    public function create(Request $request){
-       return redirect()->to('Cobros')->with('success', 'Formulario enviado correctamente!');
+    public function create(Request $request)
+    {
+        return redirect()->to('Cobros')->with('success', 'Formulario enviado correctamente!');
     }
 
-    public function query(){
-        return view('consultarCobros');
+    public function query()
+    {
+        return view('cobros.consultarCobros');
     }
 }

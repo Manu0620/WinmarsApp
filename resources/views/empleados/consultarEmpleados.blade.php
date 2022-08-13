@@ -2,13 +2,11 @@
 <title>Consulta de Empleados</title>
 
 @php
-    $rol = auth()->user()->rol;
     use App\Models\tipo_empleados;
     use App\Models\posiciones_empleado;
 @endphp
 
 @section('content')
-    @if($rol == 'Administrador')
 
     <div class="tab-nav">
         <a href="/home">Home</a>
@@ -110,7 +108,8 @@
                             $(win.document.body)
                                 .css( 'font-size', '7px')
                                 .prepend(
-                                    '<img src="assets/img/Solo logo.png" style="position:absolute; top:10; left:10; opacity:0.6; " />'
+                                    '<div>xxxxxxxxxxxxxxxxxxxxxxxx</div>',
+                                    '<img src="{{ url("assets/img/Solo_Logo.png")}}" style="position:absolute; top:10; left:10; opacity:0.6; " />'
                                 );
         
                             $(win.document.body).find( 'table' )
@@ -120,6 +119,11 @@
                     },
                     {
                         extend: 'excel',
+                        text: '<i class="fa-solid fa-file-excel"></i> Excel',
+                        title: 'Reporte de Empleados',
+                    } 
+                    {
+                        extend: 'csv',
                         text: '<i class="fa-solid fa-file-excel"></i> Excel',
                         title: 'Reporte de Empleados',
                     } 
@@ -136,7 +140,5 @@
             });
         });
     </script>
-    @else
-        <h3>No puede acceder a esta pagina, retornar a <a href="/home">Home</a></h3>
-    @endif
+
 @endsection

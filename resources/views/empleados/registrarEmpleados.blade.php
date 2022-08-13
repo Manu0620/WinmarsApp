@@ -1,12 +1,8 @@
 @extends('layouts.formulario-master')
 <title>Registro de Empleados</title>
 
-@php
-    $rol = auth()->user()->rol;
-@endphp
 
 @section('content')
-    @if($rol == 'Administrador')
 
     <div class="tab-nav">
         <a href="{{ url()->previous() }}">Atras</a>
@@ -239,9 +235,5 @@
             document.getElementById('posicion').value = posicion;
         }
     </script>
-
-    @else
-        <h3>No puede acceder a esta pagina, retornar a <a href="/home">Home</a></h3>
-    @endif
 
 @endsection

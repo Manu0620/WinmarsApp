@@ -5,9 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Dashboard</title>
-        <link rel="icon" href="assets/img/Solo logo.png">
+        <link rel="icon" href="assets/img/Solo_logo.png">
 
         <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+        <script src="{{ url('assets/js/canvasjs.min.js') }}"></script>
+        {{-- <script src="{{ url('assets/js/jquery.canvasjs.min.js') }}"></script> --}}
         <!--Fonts-->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
         <!--Bootstrap-->
@@ -106,18 +108,11 @@
 
     <body>
 
-        @auth
-            @include('layouts.partials.navbar')
+        @include('layouts.partials.navbar')
 
-            <main class="container">
-                @yield('content')
-            </main>
-        @endauth
-
-        @guest
-            <h3>Para ver el contenido <a href="/login">inicia sesion</a></h3>
-        @endguest
-
+        <main class="container">
+            @yield('content')
+        </main>
         <script src="{{ url('assets/js/bootstrap.bundle.min.js') }}"></script>
     </body>
     <footer class="footer footer-expand-lg fixed-bottom">

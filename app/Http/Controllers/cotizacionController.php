@@ -20,7 +20,7 @@ class cotizacionController extends Controller
             ->select('itbis.itbis', 'propiedades.codpro', 'propiedades.titulo', 'propiedades.preven', 'propiedades.preren')
             ->where('propiedades.estpro', 'activo')->get();
         $tipo_clientes = tipo_clientes::all();
-        return view('Cotizacion', compact(['clientes', 'propiedades', 'tipo_clientes']));
+        return view('cotizaciones.Cotizacion', compact(['clientes', 'propiedades', 'tipo_clientes']));
     }
 
     public function save(cotizacionRequest $request)
