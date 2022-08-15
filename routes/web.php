@@ -31,6 +31,17 @@ Route::get('/', function () {
     return view('pagina-principal.inicio');
 });
 
+Route::get('/contratoInquilinato', function () {
+    return view('reportes.contratoInquilinato');
+});
+
+
+Route::get('ContratoPromesa', function () {
+    return view('reportes.ContratoPromesa');
+});
+
+
+
 Route::get('/reporteFactura', [reportesController::class, 'imprimirFactura']);
 Route::get('/reporteCotizacion', [reportesController::class, 'imprimirCotizacion']);
 
