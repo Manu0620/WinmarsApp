@@ -29,7 +29,7 @@
 		
 			<h4><b>TODOS LOS DERECHO DEL APARTAMENTO C-4 EN LA TORRES 4 CON UN ÁREA DE CONSTRUCCIÓN DE CIEN (100M2) METROS CUADRADOS, DENTRO DEL PROYECTO RESIDENCIAL PORTO SOLES , UBICADO EN LA AVENIDA PASEO DELOS CHOFERES , DE LA URBANIZACIÓN JARDINES DEL NORTE , CON TERMINACIÓN EN PISO DE PORCELANATO, PUERTAS, CLOSET Y GABINETES EN MADERA PRECIOSA, TOPE EN GRANITO NATURAL, CERÁMICA EN BAÑO IMPORTADA, VENTANAS CON PERFILERÍA P-65, DOS PARQUEO, PRE-INSTALACIÓN DE ALARMA (INSTALACIÓN TUBERÍA), PRE-INSTALACIÓN DE AIRES ACONDICIONADOS (INSTALACIÓN TUBERÍA), LOCALIZADO DENTRO DE LA PARCELA64-M DEL DISTRITO CATASTRAL NUMERO 06, DEL MUNICIPIO DE SANTIAGO DE LOS CABALLEROS. </b></h4>
 		
-			<p align="justify"><b>f ARTICULO SEGUNDO: Precio de la Promesa de Venta y Forma de Pago.</b> El precio de la presente promesa de venta del inmueble anteriormente indicado ha sido convenido y pactado por las partes en la suma de <b>CIENTOS VEINTE MIL DÓLARES (US$120,000.00). NORTEAMERICANOS, cuya</b> suma será pagada por <b>LA SEGUNDA PARTE,</b> de la manera siguiente:</p>
+			<p align="justify"><b>ARTICULO SEGUNDO: Precio de la Promesa de Venta y Forma de Pago.</b> El precio de la presente promesa de venta del inmueble anteriormente indicado ha sido convenido y pactado por las partes en la suma de <b>CIENTOS VEINTE MIL DÓLARES (US$120,000.00). NORTEAMERICANOS, cuya</b> suma será pagada por <b>LA SEGUNDA PARTE,</b> de la manera siguiente:</p>
 			<p align="justify"> a)<b> La suma de SEIS MIL DÓLARES (US$6,000.00). NORTEAMERICANOS</b>, a la firma
 				del presente contrato por concepto de avance, y cuya suma <b>LA PRIMERA PARTE</b>
 				reconoce haber recibido en dinero en efectivo en esta misma fecha y de manos de
