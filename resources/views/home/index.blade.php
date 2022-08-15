@@ -95,27 +95,25 @@
               var chart = new CanvasJS.Chart("chart", {
                   animationEnabled: true,  
                   backgroundColor: "#E3F2FD",
+                  fontFamily: "Nunito Sans",
+                  fontWeight: "bold",
                   toolTip:{
                     backgroundColor: "#E3F2FD",
-                    fontWeight: "bold",
-                    fontFamily: "Nunito",
                     borderColor: "#1976d2",
                     cornerRadius:10
                   },
                   title:{
                     text: "Ventas mensuales - "+{{ date('Y') }}+" (USD)",
-                    fontFamily: "Nunito",
                     margin: 20,
-                    fontWeight: "bold",
                     fontSize: 20
                   },
                   axisX: {
-                    labelFontFamily: "Nunito",
+                    labelFontFamily: "Nunito Sans",
                     labelFontWeight: "bold",
                     valueFormatString: "MMM"
                   },
                   axisY: {
-                    labelFontFamily: "Nunito",
+                    labelFontFamily: "Nunito Sans",
                     labelFontWeight: "bold",
                     prefix: "$"
                   },

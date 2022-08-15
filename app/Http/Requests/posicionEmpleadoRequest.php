@@ -15,7 +15,7 @@ class posicionEmpleadoRequest extends FormRequest
     public function rules()
     {
         return [
-            'posicion' => 'required|regex:/^[a-zA-Z]+$/u',
+            'posicion' => 'required|regex:/^[a-zA-Z ]+$/u',
         ];
     }
 }

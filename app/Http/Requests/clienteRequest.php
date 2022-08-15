@@ -17,8 +17,8 @@ class clienteRequest extends FormRequest
     {
         if ($this->getMethod() === 'POST') {
             $rules = [
-                'nomcli' => 'required|regex:/^[a-zA-Z]+$/u',
-                'apecli' => 'required|regex:/^[a-zA-Z]+$/u',
+                'nomcli' => 'required|regex:/^[a-zA-Z ]+$/u',
+                'apecli' => 'required|regex:/^[a-zA-Z ]+$/u',
                 'tecli1' => 'required|numeric|digits:10|starts_with:809,829,849|unique:clientes,tecli1',
                 'tecli2' => 'nullable|numeric|digits:10|starts_with:809,829,849|unique:clientes,tecli2',
                 'dircli' => 'required',
@@ -31,8 +31,8 @@ class clienteRequest extends FormRequest
 
         if ($this->getMethod() === 'PUT') {
             $rules = [
-                'nomcli' => 'required|regex:/^[a-zA-Z]+$/u',
-                'apecli' => 'required|regex:/^[a-zA-Z]+$/u',
+                'nomcli' => 'required|regex:/^[a-zA-Z ]+$/u',
+                'apecli' => 'required|regex:/^[a-zA-Z ]+$/u',
                 'tecli1' => 'required|numeric|digits:10|starts_with:809,829,849|unique:clientes,tecli1,' . $this->codcli . ',codcli',
                 'tecli2' => 'nullable|numeric|digits:10|starts_with:809,829,849|unique:clientes,tecli2,' . $this->codcli . ',codcli',
                 'dircli' => 'required',

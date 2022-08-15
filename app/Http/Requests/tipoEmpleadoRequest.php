@@ -16,7 +16,7 @@ class tipoEmpleadoRequest extends FormRequest
     public function rules()
     {
         return [
-            'descripcion' => 'required|regex:/^[a-zA-Z]+$/u',
+            'descripcion' => 'required|regex:/^[a-zA-Z ]+$/u',
         ];
     }
 }

@@ -16,6 +16,7 @@ use App\Http\Controllers\logoutController;
 use App\Http\Controllers\tipoPropiedadController;
 use App\Http\Controllers\posicionEmpleadoController;
 use App\Http\Controllers\propiedadesController;
+use App\Http\Controllers\reportesController;
 use App\Http\Controllers\usuariosController;
 use App\Http\Controllers\solicitudesController;
 use App\Http\Controllers\tipoClienteController;
@@ -27,12 +28,11 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('inicio');
+    return view('pagina-principal.inicio');
 });
 
-Route::get('/reporteFactura', function () {
-    return view('reportes.factura');
-});
+Route::get('/reporteFactura', [reportesController::class, 'imprimirFactura']);
+Route::get('/reporteCotizacion', [reportesController::class, 'imprimirCotizacion']);
 
 Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::group(['middleware' => 'isAuth'], function () {

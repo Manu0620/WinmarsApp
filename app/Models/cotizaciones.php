@@ -15,8 +15,10 @@ class cotizaciones extends Model
     protected $fillable = [
         'codcli',
         'codusu',
+        'condicion',
         'subtot',
         'total',
+        'form_pag',
         'codcom',
         'fecemis',
         'fecvenc',

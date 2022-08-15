@@ -15,7 +15,7 @@ class tipoPropiedadRequest extends FormRequest
     public function rules()
     {
         return [
-            'tippro' => 'required|regex:/^[a-zA-Z]+$/u',
+            'tippro' => 'required|regex:/^[a-zA-Z ]+$/u',
         ];
     }
 }

@@ -18,6 +18,7 @@ class facturas extends Model
         'condicion',
         'subtot',
         'total',
+        'form_pag',
         'codcom',
         'fecemis',
         'fecvenc',

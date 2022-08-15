@@ -15,8 +15,9 @@
         <script src="{{ url('assets/js/vfs_fonts.js') }}"></script>
         <script src="{{ url('assets/js/pdfmake.min.js') }}"></script>
         <script src="{{ url('assets/js/accounting.min.js') }}"></script>
+        <script src="{{ url('assets/js/moment.min.js') }}"></script>
         <!--Fonts-->
-        <link rel="stylesheet" href="{{ url('assets/css/font-nunito.css') }}" >
+        <link rel="stylesheet" href="{{ url('assets/css/font-nunito.css') }}">
         <!--Bootstrap-->
         <link rel="stylesheet" href="{{ url('assets/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ url('assets/css/datatables.min.css') }}">
@@ -24,7 +25,7 @@
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
         <style>
             *{
-                font-family: 'Nunito', sans-serif;
+                font-family: 'Nunito';
             }
 
             img{
@@ -156,7 +157,7 @@
                 background-color: #64B5F6;
                 border-bottom: 1px solid #ffffff66;
                 font-size: 0.9em;
-                font-weight: 600;
+                font-weight: bold;
                 text-align: left;
                 white-space: nowrap;
             }
@@ -175,7 +176,7 @@
                 margin-top: 0px;
             }
 
-            form .row input{
+            .input-group input{
                 height: 40px;
             }
 
@@ -270,6 +271,28 @@
                 height: 35px;
                 border-radius: 30px;
             } 
+
+            .radio-buttons{
+                border: 1px solid #eee;
+                border-radius: 30px; 
+                padding: 0px 10px 5px 10px;
+                font-weight: bold;
+                width: fit-content;
+                height: 45px;
+            }
+
+            input[id="comprobante-si"]:hover, input[id="comprobante-si"]:checked, input[id="comprobante-si"]:focus{
+                background-color: #0ead69;
+            } 
+
+            input[id="comprobante-no"]:hover, input[id="comprobante-no"]:checked, input[id="comprobante-no"]:focus{
+                background-color: #ad0e0e;
+            } 
+
+            .radio-body{
+                padding: 7px;
+                padding-right: 10px;
+            }
         </style>
     </head>
 

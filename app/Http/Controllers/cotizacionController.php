@@ -26,33 +26,73 @@ class cotizacionController extends Controller
     public function save(cotizacionRequest $request)
     {
 
-        $contizacion = new cotizaciones();
+        $cotizacion = new cotizaciones();
 
-        $contizacion->codcli = $request->codcli;
-        $contizacion->codusu = Auth::user()->id;
-        $contizacion->subtot = priceToFloat($request->subtot);
-        $contizacion->total = priceToFloat($request->total);
-        $contizacion->fecvenc = date("Y-m-d h:i", strtotime(date("Y-m-d h:i") . "+ 30 days"));
-        $contizacion->observaciones = $request->observaciones;
-        $contizacion->estcot = 'Pendiente';
-        $contizacion->save();
-        $numcot = $contizacion->numcot;
+        $cotizacion->codcli = $request->codcli;
+        $cotizacion->codusu = Auth::user()->id;
+        $cotizacion->condicion = $request->condicion;
+        $cotizacion->subtot = priceToFloat($request->subtot);
+        $cotizacion->total = priceToFloat($request->total);
+        $cotizacion->form_pag = $request->form_pag;
+        $cotizacion->fecvenc = date("Y-m-d h:i", strtotime(date("Y-m-d h:i") . "+ 30 days"));
+        $cotizacion->observaciones = $request->observaciones;
+        $cotizacion->estcot = 'Por Facturar';
+        $cotizacion->save();
+        $numcot = $cotizacion->numcot;
 
         $detalle = new detalle_cotizacion();
 
         $detalle->numcot = $numcot;
         $detalle->codpro = $request->codpro;
         $detalle->concepto = $request->concepto;
-        $detalle->condicion = $request->condicion;
         $detalle->cantidad = $request->cantidad;
         $detalle->precio = priceToFloat($request->subtot);
-        $detalle->estcot = 'Pendiente';
+        $detalle->estcot = 'Por Facturar';
         $detalle->save();
 
-        return redirect()->to('Cotizacion')->with('success', 'Formulario enviado correctamente!');
+
+        $cliente = clientes::where('codcli', $request->codcli)->first();
+        $propiedad1 = propiedades::join('itbis', 'propiedades.citbis', '=', 'itbis.citbis')
+            ->select('itbis.itbis', 'propiedades.codpro', 'propiedades.titulo')
+            ->where('propiedades.codpro', $request->codpro)
+            ->first();
+
+        /* $pdf = App::make('dompdf.wrapper'); */
+        /* return FacadePdf::loadView('reportes.reporteFactura', compact(['cliente', 'propiedad1', 'facturas', 'detalle']))
+            ->setOption('enable_remote', true)
+            ->download('Reporte Factura No. #' . $numfac . '.pdf'); */
+        return redirect()->to('/Cotizacion')->with([
+            'cliente' => $cliente,
+            'propiedad' => $propiedad1,
+            'cotizacion' => $cotizacion,
+            'detalle' => $detalle
+        ]);
     }
 
     public function query()
     {
     }
+}
+
+function priceToFloat($s)
+{
+    // is negative number
+    $neg = strpos((string)$s, '-') !== false;
+
+    // convert "," to "."
+    $s = str_replace(',', '.', $s);
+
+    // remove everything except numbers and dot "."
+    $s = preg_replace("/[^0-9\.]/", "", $s);
+
+    // remove all seperators from first part and keep the end
+    $s = str_replace('.', '', substr($s, 0, -3)) . substr($s, -3);
+
+    // Set negative number
+    if ($neg) {
+        $s = '-' . $s;
+    }
+
+    // return float
+    return (float) $s;
 }

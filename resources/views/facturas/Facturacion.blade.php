@@ -14,7 +14,7 @@
         </div>
 
         <div class="col" style="text-align: right;">
-            <label for="" style="font-weight:bold; font-size: 18px;">Factura No. #{{$numfac1+1}}</label>
+            {{-- <label for="" style="font-weight:bold; font-size: 18px;">Factura No. #{{$numfac1+1}}</label> --}}
         </div>
     </div>
 
@@ -34,10 +34,8 @@
         </div>
         <div class="col">
             <div class="button-group" style="text-align: right;">
-                <button type="button" class="btn btn-primary shadow-none" style="background: #2196F3;"><i class="fas fa-file-pdf"></i> Comprobante</button>
-                <button type="button" class="btn btn-primary shadow-none" style="background: #1E88E5;"><i class="fas fa-file-pdf"></i> Imprimir</button>
-                <button type="reset" class="btn btn-primary shadow-none" style="background: #1976D2;"><i class="fa-solid fa-arrow-rotate-left"></i> Limpiar</button>
-                <button type="submit" class="btn btn-primary shadow-none" style="background: #208b3a;"><i class="fa-solid fa-floppy-disk"></i> Procesar</button>
+                <button type="reset" onclick="limpiarTabla()" class="btn btn-danger shadow-none"><i class="fa-solid fa-arrow-rotate-left"></i> Limpiar</button>
+                <button type="submit" class="btn btn-primary shadow-none" onclick="imprimirFactura()" style="background: #208b3a;"><i class="fa-solid fa-floppy-disk"></i> Procesar</button>
             </div>
         </div>
     </div>
@@ -72,9 +70,7 @@
     </div>
 
     <div class="row">
-        <div class="col-1">
-            
-        </div>
+        <div class="col-1"></div>
         <div class="col">
             <label for="fecha">Fecha</label>
             <input type="datetime" class="form-control" id="fecha" name="fecha" disabled>
@@ -94,15 +90,14 @@
             </select>
         </div>
         <div class="col">
-            <label for="Metodo de pago">Metodo de pago</label>
-            <select class="form-select" name="met_pag" id="met_pag">
+            <label for="Forma de Pago">Forma de Pago</label>
+            <select class="form-select" name="form_pag" id="form_pag">
                 <option value="Efectivo" selected>Efectivo</option>
                 <option value="Transferencia">Transferencia</option>
             </select>
         </div>
-        <div class="col-1">
-            
-        </div>
+        <div class="col-1"></div>
+        
     </div>
 
     <div class="row">
@@ -117,7 +112,6 @@
                 @include('layouts.partials.messages')
             @enderror
         </div>
-
         <div class="col">
             <label for="titulo">Titulo</label>
             <input type="text" class="form-control" id="titulo" name="titulo" readonly>
@@ -187,16 +181,16 @@
             $('#total').val('');
         }
 
+        function limpiarTabla(){
+            table.clear().draw();
+        }
+
         var formatter = new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: 'USD',
-
-            // These options are needed to round to whole numbers if that's what you want.
-            //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
-            //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
         });
 
-        function verificarPropiedad(){
+        /* function verificarPropiedad(){
             var data = table.rows().data();
             for(var i=0 ; data.length>i;i++){
                 var n = data[i].length;
@@ -218,7 +212,7 @@
                     }  
                 }
             }
-        }
+        } */
 
         function llenarForm(concepto, precio, itbis, subtotal, total){
             if(concepto == 'Venta'){ 
@@ -239,14 +233,13 @@
                 <th>Propiedad</th>
                 <th>Cliente</th>
                 <th>Concepto</th>
-                <th>Fecha de pago estimada</th>
+                <th>Fecha de pago/vencimiento estimada</th>
                 <th>Subtotal</th>
                 <th>Itbis</th>
                 <th>Total</th>
             </tr>
         </thead>
         <tbody id="body">
-            
         </tbody>
         <tfoot>
             <tr>
@@ -259,7 +252,7 @@
     </table>
 
     <script type="text/javascript">
-        var table = $('#detalleFactura').DataTable({
+         var table = $('#detalleFactura').DataTable({
             "bPaginate": false,
             "bFilter": false,
             "bInfo": true, 
@@ -367,6 +360,15 @@
             document.getElementById('nomcli').value = nomcli + ' ' + apecli;
             document.getElementById('tecli1').value = tecli1;
             document.getElementById('cedrnc').value = cedrnc;
+            if((document.getElementById('codpro').value).length != 0 && concepto == 'Alquiler') {
+                actualizarTabla()
+            }
+            else if((document.getElementById('codpro').value).length != 0 && concepto == 'Venta'){
+                var date = moment().add(30, 'days');
+                table.row.add([$('#codpro').val(),$('#codcli').val(),$('#concepto').val(), moment(date, "DD/MM/YYYY").format("DD/MM/YYYY"),
+                    formatter.format(precio), formatter.format(parseFloat(precio)*parseFloat(itbis_fijo)), 
+                    formatter.format((parseFloat(precio))+(parseFloat(precio)*parseFloat(itbis_fijo)))]).draw(false);
+            };
         }
 
         function stopDefAction(evt){
@@ -483,22 +485,33 @@
         var concepto;
         const cero = parseFloat(0).toFixed(2);
 
+        document.getElementById('cantidad').addEventListener('blur', actualizarTabla);
         document.getElementById('cantidad').addEventListener('click', updateValue);
-        document.getElementById('cantidad').addEventListener('onchange', updateValue);
         document.getElementById('concepto').addEventListener('click', conceptoChange);
-
+        let dias = 0;
 
         function updateValue(e){
             subtotal = parseFloat(precio)*parseInt(document.getElementById('cantidad').value);
             itbis = parseFloat(subtotal)*parseFloat(itbis_fijo); 
             total = parseFloat(subtotal)+parseFloat(itbis);
             llenarForm(concepto, precio, itbis, subtotal, total);
-            table.row.add([$('#codpro').val(),$('#codcli').val(),$('#concepto').val(), $('#fecha').val(),
-            formatter.format(precio), formatter.format(parseFloat(precio)*parseFloat(itbis_fijo)), formatter.format((parseFloat(precio))+(parseFloat(precio)*parseFloat(itbis_fijo)))]).draw(false);
         }
 
+        function actualizarTabla(e){
+            table.clear().draw();
+            c = parseInt(document.getElementById('cantidad').value);
+            dias = parseInt(30);
+            for (let i = 0; i < c; i++) {
+                var date = moment().add(parseInt(dias), 'days');
+                table.row.add([$('#codpro').val(),$('#codcli').val(),$('#concepto').val(), moment(date, "DD/MM/YYYY").format("DD/MM/YYYY"),
+                    formatter.format(precio), formatter.format(parseFloat(precio)*parseFloat(itbis_fijo)), 
+                    formatter.format((parseFloat(precio))+(parseFloat(precio)*parseFloat(itbis_fijo)))]).draw(false);
+                dias = parseInt(dias) + 30;
+            }
+        }
 
         function conceptoChange(e){
+            table.clear().draw();
             concepto = document.getElementById('concepto').value;
             if(concepto == 'Venta'){
                 precio = parseFloat(pventa);  
@@ -509,9 +522,16 @@
             itbis = parseFloat(subtotal)*parseFloat(itbis_fijo); 
             total = parseFloat(subtotal)+parseFloat(itbis);
             llenarForm(concepto, precio, itbis, subtotal, total);
+            if(concepto == 'Alquiler') {actualizarTabla()}else{
+                var date = moment().add(30, 'days');
+                table.row.add([$('#codpro').val(),$('#codcli').val(),$('#concepto').val(), moment(date, "DD/MM/YYYY").format("DD/MM/YYYY"),
+                    formatter.format(precio), formatter.format(parseFloat(precio)*parseFloat(itbis_fijo)), 
+                    formatter.format((parseFloat(precio))+(parseFloat(precio)*parseFloat(itbis_fijo)))]).draw(false);
+            };
         }
 
         function selectPropiedad(codpro, titulo, preven, preren, itbis){
+            table.clear().draw();
             document.getElementById('codpro').value = codpro;
             document.getElementById('titulo').value = titulo;
             pventa = accounting.unformat(preven, ",");
@@ -527,10 +547,29 @@
             itbis = parseFloat(subtotal)*parseFloat(itbis); 
             total = parseFloat(subtotal)+parseFloat(itbis);
             llenarForm(concepto, precio, itbis, subtotal, total);
-            verificarPropiedad();
+            if(concepto == 'Alquiler') {actualizarTabla()}else{
+                var date = moment().add(30, 'days');
+                table.row.add([$('#codpro').val(),$('#codcli').val(),$('#concepto').val(), moment(date, "DD/MM/YYYY").format("DD/MM/YYYY"),
+                    formatter.format(precio), formatter.format(parseFloat(precio)*parseFloat(itbis_fijo)), 
+                    formatter.format((parseFloat(precio))+(parseFloat(precio)*parseFloat(itbis_fijo)))]).draw(false);
+            };
+            //verificarPropiedad();
         }
 
     </script>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
+    <script>
+        function imprimirFactura() {
+            
+            if($('#codcli').val().length != 0 && $('#codpro').val().length != 0 && $('#cantidad').val().length != 0){
+                // open the page as popup //
+                var page = '/reporteCotizacion';
+                var myWindow = window.open(page, "_blank");
+                
+                // focus on the popup //
+                myWindow.focus();
+            }
+        }
+    </script>
+    
 @endsection

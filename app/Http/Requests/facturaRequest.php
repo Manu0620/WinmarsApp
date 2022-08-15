@@ -15,7 +15,7 @@ class facturaRequest extends FormRequest
     public function rules()
     {
         return [
-            'codcli' => 'required', 
+            'codcli' => 'required',
             'codpro' => 'required',
             'cantidad' => 'required',
         ];

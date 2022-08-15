@@ -9,6 +9,7 @@ use App\Models\detalle_factura;
 use App\Models\facturas;
 use App\Models\propiedades;
 use App\Models\tipo_clientes;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Support\Facades\Auth;
 
 class facturaController extends Controller
@@ -23,7 +24,7 @@ class facturaController extends Controller
         $tipo_clientes = tipo_clientes::all();
         $numfac1 = facturas::select('numfac')->orderBy('numfac', 'desc')->first();
 
-        return view('facturas.Facturacion', compact(['clientes', 'propiedades', 'tipo_clientes','numfac1']));
+        return view('facturas.Facturacion', compact(['clientes', 'propiedades', 'tipo_clientes', 'numfac1']));
     }
 
     public function save(facturaRequest $request)
@@ -35,6 +36,7 @@ class facturaController extends Controller
         $facturas->condicion = $request->condicion;
         $facturas->subtot = priceToFloat($request->subtot);
         $facturas->total = priceToFloat($request->total);
+        $facturas->form_pag = $request->form_pag;
         $facturas->fecvenc = date("Y-m-d h:i", strtotime(date("Y-m-d h:i") . "+ 30 days"));
         $facturas->observaciones = $request->observaciones;
         $facturas->estfac = 'Pendiente';
@@ -76,13 +78,26 @@ class facturaController extends Controller
             $cuenta->save();
         }
 
-        $propiedad = propiedades::find($request->codpro);
+        /* $propiedad = propiedades::find($request->codpro);
         $propiedad->estpro = 'Vendida';
-        $propiedad->save();
+        $propiedad->save(); */
 
-        $cliente = clientes::find($codcli);
+        $cliente = clientes::where('codcli', $codcli)->first();
+        $propiedad1 = propiedades::join('itbis', 'propiedades.citbis', '=', 'itbis.citbis')
+            ->select('itbis.itbis', 'propiedades.codpro', 'propiedades.titulo')
+            ->where('propiedades.codpro', $request->codpro)
+            ->first();
 
-        return redirect()->to('Facturacion')->with('success', 'Formulario enviado correctamente!');
+        /* $pdf = App::make('dompdf.wrapper'); */
+        /* return FacadePdf::loadView('reportes.reporteFactura', compact(['cliente', 'propiedad1', 'facturas', 'detalle']))
+            ->setOption('enable_remote', true)
+            ->download('Reporte Factura No. #' . $numfac . '.pdf'); */
+        return redirect()->to('/Facturacion')->with([
+            'cliente' => $cliente,
+            'propiedad' => $propiedad1,
+            'facturas' => $facturas,
+            'detalle' => $detalle
+        ]);
     }
 
     public function query()

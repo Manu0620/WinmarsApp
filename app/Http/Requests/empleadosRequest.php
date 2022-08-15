@@ -17,8 +17,8 @@ class empleadosRequest extends FormRequest
     {
         if ($this->getMethod() === 'POST') {
             $rules = [
-                'nomemp' => 'required|regex:/^[a-zA-Z]+$/u',
-                'apeemp' => 'required|regex:/^[a-zA-Z]+$/u',
+                'nomemp' => 'required|regex:/^[a-zA-Z ]+$/u',
+                'apeemp' => 'required|regex:/^[a-zA-Z ]+$/u',
                 'telem1' => 'required|numeric|digits:10|unique:empleados,telem1|starts_with:809,829,849',
                 'telem2' => 'nullable|numeric|digits:10|unique:empleados,telem2|starts_with:809,829,849',
                 'direccion' => 'required',
@@ -34,8 +34,8 @@ class empleadosRequest extends FormRequest
 
         if ($this->getMethod() === 'PUT') {
             $rules = [
-                'nomemp' => 'required|regex:/^[a-zA-Z]+$/u',
-                'apeemp' => 'required|regex:/^[a-zA-Z]+$/u',
+                'nomemp' => 'required|regex:/^[a-zA-Z ]+$/u',
+                'apeemp' => 'required|regex:/^[a-zA-Z ]+$/u',
                 'telem1' => 'required|numeric|digits:10|starts_with:809,829,849|unique:empleados,telem1,' . $this->codemp . ',codemp',
                 'telem2' => 'nullable|numeric|digits:10|starts_with:809,829,849|unique:empleados,telem2,' . $this->codemp . ',codemp',
                 'direccion' => 'required',

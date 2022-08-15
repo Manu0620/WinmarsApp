@@ -38,11 +38,15 @@ class loginController extends Controller
         date_default_timezone_set('America/Santo_Domingo');
         $time = time();
 
-        if ($time < strtotime($empleado->hora_entrada) || ($time >= strtotime("Saturday")  && $time < strtotime("Sunday"))) {
-            return redirect()->to('/login')->withErrors('Solo tienes acceso en horario laboral: ' . $empleado->hora_entrada . ' a ' . $empleado->hora_salida . ' de Lunes/Viernes!');
-        } elseif ($time > strtotime($empleado->hora_salida) || ($time >= strtotime("Saturday")  && $time < strtotime("Sunday"))) {
-            return redirect()->to('/login')->withErrors('Solo tienes acceso en horario laboral: ' . $empleado->hora_entrada . ' a ' . $empleado->hora_salida . ' de Lunes/Viernes!');
+        if ($user->id == '1') {
+        } else {
+            if ($time < strtotime($empleado->hora_entrada) || ($time >= strtotime("Saturday")  && $time < strtotime("Sunday"))) {
+                return redirect()->to('/login')->withErrors('Solo tienes acceso en horario laboral: ' . $empleado->hora_entrada . ' a ' . $empleado->hora_salida . ' de Lunes/Viernes!');
+            } elseif ($time > strtotime($empleado->hora_salida) || ($time >= strtotime("Saturday")  && $time < strtotime("Sunday"))) {
+                return redirect()->to('/login')->withErrors('Solo tienes acceso en horario laboral: ' . $empleado->hora_entrada . ' a ' . $empleado->hora_salida . ' de Lunes/Viernes!');
+            }
         }
+
 
         Auth::login($user);
 

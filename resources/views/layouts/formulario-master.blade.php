@@ -14,14 +14,12 @@
         <!--JavaScritp-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
         <script src="{{ url('assets/js/bootstrap.bundle.min.js') }}"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script> 
+        <script src="{{ url('assets/js/datatables.min.js') }}"></script>
         <!--Fonts-->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url('assets/css/font-nunito.css') }}" >
         <!--Bootstrap-->
         <link rel="stylesheet" href="{{ url('assets/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+        <link rel="stylesheet" href="{{ url('assets/css/datatables.min.css') }}">
         <!--Styles-->
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
         <style>

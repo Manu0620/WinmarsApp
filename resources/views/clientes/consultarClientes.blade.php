@@ -95,7 +95,7 @@
                             $(win.document.body)
                                 .css( 'font-size', '11px' )
                                 .prepend(
-                                    '<img src="assets/img/Solo logo.png" style="position:absolute; top:10; left:10; opacity:0.6; " />'
+                                    '<img src="{{ url("assets/img/Solo_logo.png") }}" style="position:absolute; top:10; left:10; opacity:0.6; " />'
                                 );
         
                             $(win.document.body).find( 'table' )

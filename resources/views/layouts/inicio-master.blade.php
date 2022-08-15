@@ -9,14 +9,14 @@
 
         <script src="{{ url('assets/js/bootstrap.bundle.min.js') }}"></script>
         <!--Fonts-->
-        <link rel="stylesheet" href="{{ url('assets/css/font-nunito.css') }}" >
+        <link rel="stylesheet" href="{{ url('assets/css/Nunito-Sans.css') }}" >
         <!--Bootstrap-->
         <link rel="stylesheet" href="{{ url('assets/css/bootstrap.min.css') }}">
         <!--Styles-->
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
         <style>
             *{
-                font-family: 'Nunito', sans-serif;
+                font-family: 'Nunito Sans';
                 box-sizing: border-box;
             }
 
@@ -26,8 +26,6 @@
             }
 
             body{
-                display: grid;
-                grid-template-columns: 1fr;
                 width: 100%;
                 margin-bottom: 5%;
             }
@@ -51,11 +49,16 @@
             }
 
             .section-searh-box{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
                 width: 100%;
                 height: 980px;
-                background: url("assets/img/search-image.jpg");
+                animation: bg 40s infinite;
+                background: url("assets/img/search_section/search-image1.jpg"); 
                 background-repeat: no-repeat; 
-                background-size: cover;
+                background-size: cover; 
             }
 
             .search-box{
@@ -66,8 +69,65 @@
                 box-shadow: 0 5px 10px rgba(0, 0, 0, 0.208);
             }
 
-            .search-box .row{
-                margin: 20px 0 20px 0;
+            .search-form{
+                margin: 60px;
+            }
+
+            .radio-buttons{
+                border: 1px solid #eee;
+                border-radius: 30px; 
+                padding: 20px;
+                font-weight: bold;
+                width: fit-content;
+                margin: 0;
+            }
+
+            .radio-comprar, .radio-alquilar{
+                visibility: hidden;
+            }
+
+            .radio-body{
+                padding: 15px;
+                padding-right: 25px;
+            }
+
+            .radio-body:hover, .radio-body:hover{
+                background: #38b000;
+                cursor: pointer;
+                border-radius: 30px; 
+                box-shadow: 0px 5px 10px #38b00064;
+                color: white;
+            }
+
+            .radio-body span + input[type="radio"]:checked{
+                background: #38b000;
+                color: white;
+            }
+
+            .hero-title{
+                color: black;
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.656);
+                font-weight: 900;
+                text-align: center;
+                animation: fadeIn 2s;
+            }
+
+            @keyframes fadeIn {
+                0% { opacity: 0; }
+                100% { opacity: 1; }
+            }
+
+            @keyframes bg {
+                50% { 
+                    background: url("assets/img/search_section/search-image2.jpg");
+                    background-repeat: no-repeat; 
+                    background-size: cover; 
+                }
+                100% { 
+                    background: url("assets/img/search_section/search-image3.jpg");
+                    background-repeat: no-repeat; 
+                    background-size: cover; 
+                }
             }
 
         </style>

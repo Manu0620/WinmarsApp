@@ -50,6 +50,7 @@
 
     .nav-item:hover, .nav-link:hover{
         color: #38b000;
+        text-shadow: 0px 5px 10px #38b00064;
     }
 
 </style>

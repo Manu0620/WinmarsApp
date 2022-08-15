@@ -23,10 +23,8 @@
             <div class="col">
                 <div class="col">
                     <div class="button-group" style="text-align: right;">
-                        <button type="button" class="btn btn-primary shadow-none" style="background: #2196F3;"><i class="fas fa-file-pdf"></i> Comprobante</button>
-                        <button type="button" class="btn btn-primary shadow-none" style="background: #1E88E5;"><i class="fas fa-file-pdf"></i> Imprimir</button>
-                        <button type="reset" class="btn btn-primary shadow-none" style="background: #1976D2;"><i class="fa-solid fa-arrow-rotate-left"></i> Limpiar</button>
-                        <button type="submit" class="btn btn-primary shadow-none" style="background: #0ead69;"><i class="fa-solid fa-floppy-disk"></i> Procesar</button>
+                        <button type="reset" onclick="limpiarTabla()" class="btn btn-danger shadow-none"><i class="fa-solid fa-arrow-rotate-left"></i> Limpiar</button>
+                        <button type="submit" class="btn btn-primary shadow-none" onclick="imprimirCotizacion()" style="background: #0ead69;"><i class="fa-solid fa-floppy-disk"></i> Procesar</button>
                     </div>
                 </div>
             </div>
@@ -64,9 +62,7 @@
         </div>
 
         <div class="row">
-            <div class="col">
-                
-            </div>
+            <div class="col-1"></div>
             <div class="col">
                 <label for="fecha">Fecha</label>
                 <input type="datetime" class="form-control" id="fecha" name="fecha" disabled>
@@ -82,11 +78,15 @@
                 <label for="condicion">Condicion</label>
                 <select class="form-select" name="condicion" id="condicion">
                     <option value="Al Contado" selected>Al Contado</option>
-                    <option value="Credito">Credito</option>
+                    <option value="Financiamiento">Financiamiento</option>
                 </select>
             </div>
             <div class="col">
-                
+                <label for="Forma de Pago">Forma de Pago</label>
+                <select class="form-select" name="form_pag" id="form_pag">
+                    <option value="Efectivo" selected>Efectivo</option>
+                    <option value="Transferencia">Transferencia</option>
+                </select>
             </div>
         </div>
 
@@ -153,11 +153,11 @@
         </div>
     </form>
 
-    <div class="row">
+    {{-- <div class="row">
         <div class="button-group" style="text-align: right;">
             <button id="agregar" class="btn btn-primary shadow-none" style="background: #0ead69;"><i class="fa-solid fa-circle-plus"></i> Agregar</button>
         </div>
-    </div>
+    </div> --}}
 
     <script type="text/javascript">
         function limpiarPropiedad(){
@@ -170,16 +170,16 @@
             $('#total').val('');
         }
 
+        function limpiarTabla(){
+            table.clear().draw();
+        }
+
         var formatter = new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: 'USD',
-
-            // These options are needed to round to whole numbers if that's what you want.
-            //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
-            //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
         });
 
-        function verificarPropiedad(){
+        /* function verificarPropiedad(){
             var data = table.rows().data();
             for(var i=0 ; data.length>i;i++){
                 var n = data[i].length;
@@ -201,7 +201,7 @@
                     }  
                 }
             }
-        }
+        } */
 
         function llenarForm(concepto, precio, itbis, subtotal, total){
             if(concepto == 'Venta'){ 
@@ -216,37 +216,32 @@
         }
     </script>
 
-    <table class="table table-striped table-hover table-borderless align-middle" id="detalleFactura">
+    <table class="table table-striped table-hover table-borderless align-middle" id="detalleCotizacion">
         <thead>
             <tr>
                 <th>Propiedad</th>
                 <th>Cliente</th>
                 <th>Concepto</th>
-                <th>Condicion</th>
-                <th>Cantidad</th>
-                <th>Observaciones</th>
+                <th>Fecha de pago/vencimiento estimada</th>
                 <th>Subtotal</th>
                 <th>Itbis</th>
                 <th>Total</th>
-                <th></th>
             </tr>
         </thead>
         <tbody id="body">
-            
         </tbody>
         <tfoot>
             <tr>
-                <th colspan="6" style="text-align:right">Totales:</th>
+                <th colspan="4" style="text-align:right">Totales:</th>
                 <td rowspan="1" colspan="1" style="text-align:right"></td>
                 <td rowspan="1" colspan="1" style="text-align:right"></td>
                 <td rowspan="1" colspan="1" style="text-align:right"></td>
-                <td></td>
             </tr>
         </tfoot>
     </table>
 
     <script type="text/javascript">
-        var table = $('#detalleFactura').DataTable({
+         var table = $('#detalleCotizacion').DataTable({
             "bPaginate": false,
             "bFilter": false,
             "bInfo": true, 
@@ -259,26 +254,26 @@
                 };
     
                 // Total over this page
-                subtotal = api.column(6, { page: 'current' }).data().reduce(function (a, b) {
+                subtotal = api.column(4, { page: 'current' }).data().reduce(function (a, b) {
                         return intVal(a) + intVal(b);
                     }, 0);
 
-                itbis = api.column(7, { page: 'current' }).data().reduce(function (a, b) {
+                itbis = api.column(5, { page: 'current' }).data().reduce(function (a, b) {
                         return intVal(a) + intVal(b);
                     }, 0);
 
-                total = api.column(8, { page: 'current' }).data().reduce(function (a, b) {
+                total = api.column(6, { page: 'current' }).data().reduce(function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0);
     
                 // Update footer
-                $(api.column(6).footer()).html(formatter.format(subtotal));
-                $(api.column(7).footer()).html(formatter.format(itbis));
-                $(api.column(8).footer()).html(formatter.format(total));
+                $(api.column(4).footer()).html(formatter.format(subtotal));
+                $(api.column(5).footer()).html(formatter.format(itbis));
+                $(api.column(6).footer()).html(formatter.format(total));
             },
         })
 
-        var counter = 1;
+        /* var counter = 1;
         $("#agregar").click(function (e){ 
             e.preventDefault();
             
@@ -308,13 +303,13 @@
 
         });
 
-        $('#detalleFactura tbody').on('click','#eliminarDetalle',function () {
+        $('#detalleCotizacion tbody').on('click','#eliminarDetalle',function () {
             table.row($(this).parents('tr')).remove().draw();
             if(!table.data().count()){
                 document.getElementById('buscar-cli').disabled = false;
                 document.getElementById('nuevo-cli').disabled = false;
             }
-        });
+        }); */
     </script>
 
     <div class="modal fade" id="buscarClienteModal" role="dialog" tabindex="-1" aria-labelledby="Seleccionar cliente" aria-hidden="true">
@@ -350,10 +345,20 @@
         setInterval(fecha, 1000);
    
         function selectCliente(codcli, nomcli, apecli, tecli1, cedrnc){
+            table.clear().draw();
             document.getElementById('codcli').value = codcli;
             document.getElementById('nomcli').value = nomcli + ' ' + apecli;
             document.getElementById('tecli1').value = tecli1;
             document.getElementById('cedrnc').value = cedrnc;
+            if((document.getElementById('codpro').value).length != 0 && concepto == 'Alquiler') {
+                actualizarTabla()
+            }
+            else if((document.getElementById('codpro').value).length != 0 && concepto == 'Venta'){
+                var date = moment().add(30, 'days');
+                table.row.add([$('#codpro').val(),$('#codcli').val(),$('#concepto').val(), moment(date, "DD/MM/YYYY").format("DD/MM/YYYY"),
+                    formatter.format(precio), formatter.format(parseFloat(precio)*parseFloat(itbis_fijo)), 
+                    formatter.format((parseFloat(precio))+(parseFloat(precio)*parseFloat(itbis_fijo)))]).draw(false);
+            };
         }
 
         function stopDefAction(evt){
@@ -466,15 +471,14 @@
     <script type="text/javascript">
 
         const cantidad = 1;
-        let precio, itbis, itbis_fijo, subtotal, total = 0;
-        let pventa, prenta = 0;
+        let pventa, prenta, precio, itbis, itbis_fijo, subtotal, total = 0;
         var concepto;
         const cero = parseFloat(0).toFixed(2);
 
+        document.getElementById('cantidad').addEventListener('blur', actualizarTabla);
         document.getElementById('cantidad').addEventListener('click', updateValue);
-        document.getElementById('cantidad').addEventListener('onchange', updateValue);
         document.getElementById('concepto').addEventListener('click', conceptoChange);
-
+        let dias = 0;
 
         function updateValue(e){
             subtotal = parseFloat(precio)*parseInt(document.getElementById('cantidad').value);
@@ -483,7 +487,21 @@
             llenarForm(concepto, precio, itbis, subtotal, total);
         }
 
+        function actualizarTabla(e){
+            table.clear().draw();
+            c = parseInt(document.getElementById('cantidad').value);
+            dias = parseInt(30);
+            for (let i = 0; i < c; i++) {
+                var date = moment().add(parseInt(dias), 'days');
+                table.row.add([$('#codpro').val(),$('#codcli').val(),$('#concepto').val(), moment(date, "DD/MM/YYYY").format("DD/MM/YYYY"),
+                    formatter.format(precio), formatter.format(parseFloat(precio)*parseFloat(itbis_fijo)), 
+                    formatter.format((parseFloat(precio))+(parseFloat(precio)*parseFloat(itbis_fijo)))]).draw(false);
+                dias = parseInt(dias) + 30;
+            }
+        }
+
         function conceptoChange(e){
+            table.clear().draw();
             concepto = document.getElementById('concepto').value;
             if(concepto == 'Venta'){
                 precio = parseFloat(pventa);  
@@ -494,28 +512,55 @@
             itbis = parseFloat(subtotal)*parseFloat(itbis_fijo); 
             total = parseFloat(subtotal)+parseFloat(itbis);
             llenarForm(concepto, precio, itbis, subtotal, total);
+            if(concepto == 'Alquiler') {actualizarTabla()}else{
+                var date = moment().add(30, 'days');
+                table.row.add([$('#codpro').val(),$('#codcli').val(),$('#concepto').val(), moment(date, "DD/MM/YYYY").format("DD/MM/YYYY"),
+                    formatter.format(precio), formatter.format(parseFloat(precio)*parseFloat(itbis_fijo)), 
+                    formatter.format((parseFloat(precio))+(parseFloat(precio)*parseFloat(itbis_fijo)))]).draw(false);
+            };
         }
 
         function selectPropiedad(codpro, titulo, preven, preren, itbis){
+            table.clear().draw();
             document.getElementById('codpro').value = codpro;
             document.getElementById('titulo').value = titulo;
-            pventa = preven;
-            prenta = preren;
+            pventa = accounting.unformat(preven, ",");
+            prenta = accounting.unformat(preren, ",");
             itbis_fijo = itbis;
             concepto = document.getElementById('concepto').value;
             if(concepto == 'Venta'){
-                precio = parseFloat(preven);   
+                precio = parseFloat(accounting.unformat(preven, ","));   
             }else{
-                precio = parseFloat(preren);
+                precio = parseFloat(accounting.unformat(preren, ","));
             }
             subtotal = parseFloat(precio)*parseInt(cantidad);
             itbis = parseFloat(subtotal)*parseFloat(itbis); 
             total = parseFloat(subtotal)+parseFloat(itbis);
             llenarForm(concepto, precio, itbis, subtotal, total);
-            verificarPropiedad();
+            if(concepto == 'Alquiler') {actualizarTabla()}else{
+                var date = moment().add(30, 'days');
+                table.row.add([$('#codpro').val(),$('#codcli').val(),$('#concepto').val(), moment(date, "DD/MM/YYYY").format("DD/MM/YYYY"),
+                    formatter.format(precio), formatter.format(parseFloat(precio)*parseFloat(itbis_fijo)), 
+                    formatter.format((parseFloat(precio))+(parseFloat(precio)*parseFloat(itbis_fijo)))]).draw(false);
+            };
+            //verificarPropiedad();
         }
 
     </script>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
+    <script>
+        function imprimirCotizacion() {
+            
+            if($('#codcli').val().length != 0 && $('#codpro').val().length != 0 && $('#cantidad').val().length != 0){
+                // open the page as popup //
+                var page = '/reporteCotizacion';
+                var myWindow = window.open(page, "_blank");
+                
+                // focus on the popup //
+                myWindow.focus();
+            }
+            
+        }
+    </script>
+
 @endsection

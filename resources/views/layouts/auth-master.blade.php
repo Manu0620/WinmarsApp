@@ -9,14 +9,14 @@
         <link rel="icon" href="assets/img/Solo_logo.png">
 
         <!--Fonts-->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url('assets/css/font-nunito.css') }}" >
         <!--Bootstrap-->
         <link rel="stylesheet" href="{{ url('assets/css/bootstrap.min.css') }}">
         <!--Styles-->
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
         <style>
             *{
-                font-family: 'Nunito', sans-serif;
+                font-family: 'Nunito';
             }
 
             img{

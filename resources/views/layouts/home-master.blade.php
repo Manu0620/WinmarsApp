@@ -11,15 +11,17 @@
         <script src="{{ url('assets/js/canvasjs.min.js') }}"></script>
         {{-- <script src="{{ url('assets/js/jquery.canvasjs.min.js') }}"></script> --}}
         <!--Fonts-->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{ url('assets/css/font-nunito.css') }}">
+        <link rel="stylesheet" href="{{ url('assets/css/Nunito-Sans.css') }}">
         <!--Bootstrap-->
         <link rel="stylesheet" href="{{ url('assets/css/bootstrap.min.css') }}">
         <!--Styles-->
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
         <style>
+
             *{
-                font-family: 'Nunito', sans-serif;
+                font-family: 'Nunito';
             }
 
             img{

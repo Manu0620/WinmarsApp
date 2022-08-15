@@ -16,7 +16,7 @@ class tipoClienteRequest extends FormRequest
     public function rules()
     {
         return [
-            'tipcli' => 'required|regex:/^[a-zA-Z]+$/u',
+            'tipcli' => 'required|regex:/^[a-zA-Z ]+$/u',
         ];
     }
 }
