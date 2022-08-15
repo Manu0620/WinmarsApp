@@ -9,7 +9,7 @@ use App\Models\detalle_factura;
 use App\Models\facturas;
 use App\Models\propiedades;
 use App\Models\tipo_clientes;
-use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
+
 use Illuminate\Support\Facades\Auth;
 
 class facturaController extends Controller
