@@ -221,6 +221,7 @@
 						actos de su vida civil. En la ciudad de Santiago de los Caballeros,
 						República Dominicana, a los dieciséis (16) días del mes de enero
 						del año dos mil veintidós (2022). </p> <br /> <br />
+						
 						<p align="center"><b></b>
 						<label>_______________________________________________________________________</label> <br />
 					 <p align="center"><b>LIC. ARTURO AUGUSTO RODRIGUEZ FDEZ.

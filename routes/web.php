@@ -33,7 +33,6 @@ Route::get('/', function () {
 Route::get('/contratoInquilinato', function () {
     return view('reportes.contratoInquilinato');
 });
-
 Route::get('/reporteFactura', [reportesController::class, 'imprimirFactura']);
 Route::get('/reporteCotizacion', [reportesController::class, 'imprimirCotizacion']);
 
