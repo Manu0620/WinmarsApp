@@ -88,6 +88,7 @@
                     <option value="Transferencia">Transferencia</option>
                 </select>
             </div>
+            <div class="col-1"></div>
         </div>
 
         <div class="row">

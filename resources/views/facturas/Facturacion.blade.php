@@ -70,37 +70,6 @@
     </div>
 
     <div class="row">
-        <div class="col-1"></div>
-        <div class="col">
-            <label for="fecha">Fecha</label>
-            <input type="datetime" class="form-control" id="fecha" name="fecha" disabled>
-        </div>
-        <div class="col">
-            <label for="concepto">Concepto</label>
-            <select class="form-select" name="concepto" id="concepto">
-                <option value="Venta" selected>Venta</option>
-                <option value="Alquiler">Alquiler</option>
-            </select>
-        </div>
-        <div class="col">
-            <label for="condicion">Condicion</label>
-            <select class="form-select" name="condicion" id="condicion">
-                <option value="Al Contado" selected>Al Contado</option>
-                <option value="Financiamiento">Financiamiento</option>
-            </select>
-        </div>
-        <div class="col">
-            <label for="Forma de Pago">Forma de Pago</label>
-            <select class="form-select" name="form_pag" id="form_pag">
-                <option value="Efectivo" selected>Efectivo</option>
-                <option value="Transferencia">Transferencia</option>
-            </select>
-        </div>
-        <div class="col-1"></div>
-        
-    </div>
-
-    <div class="row">
         <div class="col">
             <label for="codpro">Propiedad</label>
             <div class="input-group">
@@ -133,6 +102,51 @@
     </div>
 
     <div class="row">
+        <div class="col">
+            <label for="fecha">Fecha</label>
+            <input type="datetime" class="form-control" id="fecha" name="fecha" disabled>
+        </div>
+        <div class="col">
+            <label for="concepto">Concepto</label>
+            <select class="form-select" name="concepto" id="concepto">
+                <option value="Venta" selected>Venta</option>
+                <option value="Alquiler">Alquiler</option>
+            </select>
+        </div>
+        <div class="col">
+            <label for="condicion">Condicion</label>
+            <select class="form-select" name="condicion" id="condicion">
+                <option value="Al Contado" selected>Al Contado</option>
+                <option value="Financiamiento">Financiamiento</option>
+            </select>
+        </div>
+        <div class="col">
+            <label for="Forma de Pago">Forma de Pago</label>
+            <select class="form-select" name="form_pag" id="form_pag">
+                <option value="Efectivo" selected>Efectivo</option>
+                <option value="Transferencia">Transferencia</option>
+            </select>
+        </div>
+        <div class="col-1">
+            <label for="monto">Monto</label>
+            <input type="text" class="form-control shadow-none" id="monto" name="monto">
+        </div>
+        <div class="col-1">
+            <label for="cuenta">Cuenta</label>
+            <input type="text" class="form-control" id="cuenta" name="cuenta" readonly>
+        </div>
+        <div class="col-1">
+            <label for="cobrar">A Cobrar</label>
+            <input type="text" class="form-control" value="0.00" id="cobrar" name="cobrar" readonly>
+        </div>
+        <div class="col-1">
+            <label for="A Devolver">A Devolver</label>
+            <input type="text" class="form-control" value="0.00" id="devuelta" name="devuelta" readonly>
+        </div>
+    </div>
+
+
+    <div class="row">
         <div class="col-md-6">
             <label for="observaciones">Observaciones</label>
             <textarea type="text" class="form-control" name="observaciones" id="observaciones" rows="4"></textarea>
@@ -163,6 +177,47 @@
     </div>
     
     </form>
+
+    <script>
+        document.getElementById('condicion').addEventListener('click', actualizarCobrar);
+        document.getElementById('form_pag').addEventListener('click', cuenta);
+        document.getElementById('monto').addEventListener('keyup', validarMonto);
+        document.getElementById('monto').addEventListener('blur', formatoMonto);
+        document.getElementById('monto').addEventListener('click', deformatMonto);
+
+        function validarMonto(e){ 
+            var monto = parseFloat(document.getElementById('monto').value);
+            var cobrar = parseFloat(accounting.unformat(document.getElementById('cobrar').value, "."));
+            if( parseFloat(monto) < parseFloat(cobrar)){
+                document.getElementById('monto').style.borderColor = "crimson";
+            }else{
+                document.getElementById('monto').style.borderColor = "#208b3a";
+            }            
+        }
+
+        function deformatMonto(e){
+            document.getElementById('monto').value = accounting.unformat(document.getElementById('monto').value, ".");
+        }
+
+        function formatoMonto(e) {
+            document.getElementById('monto').value = formatter.format(document.getElementById('monto').value);
+        }
+        
+
+        function cuenta(e) {
+            if(document.getElementById('form_pag').value == 'Transferencia'){
+                document.getElementById('cuenta').readOnly = false;
+                document.getElementById('monto').readOnly = true;
+            }else{
+                document.getElementById('cuenta').readOnly = true;
+                document.getElementById('monto').readOnly = false;
+            }   
+        }
+        
+        function actualizarCobrar(e){
+            llenarForm(concepto, precio, itbis, subtotal, total);
+        }
+    </script>
 
     {{-- <div class="row">
         <div class="button-group" style="text-align: right;">
@@ -224,6 +279,12 @@
             document.getElementById('subtot').value = formatter.format(subtotal);
             document.getElementById('itbis').value = formatter.format(itbis); 
             document.getElementById('total').value = formatter.format(total);
+            if(document.getElementById('condicion').value == 'Al Contado'){
+                document.getElementById('cobrar').value = formatter.format(total);
+            }else if(document.getElementById('condicion').value == 'Financiamiento'){
+                var cobrar = total*parseFloat(0.20);
+                document.getElementById('cobrar').value = formatter.format(cobrar);
+            }   
         }
     </script>
 
@@ -563,7 +624,7 @@
             
             if($('#codcli').val().length != 0 && $('#codpro').val().length != 0 && $('#cantidad').val().length != 0){
                 // open the page as popup //
-                var page = '/reporteCotizacion';
+                var page = '/reporteFactura';
                 var myWindow = window.open(page, "_blank");
                 
                 // focus on the popup //
