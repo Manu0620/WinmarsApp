@@ -32,7 +32,7 @@
     color: black;
 }
 
-.contrato-inquilinato{
+.contrato-inquilinato, .contrato-promesa{
     padding: 50px;
     font-size: 12px;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.358);
