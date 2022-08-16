@@ -15,4 +15,14 @@ class reportesController extends Controller
     {
         return view('reportes.reporteCotizacion');
     }
+
+    public function contratoInquilinato()
+    {
+        return view('reportes.contratoInquilinato');
+    }
+
+    public function contratoPromesa()
+    {
+        return view('reportes.contratoPromesa');
+    }
 }

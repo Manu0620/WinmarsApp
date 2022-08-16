@@ -6,6 +6,7 @@ use App\Http\Requests\facturaRequest;
 use App\Models\clientes;
 use App\Models\cuentas;
 use App\Models\detalle_factura;
+use App\Models\direcciones;
 use App\Models\facturas;
 use App\Models\propiedades;
 use App\Models\tipo_clientes;
@@ -29,6 +30,7 @@ class facturaController extends Controller
 
     public function save(facturaRequest $request)
     {
+        //Guardar Factura
         $facturas = new facturas();
 
         $facturas->codcli = $request->codcli;
@@ -45,6 +47,7 @@ class facturaController extends Controller
 
         $condicion = $request->condicion;
 
+        //Guardar Detalle
         $detalle = new detalle_factura();
 
         $detalle->numfac = $numfac;
@@ -61,9 +64,9 @@ class facturaController extends Controller
 
         $codcli = $request->codcli;
 
+        //Crear/Actualizar Cuentas
         $cuenta = cuentas::where('codcli', $codcli)->first();
         $cuentas = new cuentas();
-
         if (is_null($cuenta) && $condicion == 'Financiamiento') {
             $cuentas->codcli = $codcli;
             $cuentas->balance = priceToFloat($request->total);
@@ -78,26 +81,30 @@ class facturaController extends Controller
             $cuenta->save();
         }
 
-        /* $propiedad = propiedades::find($request->codpro);
-        $propiedad->estpro = 'Vendida';
-        $propiedad->save(); */
+        //Actualizar estado factura
+        $propiedad = propiedades::where('codpro', $request->codpro)->first();
+        /* $propiedad->estpro = 'Vendida';
+        $propiedad->save();  */
 
+        //Datos a mandar a los reportes
         $cliente = clientes::where('codcli', $codcli)->first();
-        $propiedad1 = propiedades::join('itbis', 'propiedades.citbis', '=', 'itbis.citbis')
-            ->select('itbis.itbis', 'propiedades.codpro', 'propiedades.titulo')
-            ->where('propiedades.codpro', $request->codpro)
-            ->first();
+        $propiedad1 = propiedades::where('codpro', $propiedad->codpro)->first();
+        $clienteVendedor = clientes::where('codcli', $propiedad->codcli)->first();
+        $direccion = direcciones::where('codpro', $propiedad->codpro)->first();
 
-        /* $pdf = App::make('dompdf.wrapper'); */
-        /* return FacadePdf::loadView('reportes.reporteFactura', compact(['cliente', 'propiedad1', 'facturas', 'detalle']))
-            ->setOption('enable_remote', true)
-            ->download('Reporte Factura No. #' . $numfac . '.pdf'); */
-        return redirect()->to('/Facturacion')->with([
+        return redirect()->to('/reporteFactura')->with([
             'cliente' => $cliente,
+            'clienteVendedor' => $clienteVendedor,
+            'direccion' => $direccion,
             'propiedad' => $propiedad1,
             'facturas' => $facturas,
             'detalle' => $detalle
         ]);
+
+        /* $pdf = App::make('dompdf.wrapper'); */
+        /* return FacadePdf::loadView('reportes.reporteFactura', compact(['cliente', 'propiedad1', 'facturas', 'detalle']))
+            ->setOption('enable_remote', true)
+            ->download('Reporte Factura No. #' . $numfac . '.pdf');*/
     }
 
     public function query()

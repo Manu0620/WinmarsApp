@@ -28,7 +28,15 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
     font-size: 16px;
     line-height: 24px;
-    font-family: 'Open Sans', sans-serif !important;
+    font-family: 'Open Sans';
+    color: black;
+}
+
+.contrato-inquilinato{
+    padding: 50px;
+    font-size: 12px;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.358);
+    font-family: 'Open Sans';
     color: black;
 }
 

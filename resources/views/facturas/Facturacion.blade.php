@@ -35,7 +35,7 @@
         <div class="col">
             <div class="button-group" style="text-align: right;">
                 <button type="reset" onclick="limpiarTabla()" class="btn btn-danger shadow-none"><i class="fa-solid fa-arrow-rotate-left"></i> Limpiar</button>
-                <button type="submit" class="btn btn-primary shadow-none" onclick="imprimirFactura()" style="background: #208b3a;"><i class="fa-solid fa-floppy-disk"></i> Procesar</button>
+                <button type="button" class="btn btn-primary shadow-none" data-bs-toggle="modal" data-bs-target="#formaPagoModal" style="background: #208b3a;"><i class="fa-solid fa-floppy-disk"></i> Procesar</button>
             </div>
         </div>
     </div>
@@ -70,6 +70,30 @@
     </div>
 
     <div class="row">
+        <div class="col-1"></div>
+        <div class="col">
+            <label for="fecha">Fecha</label>
+            <input type="datetime" class="form-control" id="fecha" name="fecha" disabled>
+        </div>
+        <div class="col">
+            <label for="concepto">Concepto</label>
+            <select class="form-select" name="concepto" id="concepto">
+                <option value="Venta" selected>Venta</option>
+                <option value="Alquiler">Alquiler</option>
+            </select>
+        </div>
+        <div class="col">
+            <label for="condicion">Condicion</label>
+            <select class="form-select" name="condicion" id="condicion">
+                <option value="Al Contado" selected>Al Contado</option>
+                <option value="Financiamiento">Financiamiento</option>
+            </select>
+        </div>
+        
+        <div class="col-1"></div>
+    </div>
+
+    <div class="row">
         <div class="col">
             <label for="codpro">Propiedad</label>
             <div class="input-group">
@@ -98,50 +122,6 @@
             @error('cantidad')
                 @include('layouts.partials.messages')
             @enderror
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col">
-            <label for="fecha">Fecha</label>
-            <input type="datetime" class="form-control" id="fecha" name="fecha" disabled>
-        </div>
-        <div class="col">
-            <label for="concepto">Concepto</label>
-            <select class="form-select" name="concepto" id="concepto">
-                <option value="Venta" selected>Venta</option>
-                <option value="Alquiler">Alquiler</option>
-            </select>
-        </div>
-        <div class="col">
-            <label for="condicion">Condicion</label>
-            <select class="form-select" name="condicion" id="condicion">
-                <option value="Al Contado" selected>Al Contado</option>
-                <option value="Financiamiento">Financiamiento</option>
-            </select>
-        </div>
-        <div class="col">
-            <label for="Forma de Pago">Forma de Pago</label>
-            <select class="form-select" name="form_pag" id="form_pag">
-                <option value="Efectivo" selected>Efectivo</option>
-                <option value="Transferencia">Transferencia</option>
-            </select>
-        </div>
-        <div class="col-1">
-            <label for="monto">Monto</label>
-            <input type="text" class="form-control shadow-none" id="monto" name="monto">
-        </div>
-        <div class="col-1">
-            <label for="cuenta">Cuenta</label>
-            <input type="text" class="form-control" id="cuenta" name="cuenta" readonly>
-        </div>
-        <div class="col-1">
-            <label for="cobrar">A Cobrar</label>
-            <input type="text" class="form-control" value="0.00" id="cobrar" name="cobrar" readonly>
-        </div>
-        <div class="col-1">
-            <label for="A Devolver">A Devolver</label>
-            <input type="text" class="form-control" value="0.00" id="devuelta" name="devuelta" readonly>
         </div>
     </div>
 
@@ -175,43 +155,155 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="formaPagoModal" role="dialog" tabindex="-1" aria-labelledby="Forma de Pago" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalScrollableTitle">Forma de Pago</h3>
+                    <button type="button" class="btn btn-danger" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                        <div class="row">
+                            <div class="col">
+                                <label for="Forma de Pago">Forma de Pago</label>
+                                <select class="form-select" name="form_pag" id="form_pag">
+                                    <option value="Efectivo" selected>Efectivo</option>
+                                    <option value="Transferencia">Transferencia</option>
+                                </select>
+                            </div>
+
+                            <div class="col">
+                                <label for="monto">Monto</label>
+                                <input type="text" class="form-control shadow-none" id="monto" name="monto">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label for="banco">Banco</label>
+                                <select class="form-select" name="banco" id="banco">
+                                    <option value="11245625647" selected>Banreservas</option>
+                                    <option value="25135241547">BHD</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="cuenta_empresa">Cuenta/Empresa</label>
+                                <input type="text" class="form-control" value="11245625647" id="cuenta_empresa" name="cuenta_empresa" readonly>
+                            </div>
+                            <div class="col">
+                                <label for="cuenta_cliente">Cuenta/Cliente</label>
+                                <input type="number" class="form-control" id="cuenta_cliente" name="cuenta_cliente" readonly>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <label for="recibido">Recibido</label>
+                                <input type="text" class="form-control" value="0.00" id="recibido" name="recibido" readonly>
+                            </div>
+                            <div class="col">
+                                <label for="cobrar">A Cobrar</label>
+                                <input type="text" class="form-control" value="0.00" id="cobrar" name="cobrar" readonly>
+                            </div>
+                            <div class="col">
+                                <label for="A Devolver">A Devolver</label>
+                                <input type="text" class="form-control" value="0.00" id="devuelta" name="devuelta" readonly>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger shadow-none" style="border: none;" data-bs-dismiss="modal">Close</button>
+                    <button class="btn btn-success shadow-none" id="enviarFactura" style="border: none;" onclick="imprimirFactura()" disabled><i class="fa-solid fa-floppy-disk"></i> Procesar</button>
+                </div>
+            </div>
+        </div>
+    </div>
     
     </form>
 
     <script>
-        document.getElementById('condicion').addEventListener('click', actualizarCobrar);
-        document.getElementById('form_pag').addEventListener('click', cuenta);
-        document.getElementById('monto').addEventListener('keyup', validarMonto);
-        document.getElementById('monto').addEventListener('blur', formatoMonto);
-        document.getElementById('monto').addEventListener('click', deformatMonto);
 
-        function validarMonto(e){ 
+        $('#formaPagoModal').on('shown.bs.modal', function (e) {
+            if($('#codcli').val() == '' || $('#codpro').val() == ''){
+                $('#formaPagoModal').modal('hide');
+                Swal.fire({
+                    icon: 'error',
+                    iconColor: '#d62828',
+                    title: 'Campos requeridos',
+                    text: 'Por favor llene los campos correctamente',
+                    confirmButtonColor: '#1976D2',
+                    buttonsStyling: false,
+                    confirmButtonText: "OK!",
+                    customClass: {
+                        confirmButton: "btn btn-primary"
+                    }
+                })
+            }
+        })
+
+        document.getElementById('condicion').addEventListener('click', actualizarCobrar);
+        document.getElementById('form_pag').addEventListener('click', Tranferencia);
+        document.getElementById('monto').addEventListener('blur', formatoMonto);
+        document.getElementById('monto').addEventListener('keyup', validarMonto);
+        document.getElementById('monto').addEventListener('click', deformatMonto);
+        document.getElementById('banco').addEventListener('click', cuentaEmpresa);
+
+        function validarMonto(e){
             var monto = parseFloat(document.getElementById('monto').value);
             var cobrar = parseFloat(accounting.unformat(document.getElementById('cobrar').value, "."));
-            if( parseFloat(monto) < parseFloat(cobrar)){
+            var form_pag = document.getElementById('form_pag').value;
+            var cuenta_cliente = parseInt((document.getElementById('cuenta_cliente').value).length);
+            if((parseFloat(monto) < parseFloat(cobrar)) && form_pag == 'Tranferencia' && cuenta_cliente == 0){
                 document.getElementById('monto').style.borderColor = "crimson";
-            }else{
+                document.getElementById('enviarFactura').disabled = true;
+            }else if((parseFloat(monto) >= parseFloat(cobrar)) && form_pag == 'Tranferencia' && cuenta_cliente > 0){
                 document.getElementById('monto').style.borderColor = "#208b3a";
-            }            
+                document.getElementById('enviarFactura').disabled = false;
+                document.getElementById('devolver').value = formartter.format(parseFloat(monto)-parseFloat(cobrar));
+            }else{
+                if(parseFloat(monto) < parseFloat(cobrar) && form_pag == 'Efectivo'){
+                    document.getElementById('monto').style.borderColor = "crimson";
+                    document.getElementById('enviarFactura').disabled = true;
+                    
+                }else if(parseFloat(monto) >= parseFloat(cobrar) && form_pag == 'Efectivo'){
+                    document.getElementById('monto').style.borderColor = "#208b3a";
+                    document.getElementById('enviarFactura').disabled = false;
+                    document.getElementById('devolver').value = formartter.format(parseFloat(monto)-parseFloat(cobrar));
+                }
+            }
         }
 
-        function deformatMonto(e){
+        function deformatMonto(e) { 
             document.getElementById('monto').value = accounting.unformat(document.getElementById('monto').value, ".");
         }
 
-        function formatoMonto(e) {
+        function formatoMonto(e) { 
             document.getElementById('monto').value = formatter.format(document.getElementById('monto').value);
         }
-        
 
-        function cuenta(e) {
+        function cuentaEmpresa(e) {
+            document.getElementById('cuenta_empresa').value = document.getElementById('banco').value;
+        }
+
+        function limpiarFormaPago(){
+            document.getElementById('cuenta_cliente').value = '';
+            document.getElementById('monto').value = '';
+        }
+
+        function Tranferencia(e) {
             if(document.getElementById('form_pag').value == 'Transferencia'){
-                document.getElementById('cuenta').readOnly = false;
-                document.getElementById('monto').readOnly = true;
+                document.getElementById('banco').readOnly = false;
+                document.getElementById('cuenta_cliente').readOnly = false;
+                document.getElementById('enviarFactura').disabled = true;
             }else{
-                document.getElementById('cuenta').readOnly = true;
-                document.getElementById('monto').readOnly = false;
+                document.getElementById('banco').readOnly = true;
+                document.getElementById('cuenta_cliente').readOnly = true;
+                document.getElementById('enviarFactura').disabled = true;
             }   
+            limpiarFormaPago();
         }
         
         function actualizarCobrar(e){
@@ -284,7 +376,8 @@
             }else if(document.getElementById('condicion').value == 'Financiamiento'){
                 var cobrar = total*parseFloat(0.20);
                 document.getElementById('cobrar').value = formatter.format(cobrar);
-            }   
+            }  
+            document.getElementById('enviarFactura').disabled = true; 
         }
     </script>
 
@@ -417,6 +510,7 @@
         setInterval(fecha, 1000);
    
         function selectCliente(codcli, nomcli, apecli, tecli1, cedrnc){
+            table.clear().draw();
             document.getElementById('codcli').value = codcli;
             document.getElementById('nomcli').value = nomcli + ' ' + apecli;
             document.getElementById('tecli1').value = tecli1;
@@ -607,6 +701,7 @@
             subtotal = parseFloat(precio)*parseInt(cantidad);
             itbis = parseFloat(subtotal)*parseFloat(itbis); 
             total = parseFloat(subtotal)+parseFloat(itbis);
+            document.getElementById('cantidad').value = 1;
             llenarForm(concepto, precio, itbis, subtotal, total);
             if(concepto == 'Alquiler') {actualizarTabla()}else{
                 var date = moment().add(30, 'days');
@@ -619,17 +714,18 @@
 
     </script>
 
+
     <script>
+
         function imprimirFactura() {
             
-            if($('#codcli').val().length != 0 && $('#codpro').val().length != 0 && $('#cantidad').val().length != 0){
+            /* if($('#codcli').val().length != 0 && $('#codpro').val().length != 0 && $('#cantidad').val().length != 0){
                 // open the page as popup //
                 var page = '/reporteFactura';
                 var myWindow = window.open(page, "_blank");
-                
                 // focus on the popup //
                 myWindow.focus();
-            }
+            } */
         }
     </script>
     
