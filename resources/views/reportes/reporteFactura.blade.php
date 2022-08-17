@@ -354,38 +354,44 @@
 
 			<p align="justify"> <b>ARTICULO PRIMERO: Objeto de la Promesa de Venta: LA PRIMERA PARTE, por medio del presente</b> contrato, otorga en favor de <b> LA SEGUNDA PARTE, </b> quien acepta, con todas las garantías ordinarias y de derecho, formal e irrevocable promesa de venta, bajo las condiciones que más adelante se indicarán, respecto de los inmuebles que se describes descrito a continuación. -</p>
 		
-			<h4><b>TODOS LOS DERECHO DEL APARTAMENTO C-4 EN LA TORRES 4 CON UN ÁREA DE CONSTRUCCIÓN DE CIEN (100M2) METROS CUADRADOS, DENTRO DEL PROYECTO RESIDENCIAL PORTO SOLES , UBICADO EN LA AVENIDA PASEO DELOS CHOFERES , DE LA URBANIZACIÓN JARDINES DEL NORTE , CON TERMINACIÓN EN PISO DE PORCELANATO, PUERTAS, CLOSET Y GABINETES EN MADERA PRECIOSA, TOPE EN GRANITO NATURAL, CERÁMICA EN BAÑO IMPORTADA, VENTANAS CON PERFILERÍA P-65, DOS PARQUEO, PRE-INSTALACIÓN DE ALARMA (INSTALACIÓN TUBERÍA), PRE-INSTALACIÓN DE AIRES ACONDICIONADOS (INSTALACIÓN TUBERÍA), LOCALIZADO DENTRO DE LA PARCELA64-M DEL DISTRITO CATASTRAL NUMERO 06, DEL MUNICIPIO DE SANTIAGO DE LOS CABALLEROS. </b></h4>
+			<p align="justify">“Un inmueble que cuenta con {{ Session::get('propiedad.habit') }} habitaciones, 
+				{{ Session::get('propiedad.baños') }} baño/s, {{ Session::get('propiedad.metros') }} m² de construcción,
+				identificado como {{ Session::get('propiedad.titulo') }}, ubicado en {{ Session::get('direccion.direccion'). ', ' .Session::get('direccion.municipio').', '.Session::get('direccion.ciudad') }},
+				Republica Dominicana, el cual a sido visto y encontrado a entera satisfacción por el/la COMPRADOR/A, quien lo 
+				usara para fines exclusivamente como vivienda, no pudiendo dedicarlo a otros fines, ni cederlos sin el consentimiento escrito 
+				de EL PROPIETARIO/A"
 		
-			<p align="justify"><b>ARTICULO SEGUNDO: Precio de la Promesa de Venta y Forma de Pago.</b> El precio de la presente promesa de venta del inmueble anteriormente indicado ha sido convenido y pactado por las partes en la suma de <b>CIENTOS VEINTE MIL DÓLARES (US$120,000.00). NORTEAMERICANOS, cuya</b> suma será pagada por <b>LA SEGUNDA PARTE,</b> de la manera siguiente:</p>
-			<p align="justify"> a)<b> La suma de SEIS MIL DÓLARES (US$6,000.00). NORTEAMERICANOS</b>, a la firma
-				del presente contrato por concepto de avance, y cuya suma <b>LA PRIMERA PARTE</b>
+		      <p align="justify"><b>ARTICULO SEGUNDO: Precio de la Promesa de Venta y Forma de Pago.</b> El precio de la presente promesa de venta del inmueble 
+				anteriormente indicado ha sido convenido y pactado por las partes en la suma de <b>US$ {{ $money_number = number_format(Session::get('propiedad.preven'),2,'.',',') }}</b>  
+				cuya</b> suma será pagada por <b>EL COMPRADOR,</b> de la manera siguiente:</p>
+
+
+			<p align="justify"> a)<b> La suma de US$ {{ $money_number = number_format(Session::get('propiedad.preven')* 0.20,2,'.',',')}}</b> , a la firma
+				del presente contrato por concepto de avance, y cuya suma <b>EL PROPIETARIO</b>
 				reconoce haber recibido en dinero en efectivo en esta misma fecha y de manos de
-				<b>LA SEGUNDA PARTE</b>, por lo cual le otorga el correspondiente recibo de pago y
+				<b>EL COMPRADOR</b>, por lo cual le otorga el correspondiente recibo de pago y
 				descargo por dicha suma y concepto.
 				 </p>
 
-				 <p align="justify">b) <b>La suma de VEINTICUATRO MIL DÓLARES (US$24,000.00).
-					NORTEAMERICANOS</b> que serán pagado en el proceso de construcción de la obra efectuando
-					<b>cinco (5)</b> pagos de <b>(US$4,800.00). CUATRO MIL OCHOCIENTOS DÓLARES.</b>
-					los meses de diciembre 2021, enero, febrero, marzo y abril del año 2022
-					</p>
-				 <p align="justify">c) La suma restante de<b> NOVENTA MIL DÓLARES (US$90,000.00).
-					NORTEAMERICANOS</b> la cual será pagada o financiada con una institución financiera,
-					a más tardar en el mes de mayo del año 2022, al momento de la entrega del
-					apartamento. -</p>
-				 <p align="justify">c)<b>PÁRRAFO:</b>Tanto <b>LA PRIMERA PARTE</b> como <b>LA SEGUNDA PARTE</b>, se
-					obliga y comprometen a firmar y suscribir cuantos documentos fueren de lugar a
+				 
+				 <p align="justify">b) La suma restante de<b> US$ {{ $money_number = number_format(Session::get('propiedad.preven') - Session::get('propiedad.preven')* 0.20,2,'.',',')}}</b>
+					 la cual será pagada o financiada con una institución financiera,
+					a más tardar al momento de la entrega del inmueble. -</p>
+
+				 <p align="justify">c)<b>PÁRRAFO:</b>Tanto <span style="text-transform: uppercase;"><b>{{ Session::get('clienteVendedor.nomcli'). ' ' .Session::get('clienteVendedor.apecli') }}</b></span> como <b>
+					<span style="text-transform: uppercase;"><b>{{ Session::get('cliente.nomcli'). ' ' .Session::get('cliente.apecli') }}</b></span></b>, se obliga y comprometen a firmar y suscribir cuantos documentos fueren de lugar a
 					fin de que puedan ser traspasados los derechos inmobiliarios objeto del presente
 					contrato, cuando hayan cumplido con</p>
+
 				 <p align="justify"><b>ARTICULO TERCERO: INCUMPLIMIENTO DE LAS PARTES</b>. Las partes
 					convienen que en caso de que <b>EL BENEFICIARIO</b> incumpla su obligación de comprar el
 					inmueble objeto del presente contrato en las condiciones antes indicadas, perderá
 					<b>EL CINCUENTA PORCIENTO ( 50%) </b> la suma adelantada y
-					entregada <b> Al OFERTANTE</b> por concepto de avance; y si es <b>LA PRIMERA
-					PARTE</b> que incumple su obligación de vender el inmueble objeto del presente
+					entregada <b> Al OFERTANTE</b> por concepto de avance; y si el señor <b><span style="text-transform: uppercase;"><b>{{ Session::get('clienteVendedor.nomcli'). ' ' .Session::get('clienteVendedor.apecli') }}</b></span>
+					 que incumple su obligación de vender el inmueble objeto del presente
 					contrato en las condiciones antes indicadas, devolverá la suma entregada como
-					avance, más un cincuenta por ciento (50%) del total entregado como avance por LA
-					<b>SEGUNDA PARTE</b>. En caso de que <b>LA SEGUNDA PARTE</b> no cumpla con el acápite (b)
+					avance, más un cincuenta por ciento (50%) del total entregado como avance por
+					<b>El COMPRADOR</b>. En caso de que <span style="text-transform: uppercase;"><b>{{ Session::get('cliente.nomcli'). ' ' .Session::get('cliente.apecli') }}</b></span></b> no cumpla con el acápite (b)
 					del artículo segundo, y una vez transcurridos treinta (30) días después de la notificación de la
 					terminación y la ofertante entrega de dicho apartamento éste pagará un tres por ciento (3%)de
 					interés mensual en pesos de la suma adeudada. La documentación (título de propiedad) será
@@ -395,7 +401,7 @@
 					hayan cumplido con todas las obligaciones puestas a su cargo, se comprometen además a suscribir
 					el acto de Compraventa definitiva, tendiente a traspasar el inmueble objeto del presente
 					contrato</p>
-				 <p align="justify"><b>ARTICULO QUINTO: LA SEGUNDA PARTE,</b> se compromete y obliga a pagar todos los impuestos de ley y honorarios de abogados relativos a la transferencia definitiva del inmueble
+				 <p align="justify"><b>ARTICULO QUINTO: EL COMPRADOR,</b> se compromete y obliga a pagar todos los impuestos de ley y honorarios de abogados relativos a la transferencia definitiva del inmueble
 					anteriormente indicada.
 					</p>
 				 <p align="justify"><b>ARTICULO SEXTO: JURISDICCIÓN COMPETENTE Y LEY APLICABLE.</b> Las
@@ -403,6 +409,15 @@
 					relacionado con el presente contrato será la de los tribunales de la ciudad de Santiago de los
 					Caballeros, que es el domicilio donde radica el inmueble objeto del presente contrato, y que las
 					únicas leyes aplicables serán las de la República Dominicana.-</p>
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+
+
+
 				 <p align="justify"><b>ARTICULO SÉPTIMO: JUSTIFICACIÓN DE DERECHO DE
 					PROPIEDAD: LA PRIMERA PARTE</b> justifica su derecho de propiedad del
 					inmueble objeto de la presente promesa de venta, en virtud del Certificado de
@@ -411,31 +426,37 @@
 					</p>
 				 <p align="justify"><b>ARTICULO OCTAVO: ELECCIÓN DE DOMICILIO.</b> Para todos los
 					fines y consecuencias legales del presente contrato, las partes eligen domicilio atributivo de
-					competencia de la siguiente manera: a) LA PRIMERA PARTE en su domicilio referido
-					en el cuerpo del presente contrato; y b) LA SEGUNDA PARTE en su dirección
+					competencia de la siguiente manera: a) EL COMPRADOR en su domicilio referido
+					en el cuerpo del presente contrato; y b) EL VENDEDOR en su dirección
 					anteriormente descrita, y en su defecto en la Procuraduría Fiscal de Santiago, donde desde
 					ya reconocen la validez de todas las notificaciones que hubiere que efectuar.-</p>
+
 				 <p align="justify"><b>ARTICULO NOVENO: LA PRIMERA PARTE;</b> se compromete a entregar dicho
 					apartamento en el mes de mayo 2022. Dicha fecha no será variada si los atrasos no son
 					provocados por casos fortuitos o de fuerza mayor, tales como (terremotos, guerra, huelgas,
 					huracanes, vaguadas). </p>
+
 				 <p align="justify"><b>HECHO, CONVENIDO, PACTADO Y FIRMADO</b> de buena fe entre las partes en dos (2)
 					originales de un mismo tenor y efecto, uno para cada una de las partes contratantes y el
 					restante para ser archivado por el Notario Público actuante, en la ciudad de Santiago de
 					los Caballeros, Municipio y Provincia de Santiago, República Dominicana, a los
 					diez y seis (16) días del mes de noviembre de 2021.</p> <br />
 
-					<h3 style="text-align: center";><b>POR LA PRIMERA PARTE Y/O INGROUR, S.R.L.	</b></h3><br />
+					<h3 style="text-align: center";><b>EL VENDEDOR	</b></h3><br />
 					<p align="center"><b></b>
 						<label>____________________________________________</label> <br />
-					 <p align="center"><b>JOSE EDWIN J. RODRIGUEZ</b> <br />
+					 <p align="center"><b><span style="text-transform: uppercase;"><b>{{ Session::get('clienteVendedor.nomcli'). ' ' .Session::get('clienteVendedor.apecli') }}</b></span> <br />
 						</p> <br />
-						<h3 style="text-align: center";><b>POR LA SEGUNDA PARTE	</b></h3><br />
+
+
+						<h3 style="text-align: center";><b>EL COMPRADOR	</b></h3><br />
 					<p align="center"><b></b>
 							<label>____________________________________________</label> <br />
 						 <p align="center"><b>THOMAS B SPIESS
 					</b> <br />
 					</p> <br />
+						 <p align="center"><span style="text-transform: uppercase;"><b>{{ Session::get('cliente.nomcli'). ' ' .Session::get('cliente.apecli') }}</b></span></b> <br />
+							</p> <br />
 
 				 	<p align="justify"><b>YO, LIC. JUAN GUILLERMO FRANCO,</b> Notario Público de los del número para el
 					Municipio de Santiago, con Matricula del Colegio Dominicano de Notarios No.584, con
