@@ -31,7 +31,6 @@ Route::get('/', function () {
     return view('pagina-principal.inicio');
 });
 
-<<<<<<< HEAD
 Route::get('/contratoInquilinato', function () {
     return view('reportes.contratoInquilinato');
 });
@@ -49,8 +48,6 @@ Route::get('/contacto', function () {
     return view('pagina-principal.contacto');
 });
 
-=======
->>>>>>> 5cc672f159e790edfd46baf77774ce8ae1ffabc2
 Route::get('/reporteFactura', [reportesController::class, 'imprimirFactura']);
 Route::get('/reporteCotizacion', [reportesController::class, 'imprimirCotizacion']);
 Route::get('/contratoInquilinato', [reportesController::class, 'contratoInquilinato']);
