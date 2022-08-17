@@ -123,18 +123,18 @@
                     type: "splineArea",
                     color: "#1976d2",
                     dataPoints: [
-                      { x: new Date(2017, 0), y: 30000 },
-                      { x: new Date(2017, 1), y: 27980 },
-                      { x: new Date(2017, 2), y: 33800 },
-                      { x: new Date(2017, 3), y: 49400 },
-                      { x: new Date(2017, 4), y: 40260 },
-                      { x: new Date(2017, 5), y: 33900 },
-                      { x: new Date(2017, 6), y: 48000 },
-                      { x: new Date(2017, 7), y: 31500 },
-                      { x: new Date(2017, 8), y: 32300 },
-                      { x: new Date(2017, 9), y: 42000 },
-                      { x: new Date(2017, 10), y: 52160 },
-                      { x: new Date(2017, 11), y: 49400 }
+                      { x: new Date({{ date('Y') }}, 0), y: 30000 },
+                      { x: new Date({{ date('Y') }}, 1), y: 27980 },
+                      { x: new Date({{ date('Y') }}, 2), y: 33800 },
+                      { x: new Date({{ date('Y') }}, 3), y: 18000 },
+                      { x: new Date({{ date('Y') }}, 4), y: 40260 },
+                      { x: new Date({{ date('Y') }}, 5), y: 33900 },
+                      { x: new Date({{ date('Y') }}, 6), y: 48000 },
+                      { x: new Date({{ date('Y') }}, 7), y: 31500 },
+                      { x: new Date({{ date('Y') }}, 8), y: 32300 },
+                      { x: new Date({{ date('Y') }}, 9), y: 42000 },
+                      { x: new Date({{ date('Y') }}, 10), y: 52160 },
+                      { x: new Date({{ date('Y') }}, 11), y: 49400 }
                     ]
                   }]
               });
