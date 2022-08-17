@@ -75,10 +75,10 @@
                     <a class="nav-link" href="#" role="button" aria-expanded="false"> Alquilar</a>
                 </ul>
                 <ul class="nav-item">
-                    <a class="nav-link" href="#" role="button" aria-expanded="false"><i class="fa-solid fa-people-group"></i> Nosotros</a>
+                    <a class="nav-link" href="/nosotros" role="button" aria-expanded="false"><i class="fa-solid fa-people-group"></i> Nosotros</a>
                 </ul>
                 <ul class="nav-item">
-                    <a class="nav-link" href="#" role="button" aria-expanded="false"><i class="fa-solid fa-address-book"></i> Contacto</a>
+                    <a class="nav-link" href="/contacto" role="button" aria-expanded="false"><i class="fa-solid fa-address-book"></i> Contacto</a>
                 </ul>
                 <div class="login">
                     <ul class="nav-item">

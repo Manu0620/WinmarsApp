@@ -40,7 +40,13 @@ Route::get('ContratoPromesa', function () {
     return view('reportes.ContratoPromesa');
 });
 
+Route::get('/nosotros', function () {
+    return view('pagina-principal.nosotros');
+});
 
+Route::get('/contacto', function () {
+    return view('pagina-principal.contacto');
+});
 
 Route::get('/reporteFactura', [reportesController::class, 'imprimirFactura']);
 Route::get('/reporteCotizacion', [reportesController::class, 'imprimirCotizacion']);
