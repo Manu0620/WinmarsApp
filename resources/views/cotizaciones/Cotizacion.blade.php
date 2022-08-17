@@ -24,7 +24,7 @@
                 <div class="col">
                     <div class="button-group" style="text-align: right;">
                         <button type="reset" onclick="limpiarTabla()" class="btn btn-danger shadow-none"><i class="fa-solid fa-arrow-rotate-left"></i> Limpiar</button>
-                        <button type="submit" class="btn btn-primary shadow-none" onclick="imprimirCotizacion()" style="background: #0ead69;"><i class="fa-solid fa-floppy-disk"></i> Procesar</button>
+                        <button type="submit" class="btn btn-primary shadow-none" style="background: #0ead69;"><i class="fa-solid fa-floppy-disk"></i> Procesar</button>
                     </div>
                 </div>
             </div>
@@ -79,13 +79,6 @@
                 <select class="form-select" name="condicion" id="condicion">
                     <option value="Al Contado" selected>Al Contado</option>
                     <option value="Financiamiento">Financiamiento</option>
-                </select>
-            </div>
-            <div class="col">
-                <label for="Forma de Pago">Forma de Pago</label>
-                <select class="form-select" name="form_pag" id="form_pag">
-                    <option value="Efectivo" selected>Efectivo</option>
-                    <option value="Transferencia">Transferencia</option>
                 </select>
             </div>
             <div class="col-1"></div>
@@ -537,6 +530,7 @@
             subtotal = parseFloat(precio)*parseInt(cantidad);
             itbis = parseFloat(subtotal)*parseFloat(itbis); 
             total = parseFloat(subtotal)+parseFloat(itbis);
+            document.getElementById('cantidad').value = 1;
             llenarForm(concepto, precio, itbis, subtotal, total);
             if(concepto == 'Alquiler') {actualizarTabla()}else{
                 var date = moment().add(30, 'days');
@@ -550,17 +544,8 @@
     </script>
 
     <script>
-        function imprimirCotizacion() {
-            
-            if($('#codcli').val().length != 0 && $('#codpro').val().length != 0 && $('#cantidad').val().length != 0){
-                // open the page as popup //
-                var page = '/reporteCotizacion';
-                var myWindow = window.open(page, "_blank");
-                
-                // focus on the popup //
-                myWindow.focus();
-            }
-            
+        window.onload = function(e) {
+            $("#formulario")[0].reset();
         }
     </script>
 

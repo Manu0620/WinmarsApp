@@ -52,7 +52,7 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         Route::get('/consultarFacturas', [facturaController::class, 'query']);
 
         Route::get('/Cobros', [cobroController::class, 'show']);
-        Route::post('/Cobros', [cobroController::class, 'create']);
+        Route::post('/Cobros', [cobroController::class, 'save']);
         Route::get('/consultarCobros', [cobroController::class, 'query']);
 
         Route::get('/Cotizacion', [cotizacionController::class, 'create']);
@@ -129,3 +129,4 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
 Route::get('/login', [loginController::class, 'show']);
 Route::post('/login', [loginController::class, 'login']);
 Route::get('/inicio', [inicioController::class, 'inicio']);
+Route::get('/vender', [inicioController::class, 'venderView']);

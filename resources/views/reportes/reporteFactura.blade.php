@@ -434,10 +434,10 @@
 					<p align="center"><b></b>
 							<label>____________________________________________</label> <br />
 						 <p align="center"><b>THOMAS B SPIESS
-</b> <br />
-							</p> <br />
+					</b> <br />
+					</p> <br />
 
-				 <p align="justify"><b>YO, LIC. JUAN GUILLERMO FRANCO,</b> Notario Público de los del número para el
+				 	<p align="justify"><b>YO, LIC. JUAN GUILLERMO FRANCO,</b> Notario Público de los del número para el
 					Municipio de Santiago, con Matricula del Colegio Dominicano de Notarios No.584, con
 					estudio profesional abierto en la calle Privada No.12, La Moraleja, de esta ciudad de
 					Santiago de los Caballeros, con teléfonos Nos.809-734-2223/24, e-mail: Info@kanada.do,

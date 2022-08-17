@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class cobros extends Model
+class pago extends Model
 {
     use HasFactory;
 
     protected $table = 'pago';
     protected $primaryKey = 'codpag';
 
-    public $fillable = [
+    protected $fillable = [
         'codcue',
-        'form_pago',
+        'form_pag',
         'cuenta_empresa',
         'cuenta_cliente',
         'banco',
@@ -22,6 +22,6 @@ class cobros extends Model
         'montpag',
         'cobrado',
         'devuelta',
-        'comentario'
+        'comentario',
     ];
 }

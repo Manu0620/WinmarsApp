@@ -112,7 +112,7 @@
 				</tr>
 
 				<tr class="heading">
-					<td>Forma de pago: {{ Session::get('cotizacion.form_pag') }}</td>
+					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>

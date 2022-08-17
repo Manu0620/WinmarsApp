@@ -16,8 +16,9 @@ class cobroController extends Controller
         return view('cobros.Cobros', compact(['clientes', 'tipo_clientes']));
     }
 
-    public function create(Request $request)
+    public function save(Request $request)
     {
+
         return redirect()->to('Cobros')->with('success', 'Formulario enviado correctamente!');
     }
 

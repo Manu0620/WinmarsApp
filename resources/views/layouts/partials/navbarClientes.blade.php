@@ -32,16 +32,16 @@
     }
 
     .login .nav-item{
-        border: 1px solid #38b000;
+        border: 1px solid #0466c8;
         margin-left: 15px;
     }
 
     .login .nav-item:hover{
-        background: #38b000;
+        background: #0466c8;
     }
 
     .login .nav-link{
-        color: #38b000;
+        color: #0466c8;
     }
 
     .login .nav-link:hover{
@@ -49,8 +49,8 @@
     }
 
     .nav-item:hover, .nav-link:hover{
-        color: #38b000;
-        text-shadow: 0px 5px 10px #38b00064;
+        color: #0466c8;
+        text-shadow: 0px 5px 10px #0466c864;
     }
 
 </style>
@@ -73,6 +73,9 @@
                 </ul>
                 <ul class="nav-item">
                     <a class="nav-link" href="#" role="button" aria-expanded="false"> Alquilar</a>
+                </ul>
+                <ul class="nav-item">
+                    <a class="nav-link" href="/vender" role="button" aria-expanded="false"> Vender</a>
                 </ul>
                 <ul class="nav-item">
                     <a class="nav-link" href="#" role="button" aria-expanded="false"><i class="fa-solid fa-people-group"></i> Nosotros</a>

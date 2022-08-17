@@ -1,6 +1,10 @@
 @extends('layouts.auth-master')
 
 @section('content')
+
+    <div class="pagina-inicio" style="text-align: center; margin: 30px;">
+        <a href="/inicio" type="button" class="btn btn-primary shadow-none"><i class="fa-solid fa-house"></i> Pagina de inicio</a>
+    </div>
     
     <h3><img src="{{ url('assets/img/Solo_logo.png') }}" alt="Logo">Login</h3>
 

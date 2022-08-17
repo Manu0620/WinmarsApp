@@ -17,6 +17,5 @@ class detalle_factura extends Model
         'concepto',
         'cantidad',
         'precio',
-        'estfac',
     ];
 }

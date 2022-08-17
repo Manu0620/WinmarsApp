@@ -33,7 +33,6 @@ class cotizacionController extends Controller
         $cotizacion->condicion = $request->condicion;
         $cotizacion->subtot = priceToFloat($request->subtot);
         $cotizacion->total = priceToFloat($request->total);
-        $cotizacion->form_pag = $request->form_pag;
         $cotizacion->fecvenc = date("Y-m-d h:i", strtotime(date("Y-m-d h:i") . "+ 30 days"));
         $cotizacion->observaciones = $request->observaciones;
         $cotizacion->estcot = 'Por Facturar';
@@ -47,7 +46,6 @@ class cotizacionController extends Controller
         $detalle->concepto = $request->concepto;
         $detalle->cantidad = $request->cantidad;
         $detalle->precio = priceToFloat($request->subtot);
-        $detalle->estcot = 'Por Facturar';
         $detalle->save();
 
 
@@ -61,7 +59,7 @@ class cotizacionController extends Controller
         /* return FacadePdf::loadView('reportes.reporteFactura', compact(['cliente', 'propiedad1', 'facturas', 'detalle']))
             ->setOption('enable_remote', true)
             ->download('Reporte Factura No. #' . $numfac . '.pdf'); */
-        return redirect()->to('/Cotizacion')->with([
+        return redirect()->to('/reporteCotizacion')->with([
             'cliente' => $cliente,
             'propiedad' => $propiedad1,
             'cotizacion' => $cotizacion,

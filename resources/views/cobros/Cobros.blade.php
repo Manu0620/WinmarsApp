@@ -1,6 +1,8 @@
 @extends('layouts.consulta-master')
 <title>Cobros</title>
 
+
+
 @section('content')
 
     <div class="tab-nav">
@@ -21,15 +23,15 @@
         <div class="col">
             <div class="col">
                 <div class="button-group" style="text-align: right;">
-                    <button type="button" class="btn btn-primary shadow-none" style="background: #1E88E5;"><i class="fas fa-file-pdf"></i> Imprimir</button>
-                    <button type="reset" class="btn btn-primary shadow-none" style="background: #1976D2;"><i class="fa-solid fa-arrow-rotate-left"></i> Limpiar</button>
-                    <button type="submit" class="btn btn-primary shadow-none" style="background: #0ead69;"><i class="fa-solid fa-floppy-disk"></i> Procesar</button>
+                    <button type="reset" class="btn btn-danger shadow-none" ><i class="fa-solid fa-arrow-rotate-left"></i> Limpiar</button>
+                    <button disabled type="submit" class="btn btn-primary shadow-none" id="enviarCobro" style="background: #0ead69;"><i class="fa-solid fa-floppy-disk"></i> Procesar</button>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="row">
+        <div class="col-1"></div>
         <div class="col">
             <label for="codcli">Cliente</label>
             <div class="input-group">
@@ -56,36 +58,64 @@
             <label for="cedrnc">Cedula</label>
             <input type="tel" class="form-control" id="cedrnc" name="cedrnc"  readonly>
         </div>
+        <div class="col-1"></div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label for="fecha">Fecha</label>
+            <input type="datetime" class="form-control" id="fecha" name="fecha" disabled>
+        </div>
+        <div class="col">
+            <label for="Forma de Pago">Forma de Pago</label>
+            <select class="form-select" name="form_pag" id="form_pag">
+                <option value="Efectivo" selected>Efectivo</option>
+                <option value="Transferencia">Transferencia</option>
+            </select>
+        </div>
+
+        <div class="col">
+            <label for="banco">Banco</label>
+            <select class="form-select" name="banco" id="banco">
+                <option value="11245625647" selected>Banreservas</option>
+                <option value="25135241547">BHD</option>
+            </select>
+        </div>
+        <div class="col">
+            <label for="cuenta_empresa">Cuenta/Empresa</label>
+            <input type="text" class="form-control" value="11245625647" id="cuenta_empresa" name="cuenta_empresa" readonly>
+        </div>
+        <div class="col">
+            <label for="cuenta_cliente">Cuenta/Cliente</label>
+            <input type="number" class="form-control" min="0" id="cuenta_cliente" name="cuenta_cliente" readonly>
+        </div>
     </div>
 
     <div class="row">
         <div class="col"></div>
         <div class="col">
-            <label for="fecha">Fecha</label>
-            <input type="datetime" class="form-control" id="fecha" name="fecha" disabled>
-        </div>
-        <div class="col-1"></div>
-        <div class="col">
-            <label for="montpag">Monto a Pagar</label>
-            <div class="input-group mb-3">
-                <span class="input-group-text">$</span>
-                <input type="text" style="text-align: right;" class="form-control" id="montpag" name="montpag">
-            </div>
+            <label for="monto">Monto</label>
+            <input type="text" class="form-control shadow-none" id="monto" name="monto">
         </div>
         <div class="col">
-            <label for="formpag">Forma de Pago</label>
-            <div class="input-group">
-                <button class="btn btn-primary shadow-none" style="background: #0ead69;" type="button" id="efectivo" data-bs-toggle="modal" data-bs-target="#nuevoClienteModal"><i class="fa-solid fa-money-bills"></i> Efectivo</button>
-                <button class="btn btn-primary shadow-none" style="background: #1976D2;" type="button" id="tarjeta" data-bs-toggle="modal" data-bs-target="#buscarClienteModal"><i class="fa-solid fa-credit-card"></i> Tarjeta</button>  
-            </div>
+            <label for="recibido">Recibido</label>
+            <input type="text" class="form-control" value="0.00" id="recibido" name="recibido" readonly>
+        </div>
+        <div class="col">
+            <label for="cobrar">A Cobrar</label>
+            <input type="text" class="form-control" value="0.00" id="cobrar" name="cobrar" readonly>
+        </div>
+        <div class="col">
+            <label for="A Devolver">A Devolver</label>
+            <input type="text" class="form-control" value="0.00" id="devuelta" name="devuelta" readonly>
         </div>
         <div class="col"></div>
     </div>
 
     <div class="row">
         <div class="col-md-6">
-            <label for="observaciones">Observaciones</label>
-            <textarea type="text" class="form-control" name="observaciones" rows="4"></textarea>
+            <label for="comentario">Comentario</label>
+            <textarea type="text" class="form-control" name="comentario" rows="4"></textarea>
         </div>
         <div class="col" style="margin-top: 35px;">
             <label for="balance">Balance</label>
@@ -111,6 +141,129 @@
     </div>
 
     </form>
+    
+    <script>
+        document.getElementById('form_pag').addEventListener('click', Transferencia);
+        document.getElementById('monto').addEventListener('keyup', validarFormPag);
+        document.getElementById('cuenta_cliente').addEventListener('keyup', validarFormPag);
+        document.getElementById('monto').addEventListener('blur', formatoMonto);
+        document.getElementById('monto').addEventListener('click', deformatMonto);
+        document.getElementById('banco').addEventListener('click', cuentaEmpresa);
+
+        function validarFormPag(e){
+            var monto = accounting.unformat(document.getElementById('monto').value, ".");
+            var cobrar = accounting.unformat(document.getElementById('cobrar').value, ".");
+            var cuentaLength = (document.getElementById('cuenta_cliente').value).length;
+            var form_pag = document.getElementById('form_pag').value;
+            if(form_pag == 'Transferencia'){
+                if(parseFloat(monto) < parseFloat(cobrar) || cuentaLength <= 0){
+                    document.getElementById('monto').style.borderColor = "crimson";
+                    document.getElementById('cuenta_cliente').style.borderColor = "crimson";
+                    document.getElementById('enviarCobro').disabled = true;
+                    document.getElementById('devuelta').value = formatter.format(0);
+                    document.getElementById('recibido').value = formatter.format(0);
+                }else if(parseFloat(cobrar) != 0){
+                    document.getElementById('monto').style.borderColor = "#208b3a";
+                    document.getElementById('cuenta_cliente').style.borderColor = "#208b3a";
+                    document.getElementById('enviarCobro').disabled = false;
+                    document.getElementById('devuelta').value = formatter.format(parseFloat(monto)-parseFloat(cobrar));
+                    document.getElementById('recibido').value = formatter.format(parseFloat(monto));
+                }
+            }else{
+                if(parseFloat(monto) < parseFloat(cobrar)){
+                    document.getElementById('monto').style.borderColor = "crimson";
+                    document.getElementById('enviarCobro').disabled = true;
+                    document.getElementById('devuelta').value = formatter.format(0);
+                    document.getElementById('recibido').value = formatter.format(0);
+                }else if(parseFloat(cobrar) != 0){
+                    document.getElementById('monto').style.borderColor = "#208b3a";
+                    document.getElementById('enviarCobro').disabled = false;
+                    document.getElementById('devuelta').value = formatter.format(parseFloat(monto)-parseFloat(cobrar));
+                    document.getElementById('recibido').value = formatter.format(parseFloat(monto));
+                }
+            }
+        }
+
+        function limpiarFormaPago(){
+            document.getElementById('cuenta_cliente').value = '';
+            document.getElementById('monto').value = '';
+            document.getElementById('devuelta').value = formatter.format(0);
+            docuement.getElementById('monto').removeAttribute('style');
+            docuement.getElementById('cuenta_cliente').removeAttribute('style');
+        }
+
+        function Transferencia(e) {
+            if(document.getElementById('form_pag').value == 'Transferencia'){
+                document.getElementById('banco').readOnly = false;
+                document.getElementById('cuenta_cliente').readOnly = false;
+                document.getElementById('enviarCobro').disabled = true;
+            }else{
+                document.getElementById('banco').readOnly = true;
+                document.getElementById('cuenta_cliente').readOnly = true;
+                document.getElementById('enviarCobro').disabled = true;
+            }   
+            limpiarFormaPago();
+        }
+
+        function deformatMonto(e) { 
+            document.getElementById('monto').value = accounting.unformat(document.getElementById('monto').value, ".");
+        }
+
+        function formatoMonto(e) { 
+            document.getElementById('monto').value = formatter.format(document.getElementById('monto').value);
+        }
+
+        function cuentaEmpresa(e) {
+            document.getElementById('cuenta_empresa').value = document.getElementById('banco').value;
+        }
+
+        var formatter = new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+        });
+
+    </script>
+
+    <h5 style="margin-left: 20px; font-weight: bold;">Facturas pendientes</h5>
+
+    <table class="table table-striped table-hover table-borderless align-middle" id="facturasPendientes">
+        <thead>
+            <tr>
+                <th scope="col">No. Factura</th>
+                <th scope="col">Cliente</th>
+                <th scope="col">Propiedad</th>
+                <th scope="col">Concepto</th>
+                <th scope="col">Fecha vencimiento</th>
+                <th scope="col">Subtotal</th>
+                <th scope="col">Itbis</th>
+                <th scope="col">Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        function cuentaCliente(balance, totpag, balpend){
+            document.getElementById('balance').value = formatter.format(balance);
+            document.getElementById('totpag').value = formatter.format(totpag);
+            document.getElementById('balpend').value = formatter.format(balpend);
+        }
+
+        $(document).ready(function() {
+            $('#facturasPendientes').DataTable({
+                "bPaginate": false,
+                "bFilter": false,
+                "bInfo": true, 
+            });
+
+        });
+
+        function facturasPendientes(facturas){
+            console.log(facturas);
+        }
+    </script>
 
     <div class="modal fade" id="buscarClienteModal" role="dialog" tabindex="-1" aria-labelledby="Seleccionar cliente" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
@@ -121,8 +274,57 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                @php
+                    use App\Models\cuentas;   
+                    use App\Models\clientes;
+                    use App\Models\facturas;
+                @endphp
                 <div class="modal-body">
-                    @include('layouts.modals.seleccionarCliente')
+                    <div class="row">
+                        <table class="table table-responsive" id="dataTable">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Telefono</th>
+                                    <th scope="col">Cedula</th>
+                                    <th scope="col">Balance Pendiente</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($clientes as $cliente)
+                                    @php
+                                        $cuenta = cuentas::where('codcli', $cliente->codcli)->first();
+                                    @endphp
+                                    @if(!is_null($cuenta) && $cuenta->balpend > 0)
+                                        @php
+                                            $facturas = facturas::join('clientes', 'factura.codcli', '=', 'clientes.codcli')
+                                            ->join('detalle_factura', 'factura.numfac', '=', 'detalle_factura.numfac')
+                                            ->join('propiedades', 'detalle_factura.codpro', '=', 'propiedades.codpro')
+                                            ->join('itbis', 'propiedades.citbis', '=', 'itbis.itbis')
+                                            ->select('factura.numfac', 'clientes.codcli', 'clientes.apecli', 'propiedades.codpro',
+                                            'propiedades.titulo','detalle_factura.concepto','factura.fecvenc', 'itbis.itbis','factura.subtot','factura.total')
+                                            ->where('factura.estfac', 'Pendiente')->where('factura.codcli', $cliente->codcli)->get();
+                                        @endphp
+                                        <tr>
+                                            <td scope="row">{{$cliente->codcli}}</td>
+                                            <td>{{$cliente->nomcli.' '.$cliente->apecli}}</td>
+                                            <td>{{$cliente->tecli1}}</td>
+                                            <td>{{$cliente->cedrnc}}</td>
+                                            <td>{{number_format($cuenta->balpend,2,'.',',')}}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary btn-xs" data-bs-dismiss="modal" onclick="facturasPendientes('{{ $facturas }}'),cuentaCliente('{{ $cuenta->balance }}', '{{ $cuenta->totpag }}', '{{ $cuenta->balpend }}'),selectCliente('{{$cliente->codcli}}', '{{$cliente->nomcli}}', '{{$cliente->apecli}}', '{{$cliente->tecli1}}', '{{$cliente->cedrnc}}')">
+                                                    <i class="fa-solid fa-check"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endif
+                                @endforeach
+                            </tbody>
+                        </table>
+                        
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
@@ -132,14 +334,6 @@
     </div>
 
     <script type="text/javascript">
-
-        var montpag = document.getElementById('montpag');
-
-        montpag.addEventListener('blur', setFixed2);
-
-        function setFixed2(){
-            montpag.value = parseFloat(montpag.value).toFixed(2);
-        }
 
         function fecha(){
             var today = new Date();

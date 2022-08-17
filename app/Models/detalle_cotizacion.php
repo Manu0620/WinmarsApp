@@ -17,6 +17,5 @@ class detalle_cotizacion extends Model
         'concepto',
         'cantidad',
         'precio',
-        'estcot',
     ];
 }

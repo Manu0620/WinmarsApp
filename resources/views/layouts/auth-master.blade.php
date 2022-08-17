@@ -87,6 +87,19 @@
                 text-align: center;
             }
 
+            .pagina-inicio .btn{
+                background: transparent; 
+                border: 2px solid #1976d2; 
+                color: #1976d2; 
+                border-radius: 15px;
+            }
+
+            .pagina-inicio .btn:hover{
+                background: #1976d2;
+                border-color: #eee; 
+                color: white;
+            }
+
             h3{
                 font-size: 36px;
                 font-weight: bold;

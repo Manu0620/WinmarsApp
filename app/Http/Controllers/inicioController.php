@@ -10,4 +10,9 @@ class inicioController extends Controller
     {
         return view('pagina-principal.inicio');
     }
+
+    public function venderView()
+    {
+        return view('pagina-principal.vender');
+    }
 }
