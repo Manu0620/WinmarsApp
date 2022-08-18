@@ -24,7 +24,7 @@
                     </div>
                     <div class="col">
                         <div class="input-group">
-                            <input type="text" class="form-control shadow-none" placeholder="Sectores o ciudades donde te interesaria el inmueble.">
+                            <input type="text" class="form-control shadow-none" name="ubicacion" placeholder="Ciudad donde te interesaria el inmueble.">
                             <button class="btn btn-primary shadow-none" id="buscar" > <i class="fa-solid fa-search"></i> Buscar</button>
                         </div>
                     </div>
@@ -46,17 +46,6 @@
                         <input type="number" min="1" max="5" name="baños" class="form-control shadow-none" placeholder="Cuantas baños desea...">
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col">
-                        <label for="">Precio desde:</label>
-                        <input type="number" name="desde" class="form-control shadow-none" placeholder="Precio desde...">
-                    </div>
-                    <div class="col">
-                        <label for="">Precio hasta:</label>
-                        <input type="number" name="hasta" class="form-control shadow-none" placeholder="Precio hasta...">
-                    </div>
-                </div>
             </form>
         </div> 
     </div>
@@ -70,7 +59,9 @@
                 @endphp
                 <div class="property" style=" width:fit-content; margin: 20px; padding: 0; backgroud: white;">
                     <div class="propiedad-image">
-                        <img  style="border: 3px solid #0466c8; border-radius: 35px; width: 350px; height: 200px;" src="{{ url($thumbnail->url) }}" alt="property-image">
+                        <a href="mostrar-propiedad?id={{ $propiedad->codpro }}&peticion=Comprar">
+                            <img  style="border: 3px solid #0466c8; border-radius: 35px; width: 350px; height: 200px;" src="{{ url($thumbnail->url) }}" alt="property-image">
+                        </a>
                     </div>
                     <h5 style="text-align:left; font-weight: bold; font-size: 16px; margin-top: 10px; margin-left: 20px;">{{ $propiedad->titulo }}</h5>
                     <p style="color:#0466c8; text-align:left; font-weight: bold; font-size: 24px; margin-left:20px; margin-bottom: 5px;">{{ 'US$'. number_format($propiedad->preven, 0, '.', ',') }}</p>
@@ -131,6 +122,18 @@
                 </div>
             </div>
     </div>
+
+    <div class="contacto-container" style="height: 300px; background: #0466c8; width: 100%; margin: 40px 0 40px 0; border-radius: 0;">
+        <div class="row">
+            <h2 style="font-weight: bold; color: white;">Te interesa algun inmueble?</h2>
+            <h3 style="font-weight: 600; color: white; font-style:italic;">Dinos cuales son las caracteristicas</h3>
+            <div class="evaluacion-button" style="text-align: center;">
+                <button data-tf-popup="G186BqpV" class="solicitud-button" data-tf-iframe-props="title=Comprar-form" data-tf-medium="snippet">Me interesa!</button>
+            </div> 
+        </div>
+    </div>
+
+    <script src="//embed.typeform.com/next/embed.js"></script>
 
     <div class="contacto-fondo">
         <div class=" contacto-container">

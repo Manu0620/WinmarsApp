@@ -78,8 +78,11 @@
                 </div>
             </div>
             <div class="col">
-                <h4 style="font-weight: bold;">Teléfonos:</h4>
-                <p>(809) 889-2709, (809) 330-4140</p>
+              <h4 style="font-weight: bold;">Teléfonos:</h4>
+              <p>
+                  <a style="text-decoration: none; color:#0466c8;" href="https://api.whatsapp.com/send?phone=18498652406"><i class="fa-brands fa-whatsapp"></i> Whatsapp</a><br/>
+                  <a style="text-decoration: none; color:#0466c8;" href="tel:8293304140"><i class="fa-solid fa-phone"></i> (829) 330-4140 </a>
+              </p>
             </div>
             <div class="col-1" >
                 <div class="icon-container">

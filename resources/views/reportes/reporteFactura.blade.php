@@ -51,6 +51,16 @@
 					</td>
 				</tr>
 
+				<tr class="heading" style="background: transparent;text-align:center;" >
+					<td></td>
+					<td> </td>
+					<td>Factura</td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+
+				</tr>
+
 				<tr class="heading">
 					<td>Informacion de contacto</td>
 
@@ -439,8 +449,7 @@
 				 <p align="justify"><b>HECHO, CONVENIDO, PACTADO Y FIRMADO</b> de buena fe entre las partes en dos (2)
 					originales de un mismo tenor y efecto, uno para cada una de las partes contratantes y el
 					restante para ser archivado por el Notario Público actuante, en la ciudad de Santiago de
-					los Caballeros, Municipio y Provincia de Santiago, República Dominicana, a los
-					diez y seis (16) días del mes de noviembre de 2021.</p> <br />
+					los Caballeros, Municipio y Provincia de Santiago, República Dominicana,  a la fecha {{ date("d/m/Y") }}</p> <br />
 
 					<h3 style="text-align: center";><b>EL VENDEDOR	</b></h3><br />
 					<p align="center"><b></b>
@@ -467,8 +476,7 @@
 					RODRIGUEZ Y THOMAS B SPIESS</b> , quienes me han declarado que esas son las firmas
 					que ellos acostumbran a usar en todos los actos de su vida pública y privada, a quienes
 					también doy fe conocer y de haber identificado.- En la ciudad de Santiago de los
-					Caballeros, Municipio y Provincia de Santiago, República Dominicana, a los diez
-					<b>(16)</b> días del mes de noviembre de 2021.</p> <br />
+					Caballeros, Municipio y Provincia de Santiago, República Dominicana, a la fecha {{ date("d/m/Y") }}</p> <br />
 				 
 					<p align="center"><b></b>
 						<label>____________________________________________</label> <br />

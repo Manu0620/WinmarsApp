@@ -78,6 +78,22 @@
                 border-radius: 35px; 
             }
 
+            .contacto-container .solicitud-button{
+                color: black;
+                /* text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.811); */
+                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
+                margin: 30px;
+                width: 200px;
+                height: 55px;
+                border: 1px solid transparent;
+                border-radius: 25px;
+                background: #e3f2fd;
+                font-weight: bold;
+                font-size: 22px;
+                font-style: italic;
+            }
+
+
             .contacto-container .row{
                 display: flex; 
                 align-items: center; 

@@ -14,9 +14,34 @@
     $numeroFacturas = facturas::where('estfac', 'Pendiente')->count();
     $numeroClientes = clientes::join('tipo_clientes','tipo_clientes.codtpcli','=','clientes.codtpcli')
     ->select('tipo_clientes.tipcli')->where('tipo_clientes.tipcli', "Comprador")->count();
+    
+    $dbData = facturas::select(
+        DB::raw('year(created_at) as year'),
+        DB::raw('month(created_at) as month'),
+        DB::raw('sum(total) as total'),
+    )
+        ->where(DB::raw('date(created_at)'), '>=', "2022-01-01")
+        ->groupBy('year')
+        ->groupBy('month')
+        ->get();
+
+    $data = [];
+
+    for ($year = date('Y'); $year <= now()->format('Y'); $year++) {
+        for ($month = 1; $month <= 12; $month++) {
+            $data[] = [
+                'year' => $year,
+                'month' => $month,
+                'total' => optional($dbData->first(fn($row) => $row->month == $month && $row->year == 'year'))->total,
+            ];
+        }
+    }
+    $enero = $data[7]['total'];
 @endphp
+
+
 @section('content')
- 
+ <script>console.log({{ $enero }})</script>
     <div class="container-fluid">
       <!-- Small boxes (Stat box) -->
       <div class="row">
@@ -58,7 +83,7 @@
             <div class="icon">
               <i class="fa-solid fa-file-invoice-dollar"></i>
             </div>
-            <a href="#" class="small-box-footer">Mas informacion <i class="fas fa-arrow-circle-right"></i></a>
+            <a href="/consultarFacturas" class="small-box-footer">Mas informacion <i class="fas fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <!-- ./col -->

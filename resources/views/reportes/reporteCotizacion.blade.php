@@ -37,6 +37,16 @@
 					</td>
 				</tr>
 
+				<tr class="heading" style="background: transparent;text-align:center;" >
+					<td></td>
+					<td> </td>
+					<td>Contizacion</td>
+					<td> </td>
+					<td> </td>
+					<td> </td>
+
+				</tr>
+
 				<tr class="heading">
 					<td>Informacion de contacto</td>
 

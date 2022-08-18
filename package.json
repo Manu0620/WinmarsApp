@@ -26,6 +26,8 @@
     "dependencies": {
         "datatables.net": "^1.12.1",
         "jquery": "^3.6.0",
-        "repair": "^0.1.1"
+        "repair": "^0.1.1",
+        "swiper": "^8.3.2"
     }
+    
 }

@@ -302,7 +302,7 @@
                             <tbody>
                                 @foreach($clientes as $cliente)
                                     @php
-                                        $facturas = facturas::where('codcli', $cliente->codcli)->where('estfac', 'Pendiente')->orderBy('fecvenc', 'ASC')->get();
+                                        $facturas = facturas::where('codcli', $cliente->codcli)->where('estfac', 'Pendiente')->orderBy('fecvenc', 'DESC')->get();
                                         $cuenta = cuentas::where('codcli', $cliente->codcli)->where('estcue', 'Pendiente')->first();
                                     @endphp
                                     @if(!is_null($facturas) && !is_null($cuenta))
@@ -318,7 +318,7 @@
                                                 <td>{{$cliente->cedrnc}}</td>
                                                 <td>{{ $factura->numfac }}</td>
                                                 <td>{{ $detalle->concepto }}</td>
-                                                <td>{{ number_format($cuenta->balpend) }}</td>
+                                                <td>{{'$'. number_format($cuenta->balpend,2,'.',',') }}</td>
                                                 <td>{{ date("d/m/Y", strtotime($factura->fecvenc)) }}</td>
                                                 @if($detalle->cantidad > 1)
                                                     @php

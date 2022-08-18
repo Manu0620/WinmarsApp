@@ -14,6 +14,7 @@ class cobros extends Model
 
     public $fillable = [
         'codcue',
+        'numfac',
         'form_pag',
         'cuenta_empresa',
         'cuenta_cliente',

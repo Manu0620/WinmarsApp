@@ -51,13 +51,7 @@
             @enderror
         </div>
 
-        <div class="mb-3">
-            <label for="estsol">Estado</label>
-            <select class="form-select" name="estsol" disabled>
-                <option value="Pendiente" selected>Pendiente</option>
-                <option value="Procesada">Procesada</option>
-            </select>
-        </div>
+        <input type="text" name="estsol" value="Pendiente" hidden>
 
         <div class="button-group">
             <button type="reset" class="btn btn-primary"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>

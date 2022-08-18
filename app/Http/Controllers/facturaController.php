@@ -45,8 +45,8 @@ class facturaController extends Controller
 
         //Actualizar estado factura
         $propiedad = propiedades::where('codpro', $request->codpro)->first();
-        /* $propiedad->estpro = 'Vendida';
-        $propiedad->save();  */
+        $propiedad->estpro = 'Vendida';
+        $propiedad->save();
 
         //Actualizar estado cotizacion
         if ($request->numcot != '') {
@@ -84,7 +84,8 @@ class facturaController extends Controller
 
     public function query()
     {
-        return view('facturas.consultarFacturas');
+        $datos['facturas'] = facturas::where('estfac', 'Pendiente')->get();
+        return view('facturas.consultarFacturas', $datos);
     }
 }
 

@@ -50,6 +50,7 @@ Route::get('/contacto', function () {
 
 Route::get('/reporteFactura', [reportesController::class, 'imprimirFactura']);
 Route::get('/reporteCotizacion', [reportesController::class, 'imprimirCotizacion']);
+Route::get('/reporteCobro', [reportesController::class, 'imprimirCobro']);
 Route::get('/contratoInquilinato', [reportesController::class, 'contratoInquilinato']);
 Route::get('/contratoPromesa', [reportesController::class, 'contratoPromesa']);
 
@@ -149,3 +150,4 @@ Route::post('/login', [loginController::class, 'login']);
 Route::get('/inicio', [inicioController::class, 'inicio']);
 Route::get('/vender', [inicioController::class, 'venderView']);
 Route::post('/comprar-alquilar', [inicioController::class, 'comprarAlquilar']);
+Route::get('/mostrar-propiedad', [inicioController::class, 'mostrarPropiedad']);

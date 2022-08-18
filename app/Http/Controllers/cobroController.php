@@ -27,10 +27,12 @@ class cobroController extends Controller
         $detalle = detalle_factura::where('numfac', $factura->numfac)->first();
         $propiedad = propiedades::where('codpro', $detalle->codpro)->first();
         $cuenta = cuentas::where('codcue', $request->codcue)->first();
+        $cliente =  clientes::where('codcli', $request->codcli)->first();
 
         $pago = new cobros();
         $pago->form_pag = $request->form_pag;
         $pago->codcue = $request->codcue;
+        $pago->numfac = $factura->numfac;
         if ($request->form_pag == 'Transferencia') {
             $pago->cuenta_empresa = $request->cuenta_empresa;
             $pago->cuenta_cliente = $request->cuenta_cliente;
@@ -62,12 +64,18 @@ class cobroController extends Controller
         $factura->fecvenc = date("Y-m-d", strtotime($fecha . "+ 30 days"));
         $factura->save();
 
-        return redirect()->to('Cobros')->with('success', 'Pago procesado correctamente!');
+        return redirect()->to('/reporteCobro')->with([
+            'cliente' => $cliente,
+            'propiedad' => $propiedad,
+            'pago' => $pago,
+            'detalle' => $detalle
+        ]);
     }
 
     public function query()
     {
-        return view('cobros.consultarCobros');
+        $datos['cobros'] = cobros::all();
+        return view('cobros.consultarCobros', $datos);
     }
 }
 

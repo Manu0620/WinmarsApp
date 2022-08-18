@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\propiedades;
 use Illuminate\Http\Request;
 
 class inicioController extends Controller
@@ -20,5 +21,12 @@ class inicioController extends Controller
     {
         $peticion = $request;
         return view('pagina-principal.comprar-alquilar', compact('peticion'));
+    }
+
+    public function mostrarPropiedad()
+    {
+        $propiedad = propiedades::where('codpro', $_GET['id'])->first();
+        $accion = $_GET['peticion'];
+        return view('pagina-principal.mostrar-propiedad', compact(['propiedad', 'accion']));
     }
 }

@@ -69,6 +69,8 @@ class cotizacionController extends Controller
 
     public function query()
     {
+        $datos['cotizaciones'] = cotizaciones::where('estcot', 'Por Facturar')->get();
+        return view('cotizaciones.consultarCotizaciones', $datos);
     }
 }
 

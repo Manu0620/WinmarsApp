@@ -7,6 +7,13 @@
         <title>Winmars Properties | Venta, alquiler y administracion de Propiedades</title>
         <link rel="icon" href="assets/img/Solo_logo.png">
 
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"
+        />
+
+        <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
         <script src="{{ url('assets/js/bootstrap.bundle.min.js') }}"></script>
         <!--Fonts-->
         <link rel="stylesheet" href="{{ url('assets/css/Nunito-Sans.css') }}" >
@@ -94,6 +101,22 @@
                 font-size: 24px;
             }
 
+            .contacto-container .solicitud-button{
+                color: black;
+                /* text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.811); */
+                box-shadow: 0 3px 10px rgba(0, 0, 0, 0.45);
+                margin: 30px;
+                width: 200px;
+                height: 55px;
+                border: 1px solid transparent;
+                border-radius: 25px;
+                background: #e3f2fd;
+                font-weight: bold;
+                font-size: 22px;
+                font-style: italic;
+            }
+
+
             .contacto-container{
                 display: flex; 
                 align-items: center; 
@@ -171,6 +194,13 @@
                 background-color: #0466c8; 
             }
 
+            .mostrar-propiedad{
+                width: 100%; 
+                margin-top: 70px;
+                background: #e3f2fd;
+                border-radius: 35px; 
+            }
+
             .search-box{
                 display: flex; 
                 align-items: center; 
@@ -214,10 +244,51 @@
             .search-box .input-group .btn{
                 background: #0466c8;
                 border-radius: 0 15px 15px 0;
-                width: 25%;
+                width: 20%;
                 height: 45px;
                 font-weight: bold;
             }
+
+            .search-box-comprar-alquilar{
+                display: flex; 
+                align-items: left; 
+                justify-content: center; 
+                flex-direction: column;
+                margin-left: 40px; 
+                /* background: white; */
+                width: 100%;
+                backdrop-filter: blur(10px);
+            }
+
+            .search-box-comprar-alquilar .form{
+                width: 70%;
+            }
+
+            .search-box-comprar-alquilar .form-select, .search-box-comprar-alquilar .form-control{
+                -moz-appearance:none; /* Firefox */
+                -webkit-appearance:none; /* Safari and Chrome */
+                appearance:none;
+                font-weight: 600; 
+                border: 1px solid #0466c8; 
+                color: #0466c8;
+                border-radius: 15px;
+                font-size: 16px;
+                height: 40px;
+            }
+
+            .search-box-comprar-alquilar .form-select:hover{
+                color: white;
+                background: #0466c873;
+            }
+
+            .search-box-comprar-alquilar .btn{
+                background: #0466c8;
+                border-radius: 15px;
+                width: fit-content;
+                height: 45px;
+                font-weight: bold;
+            }
+
 
             .search-form{
                 margin: 60px;
@@ -231,11 +302,18 @@
                 animation: fadeIn 2s;
             }
 
-            .form label{
+            .search-box .form label{
                 font-weight: bold;
                 margin-left: 20px;
                 color: black;
                 text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.656);
+                animation: fadeIn 2s;
+            }
+
+            .search-box-comprar-alquilar .form label{
+                font-weight: bold;
+                margin-left: 10px;
+                color: black;
                 animation: fadeIn 2s;
             }
 

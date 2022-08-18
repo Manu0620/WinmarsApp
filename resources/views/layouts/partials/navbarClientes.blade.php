@@ -69,12 +69,6 @@
                     <a class="nav-link" href="inicio" role="button" aria-expanded="false"><i class="fa-solid fa-house"></i> Inicio</a>
                 </ul>
                 <ul class="nav-item">
-                    <a class="nav-link" href="#" role="button" aria-expanded="false"> Comprar</a>
-                </ul>
-                <ul class="nav-item">
-                    <a class="nav-link" href="#" role="button" aria-expanded="false"> Alquilar</a>
-                </ul>
-                <ul class="nav-item">
                     <a class="nav-link" href="/vender" role="button" aria-expanded="false"> Vender</a>
                 </ul>
                 <ul class="nav-item">

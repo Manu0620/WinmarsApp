@@ -25,4 +25,9 @@ class reportesController extends Controller
     {
         return view('reportes.contratoPromesa');
     }
+
+    public function imprimirCobro()
+    {
+        return view('reportes.reporteCobro');
+    }
 }

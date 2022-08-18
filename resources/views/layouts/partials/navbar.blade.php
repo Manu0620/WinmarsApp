@@ -68,7 +68,6 @@
                             <li><a class="dropdown-item" href="registrarClientes"><i class="fa-solid fa-user-check" style="position: initial;"></i>  Clientes<i class="fa-solid fa-arrow-right"></i></a></li>
                             <li><a class="dropdown-item" href="registrarPropiedades"><i class="fa-solid fa-building" style="position: initial;"></i>  Propiedades <i class="fa-solid fa-arrow-right"></i></a></li>
                             <li><a class="dropdown-item" href="registrarSolicitudes"><i class="fa-solid fa-code-pull-request" style="position: initial;"></i>  Solicitudes <i class="fa-solid fa-arrow-right"></i></a></li>
-                            <li><a class="dropdown-item" href="registrarCitas"><i class="fa-solid fa-calendar-check" style="position: initial;"></i>  Citas <i class="fa-solid fa-arrow-right"></i></a></li>
                     </ul>
                 </li>
 
@@ -83,9 +82,6 @@
                             <li><a class="dropdown-item" href="consultarPropiedades"><i class="fa-solid fa-building" style="position: initial;"></i>  Propiedades <i class="fa-solid fa-arrow-right"></i></a></li>
                             <li><a class="dropdown-item" href="consultarCitas"><i class="fa-solid fa-calendar-check" style="position: initial;"></i>  Citas <i class="fa-solid fa-arrow-right"></i></a></li>
                             <li><a class="dropdown-item" href="consultarSolicitudes"><i class="fa-solid fa-code-pull-request" style="position: initial;"></i>  Solicitudes <i class="fa-solid fa-arrow-right"></i></a></li>
-                            <li><a class="dropdown-item" href="consultarFacturas"><i class="fa-solid fa-file-invoice-dollar" style="position: initial;"></i>  Facturas<i class="fa-solid fa-arrow-right"></i></a></li>
-                            <li><a class="dropdown-item" href="consultarCobros"><i class="fa-solid fa-money-check-dollar" style="position: initial;"></i>  Cobros<i class="fa-solid fa-arrow-right"></i></a></li>
-                            <li><a class="dropdown-item" href="consultarCotizaciones"><i class="fas fa-file-invoice" style="position: initial;"></i>  Cotizacion<i class="fa-solid fa-arrow-right"></i></a></li>
                             <li><a class="dropdown-item" href="consultarCuentas"><i class="fa-solid fa-calendar-check" style="position: initial;"></i>  Estado de Cuentas <i class="fa-solid fa-arrow-right"></i></a></li>
                     </ul>
                 </li>
@@ -99,6 +95,9 @@
                         <li><a class="dropdown-item" href="Cobros"><i class="fa-solid fa-money-check-dollar" style="position: initial;"></i>  Cobros<i class="fa-solid fa-arrow-right"></i></a></li>
                         <li><a class="dropdown-item" href="Cotizacion"><i class="fas fa-file-invoice" style="position: initial;"></i>  Cotizacion<i class="fa-solid fa-arrow-right"></i></a></li>
                         <li><a class="dropdown-item" href="consultarSolicitudes"><i class="fa-solid fa-code-pull-request" style="position: initial;"></i>  Responder Solicitudes <i class="fa-solid fa-arrow-right"></i></a></li>
+                        <li><a class="dropdown-item" href="consultarFacturas"><i class="fa-solid fa-file-invoice-dollar" style="position: initial;"></i> Consultar Facturas<i class="fa-solid fa-arrow-right"></i></a></li>
+                        <li><a class="dropdown-item" href="consultarCobros"><i class="fa-solid fa-money-check-dollar" style="position: initial;"></i> Consultar Cobros<i class="fa-solid fa-arrow-right"></i></a></li>
+                        <li><a class="dropdown-item" href="consultarCotizaciones"><i class="fas fa-file-invoice" style="position: initial;"></i> Consultar Cotizacion<i class="fa-solid fa-arrow-right"></i></a></li>
                     </ul>
                 </li>
             </ul>

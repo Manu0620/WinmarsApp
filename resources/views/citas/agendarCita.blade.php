@@ -10,6 +10,12 @@
     </div>
 
     <h3>Agendar Cita</h3>
+
+
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/dateTimePicker.css">
+    <script type="text/javascript" src="scripts/components/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/dateTimePicker.min.js"></script>
     
 
     <form action="/agendarCita" method="POST">
@@ -39,7 +45,7 @@
 
         <div class="mb-3">
             <label for="fecha">Fecha</label>
-            <input type="datetime-local" class="form-control" name="fecha" placeholder="Ingrese el fecha...">
+            <input type="datetime-local" class="form-control" min="{{  $fechaHoy = date("Y-m-d h:i", strtotime(date("Y-m-d h:i")."+ 2 days")) }}" name="fecha" placeholder="Ingrese el fecha...">
             @error('fecha')
             @include('layouts.partials.messages')
         @enderror
