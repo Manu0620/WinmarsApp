@@ -15,4 +15,10 @@ class inicioController extends Controller
     {
         return view('pagina-principal.vender');
     }
+
+    public function comprarAlquilar(Request $request)
+    {
+        $peticion = $request;
+        return view('pagina-principal.comprar-alquilar', compact('peticion'));
+    }
 }

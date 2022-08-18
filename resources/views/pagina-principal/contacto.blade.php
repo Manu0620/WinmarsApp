@@ -16,7 +16,7 @@
 
         <div class="col" style="margin: 40px;">
           <h1 class="fw-300 titulo">Nuestra Ubicación:</h1>
-          <iframe style="border-radius: 25px; opacity: 0.8; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.208); filter: grayscale(100%) invert(92%) contrast(83%);" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.9579453698666!2d-70.65492788561819!3d19.414222946299994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eb1cf62c72bf7b9%3A0xece9b96e03eb72a9!2sWinmars%20Properties!5e0!3m2!1ses!2sdo!4v1660703331998!5m2!1ses!2sdo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <iframe style="border-radius: 25px; opacity: 0.8; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.208); filter:saturate(130%) contrast(90%);" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.9579453698666!2d-70.65492788561819!3d19.414222946299994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eb1cf62c72bf7b9%3A0xece9b96e03eb72a9!2sWinmars%20Properties!5e0!3m2!1ses!2sdo!4v1660703331998!5m2!1ses!2sdo" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
 
     </div>

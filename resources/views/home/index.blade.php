@@ -96,21 +96,25 @@
                   animationEnabled: true,  
                   backgroundColor: "#E3F2FD",
                   fontFamily: "Nunito Sans",
-                  fontWeight: "bold",
                   toolTip:{
                     backgroundColor: "#E3F2FD",
                     borderColor: "#1976d2",
+                    fontFamily: "Nunito Sans",
+                    fontWeight: "bold",
                     cornerRadius:10
                   },
                   title:{
                     text: "Ventas mensuales - "+{{ date('Y') }}+" (USD)",
                     margin: 20,
-                    fontSize: 20
+                    fontSize: 20,
+                    fontFamily: "Nunito Sans",
+                    fontWeight: "bold",
                   },
                   axisX: {
                     labelFontFamily: "Nunito Sans",
                     labelFontWeight: "bold",
-                    valueFormatString: "MMM"
+                    valueFormatString: "MMM",
+                    fontWeight: "bold",
                   },
                   axisY: {
                     labelFontFamily: "Nunito Sans",

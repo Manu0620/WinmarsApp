@@ -141,9 +141,11 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
         Route::get('/logout', [logoutController::class, 'logout']);
     });
 });
+
 //Login y pagina clientes
 
 Route::get('/login', [loginController::class, 'show']);
 Route::post('/login', [loginController::class, 'login']);
 Route::get('/inicio', [inicioController::class, 'inicio']);
 Route::get('/vender', [inicioController::class, 'venderView']);
+Route::post('/comprar-alquilar', [inicioController::class, 'comprarAlquilar']);

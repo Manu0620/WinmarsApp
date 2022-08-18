@@ -9,12 +9,12 @@ class cobros extends Model
 {
     use HasFactory;
 
-    protected $table = 'pago';
-    protected $primaryKey = 'codpag';
+    protected $table = 'cobros';
+    protected $primaryKey = 'codcob';
 
     public $fillable = [
         'codcue',
-        'form_pago',
+        'form_pag',
         'cuenta_empresa',
         'cuenta_cliente',
         'banco',
