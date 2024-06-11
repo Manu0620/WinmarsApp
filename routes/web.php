@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('pagina-principal.inicio');
+    return view('auth.login');
 });
 
 Route::get('/contratoInquilinato', function () {
