@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,7 +61,7 @@
             .form-container input{
                 border: 1px solid #6c757d;
                 border-bottom: 3px solid #6c757d;
-                border-radius: 10px; 
+                border-radius: 10px;
             }
 
             .form-container input:hover, .form-container input:focus{
@@ -88,15 +88,15 @@
             }
 
             .pagina-inicio .btn{
-                background: transparent; 
-                border: 2px solid #1976d2; 
-                color: #1976d2; 
+                background: transparent;
+                border: 2px solid #1976d2;
+                color: #1976d2;
                 border-radius: 15px;
             }
 
             .pagina-inicio .btn:hover{
                 background: #1976d2;
-                border-color: #eee; 
+                border-color: #eee;
                 color: white;
             }
 
@@ -105,19 +105,28 @@
                 font-weight: bold;
                 text-align: center;
             }
+
+            .footer a {
+        color: black;
+        text-decoration: underline;
+        position: absolute;
+        left: 20px;
+        line-height: 50px;
+    }
         </style>
     </head>
 
     <body>
-         
+
         <main class="form-container">
             @yield('content')
         </main>
 
         <script src="{{ url('assets/js/bootstrap.bundle.min.js') }}"></script>
     </body>
-    <footer class="footer footer-expand-lg fixed-bottom">
-        <p class="rights"> © 2022 Winmars Properties S.R.L. All rights reserved. </p>
+    <footer class=" footer footer-expand-lg fixed-bottom">
+        <a href="/inicio">Inicio </a>
+        <p class="rights"> © 2024 Winmars Properties S.R.L. All rights reserved. </p>
         <p class="date" id="date"></p>
     </footer>
 
@@ -130,7 +139,7 @@
 
             document.getElementById('date').innerHTML = dateTime;
         }
-      
+
         setInterval(fecha, 1000);
     </script>
 

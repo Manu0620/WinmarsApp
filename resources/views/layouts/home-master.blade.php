@@ -118,7 +118,7 @@
         <script src="{{ url('assets/js/bootstrap.bundle.min.js') }}"></script>
     </body>
     <footer class="footer footer-expand-lg fixed-bottom">
-        <p class="rights"> © 2022 Winmars Properties S.R.L. All rights reserved. </p>
+        <p class="rights"> © 2024 Winmars Properties S.R.L. All rights reserved. </p>
         <p class="date" id="date"></p>
     </footer>
 
@@ -131,7 +131,7 @@
 
             document.getElementById('date').innerHTML = dateTime;
         }
-      
+
         setInterval(fecha, 1000);
     </script>
 

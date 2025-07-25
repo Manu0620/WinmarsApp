@@ -4,7 +4,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -79,9 +79,9 @@
                 border-radius: 5px;
                 font-weight: bold;
                 padding: 10px;
-                margin-bottom: 30px; 
+                margin-bottom: 30px;
             }
-            
+
             .tab-nav:hover{
                 padding: 10px;
             }
@@ -120,8 +120,8 @@
 
             .table thead tr{
                 background-color: #1E88E5;
-                color: white;  
-                font-weight: bold;  
+                color: white;
+                font-weight: bold;
                 text-align: left;
                 white-space: nowrap;
             }
@@ -131,7 +131,7 @@
                 padding: 12px 15px;
             }
 
-            .table tbody td{    
+            .table tbody td{
                 background-color: #64B5F6;
                 border-bottom: 1px solid #ffffff66;
                 font-size: 0.9em;
@@ -189,10 +189,10 @@
 
             .modal-content button{
                 background: #1976d2;
-                width: fit-content; 
-                height: 40px; 
-                margin: 10px; 
-                font-weight: bold; 
+                width: fit-content;
+                height: 40px;
+                margin: 10px;
+                font-weight: bold;
                 border-radius: 10px;
             }
 
@@ -207,18 +207,18 @@
             }
         </style>
     </head>
-    
+
     <body class="antialiased">
-        
+
         @include('layouts.partials.navbar')
 
         <main class="form-container">
             @yield('content')
         </main>
-        
+
     </body>
     <footer class="footer footer-expand-lg fixed-bottom">
-        <p class="rights"> © 2022 Winmars Properties S.R.L. All rights reserved. </p>
+        <p class="rights"> © 2024 Winmars Properties S.R.L. All rights reserved. </p>
         <p class="date" id="date"></p>
     </footer>
 
@@ -231,7 +231,7 @@
 
             document.getElementById('date').innerHTML = dateTime;
         }
-      
+
         setInterval(fecha, 1000);
     </script>
 </html>

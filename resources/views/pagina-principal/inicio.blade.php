@@ -6,9 +6,9 @@
     $propiedadesR = propiedades::orderBy('created_at','DESC')->paginate(4);
 @endphp
 
-@section('content')    
-    <div class="section-searh-box">  
-        
+@section('content')
+    <div class="section-searh-box">
+
         <div class="search-box">
             <div class="hero-title">
                 <h1>¡Tenemos el inmueble que buscas!</h1>
@@ -16,7 +16,7 @@
             <form class="form" action="/comprar-alquilar" method="POST">
                 @csrf
                 <div class="row">
-                    <div class="col-3"> 
+                    <div class="col-3">
                         <select class="form-select shadow-none" name="accion" id="accion">
                             <option value="Comprar" selected>Comprar</option>
                             <option value="Alquilar">Alquilar</option>
@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col"> 
+                    <div class="col">
                         <label for="">Tipo inmueble:</label>
                         <select class="form-select shadow-none" name="tipo" id="tipo">
                             <option value="Apartamento" selected>Apartamento</option>
@@ -47,7 +47,7 @@
                     </div>
                 </div>
             </form>
-        </div> 
+        </div>
     </div>
 
     <div class="container-fluid propiedades-recientes" style="width: 96%; height: fit-content; text-align:center; margin:40px; border-radius:35px; padding: 30px; ">
@@ -68,7 +68,7 @@
                     <ul style=" padding:0; display:flex; list-style-type: none; text-align: left; font-weight: 600; color:#0466c8;" >
                         <li style="margin: 0 0 0 20px;"><i class="fa-solid fa-bed"></i> {{ $propiedad->habit }}</li>
                         <li style="margin: 0 0 0 20px;"><i class="fa-solid fa-bath"></i> {{ $propiedad->baños }}</li>
-                        <li style="margin: 0 0 0 20px;"><i class="fa-solid fa-car"></i> {{ $propiedad->parqueo }}</li> 
+                        <li style="margin: 0 0 0 20px;"><i class="fa-solid fa-car"></i> {{ $propiedad->parqueo }}</li>
                         <li style="margin: 0 0 0 20px;"><i class="fa-solid fa-map"></i> {{ $propiedad->metros. " M²" }}</li>
                     </ul>
                 </div>
@@ -129,7 +129,7 @@
             <h3 style="font-weight: 600; color: white; font-style:italic;">Dinos cuales son las caracteristicas</h3>
             <div class="evaluacion-button" style="text-align: center;">
                 <button data-tf-popup="G186BqpV" class="solicitud-button" data-tf-iframe-props="title=Comprar-form" data-tf-medium="snippet">Me interesa!</button>
-            </div> 
+            </div>
         </div>
     </div>
 
@@ -145,7 +145,7 @@
                 </div>
                 <div class="col">
                     <h4 style="font-weight: bold;">Ubicación:</h4>
-                    <p>Mía Molina, Av. Hispanoamericana Calle 1,<br>Santiago De Los Caballeros 51000</p>
+                    <p>Santiago De Los Caballeros</p>
                 </div>
                 <div class="col-1">
                     <div class="icon-container">
@@ -156,7 +156,7 @@
                     <h4 style="font-weight: bold;">Teléfonos:</h4>
                     <p>
                         <a style="text-decoration: none; color:#0466c8;" href="https://api.whatsapp.com/send?phone=18498652406"><i class="fa-brands fa-whatsapp"></i> Whatsapp</a><br/>
-                        <a style="text-decoration: none; color:#0466c8;" href="tel:8293304140"><i class="fa-solid fa-phone"></i> (829) 330-4140 </a>
+                        <a style="text-decoration: none; color:#0466c8;" href="tel:8884404140"><i class="fa-solid fa-phone"></i> (888) 440-4140 </a>
                     </p>
                 </div>
                 <div class="col-1" >
@@ -166,11 +166,11 @@
                 </div>
                 <div class="col" >
                     <h4 style="font-weight: bold;">Correos electrónicos:</h4>
-                    <p>winmarsproperties@gmail.com<br>maderamanuel25@gmail.com</p>
+                    <p>winmarsproperties@gmail.com<br>wmuser123@gmail.com</p>
                 </div>
             </div>
     </div>
-    
+
     </div>
-    
+
 @endsection

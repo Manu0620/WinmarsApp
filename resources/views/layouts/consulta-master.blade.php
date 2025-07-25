@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="icon" href="assets/img/Solo_logo.png">
-        
+
         <!--JavaScript-->
         <script src="{{ url('assets/js/sweetalert2.all.min.js') }}"></script>
         <script src="{{ url('assets/js/bootstrap.bundle.min.js') }}"></script>
@@ -122,9 +122,9 @@
                 border-radius: 5px;
                 font-weight: bold;
                 padding: 10px;
-                margin-bottom: 30px; 
+                margin-bottom: 30px;
             }
-            
+
             .tab-nav:hover{
                 padding: 10px;
             }
@@ -142,8 +142,8 @@
 
             .table thead tr {
                 background-color: #1E88E5;
-                color: white;  
-                font-weight: bold;  
+                color: white;
+                font-weight: bold;
                 text-align: left;
                 white-space: nowrap;
             }
@@ -153,7 +153,7 @@
                 padding: 12px 15px;
             }
 
-            .table tbody td,.table tfoot tr{    
+            .table tbody td,.table tfoot tr{
                 background-color: #64B5F6;
                 border-bottom: 1px solid #ffffff66;
                 font-size: 0.9em;
@@ -172,7 +172,7 @@
 
             form .row{
                 font-weight: 600;
-                margin: 30px 0px 30px 0px; 
+                margin: 30px 0px 30px 0px;
                 margin-top: 0px;
             }
 
@@ -216,7 +216,7 @@
                 border: none;
                 width: fit-content;
                 height: 45px;
-                margin: 20px 5px 20px 5px; 
+                margin: 20px 5px 20px 5px;
                 font-weight: bold;
                 border-radius: 10px;
             }
@@ -228,10 +228,10 @@
 
             .modal-content button{
                 background: #1976d2;
-                width: fit-content; 
-                height: 40px; 
-                margin: 10px; 
-                font-weight: bold; 
+                width: fit-content;
+                height: 40px;
+                margin: 10px;
+                font-weight: bold;
                 border-radius: 10px;
             }
 
@@ -270,11 +270,11 @@
             td li{
                 height: 35px;
                 border-radius: 30px;
-            } 
+            }
 
             .radio-buttons{
                 border: 1px solid #eee;
-                border-radius: 30px; 
+                border-radius: 30px;
                 padding: 0px 10px 5px 10px;
                 font-weight: bold;
                 width: fit-content;
@@ -283,11 +283,11 @@
 
             input[id="comprobante-si"]:hover, input[id="comprobante-si"]:checked, input[id="comprobante-si"]:focus{
                 background-color: #0ead69;
-            } 
+            }
 
             input[id="comprobante-no"]:hover, input[id="comprobante-no"]:checked, input[id="comprobante-no"]:focus{
                 background-color: #ad0e0e;
-            } 
+            }
 
             .radio-body{
                 padding: 7px;
@@ -298,14 +298,14 @@
 
     <body class="antialiased">
 
-        @include('layouts.partials.navbar')        
+        @include('layouts.partials.navbar')
         <main class="container-fluid">
             @yield('content')
         </main>
 
     </body>
     <footer class="footer footer-expand-lg fixed-bottom">
-        <p class="rights"> © 2022 Winmars Properties S.R.L. All rights reserved. </p>
+        <p class="rights"> © 2024 Winmars Properties S.R.L. All rights reserved. </p>
         <p class="date" id="date"></p>
     </footer>
 
@@ -318,7 +318,7 @@
 
             document.getElementById('date').innerHTML = dateTime;
         }
-      
+
         setInterval(fecha, 1000);
     </script>
 </html>
